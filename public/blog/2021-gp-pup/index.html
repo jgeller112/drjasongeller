@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head>
+  
+
+
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.92.0" />
+<title>Analzying GazePoint Pupil Data With GazeR | Silvia Canelón</title>
+
+
+<meta property="twitter:site" content="@spcanelon">
+<meta property="twitter:creator" content="@spcanelon">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Using gazeR to analyze GazePoint Pupil Data">
+
+
+<meta name="google-site-verification" content="SXazFKEYdrkxQRjO6ofQA45n5g-Uxn_sq3vVTYYnZ9U"/>
+
+
+<meta property="og:site_name" content="Silvia Canelón">
+<meta property="og:title" content="Analzying GazePoint Pupil Data With GazeR | Silvia Canelón">
+<meta property="og:description" content="Using gazeR to analyze GazePoint Pupil Data" />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://silvia.rbind.io/blog/2021-gp-pup/" />
+<meta property="og:locale" content="en">
+
+
+
+
+      
+          <meta property="og:image" content="https://silvia.rbind.io/blog/sidebar.jpg" >
+          <meta property="twitter:card" content="summary_large_image">
+          <meta name="twitter:image" content="https://silvia.rbind.io/blog/sidebar.jpg" >
+      
+      
+  <meta itemprop="name" content="Analzying GazePoint Pupil Data With GazeR">
+<meta itemprop="description" content="I show to analyze pupil data from a GazePoint tracker."><meta itemprop="datePublished" content="2021-04-21T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-04-21T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2020">
+<meta itemprop="keywords" content="R,eye-tracking,pupil," />
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="/img/logo_rounded.ico" type="image/x-icon">
+  <link rel="icon" href="/img/logo_rounded.ico" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.d9e5f8267f7630146d18f0c705d5c048c6b2aae2c79703506e59565c3a208e8b.css" integrity="sha256-2eX4Jn92MBRtGPDHBdXASMayquLHlwNQbllWXDogjos=" media="screen">
+  
+  
+  <script src="/panelset.min.078a92db9bd3228df502db3d9e0453c3cf3d910abe3f8deca0ad196c7071ad41.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.5626836c1578fee0e55082b69aac3dea52ea33bb7fa4f4614dcfb8757ed99b56.js" type="text/javascript"></script>
+  
+  
+  
+  <script src="/toc.min.f73cb355a2cb0aa2ae5f3f9693cfcaa76280e8a97ccfd2290c3cd514ee82f177.js" type="text/javascript"></script>
+  <script 
+  async 
+  defer 
+  data-domains="www.silviacanelon.com"
+  data-website-id="959d1d62-7a8b-41cd-92ca-be0884ebdf46"
+  data-do-not-track="true"
+  src="https://silvia.up.railway.app/umami.js"></script>
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://silvia.rbind.io/" title="Home">
+      <img src="/img/logo_noBg.svg" class="dib db-l h2 w-auto" alt="Silvia Canelón">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="About Me">About</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Meeting People Where They R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/talk/" title="Invited Talks">Talks</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/publication/" title="Research Publications">Publications</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/project/" title="Project Portfolio">Projects</a>
+      
+      
+    </div>
+  </nav>
+</header>
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Analzying GazePoint Pupil Data With GazeR</h1>
+        <h2 class="f4 mt0 mb4 lh-title measure">Using gazeR to analyze GazePoint Pupil Data</h2>
+        <p class="f6 measure lh-copy mv1">By Jason Geller in <a href="https://silvia.rbind.io/categories/r">R</a> </p>
+        <p class="f7 db mv0 ttu">April 21, 2021</p>
+      
+        <div class="ph0 pt5">
+          
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+  <a class="btn-links mr2 ba dib" href="/blog/2021-04-21-gazePoint_gazer_2/gazepoint.html" ><i class="fas fa-map-marked-alt fa-lg fa-fw mr2"></i>Interactive Map</a>
+
+
+        </div>
+      
+      </header>
+      <section class="post-body pt5 pb4">
+        
+<script src="https://silvia.rbind.io/blog/2021-gp-pup/index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>In this vignette I am going to show you how to read in a GazePoint data file along with some behavioral data and use <code>gazeR</code> to preprocess the data.</p>
+<p>Special thanks to Matthew K Robinson (Twitter:<span class="citation">@matthewkrobinson</span>) for letting me use some data from an auditory oddball task he conducted on himself (we do what we have to do as researchers :D): see Tweet below.</p>
+<blockquote class="twitter-tweet" data-theme="dark">
+<p lang="en" dir="ltr">
+i'm just a guy, running himself through auditory oddball tasks on his new eye-tracker, asking it to love him back. <a href="https://t.co/wPb97MZuNF">pic.twitter.com/wPb97MZuNF</a>
+</p>
+— Matthew K. Robison (<span class="citation">@matthewkrobison</span>) <a href="https://twitter.com/matthewkrobison/status/1384208857790959617?ref_src=twsrc%5Etfw">April 19, 2021</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>To get started, we need to load in some important packages and read in the GP data files.</p>
+<div id="load-packages" class="section level1">
+<h1>Load Packages</h1>
+<pre class="r"><code>library(tidyverse)
+library(remotes)
+remotes::install_github(&quot;dmirman/gazer&quot;)
+library(gazer)
+library(data.table)
+library(here)
+remotes::install_github(&quot;tmalsburg/saccades/saccades&quot;, dependencies=TRUE)
+library(saccades)</code></pre>
+</div>
+<div id="read-data" class="section level1">
+<h1>Read Data</h1>
+<pre class="r"><code>pd &lt;- fread(&#39;oddball_eye_13.tsv&#39;) # eye data 
+bs&lt;-fread(&#39;oddball_13.tsv&#39;) # behave data
+
+head(pd)</code></pre>
+<pre><code>##      CNT     TIME    TIME_TICK    FPOGX     FPOGY    FPOGS   FPOGD FPOGID FPOGV
+## 1: 77433 1251.964 102150661899 -4.40518 -13.98604 1251.883 0.08093   1917     1
+## 2: 77434 1251.980 102150821625 -4.39508 -13.95200 1251.883 0.09692   1917     1
+## 3: 77435 1251.996 102150983307 -4.36427 -13.84678 1251.883 0.09692   1917     0
+## 4: 77436 1252.013 102151149297 -4.40694 -13.99395 1251.883 0.09692   1917     0
+## 5: 77437 1252.028 102151307171 -4.42096 -14.04383 1251.883 0.09692   1917     0
+## 6: 77438 1252.045 102151469190 -4.40730 -14.00445 1251.883 0.09692   1917     0
+##      LPOGX   LPOGY LPOGV    RPOGX     RPOGY RPOGV    BPOGX     BPOGY BPOGV
+## 1: 0.71795 0.50537     1 -9.38697 -28.00086     1 -4.33451 -13.74775     1
+## 2: 0.71795 0.50537     1 -9.38697 -28.00086     1 -4.33451 -13.74775     1
+## 3: 0.70711 0.51136     1 -9.14516 -27.18135     1 -4.21902 -13.33500     1
+## 4: 0.70151 0.43055     1 -9.60071 -28.71280     1 -4.44960 -14.14113     1
+## 5: 0.70270 0.42562     1 -9.60071 -28.71280     1 -4.44900 -14.14359     1
+## 6: 0.69827 0.43625     1 -9.34484 -27.89350     1 -4.32329 -13.72862     1
+##       LPCX    LPCY      LPD     LPS LPV    RPCX    RPCY      RPD RPS RPV
+## 1: 0.34860 0.59214 25.23420 0.83829   1 0.64310 0.60511 28.49240   1   1
+## 2: 0.34860 0.59216 25.27127 0.83829   1 0.64314 0.60509 28.33148   1   1
+## 3: 0.34845 0.59234 25.09805 0.83829   1 0.64293 0.60517 28.69580   1   1
+## 4: 0.34846 0.59237 25.15947 0.83829   1 0.64286 0.60519 28.47081   1   1
+## 5: 0.34838 0.59240 25.32249 0.84484   1 0.64285 0.60518 28.46784   1   1
+## 6: 0.34830 0.59240 25.07680 0.85139   1 0.64269 0.60527 28.50588   1   1
+##       LEYEX    LEYEY   LEYEZ LPUPILD LPUPILV   REYEX    REYEY   REYEZ RPUPILD
+## 1: -0.03362 -0.01726 0.56538 0.00455       1 0.03052 -0.01989 0.57411 0.00512
+## 2: -0.03438 -0.01769 0.57821 0.00451       1 0.03056 -0.01997 0.57644 0.00513
+## 3: -0.03438 -0.01769 0.57821 0.00449       1 0.03056 -0.01997 0.57644 0.00510
+## 4: -0.03438 -0.01769 0.57821 0.00451       1 0.03056 -0.01997 0.57644 0.00509
+## 5: -0.03501 -0.01795 0.58649 0.00448       1 0.03130 -0.02049 0.59132 0.00509
+## 6: -0.03501 -0.01795 0.58649 0.00450       1 0.03130 -0.02049 0.59132 0.00508
+##    RPUPILV      CX      CY CS BKID BKDUR BKPMIN    LPMM LPMMV    RPMM RPMMV
+## 1:       1 0.33333 0.33333  0    0     0     20 4.54567     1 5.11614     1
+## 2:       1 0.33333 0.33333  0    0     0     20 4.51065     1 5.12683     1
+## 3:       1 0.33333 0.33333  0    0     0     20 4.48607     1 5.10490     1
+## 4:       1 0.33333 0.33333  0    0     0     20 4.50748     1 5.09460     1
+## 5:       1 0.33333 0.33333  0    0     0     20 4.47957     1 5.08827     1
+## 6:       1 0.33333 0.33333  0    0     0     20 4.50258     1 5.07552     1
+##     DIAL DIALV GSR GSRV HR HRV HRP TTL0 TTL1 TTLV            USER
+## 1: 0.088     1   0    0  0   0 454   -1   -1    0               0
+## 2: 0.088     1   0    0  0   0 484   -1   -1    0 STARTEXPERIMENT
+## 3: 0.088     1   0    0  0   0 456   -1   -1    0 STARTEXPERIMENT
+## 4: 0.088     1   0    0  0   0 451   -1   -1    0           START
+## 5: 0.088     1   0    0  0   0 482   -1   -1    0           START
+## 6: 0.088     1   0    0  0   0 454   -1   -1    0           START</code></pre>
+<pre class="r"><code>head(bs)</code></pre>
+<pre><code>##    subject trial tone   rt response
+## 1:      13     1   lo 2113     None
+## 2:      13     2   lo 2102     None
+## 3:      13     3   lo 2107     None
+## 4:      13     4   lo 2108     None
+## 5:      13     5   lo 2107     None
+## 6:      13     6   lo 2103     None</code></pre>
+<p>What we are going to do is run the GazePoint file through the <code>merge_gazepoint</code> function. The function below takes a list of files called file_list and merges all the files together, appends a subject column, creates a trial column using the USER column (GazePoint only allows messages through this channel), creates a time variable (in milliseconds). In the <code>merge_gazepoint</code> function the <code>trail_msg</code> argument requires users to denote a message used in the USER column that references the start of the trial–in our case the <code>START</code> message denotes the start of a new trial. This is a solution by Matt Robinson, but there are other ways one could extract the trial number. What I have done in the past is append a message with the trial iteration (e.g., START_1) in Python and use the <code>separate</code> function to get the trial number.</p>
+<pre class="r"><code># A &quot;monocular mean&quot; averages both eyes together. If data is available in just
+# one eye, use the available value as the mean, unless we need_both is TRUE.
+#&#39; @param x1 pupil left
+#&#39; @param x2 pupil right
+#&#39; @return vector with monocular mean values
+compute_monocular_mean &lt;- function(x1, x2) {
+  xm &lt;- rowMeans(cbind(x1, x2), na.rm = TRUE)
+  # NaN =&gt; NA
+  ifelse(is.nan(xm), NA, xm)
+}
+
+
+# function for processing GazePoint data
+merge_gazepoint &lt;- function (file_list, trial_msg = &quot;START&quot;){
+  #file list is path to .xls files
+  #vroom is faster
+  library(data.table)
+  
+  file_ids=str_replace_all(basename(file_list),&quot;([:alpha:]|[:punct:])&quot;,&quot;&quot;) # remove everything but numeric values
+                   
+  data &lt;- map2(file_list, file_ids, ~fread(.x) %&gt;% 
+    mutate(id = .y))  %&gt;% 
+    bind_rows()
+
+  
+  d = data %&gt;%
+    dplyr::rowwise() %&gt;%
+    dplyr::mutate(pupil=compute_monocular_mean(RPMM, LPMM)) %&gt;% # average both eyes
+             dplyr::ungroup() %&gt;%
+           dplyr::mutate(pupil = ifelse(RPMMV == 0|LPMMV == 0, 0, pupil),  #missing data labeled as blinks
+         new_trial = ifelse(USER == trial_msg &amp; lag(USER) != trial_msg, 1, 0), # Label new trials
+         trial = cumsum(new_trial), # Create a trial variable
+         time = floor(TIME*1000)) %&gt;%
+    group_by(trial) %&gt;%
+    dplyr::mutate(time=time - min(time)) %&gt;%
+    ungroup() %&gt;%
+  dplyr::select(id, time,trial,pupil,BPOGX, BPOGY, USER) %&gt;%
+    dplyr::rename(&quot;message&quot; = &quot;USER&quot;, &quot;subject&quot;= &quot;id&quot;, &quot;x&quot; = &quot;BPOGX&quot;, &quot;y&quot; = &quot;BPOGY&quot;) %&gt;% 
+    dplyr::filter(trial &gt; 0)
+  
+  return(d)
+}</code></pre>
+</div>
+<div id="merge-files" class="section level1">
+<h1>Merge Files</h1>
+<pre class="r"><code>setwd(here()) # setwd
+
+gp_file&lt;-list.files(here::here(), pattern = &quot;eye_13.tsv&quot;) # get files 
+
+setwd(here())
+      
+d=merge_gazepoint(gp_file, trial_msg = &quot;START&quot;)
+
+d$subject&lt;-as.numeric(d$subject)
+
+pdb &lt;- full_join(bs, d)
+
+pdb &lt;- as_tibble(pdb)
+
+pdb</code></pre>
+<pre><code>## # A tibble: 73,724 × 10
+##    subject trial tone     rt response  time pupil     x     y message
+##      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
+##  1      13     1 lo     2113 None         0  4.80 -4.45 -14.1 START  
+##  2      13     1 lo     2113 None        16  4.78 -4.45 -14.1 START  
+##  3      13     1 lo     2113 None        32  4.79 -4.32 -13.7 START  
+##  4      13     1 lo     2113 None        48  4.80 -4.58 -14.5 START  
+##  5      13     1 lo     2113 None        64  4.80 -4.58 -14.5 START  
+##  6      13     1 lo     2113 None        81  4.79 -4.63 -14.7 START  
+##  7      13     1 lo     2113 None        97  4.81 -4.42 -14.0 START  
+##  8      13     1 lo     2113 None       113  4.80 -4.42 -14.0 TONE   
+##  9      13     1 lo     2113 None       129  4.78 -4.23 -13.5 TONE   
+## 10      13     1 lo     2113 None       145  4.77 -4.34 -13.8 TONE   
+## # … with 73,714 more rows</code></pre>
+</div>
+<div id="blinks" class="section level1">
+<h1>Blinks</h1>
+<div id="finding-blinks" class="section level2">
+<h2>Finding Blinks</h2>
+<p>The GazePoint data does not indicate where blinks occurred. What we are going to do is use the <code>blink_detect</code> function in gazer. This relies on the <code>saccades</code> package (<a href="https://github.com/tmalsburg/saccades" class="uri">https://github.com/tmalsburg/saccades</a>) which uses a velocity based measure based on X,Y coordinates to find blinks. Once we find the blinks we can change the pupil size at that time point as NA and interpolate over it.</p>
+<p>As a note, the GazePoint does not seem to sample consistently. In this case, it samples every 16 or 17 ms. This is a problem for some other blink detection measures (e.g., the noise based pupil function). One soultion would be to downsample the data at the onset so there is consistancy from sample to sample.</p>
+<pre class="r"><code>blinks_merge&lt;- blink_detect(pdb)
+
+ blinks &lt;- blinks_merge %&gt;%
+        dplyr::group_by(grp = cumsum(!is.na(startend))) %&gt;%
+        dplyr::mutate(Label = replace(startend, first(startend) == &#39;start&#39;, &#39;start&#39;)) %&gt;% #extends the start message forward until end message
+        dplyr::ungroup() %&gt;%
+        # label blinks as 1
+        dplyr::select(subject, trial, time, x, y, pupil, message, tone,  Label, -grp)
+ 
+ 
+ blinks_data &lt;- blinks  %&gt;%
+        dplyr::mutate(blink=ifelse(!is.na(Label), 1, 0), pupil=ifelse(blink==1 | pupil==0, NA, pupil))%&gt;%
+        dplyr::ungroup()%&gt;%
+        dplyr::select(subject, time, trial, pupil, x, y, trial, message, tone, blink, -Label)</code></pre>
+<p>Here is a look at the trials containing blinks:</p>
+<pre class="r"><code>blinks_data %&gt;% 
+  filter(blink==1) %&gt;%
+  head()%&gt;%
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">subject</th>
+<th align="right">time</th>
+<th align="right">trial</th>
+<th align="right">pupil</th>
+<th align="right">x</th>
+<th align="right">y</th>
+<th align="left">message</th>
+<th align="left">tone</th>
+<th align="right">blink</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">13</td>
+<td align="right">2167</td>
+<td align="right">10</td>
+<td align="right">NA</td>
+<td align="right">0.9364</td>
+<td align="right">1.95015</td>
+<td align="left">POSTTONE</td>
+<td align="left">lo</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">13</td>
+<td align="right">2183</td>
+<td align="right">10</td>
+<td align="right">NA</td>
+<td align="right">0.9364</td>
+<td align="right">1.95015</td>
+<td align="left">POSTTONE</td>
+<td align="left">lo</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">13</td>
+<td align="right">2199</td>
+<td align="right">10</td>
+<td align="right">NA</td>
+<td align="right">0.9364</td>
+<td align="right">1.95015</td>
+<td align="left">POSTTONE</td>
+<td align="left">lo</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">13</td>
+<td align="right">2216</td>
+<td align="right">10</td>
+<td align="right">NA</td>
+<td align="right">0.9364</td>
+<td align="right">1.95015</td>
+<td align="left">POSTTONE</td>
+<td align="left">lo</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">13</td>
+<td align="right">0</td>
+<td align="right">11</td>
+<td align="right">NA</td>
+<td align="right">0.9364</td>
+<td align="right">1.95015</td>
+<td align="left">START</td>
+<td align="left">hi</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">13</td>
+<td align="right">16</td>
+<td align="right">11</td>
+<td align="right">NA</td>
+<td align="right">0.9364</td>
+<td align="right">1.95015</td>
+<td align="left">START</td>
+<td align="left">hi</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="extending-blinks" class="section level2">
+<h2>Extending Blinks</h2>
+<p>I am extending blinks 100 ms forward and backward in time.</p>
+</div>
+<div id="interpolate-blinks" class="section level2">
+<h2>Interpolate Blinks</h2>
+<p>Here let’s linearly interpolate the blinks and then smooth the data using a 5-point moving average.</p>
+<pre class="r"><code># Smooth and Interpolate
+smooth_interp &lt;- smooth_interpolate_pupil(pup_extend, pupil=&quot;pupil&quot;, extendpupil=&quot;extendpupil&quot;, extendblinks=TRUE, step.first=&quot;smooth&quot;, maxgap=Inf, type=&quot;linear&quot;, hz=60, n=5)</code></pre>
+</div>
+</div>
+<div id="plot-interpolated-trial" class="section level1">
+<h1>Plot Interpolated Trial</h1>
+<pre class="r"><code>interp_graph &lt;- smooth_interp  %&gt;%
+  dplyr::filter(trial==&quot;400&quot;)
+
+bold &lt;- element_text(face = &quot;bold&quot;, color = &quot;black&quot;, size = 14) #axis bold
+#Graph interpolation
+pup_g&lt;- ggplot(interp_graph, aes(x= time, y= pupil)) + geom_point()+ geom_line(colour=&quot;black&quot;) +
+  geom_line(aes(x=time, y=pup_interp), colour=&quot;darkgreen&quot;) + xlab(&quot;Time (ms)&quot;) + ylab(&quot;Pupil Size (mm)&quot;) + theme_bw() + theme(axis.title.y=element_text(size = 16, face=&quot;bold&quot;), axis.title.x = element_text(size=16, face=&quot;bold&quot;), axis.text.x=element_text(size = 12, face=&quot;bold&quot;), axis.text.y=element_text(size=12, face=&quot;bold&quot;))
+print(pup_g)</code></pre>
+<p><img src="https://silvia.rbind.io/blog/2021-gp-pup/index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="baseline-correction" class="section level1">
+<h1>Baseline Correction</h1>
+<p>Here we will do a subtractive baseline correction taking 250 ms before the onset of the tone as baseline.</p>
+<pre class="r"><code>#use messages to baseline correct
+baseline_pupil&lt;-baseline_correction_pupil(smooth_interp, pupil_colname=&quot;pup_interp&quot;, baseline_window=c(0,250), baseline_method = &quot;sub&quot;)
+
+head(baseline_pupil)</code></pre>
+<pre><code>## # A tibble: 6 × 13
+##   subject trial baseline  time pupil     x     y message tone  blink extendpupil
+##     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt;
+## 1      13     1     4.80     0  4.80 -4.45 -14.1 START   lo        0        4.80
+## 2      13     1     4.80    16  4.78 -4.45 -14.1 START   lo        0        4.78
+## 3      13     1     4.80    32  4.79 -4.32 -13.7 START   lo        0        4.79
+## 4      13     1     4.80    48  4.80 -4.58 -14.5 START   lo        0        4.80
+## 5      13     1     4.80    64  4.80 -4.58 -14.5 START   lo        0        4.80
+## 6      13     1     4.80    81  4.79 -4.63 -14.7 START   lo        0        4.79
+## # … with 2 more variables: pup_interp &lt;dbl&gt;, baselinecorrectedp &lt;dbl&gt;</code></pre>
+</div>
+<div id="missing-data" class="section level1">
+<h1>Missing Data</h1>
+<p>Let’s see how much missing data there is and remove trials with greater than 20% missing data.</p>
+<pre class="r"><code>pup_missing&lt;-count_missing_pupil(baseline_pupil, missingthresh = .5)
+# remove outliers</code></pre>
+<p>I remove about 15 percent of trials.</p>
+</div>
+<div id="unlikely-pupil-sizes" class="section level1">
+<h1>Unlikely Pupil Sizes</h1>
+<p>Now let’s keep pupil diameter sizes between 2 mm and 9 mm</p>
+<pre class="r"><code>pup_outliers&lt;-pup_missing %&gt;%
+  dplyr::filter (pup_interp  &gt;= 2, pup_interp &lt;= 9)</code></pre>
+</div>
+<div id="mad" class="section level1">
+<h1>MAD</h1>
+<p>Get rid of artifacts we might have missed during some earlier steps.</p>
+<pre class="r"><code>  #MAD removal
+max_removal&lt;-pup_missing  %&gt;%
+  dplyr::group_by(subject, trial) %&gt;%
+  dplyr::mutate(speed=speed_pupil(pup_interp,time)) %&gt;%
+  dplyr::mutate(MAD=calc_mad(speed)) %&gt;%
+  dplyr::filter(speed &lt; MAD)</code></pre>
+</div>
+<div id="onset" class="section level1">
+<h1>Onset</h1>
+<p>Let’s only look fron the start of the trial until 1500 ms</p>
+<pre class="r"><code>baseline_pupil_onset&lt;-max_removal %&gt;%
+  dplyr::group_by(subject, trial) %&gt;%
+  dplyr::filter(time &lt;= 1500) %&gt;%
+  select(subject, trial, time,baselinecorrectedp, tone, time,message,baselinecorrectedp)</code></pre>
+</div>
+<div id="downsample" class="section level1">
+<h1>Downsample</h1>
+<p>Downsample the time-course to 50 ms.</p>
+<pre class="r"><code>#downsample
+timebins1&lt;- downsample_gaze(baseline_pupil_onset, bin.length=50, timevar = &quot;time&quot;, aggvars = c(&quot;subject&quot;, &quot;tone&quot;, &quot;timebins&quot;), type=&quot;pupil&quot;)</code></pre>
+<pre><code>## Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<pre class="r"><code>timebins1</code></pre>
+<pre><code>## # A tibble: 62 × 4
+##    subject tone  timebins aggbaseline
+##      &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+##  1      13 hi           0    0.00130 
+##  2      13 hi          50   -0.000752
+##  3      13 hi         100   -0.00206 
+##  4      13 hi         150    0.000331
+##  5      13 hi         200    0.00530 
+##  6      13 hi         250    0.00503 
+##  7      13 hi         300    0.00826 
+##  8      13 hi         350    0.00930 
+##  9      13 hi         400    0.0116  
+## 10      13 hi         450    0.0125  
+## # … with 52 more rows</code></pre>
+</div>
+<div id="visualize-time-course" class="section level1">
+<h1>Visualize Time-course</h1>
+<pre class="r"><code>cursive_plot &lt;-ggplot(timebins1)+
+  aes(timebins, aggbaseline, linetype=tone, color=tone) +
+  stat_summary(fun = &quot;mean&quot;, geom = &quot;line&quot;, size = 1) +
+  theme_bw() +
+  labs(x =&quot;Time (ms)&quot;,y =&quot;Pupil Dilation (baseline - pupil))&quot;) +
+  geom_hline(yintercept=0.0)
+
+print(cursive_plot)</code></pre>
+<p><img src="https://silvia.rbind.io/blog/2021-gp-pup/index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>This looks very similar to the one in the Tweet albeit a bit smoother as a result of the extra preprocessing done.</p>
+</div>
+
+      </section>
+      <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://silvia.rbind.io/blog/2020-gp-pup/">Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test &rarr;</a>
+  
+</div>
+
+      </footer>
+    </article>
+    
+      
+<div class="post-comments pa0 pa4-l mt4">
+  
+  <script src="https://utteranc.es/client.js"
+          repo="spcanelon/silvia"
+          issue-term="title"
+          theme="boxy-light"
+          label="comments :crystal_ball:"
+          crossorigin="anonymous"
+          async
+          type="text/javascript">
+  </script>
+  
+</div>
+
+    
+  </section>
+</main>
+<aside class="page-sidebar" role="complementary">
+                         
+ 
+
+
+                       
+ 
+
+
+
+
+
+
+
+
+
+
+
+  <img src="/blog/sidebar.jpg" class="db ma0" alt="">
+
+
+
+<div class="blog-info ph4 pt4 pb4 pb0-l">
+  
+
+  <h1 class="f3">Meeting People Where They R</h1>
+  <p class="f6 lh-copy measure">This is my blog where I practice sharing my curiosity about R, Methods, and Statistics. It includes notes and tutorials for my future self and hopefully also for you.</p>
+  <p class="f7 measure lh-copy i mh0-l">Written by Jason Geller</p>
+
+
+  <small class="db f7"><a href="/blog/" class="dib fw7 ttu bt bw1 b--black-10 pt3">View recent posts</a></small>
+</div>
+
+
+  
+  
+  
+<details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Posted on:</dt>
+    <dd class="fw5 ml0">April 21, 2021</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Length:</dt>
+    <dd class="fw5 ml0">10 minute read, 2020 words</dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Categories:</dt>
+    <dd class="fw5 ml0"> <a href="https://silvia.rbind.io/categories/r">R</a> </dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://silvia.rbind.io/tags/r">R</a>  <a href="https://silvia.rbind.io/tags/eye-tracking">eye-tracking</a>  <a href="https://silvia.rbind.io/tags/pupil">pupil</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">See Also:</dt>
+    
+    <dd class="fw5 ml0"><a href="/blog/2020-gp-pup/">Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test</a></dd>
+    
+  </dl>
+</details>
+
+                         
+
+
+
+<nav id="TableOfContents" class="sticky ph4 pb4 pt6" role="navigation">
+  <h2 class="mv0 f5 fw7 ttu tracked dib">On this page</h2>
+    
+</nav>
+
+
+</aside>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2022 Silvia Canelón
+      <span class="middot-divider"></span>
+      Made with <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source">Hugo Apéro</a></span>.
+      <br />
+      
+Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source">Blogophonic</a></span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL">Formspree</a>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/accessibility/" title="universal-access" >
+      <i class="fas fa-universal-access fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://twitter.com/spcanelon" title="twitter" target="_blank" rel="noopener">
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/spcanelon/silvia" title="github" target="_blank" rel="noopener">
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://orcid.org/0000-0003-1709-1394" title="orcid" target="_blank" rel="noopener">
+      <i class="ai ai-orcid fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://scholar.google.com/citations?user=GAzkvpcAAAAJ&amp;hl=en&amp;oi=ao" title="google-scholar" target="_blank" rel="noopener">
+      <i class="ai ai-google-scholar fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://linkedin.com/in/spcanelon" title="linkedin" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/accessibility/" title="Accessibility Commitment">Accessibility</a>
+      
+      <a class="dib pv1 ph2 link" href="/contact/" title="Contact Form">Contact</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="License Details">License</a>
+      
+      <a class="dib pv1 ph2 link" href="/blog/index.xml/" title="Subscribe via RSS">RSS</a>
+      
+    </div>
+  </nav>
+  
+</footer>
+
+      </div>
+    </body>
+</html>

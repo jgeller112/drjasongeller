@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>eye-tracking on Silvia Canelón</title>
+    <link>https://silvia.rbind.io/categories/eye-tracking/</link>
+    <description>Recent content in eye-tracking on Silvia Canelón</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://silvia.rbind.io/categories/eye-tracking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using GazeR to Analyze Pupillometry Data</title>
+      <link>https://silvia.rbind.io/talk/2020-pupil-talk/</link>
+      <pubDate>Wed, 04 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://silvia.rbind.io/talk/2020-pupil-talk/</guid>
+      <description>Description     The Advancing Methods for Pupillometry (AMP) conference is geared around data collection and analysis methods for pupillometry. We provide a small group of around 40 participants with a series of invited talks and ample time for informal interaction. AMP2020 is entirely online. Attendence is free, but you must register, as space is limited.</description>
+    </item>
+    
+  </channel>
+</rss>
