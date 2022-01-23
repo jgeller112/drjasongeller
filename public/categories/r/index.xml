@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on Silvia Canelón</title>
-    <link>https://silvia.rbind.io/categories/r/</link>
-    <description>Recent content in R on Silvia Canelón</description>
+    <title>R on Jason Geller</title>
+    <link>/categories/r/</link>
+    <description>Recent content in R on Jason Geller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 21 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://silvia.rbind.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Analzying GazePoint Pupil Data With GazeR</title>
-      <link>https://silvia.rbind.io/blog/2021-gp-pup/</link>
+      <link>/blog/2021-gp-pup/</link>
       <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/blog/2021-gp-pup/</guid>
+      <guid>/blog/2021-gp-pup/</guid>
       <description>I show to analyze pupil data from a GazePoint tracker.</description>
     </item>
     
     <item>
       <title>Using GazeR to Analyze Pupillometry Data</title>
-      <link>https://silvia.rbind.io/talk/2020-pupil-talk/</link>
+      <link>/talk/2020-pupil-talk/</link>
       <pubDate>Wed, 04 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/talk/2020-pupil-talk/</guid>
+      <guid>/talk/2020-pupil-talk/</guid>
       <description>Description     The Advancing Methods for Pupillometry (AMP) conference is geared around data collection and analysis methods for pupillometry. We provide a small group of around 40 participants with a series of invited talks and ample time for informal interaction. AMP2020 is entirely online. Attendence is free, but you must register, as space is limited.</description>
     </item>
     
     <item>
       <title>Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test</title>
-      <link>https://silvia.rbind.io/blog/2020-gp-pup/</link>
+      <link>/blog/2020-gp-pup/</link>
       <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/blog/2020-gp-pup/</guid>
+      <guid>/blog/2020-gp-pup/</guid>
       <description>Show how to analyze pupil data using cluster based permutation testing</description>
     </item>
     

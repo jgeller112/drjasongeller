@@ -1,9 +1,9 @@
-baseURL = "https://silvia.rbind.io/"
+baseURL = "/"
 theme = "hugo-apero"
 languageCode = "en"
 #title = "Hugo Apéro"
-title = "Silvia Canelón"
-author = "Silvia Canelón"
+title = "Jason Geller"
+author = "Jason Geller"
 copyright = "" # set to override the auto generated copyright using org info and now year
 googleAnalytics = ""
 disqusShortname = "" # see params.utterances to use utterances instead of Disqus
@@ -47,12 +47,12 @@ relativeURLs = true
   orgName = "Silvia Canelón"
   orgLocal = ""
   #description = "A modern, beautiful, and easily configurable blog theme for Hugo."
-  description = "Personal website of Silvia Canelón"
+  description = "Personal website of Jason Geller"
   #favicon = "/img/favicon.ico"
   favicon = "/img/logo_rounded.ico"
   #logo = "/img/blogophonic-mark-dark.png"
   logo = "/img/logo_noBg.svg"
-  mainSections = ["blog", "talk", "publication", "project"]
+  mainSections = ["blog", "talk", "publication", "teaching", "CV"]
   navallcaps = true
   # show/hide social icons in site header & footer
   # configure social icons and links below in [[params.social]]
@@ -61,14 +61,14 @@ relativeURLs = true
   # Default image for social sharing and search engines. 
   # Place image file in `static` folder and specify image name here.
   #sharing_image = "/img/papillons.jpg"
-  sharing_image = "/img/silvia-social.png"
+  #sharing_image = "/img/silvia-social.png"
   # Twitter username (without @). Used when a visitor shares your site on Twitter.
-  twitter = "spcanelon"
+  twitter = "jgeller112"
   
   # use a built-in color theme
   # one of: forest / grayscale / peach / plum /
   #         poppy / sky / violet / water 
-  theme = ""
+  theme = "water"
   
   # or, leave theme empty & make your own palette
   # see docs at https://hugo-apero.netlify.app/blog/color-themes/
@@ -93,7 +93,7 @@ relativeURLs = true
   # Configuration of https://utteranc.es/ for comments
   [params.utterances]
     use_utterances = true
-    repo_name = "spcanelon/silvia"
+    repo_name = "jgeller112/drjasongeller"
     issue_term = "title" # url, pathname, or title
     theme = "boxy-light" # TODO: change to "preferred-color-scheme" when you enable dark mode toggle
     label = "comments :crystal_ball:"
@@ -105,18 +105,18 @@ relativeURLs = true
   # Icon pack "far" includes regular icons, see: https://fontawesome.com/icons?d=gallery&s=regular&m=free
   # Icon pack "ai" includes academic icons, see: https://jpswalsh.github.io/academicons/
 
-  [[params.social]]
-      icon      = "universal-access" # icon name without the 'fa-'
-      icon_pack = "fas"
-      url       = "/accessibility/"
+  #[[params.social]]
+ #     icon      = "universal-access" # icon name without the 'fa-'
+ #     icon_pack = "fas"
+ #     url       = "/accessibility/"
   [[params.social]]
       icon      = "twitter" # icon name without the 'fa-'
       icon_pack = "fab"
-      url       = "https://twitter.com/spcanelon"
+      url       = "https://twitter.com/jgeller_phd"
   [[params.social]]
       icon      = "github" # icon name without the 'fa-'
       icon_pack = "fab"
-      url       = "https://github.com/spcanelon/silvia"
+      url       = "https://github.com/jgeller112"
   #[[params.social]]
   #    icon      = "facebook-square" # icon name without the 'fa-'
   #    icon_pack = "fab"
@@ -133,15 +133,20 @@ relativeURLs = true
   [[params.social]]
       icon      = "orcid" # icon name without the 'fa-'
       icon_pack = "ai"
-      url       = "https://orcid.org/0000-0003-1709-1394"
+      url       = "https://orcid.org/0000-0002-7459-4505"
   [[params.social]]
       icon      = "google-scholar" # icon name without the 'fa-'
       icon_pack = "ai"
-      url       = "https://scholar.google.com/citations?user=GAzkvpcAAAAJ&hl=en&oi=ao"
+      url       = "https://scholar.google.com/citations?user=yO68sggAAAAJ&hl=en"
+      
   [[params.social]]
-      icon      = "linkedin" # icon name without the 'fa-'
-      icon_pack = "fab"
-      url       = "https://linkedin.com/in/spcanelon"
+      icon      = "cv"
+      icon_pack = "ai"
+      url       = "https://drive.google.com/file/d/1glHAFF4iz21j0THNqSUpBJt95onlsdnu/view?usp=sharing"
+ # [[params.social]]
+   #   icon      = "linkedin" # icon name without the 'fa-'
+   #   icon_pack = "fab"
+   #   url       = "https://linkedin.com/in/spcanelon"
 #  [[params.social]]
 #      icon      = "rss" # icon name without the 'fa-'
 #      icon_pack = "fas"
@@ -175,10 +180,17 @@ relativeURLs = true
     url = "/publication/"
     weight = 4
  [[menu.header]]
-   name = "Projects"
-   title = "Project Portfolio"
-   url = "/project/"
+   name = "Teaching"
+   title = "Courses Taught"
+   url = "/teaching/"
    weight = 5
+   
+  [[menu.header]]
+   name = "CV"
+   title = "CV"
+   url = "/CV/"
+   weight = 6
+   
   #[[menu.header]]
   #  name = "A collection"
   #  title = "A collection"
@@ -200,11 +212,11 @@ relativeURLs = true
     title = "Contact Form"
     url = "/contact/"
     weight = 2
-  [[menu.footer]]
-    name = "Accessibility"
-    title = "Accessibility Commitment"
-    url = "/accessibility/"
-    weight = 1
+  #[[menu.footer]]
+  #  name = "Accessibility"
+  #  title = "Accessibility Commitment"
+  #  url = "/accessibility/"
+  #  weight = 1
   [[menu.footer]]
     name = "RSS"
     title = "Subscribe via RSS"

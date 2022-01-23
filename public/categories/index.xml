@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Silvia Canelón</title>
-    <link>https://silvia.rbind.io/categories/</link>
-    <description>Recent content in Categories on Silvia Canelón</description>
+    <title>Categories on Jason Geller</title>
+    <link>/categories/</link>
+    <description>Recent content in Categories on Jason Geller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://silvia.rbind.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>online</title>
-      <link>https://silvia.rbind.io/categories/online/</link>
+      <link>/categories/online/</link>
       <pubDate>Sun, 23 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/categories/online/</guid>
+      <guid>/categories/online/</guid>
       <description></description>
     </item>
     
     <item>
       <title>teaching</title>
-      <link>https://silvia.rbind.io/categories/teaching/</link>
+      <link>/categories/teaching/</link>
       <pubDate>Sun, 23 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/categories/teaching/</guid>
+      <guid>/categories/teaching/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Online Experiments</title>
-      <link>https://silvia.rbind.io/categories/online-experiments/</link>
+      <link>/categories/online-experiments/</link>
       <pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/categories/online-experiments/</guid>
+      <guid>/categories/online-experiments/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Speech Perception</title>
-      <link>https://silvia.rbind.io/categories/speech-perception/</link>
+      <link>/categories/speech-perception/</link>
       <pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/categories/speech-perception/</guid>
+      <guid>/categories/speech-perception/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Speech-in-Noise</title>
-      <link>https://silvia.rbind.io/categories/speech-in-noise/</link>
+      <link>/categories/speech-in-noise/</link>
       <pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/categories/speech-in-noise/</guid>
+      <guid>/categories/speech-in-noise/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>https://silvia.rbind.io/categories/r/</link>
+      <link>/categories/r/</link>
       <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/categories/r/</guid>
+      <guid>/categories/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Research</title>
-      <link>https://silvia.rbind.io/categories/research/</link>
+      <link>/categories/research/</link>
       <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/categories/research/</guid>
+      <guid>/categories/research/</guid>
       <description></description>
     </item>
     
     <item>
       <title>eye-tracking</title>
-      <link>https://silvia.rbind.io/categories/eye-tracking/</link>
+      <link>/categories/eye-tracking/</link>
       <pubDate>Wed, 04 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/categories/eye-tracking/</guid>
+      <guid>/categories/eye-tracking/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pupil</title>
-      <link>https://silvia.rbind.io/categories/pupil/</link>
+      <link>/categories/pupil/</link>
       <pubDate>Wed, 04 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://silvia.rbind.io/categories/pupil/</guid>
+      <guid>/categories/pupil/</guid>
       <description></description>
     </item>
     

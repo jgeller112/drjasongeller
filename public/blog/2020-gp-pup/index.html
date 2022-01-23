@@ -11,11 +11,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.92.0" />
-<title>Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test | Silvia Canelón</title>
+<title>Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test | Jason Geller</title>
 
 
-<meta property="twitter:site" content="@spcanelon">
-<meta property="twitter:creator" content="@spcanelon">
+<meta property="twitter:site" content="@jgeller112">
+<meta property="twitter:creator" content="@jgeller112">
 
 
 
@@ -32,20 +32,20 @@
 <meta name="google-site-verification" content="SXazFKEYdrkxQRjO6ofQA45n5g-Uxn_sq3vVTYYnZ9U"/>
 
 
-<meta property="og:site_name" content="Silvia Canelón">
-<meta property="og:title" content="Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test | Silvia Canelón">
+<meta property="og:site_name" content="Jason Geller">
+<meta property="og:title" content="Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test | Jason Geller">
 <meta property="og:description" content="How to analyze pupil data" />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://silvia.rbind.io/blog/2020-gp-pup/" />
+<meta property="og:url" content="/blog/2020-gp-pup/" />
 <meta property="og:locale" content="en">
 
 
 
 
       
-          <meta property="og:image" content="https://silvia.rbind.io/blog/sidebar.jpg" >
+          <meta property="og:image" content="/blog/sidebar.jpg" >
           <meta property="twitter:card" content="summary_large_image">
-          <meta name="twitter:image" content="https://silvia.rbind.io/blog/sidebar.jpg" >
+          <meta name="twitter:image" content="/blog/sidebar.jpg" >
       
       
   <meta itemprop="name" content="Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test">
@@ -59,7 +59,7 @@
   <link rel="icon" href="/img/logo_rounded.ico" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.d9e5f8267f7630146d18f0c705d5c048c6b2aae2c79703506e59565c3a208e8b.css" integrity="sha256-2eX4Jn92MBRtGPDHBdXASMayquLHlwNQbllWXDogjos=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.e0d83b317547300143b015786f7a7e7dcde034f10d9a6b7ac55225862f4f3a23.css" integrity="sha256-4Ng7MXVHMAFDsBV4b3p&#43;fc3gNPENmmt6xVIlhi9POiM=" media="screen">
   
   
   <script src="/panelset.min.078a92db9bd3228df502db3d9e0453c3cf3d910abe3f8deca0ad196c7071ad41.js" type="text/javascript"></script>
@@ -82,8 +82,8 @@
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://silvia.rbind.io/" title="Home">
-      <img src="/img/logo_noBg.svg" class="dib db-l h2 w-auto" alt="Silvia Canelón">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="/" title="Home">
+      <img src="/img/logo_noBg.svg" class="dib db-l h2 w-auto" alt="Jason Geller">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
       
@@ -110,7 +110,12 @@
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/project/" title="Project Portfolio">Projects</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/teaching/" title="Courses Taught">Teaching</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/cv/" title="CV">CV</a>
       
       
     </div>
@@ -123,13 +128,13 @@
       <header class="post-header">
         <h1 class="f1 lh-solid measure-narrow mb3 fw4">Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test</h1>
         <h2 class="f4 mt0 mb4 lh-title measure">How to analyze pupil data</h2>
-        <p class="f6 measure lh-copy mv1">By Jason Geller in <a href="https://silvia.rbind.io/categories/r">R</a> </p>
+        <p class="f6 measure lh-copy mv1">By Jason Geller in <a href="/categories/r">R</a> </p>
         <p class="f7 db mv0 ttu">July 10, 2020</p>
       
       </header>
       <section class="post-body pt5 pb4">
         
-<script src="https://silvia.rbind.io/blog/2020-gp-pup/index_files/header-attrs/header-attrs.js"></script>
+<script src="/blog/2020-gp-pup/index_files/header-attrs/header-attrs.js"></script>
 
 
 <p>An article by <span class="citation"><a href="#ref-Reilly2019" role="doc-biblioref">Reilly et al.</a> (<a href="#ref-Reilly2019" role="doc-biblioref">2019</a>)</span> raised some important questions/issues for the field of pupillometry. One issue that has been bothering me as of late (hence the post) pertains to objectively defining a time window to look at. Although some commonalities exist across the literature, there is no uniform standard for isolating a peak range or delineating the width of this window. In this blog post I present a method we can use to address this issue. To do so, I will be using the example data set from the gazeR package (<span class="citation"><a href="#ref-Geller2" role="doc-biblioref">Geller et al.</a> (<a href="#ref-Geller2" role="doc-biblioref">n.d.</a>)</span>). This data comes from a lexical decison experiment where participants judged the lexicality of cursive and type-print stimuli.</p>
@@ -148,7 +153,7 @@
 <pre><code>## Error: Can&#39;t subset columns that don&#39;t exist.
 ## x Column `X1` doesn&#39;t exist.</code></pre>
 <pre><code>## Warning: `fun.y` is deprecated. Use `fun` instead.</code></pre>
-<p><img src="https://silvia.rbind.io/blog/2020-gp-pup/index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="/blog/2020-gp-pup/index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>From this, we might be tempted to declare a significant difference arisisng ~1500-2500 ms. However, we cannot rely on the graphical analysis and we need a statistical test to be able to affirm that this observation is caused by diffierntial effort between the two scripts.</p>
 <p>Permuation cluster analysis is a technique that is becoming increasingly popular, especially in the cognitvie neuropsychology domain to analyze MEG-EEG <span class="citation">(<a href="#ref-Maris2007" role="doc-biblioref">Maris and Oostenveld 2007</a>)</span>. While there exists a number of cluster analysis functions in MNE-Python <span class="citation">(<a href="#ref-Gramfort2014" role="doc-biblioref">Gramfort et al. 2014</a>)</span> and Matlab’s FieldTrip <span class="citation">(<a href="#ref-Oostenveld2011" role="doc-biblioref">Oostenveld et al. 2011</a>)</span>, what I want to show you is how you can do this analysis in R. The implementation of CPT has not been widely used in pupillometry research. I will hopefully show you that it can be a very useful tool to have in your aresenal.</p>
 <p>Before I show you how to apply this method, I want to briefly go over the CPT method. The CPT is a data-driven method which increases power and controls for Type I errors across multiple comparisons (exatcly what we need when looking at pupil changes across the time course!). The clustering method involves conducting dependent-sample t-tests for every data point (condition by time). In the first step, adjacent data points that cross the mass-univariate significance threshold (<em>p</em> &lt; .05) are combined to create a cluster. The sum of the <em>t</em>-statistic (or <em>F</em>) are calculated and form the basis for the cluster level statistic. In the second step, a surrogate null-distribution is created by first randomly assigning one of the two conditions within subjects (this is done n times) and retaining the cluster statistic for each randomization. In the third and final step, the cluster level statistic of the real comparison is compared against the null distribution, with clusters falling in the highest or lowest 2.5% considered to be significant.</p>
@@ -302,7 +307,7 @@ knitr::kable(results_prec)</code></pre>
 <pre><code>## Error: Can&#39;t subset columns that don&#39;t exist.
 ## x Column `X1` doesn&#39;t exist.</code></pre>
 <pre><code>## Warning: `fun.y` is deprecated. Use `fun` instead.</code></pre>
-<p><img src="https://silvia.rbind.io/blog/2020-gp-pup/index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="/blog/2020-gp-pup/index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>#Thoughts</p>
 <p>There are some misunderstandings users should be made aware of when it comes to CPT <span class="citation">(see <a href="#ref-Sassenhagen2019" role="doc-biblioref">Sassenhagen and Draschkow 2019</a>)</span> for a nice discussion). If we want to ask more specific questions (i.e., at what exact time points effects arise), CPT with a cluster mass correction is not the method to use. We can only be certain that a difference exists; we cannot make claims about whether individual time points show an effect with a given error rate. I think this is more of an issue for M/EEG than pupillometry though. The pupillary signal is very slow.</p>
 <p>Overall, I think CPT can be a very useful tool in determing an appropiate time range to look at, and can even lead to more powerful inferences. Further, the use of CPT obviates the need for multiple comparisons and autocorrelation corrections. However, it does have issues. For instance, it cannot take into account subject and item variability. In addition, it is not able to tell you where within the cluster there is a difference only that there is a difference. And finally, when power is low, clusters may include many false postive time points <span class="citation">(<a href="#ref-Fields2019" role="doc-biblioref">Fields and Kuperberg 2019</a>)</span>.</p>
@@ -340,7 +345,7 @@ Sassenhagen, Jona, and Dejan Draschkow. 2019. <span>“<span class="nocase">Clus
         <div class="post-pagination dt w-100 mt4 mb2">
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://silvia.rbind.io/blog/2021-gp-pup/">&larr; Analzying GazePoint Pupil Data With GazeR</a>
+    href="/blog/2021-gp-pup/">&larr; Analzying GazePoint Pupil Data With GazeR</a>
   
   
 </div>
@@ -352,7 +357,7 @@ Sassenhagen, Jona, and Dejan Draschkow. 2019. <span>“<span class="nocase">Clus
 <div class="post-comments pa0 pa4-l mt4">
   
   <script src="https://utteranc.es/client.js"
-          repo="spcanelon/silvia"
+          repo="jgeller112/drjasongeller"
           issue-term="title"
           theme="boxy-light"
           label="comments :crystal_ball:"
@@ -415,14 +420,14 @@ Sassenhagen, Jona, and Dejan Draschkow. 2019. <span>“<span class="nocase">Clus
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Categories:</dt>
-    <dd class="fw5 ml0"> <a href="https://silvia.rbind.io/categories/r">R</a> </dd>
+    <dd class="fw5 ml0"> <a href="/categories/r">R</a> </dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://silvia.rbind.io/tags/r">R</a>  <a href="https://silvia.rbind.io/tags/eye-tracking">eye-tracking</a>  <a href="https://silvia.rbind.io/tags/pupil">pupil</a> </dd>
+    <dd class="fw5 ml0"> <a href="/tags/r">R</a>  <a href="/tags/eye-tracking">eye-tracking</a>  <a href="/tags/pupil">pupil</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
@@ -465,22 +470,7 @@ Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xml
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/accessibility/" title="universal-access" >
-      <i class="fas fa-universal-access fa-lg fa-fw"></i>
-    </a>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://twitter.com/spcanelon" title="twitter" target="_blank" rel="noopener">
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://twitter.com/jgeller_phd" title="twitter" target="_blank" rel="noopener">
       <i class="fab fa-twitter fa-lg fa-fw"></i>
     </a>
   
@@ -495,7 +485,7 @@ Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xml
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/spcanelon/silvia" title="github" target="_blank" rel="noopener">
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/jgeller112" title="github" target="_blank" rel="noopener">
       <i class="fab fa-github fa-lg fa-fw"></i>
     </a>
   
@@ -508,7 +498,7 @@ Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xml
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://orcid.org/0000-0003-1709-1394" title="orcid" target="_blank" rel="noopener">
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://orcid.org/0000-0002-7459-4505" title="orcid" target="_blank" rel="noopener">
       <i class="ai ai-orcid fa-lg fa-fw"></i>
     </a>
   
@@ -521,23 +511,21 @@ Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xml
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://scholar.google.com/citations?user=GAzkvpcAAAAJ&amp;hl=en&amp;oi=ao" title="google-scholar" target="_blank" rel="noopener">
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://scholar.google.com/citations?user=yO68sggAAAAJ&amp;hl=en" title="google-scholar" target="_blank" rel="noopener">
       <i class="ai ai-google-scholar fa-lg fa-fw"></i>
     </a>
   
     
     
     
+    
+    
+    
+    
       
     
-    
-    
-    
-    
-      
-    
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://linkedin.com/in/spcanelon" title="linkedin" target="_blank" rel="noopener">
-      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://drive.google.com/file/d/1glHAFF4iz21j0THNqSUpBJt95onlsdnu/view?usp=sharing" title="cv" target="_blank" rel="noopener">
+      <i class="ai ai-cv fa-lg fa-fw"></i>
     </a>
   
 </div>
@@ -545,8 +533,6 @@ Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xml
     </div>
     
     <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
-      
-      <a class="dib pv1 ph2 link" href="/accessibility/" title="Accessibility Commitment">Accessibility</a>
       
       <a class="dib pv1 ph2 link" href="/contact/" title="Contact Form">Contact</a>
       
