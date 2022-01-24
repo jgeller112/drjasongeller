@@ -1,7 +1,7 @@
 ---
 title: "Jason Geller"
 subtitle: "Research Scientist at Rutgers Center for Cognitive Science"
-description: "I am a researcher, educator, R lover (Python is okay too). I study how we process language and how students can remember more and forget less."
+description: "I am a researcher, educator, R lover (Python is okay too :). I study how we process language and I am interested in how we can get students to remember more and forget less."
 sharing_image: ""
 images:
   - img/eyeball.jpeg
