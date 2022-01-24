@@ -2,7 +2,7 @@ baseURL = "/"
 theme = "hugo-apero"
 languageCode = "en"
 #title = "Hugo Apéro"
-title = "Jason Geller"
+title = "Dr. Jason Geller"
 author = "Jason Geller"
 copyright = "" # set to override the auto generated copyright using org info and now year
 googleAnalytics = ""
@@ -44,7 +44,7 @@ pygmentsUseClasses = true  # use class names instead of directly inserting color
 relativeURLs = true
 
 [params]
-  orgName = "Silvia Canelón"
+  orgName = "Jason Geller"
   orgLocal = ""
   #description = "A modern, beautiful, and easily configurable blog theme for Hugo."
   description = "Personal website of Jason Geller"

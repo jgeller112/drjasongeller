@@ -12,7 +12,7 @@ intro: |
 
 show_outro: true
 outro: |
-  <i class="fas fa-lightbulb pr2"></i>Biomedical engineer turned informaticist,<br>curious about all intersections of data and society.
+  <i class="fas fa-lightbulb pr2"></i> Cognitive scientist interested in language, memory, and R. 
 ---
 
 ** index doesn't contain a body, just front matter above.
