@@ -10,8 +10,8 @@ tags:
   - eye-tracking
   - pupil
 
-subtitle: 'How to analyze pupil data'
-summary: 'Show how to analyze pupil data using cluster based permutation testing'
+subtitle: 'Ways to analyze pupil data'
+summary: 'I demonstrate how to analyze pupil data using a cluster based permutation test'
 authors: ["Jason Geller"]
 lastmod: ''
 featured: yes
