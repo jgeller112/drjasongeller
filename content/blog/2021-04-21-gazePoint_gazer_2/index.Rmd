@@ -11,8 +11,8 @@ tags:
   - pupil
 
 subtitle: 'Using gazeR to analyze GazePoint Pupil Data'
-summary: 'I show to analyze pupil data from a GazePoint tracker.'
-authors: []
+summary: 'I demonstrate hpw to analyze pupil data from a GazePoint tracker with my eye-tracking R package gazeR.'
+authors: ['Jason Geller']
 lastmod: ''
 featured: yes
 image:
