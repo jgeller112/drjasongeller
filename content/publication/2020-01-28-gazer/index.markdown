@@ -1,5 +1,5 @@
 ---
-title: "GazeR: A package for processing gaze postion and pupil size sata"
+title: "GazeR: A package for processing gaze postion and pupil size data"
 date: '2019-01-24'
 slug: 
 alias:
