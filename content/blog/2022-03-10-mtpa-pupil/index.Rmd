@@ -255,7 +255,8 @@ ggplot(data = temp,aes(x =Times, y = AUC))+
   theme_bw() + 
   coord_cartesian(ylim = c(.4, 1)) + 
 geom_hline(yintercept=.5, linetype="dashed", 
-                color = "red", size=2)
+                color = "red", size=2) + 
+  labs(x="Time(ms)")
 
 ```
 

@@ -32,7 +32,7 @@ projects: []
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Just a few weeks ago <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and A Vilotijević n.d.</a>)</span> released a great paper on pupillometry giving the reader a basic introduction to the method, along with guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see the great figure below taken from their paper). This paper will for sure be something I revisit as well as give to folks interested in pupillometry.</p>
+<p>Just a few weeks ago <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and Vilotijević 2022</a>)</span> released a great paper on pupillometry giving the reader a basic introduction to the method, along with guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see the great figure below taken from their paper). This paper will for sure be something I revisit as well as give to folks interested in pupillometry.</p>
 <p><img src="pupil_guide.PNG" width="370" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multi-time-point-analysis-mtpa" class="section level1">
@@ -159,7 +159,7 @@ knitr::kable(vo_mu_p)</code></pre>
 </div>
 <div id="before-we-begin-a-summary" class="section level1">
 <h1>Before We Begin: A Summary</h1>
-<p>Before jumping into the MTPA analysis, I want to explain the method a little bit. The multi-time- point analysis uses a random forest classifier in conjunction with cross validation to determine if there is a statistical difference in the pupil signal between conditions. This differs slightly from the approach outlined in <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and A Vilotijević n.d.</a>)</span>. In their approach, linear mixed models are used in conjunction with cross validation to pick samples with the highest Z value. In contrast, MTPA uses all time points. What MTPA does is calculate the area under the curve (AUC) along with confidence intervals based on number of cross validations and averages them. Significance is determined by whether the CIs cross the .5 threshold. If it does not, there is a difference between condition at that time point. Below I will outline specific steps needed to perform MTPA along with the R code.</p>
+<p>Before jumping into the MTPA analysis, I want to explain the method a little bit. The multi-time- point analysis uses a random forest classifier in conjunction with cross validation to determine if there is a statistical difference in the pupil signal between conditions. This differs slightly from the approach outlined in <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and Vilotijević 2022</a>)</span>. In their approach, linear mixed models are used in conjunction with cross validation to pick samples with the highest Z value. In contrast, MTPA uses all time points. What MTPA does is calculate the area under the curve (AUC) along with confidence intervals based on number of cross validations and averages them. Significance is determined by whether the CIs cross the .5 threshold. If it does not, there is a difference between condition at that time point. Below I will outline specific steps needed to perform MTPA along with the R code.</p>
 </div>
 <div id="running-mpta" class="section level1">
 <h1>Running MPTA</h1>
@@ -266,7 +266,8 @@ ggplot(data = temp,aes(x =Times, y = AUC))+
   theme_bw() + 
   coord_cartesian(ylim = c(.4, 1)) + 
 geom_hline(yintercept=.5, linetype=&quot;dashed&quot;, 
-                color = &quot;red&quot;, size=2)</code></pre>
+                color = &quot;red&quot;, size=2) + 
+  labs(x=&quot;Time(ms)&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="conclusions" class="section level1">
@@ -327,7 +328,7 @@ geom_hline(yintercept=.5, linetype=&quot;dashed&quot;,
 ## [85] digest_0.6.29     munsell_0.5.0     bslib_0.3.1       sessioninfo_1.2.2</code></pre>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Mathot" class="csl-entry">
-Mathôt, ‪S, and 2022‬ A Vilotijević. n.d. <span>“‪Methods in Cognitive Pupillometry: Design, Preprocessing, and Statistical Analysis‬.”</span> Accessed March 9, 2022. <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC</a>.
+Mathôt, Sebastiaan, and Ana Vilotijević. 2022. <span>“‪Methods in Cognitive Pupillometry: Design, Preprocessing, and Statistical Analysis‬.”</span> March 1, 2022. <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC</a>.
 </div>
 <div id="ref-yu_multi-time-point_2020" class="csl-entry">
 Yu, Chi-Lin, Hsin-Chin Chen, Zih-Yun Yang, and Tai-Li Chou. 2020. <span>“Multi-Time-Point Analysis: A Time Course Analysis with Functional Near-Infrared Spectroscopy.”</span> <em>Behavior Research Methods</em> 52 (4): 1700–1713. <a href="https://doi.org/10.3758/s13428-019-01344-9">https://doi.org/10.3758/s13428-019-01344-9</a>.
