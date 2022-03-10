@@ -29,7 +29,7 @@ projects: []
 
 # Introduction
 
-Just a few weeks ago [@Mathot] released a great paper on pupillometry giving the reader a basic introduction to the method, along with guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see the great figure below taken from their paper). This paper will for sure be something I revisit as well as give to folks interested in pupillometry. 
+Just a few weeks ago [@Mathot] released a great paper on pupillometry giving the reader a basic introduction to the method, along with guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see their great figure below). This paper will for sure be something I revisit as well as give to folks interested in pupillometry. In the paper, they talk about fitting linear mixed models together with cross validation to test time points. While I think there are a lot of benefits of it (described in the paper), I could not stop thinking that the method fails to give researchers what they really want, the onsets and offsets of certain events. In the the cross-validation approach, it takes only the time points with highest Z scores and submits those points to a linear mixed model. Ultimately, you can say an effect is significant at X, Y, and Z times but cant really make any claims about the start and end of a cognitive event. This got me thinking about a paper I read a few years ago by [@yu_multi-time-point_2020] on a method called multi-time-point analysis. I really liked the method and began thinking about all the ways it could be applied (EEG, pupillometry, etc.) In the paper, they showed that it is a more powerful tool than the often used mass univariate approach. Here I show how to apply this method to pupillometry data.
 
 
 ```{r, echo=FALSE, warning=FALSE, Message=FALSE, fig.align='center', fig.width=4, fig.height=8}
@@ -44,12 +44,11 @@ knitr::include_graphics("pupil_guide.PNG")
 
 # Multi-Time Point Analysis (MTPA)
 
-Now, let's get on with the blog. Anyone who does eye-tracking knows there are a wide-variety of options when deciding on the appropriate method to use. It is almost impossible to cover every method. When reviewing papers, I feel bad because I inevitable bring up methods the authors did not include. This blog post adds to the already complicated landscape of time course analysis. Here we will look at multi-time-point analysis (MTPA). 
+There are a wide-variety of options when deciding on an appropriate analysis strategy to use. It is almost impossible to cover every method. When reviewing papers, I feel bad because I inevitable bring up methods the authors did not include. This blog post adds to the already complicated landscape of time course analysis and add yet another tool to the pupillometry toolbox.
 
-I mostly do these blogs to help me better understand a method, but I also do them in hopes that it will help others. About a two years ago I came across a really great paper by [@yu_multi-time-point_2020] wherein they describe MTPA and show how to use it to analyze fNIRs data. I really liked the method and began thinking about all the ways it could be applied (EEG, pupillometry, etc.) In the paper, they showed that it is a more powerful tool than the often used mass univariate approach. I got busy, and did not think about this again until recently. Here I show how to apply this method to pupillometry data.
+I mostly do these blogs as an aid to help me better understand a method. I also hope it will help others.
 
-
-Here we are going to use a simple example from data I collected as a postdoc at the University of Iowa. In this experiment, individuals (*N*=31) heard normal or 6-channel vocoded speech tokens and had to click on the correct picture. The vocoded condition should be harder, and in the figure below, you can see the vocoded compared to the normal speech condition yields larger pupil size throughout the trial. Commonly, we might test significance by using a mass univariate approach (t-tests at each time point or mixed models). Below we fit the time course data using Dale Barr's `clusterperm` package with no corrections (with corrections nothing is significant) and we see that there is a significant difference that emerges starting at 800 ms and ends at around 1900 ms. Using MTPA would we observe something different?
+To demonstrate MTPA I am going to use a simple example from data I collected as a postdoc at the University of Iowa. In this experiment, individuals (*N*=31) heard normal or 6-channel vocoded speech tokens (single words) and had to click on the correct picture. The vocoded condition should be harder, and in the figure below, you can see that it is--larger pupil size throughout the trial. Commonly, we would test significance by using a mass univariate approach (e.g., t-tests at each time point or mixed models). Below we fit the time course data using Dale Barr's `clusterperm` package with no corrections (with corrections nothing is significant). We see that there is a significant difference between the conditions that emerges starting around 800 ms and ends around 1900 ms. Using MTPA would we observe something different?
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -126,11 +125,11 @@ knitr::kable(vo_mu_p)
 
 # Before We Begin: A Summary
 
-Before jumping into the MTPA analysis, I want to explain the method a little bit. The multi-time- point analysis uses a random forest classifier in conjunction with cross validation to determine if there is a statistical difference in the pupil signal between conditions. This differs slightly from the approach outlined in [@Mathot]. In their approach, linear mixed models are used in conjunction with cross validation to pick samples with the highest Z value. In contrast, MTPA uses all time points. What MTPA does is calculate the area under the curve (AUC) along with confidence intervals based on number of cross validations and averages them. Significance is determined by whether the CIs cross the .5 threshold. If it does not, there is a difference between condition at that time point. Below I will outline specific steps needed to perform MTPA along with the R code. 
+Before jumping into the MTPA analysis, I want to explain the method a little bit. The MTPA uses a random forest classifier in conjunction with cross validation to determine if there is a statistical difference in the pupil signal between conditions. This differs slightly from the approach outlined in [@Mathot]. In their approach, linear mixed models are used in conjunction with cross validation to pick samples with the highest Z value. In contrast, MTPA uses all time points. What MTPA does is calculate the area under the curve (AUC) along with 90% confidence intervals and averages them. Significance is determined by whether the CIs cross the .5 threshold. If it does not, there is a difference between conditions at that time point. Below I will outline specific steps needed to perform MTPA along with the R code. 
 
-# Running MPTA
+# Running MPTA in R
 
-1.  We need to read in our sample data (described above) and `pivot_wide` so time is wide (in columns) and subjects and conditions are in long format. 
+1.  We need to read in our sample data (described above) and `pivot_wide` so time is in columns and subjects and conditions are long.  
 
 ```{r pivot}
 ### Read Data
@@ -152,7 +151,6 @@ vocode_wide<- vocode %>%
   ungroup()
 
 ```
-
 
 
 2. In MTPA, we must first partition the data into bandwidths(here two), or the number of points to consider at a time in the analysis—-for example with a bandwidth of 2, a model would be built from two time points (e.g., 1 and 2 and then 2 and 3  and so and so forth until the last time point has been fit). See the below matrix as an example. As a note, [@yu_multi-time-point_2020] recommend 2 and stated other widths did not result in different conclusions. 
@@ -194,7 +192,7 @@ rst_vocode <- matrix(NA,6,upperbound)
 
 
 ```{r,warning=FALSE, message=FALSE}
-### LIFG : Start MTPA model fitting with RF
+### Start MTPA model fitting with RF
 for (i in lowerbound:upperbound){
   # Record the AUC and CE
   ceauc <- matrix(NA,4,rcvnum)
@@ -262,7 +260,7 @@ geom_hline(yintercept=.5, linetype="dashed",
 
 # Conclusions
 
-I have shown how to apply MTPA to pupillometric data. This method appears to be more powerful than a mass univariate approach, showing the whole time course as significant. It would be interesting to see how this compares to the method propose by @mathot.
+I have shown how to apply MTPA to pupillometric data. This method appears to be more powerful than a mass univariate approach, showing the whole time course as significant. It would be interesting to see how this compares to the method proposed by [@Mathot].
 
 ## Potential Limitations
 

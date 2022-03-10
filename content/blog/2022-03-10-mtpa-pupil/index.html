@@ -32,14 +32,14 @@ projects: []
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Just a few weeks ago <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and Vilotijević 2022</a>)</span> released a great paper on pupillometry giving the reader a basic introduction to the method, along with guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see the great figure below taken from their paper). This paper will for sure be something I revisit as well as give to folks interested in pupillometry.</p>
+<p>Just a few weeks ago <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and Vilotijević 2022</a>)</span> released a great paper on pupillometry giving the reader a basic introduction to the method, along with guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see their great figure below). This paper will for sure be something I revisit as well as give to folks interested in pupillometry. In the paper, they talk about fitting linear mixed models together with cross validation to test time points. While I think there are a lot of benefits of it (described in the paper), I could not stop thinking that the method fails to give researchers what they really want, the onsets and offsets of certain events. In the the cross-validation approach, it takes only the time points with highest Z scores and submits those points to a linear mixed model. Ultimately, you can say an effect is significant at X, Y, and Z times but cant really make any claims about the start and end of a cognitive event. This got me thinking about a paper I read a few years ago by <span class="citation">(<a href="#ref-yu_multi-time-point_2020" role="doc-biblioref">Yu et al. 2020</a>)</span> on a method called multi-time-point analysis. I really liked the method and began thinking about all the ways it could be applied (EEG, pupillometry, etc.) In the paper, they showed that it is a more powerful tool than the often used mass univariate approach. Here I show how to apply this method to pupillometry data.</p>
 <p><img src="pupil_guide.PNG" width="370" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multi-time-point-analysis-mtpa" class="section level1">
 <h1>Multi-Time Point Analysis (MTPA)</h1>
-<p>Now, let’s get on with the blog. Anyone who does eye-tracking knows there are a wide-variety of options when deciding on the appropriate method to use. It is almost impossible to cover every method. When reviewing papers, I feel bad because I inevitable bring up methods the authors did not include. This blog post adds to the already complicated landscape of time course analysis. Here we will look at multi-time-point analysis (MTPA).</p>
-<p>I mostly do these blogs to help me better understand a method, but I also do them in hopes that it will help others. About a two years ago I came across a really great paper by <span class="citation">(<a href="#ref-yu_multi-time-point_2020" role="doc-biblioref">Yu et al. 2020</a>)</span> wherein they describe MTPA and show how to use it to analyze fNIRs data. I really liked the method and began thinking about all the ways it could be applied (EEG, pupillometry, etc.) In the paper, they showed that it is a more powerful tool than the often used mass univariate approach. I got busy, and did not think about this again until recently. Here I show how to apply this method to pupillometry data.</p>
-<p>Here we are going to use a simple example from data I collected as a postdoc at the University of Iowa. In this experiment, individuals (<em>N</em>=31) heard normal or 6-channel vocoded speech tokens and had to click on the correct picture. The vocoded condition should be harder, and in the figure below, you can see the vocoded compared to the normal speech condition yields larger pupil size throughout the trial. Commonly, we might test significance by using a mass univariate approach (t-tests at each time point or mixed models). Below we fit the time course data using Dale Barr’s <code>clusterperm</code> package with no corrections (with corrections nothing is significant) and we see that there is a significant difference that emerges starting at 800 ms and ends at around 1900 ms. Using MTPA would we observe something different?</p>
+<p>There are a wide-variety of options when deciding on an appropriate analysis strategy to use. It is almost impossible to cover every method. When reviewing papers, I feel bad because I inevitable bring up methods the authors did not include. This blog post adds to the already complicated landscape of time course analysis and add yet another tool to the pupillometry toolbox.</p>
+<p>I mostly do these blogs as an aid to help me better understand a method. I also hope it will help others.</p>
+<p>To demonstrate MTPA I am going to use a simple example from data I collected as a postdoc at the University of Iowa. In this experiment, individuals (<em>N</em>=31) heard normal or 6-channel vocoded speech tokens (single words) and had to click on the correct picture. The vocoded condition should be harder, and in the figure below, you can see that it is–larger pupil size throughout the trial. Commonly, we would test significance by using a mass univariate approach (e.g., t-tests at each time point or mixed models). Below we fit the time course data using Dale Barr’s <code>clusterperm</code> package with no corrections (with corrections nothing is significant). We see that there is a significant difference between the conditions that emerges starting around 800 ms and ends around 1900 ms. Using MTPA would we observe something different?</p>
 <pre class="r"><code>library(pacman)
 devtools::install_github(&quot;dalejbarr/exchangr&quot;)
 devtools::install_github(&quot;dalejbarr/clusterperm&quot;)
@@ -159,12 +159,12 @@ knitr::kable(vo_mu_p)</code></pre>
 </div>
 <div id="before-we-begin-a-summary" class="section level1">
 <h1>Before We Begin: A Summary</h1>
-<p>Before jumping into the MTPA analysis, I want to explain the method a little bit. The multi-time- point analysis uses a random forest classifier in conjunction with cross validation to determine if there is a statistical difference in the pupil signal between conditions. This differs slightly from the approach outlined in <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and Vilotijević 2022</a>)</span>. In their approach, linear mixed models are used in conjunction with cross validation to pick samples with the highest Z value. In contrast, MTPA uses all time points. What MTPA does is calculate the area under the curve (AUC) along with confidence intervals based on number of cross validations and averages them. Significance is determined by whether the CIs cross the .5 threshold. If it does not, there is a difference between condition at that time point. Below I will outline specific steps needed to perform MTPA along with the R code.</p>
+<p>Before jumping into the MTPA analysis, I want to explain the method a little bit. The MTPA uses a random forest classifier in conjunction with cross validation to determine if there is a statistical difference in the pupil signal between conditions. This differs slightly from the approach outlined in <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and Vilotijević 2022</a>)</span>. In their approach, linear mixed models are used in conjunction with cross validation to pick samples with the highest Z value. In contrast, MTPA uses all time points. What MTPA does is calculate the area under the curve (AUC) along with 90% confidence intervals and averages them. Significance is determined by whether the CIs cross the .5 threshold. If it does not, there is a difference between conditions at that time point. Below I will outline specific steps needed to perform MTPA along with the R code.</p>
 </div>
-<div id="running-mpta" class="section level1">
-<h1>Running MPTA</h1>
+<div id="running-mpta-in-r" class="section level1">
+<h1>Running MPTA in R</h1>
 <ol style="list-style-type: decimal">
-<li>We need to read in our sample data (described above) and <code>pivot_wide</code> so time is wide (in columns) and subjects and conditions are in long format.</li>
+<li>We need to read in our sample data (described above) and <code>pivot_wide</code> so time is in columns and subjects and conditions are long.</li>
 </ol>
 <pre class="r"><code>### Read Data
 # Read the Data preprocessed by gazer 
@@ -208,7 +208,7 @@ rst_vocode &lt;- matrix(NA,6,upperbound)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>For every time point X CV, we fit a random forest model using the training data we created and use the test set for prediction. It is suggested that you sample 60~70% (two-thirds) of the data to train the model, and use the rest 30~40% (one-third) as your testing set. AUC and other important metrics are calculated for each time point and averaged together and stored in a matrix before going to the next time point.</li>
 </ol>
-<pre class="r"><code>### LIFG : Start MTPA model fitting with RF
+<pre class="r"><code>### Start MTPA model fitting with RF
 for (i in lowerbound:upperbound){
   # Record the AUC and CE
   ceauc &lt;- matrix(NA,4,rcvnum)
@@ -272,7 +272,7 @@ geom_hline(yintercept=.5, linetype=&quot;dashed&quot;,
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
-<p>I have shown how to apply MTPA to pupillometric data. This method appears to be more powerful than a mass univariate approach, showing the whole time course as significant. It would be interesting to see how this compares to the method propose by <span class="citation">(<a href="#ref-mathot" role="doc-biblioref"><strong>mathot?</strong></a>)</span>.</p>
+<p>I have shown how to apply MTPA to pupillometric data. This method appears to be more powerful than a mass univariate approach, showing the whole time course as significant. It would be interesting to see how this compares to the method proposed by <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and Vilotijević 2022</a>)</span>.</p>
 <div id="potential-limitations" class="section level2">
 <h2>Potential Limitations</h2>
 <p>While this method looks promising, there does appear to be some limitations. First, it look looks like you can’t fit multilevel models.If you can, I suspect it is 1. computationally expensive and 2. not be trivial. If anyone has an answer to this I would love to hear it. Second, it appears that you would have to conduct this test for each effect of interest rather then including everything in the model. I will have to do some more investigating, but overall I am quite interested in learning more about ML applications to time course data like pupillometry.</p>
@@ -296,36 +296,37 @@ geom_hline(yintercept=.5, linetype=&quot;dashed&quot;,
 ##  [4] here_1.0.1             pROC_1.18.0            leaps_3.1             
 ##  [7] randomForest_4.7-1     devtools_2.4.3         usethis_2.1.5         
 ## [10] ggthemes_4.2.4         reshape2_1.4.4         boot_1.3-28           
-## [13] crayon_1.4.2           gridExtra_2.3          forcats_0.5.1         
-## [16] stringr_1.4.0          dplyr_1.0.7            purrr_0.3.4           
-## [19] readr_2.1.1            tidyr_1.1.4            tibble_3.1.6          
+## [13] crayon_1.5.0           gridExtra_2.3          forcats_0.5.1         
+## [16] stringr_1.4.0          dplyr_1.0.8            purrr_0.3.4           
+## [19] readr_2.1.2            tidyr_1.2.0            tibble_3.1.6          
 ## [22] ggplot2_3.3.5          tidyverse_1.3.1        fdrtool_1.2.17        
 ## [25] mnormt_2.0.2           ERP_2.2                pacman_0.5.1          
 ## [28] knitr_1.37            
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] colorspace_2.0-2  ellipsis_0.3.2    rprojroot_2.0.2   corpcor_1.6.10   
+##  [1] colorspace_2.0-3  ellipsis_0.3.2    rprojroot_2.0.2   corpcor_1.6.10   
 ##  [5] fs_1.5.2          rstudioapi_0.13   farver_2.1.0      remotes_2.4.2    
 ##  [9] bit64_4.0.5       fansi_1.0.2       lubridate_1.8.0   xml2_1.3.3       
-## [13] splines_4.1.1     cachem_1.0.6      pkgload_1.2.4     jsonlite_1.7.2   
-## [17] broom_0.7.11      dbplyr_2.1.1      png_0.1-7         compiler_4.1.1   
+## [13] splines_4.1.1     cachem_1.0.6      pkgload_1.2.4     jsonlite_1.8.0   
+## [17] broom_0.7.12      dbplyr_2.1.1      png_0.1-7         compiler_4.1.1   
 ## [21] httr_1.4.2        backports_1.4.1   assertthat_0.2.1  Matrix_1.4-0     
-## [25] fastmap_1.1.0     cli_3.1.1         htmltools_0.5.2   prettyunits_1.1.1
-## [29] tools_4.1.1       gtable_0.3.0      glue_1.6.0        Rcpp_1.0.7       
+## [25] fastmap_1.1.0     cli_3.2.0         htmltools_0.5.2   prettyunits_1.1.1
+## [29] tools_4.1.1       gtable_0.3.0      glue_1.6.2        Rcpp_1.0.8       
 ## [33] cellranger_1.1.0  jquerylib_0.1.4   vctrs_0.3.8       blogdown_1.7     
-## [37] xfun_0.29         ps_1.6.0          Rmisc_1.5         testthat_3.1.1   
-## [41] rvest_1.0.2       lifecycle_1.0.1   irlba_2.3.5       zoo_1.8-9        
-## [45] scales_1.1.1      vroom_1.5.7       hms_1.1.1         parallel_4.1.1   
-## [49] yaml_2.2.1        curl_4.3.2        memoise_2.0.1     sass_0.4.0.9000  
-## [53] stringi_1.7.6     highr_0.9         desc_1.4.0        pkgbuild_1.3.1   
-## [57] rlang_0.4.12      pkgconfig_2.0.3   evaluate_0.14     lattice_0.20-45  
-## [61] labeling_0.4.2    bit_4.0.4         processx_3.5.2    tidyselect_1.1.1 
-## [65] plyr_1.8.6        magrittr_2.0.1    bookdown_0.24     R6_2.5.1         
-## [69] generics_0.1.2    DBI_1.1.2         pillar_1.6.4      haven_2.4.3      
-## [73] withr_2.4.3       datawizard_0.2.2  modelr_0.1.8      utf8_1.2.2       
-## [77] tmvnsim_1.0-2     tzdb_0.2.0        rmarkdown_2.11    grid_4.1.1       
-## [81] readxl_1.3.1      data.table_1.14.2 callr_3.7.0       reprex_2.0.1     
-## [85] digest_0.6.29     munsell_0.5.0     bslib_0.3.1       sessioninfo_1.2.2</code></pre>
+## [37] xfun_0.30         ps_1.6.0          brio_1.1.3        Rmisc_1.5        
+## [41] testthat_3.1.2    rvest_1.0.2       lifecycle_1.0.1   irlba_2.3.5      
+## [45] zoo_1.8-9         scales_1.1.1      vroom_1.5.7       hms_1.1.1        
+## [49] parallel_4.1.1    yaml_2.3.5        curl_4.3.2        memoise_2.0.1    
+## [53] sass_0.4.0.9000   stringi_1.7.6     highr_0.9         desc_1.4.1       
+## [57] pkgbuild_1.3.1    rlang_1.0.2       pkgconfig_2.0.3   evaluate_0.15    
+## [61] lattice_0.20-45   labeling_0.4.2    bit_4.0.4         processx_3.5.2   
+## [65] tidyselect_1.1.2  plyr_1.8.6        magrittr_2.0.2    bookdown_0.24    
+## [69] R6_2.5.1          generics_0.1.2    DBI_1.1.2         pillar_1.7.0     
+## [73] haven_2.4.3       withr_2.5.0       datawizard_0.2.2  modelr_0.1.8     
+## [77] utf8_1.2.2        tmvnsim_1.0-2     tzdb_0.2.0        rmarkdown_2.13   
+## [81] grid_4.1.1        readxl_1.3.1      data.table_1.14.2 callr_3.7.0      
+## [85] reprex_2.0.1      digest_0.6.29     munsell_0.5.0     bslib_0.3.1      
+## [89] sessioninfo_1.2.2</code></pre>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Mathot" class="csl-entry">
 Mathôt, Sebastiaan, and Ana Vilotijević. 2022. <span>“‪Methods in Cognitive Pupillometry: Design, Preprocessing, and Statistical Analysis‬.”</span> March 1, 2022. <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC</a>.
