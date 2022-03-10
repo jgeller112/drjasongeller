@@ -25,6 +25,7 @@ image:
 output: html_document
 bibliography: mtpa.bib 
 projects: []
+---
 
 # Introduction
 
@@ -154,7 +155,7 @@ vocode_wide<- vocode %>%
 
 
 
-2. In MTPA, we must first partition the data into bandwidths(here two), or the number of points to consider at a time in the analysis—-for example with a bandwidth of 2, a model would be built from two time points (e.g., 1 and 2 and then 2 and 3  and so and so forth until the last time point has been fit). As a note, [@yu_multi-time-point_2020] recommend 2 and stated other widths did not result in different conclusions. 
+2. In MTPA, we must first partition the data into bandwidths(here two), or the number of points to consider at a time in the analysis—-for example with a bandwidth of 2, a model would be built from two time points (e.g., 1 and 2 and then 2 and 3  and so and so forth until the last time point has been fit). See the below matrix as an example. As a note, [@yu_multi-time-point_2020] recommend 2 and stated other widths did not result in different conclusions. 
 
 
 ```{r width}
@@ -238,7 +239,6 @@ for (i in 1:(upperbound-1)){
 vocodem <- as.data.frame(vocodem) # turn into df 
 colnames(vocodem) <- paste0("Time",1:27) #label time
 row.names(vocodem) <- c("CE","AUC","CE_l","CE_u","AUC_l","AUC_u") # label metrics
-
 
 ```
 5. Finally we transpose the matrix, put time in ms, and plot the AUC at each time point. Where the CIs do not cross the 50% threshold (red dotted line), a significant difference can be said to exist at that time point between conditions. 

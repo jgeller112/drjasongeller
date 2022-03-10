@@ -1,42 +1,45 @@
+---
+title: "Multi-Time-Point Analysis: A New Way To Analyze Pupil Data"
+layout: single-sidebar
+date: '2022-03-10'
+slug: gp-pup
+categories:
+  - R
+tags:
+  - R
+  - eye-tracking
+  - pupil
+  - longitudinal
+  - ML
+
+subtitle: 'A new way to analyze pupil data'
+summary: 'I walkthrough a technique called multi-time-point analysis highlighted in Yu, Chen, Yang, & Chou (2020)'
+authors: ["Jason Geller"]
+lastmod: ''
+featured: yes
+image:
+  caption: 
+  placement: 2
+  focal_point: 'Center'
+  preview_only: no
+output: html_document
+bibliography: mtpa.bib 
+projects: []
+---
 
 <script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
-<hr />
-<p>title: “Multi-Time-Point Analysis: A New Way To Analyze Pupil Data”
-layout: single-sidebar
-date: ‘2022-03-10’
-slug: gp-pup
-categories:
-- R
-tags:
-- R
-- eye-tracking
-- pupil
-- longitudinal
-- ML</p>
-<p>subtitle: ‘A new way to analyze pupil data’
-summary: ‘I walkthrough a technique called multi-time-point analysis highlighted in Yu, Chen, Yang, &amp; Chou (2020)’
-authors: [“Jason Geller”]
-lastmod: ’’
-featured: yes
-image:
-caption:
-placement: 2
-focal_point: ‘Center’
-preview_only: no
-output: html_document
-bibliography: mtpa.bib
-projects: []</p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Just a few weeks ago <span class="citation">[@Mathot]</span> released a great paper on pupillometry giving the reader a basic introduction to the method, along with guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see the great figure below taken from their paper). This paper will for sure be something I revisit as well as give to folks interested in pupillometry.</p>
+<p>Just a few weeks ago <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and A Vilotijević n.d.</a>)</span> released a great paper on pupillometry giving the reader a basic introduction to the method, along with guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see the great figure below taken from their paper). This paper will for sure be something I revisit as well as give to folks interested in pupillometry.</p>
 <p><img src="pupil_guide.PNG" width="370" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multi-time-point-analysis-mtpa" class="section level1">
 <h1>Multi-Time Point Analysis (MTPA)</h1>
-<p>Now, let’s get on with the blog. Anyone who does eye tracking knows that there are a wide-variety of options when deciding on the appropriate method to use. It is almost impossible to cover every method. When reviewing papers, I feel bad because I inevitable bring up methods the authors did not include–they probably hate me. Well this blog will be another reason for them to hate me. This blog post include another method to the pupillometric analysis toolbox: MTPA. I mostly do these blogs to help me better understand a method, but I also do it in hopes that it will help others. About a two years ago I came across a really great paper by <span class="citation">[@yu_multi-time-point_2020]</span> wherein they describe MTPA to analyze fNIRs data. They compared it to the widely used mass univariate analysis. and conclude MTPA is a more power method. Here I show how to apply this method to pupillometry data.</p>
-<p>Here we are going to use a simple example from data I collected as a postdoc at the University of Iowa. In this experiment, individuals (<em>N</em>=31) heard normal or 6-channel vocoded speech tokens and had to click on the correct picture. The vocoded condition should be harder, and in the figure below you can see the vocoded condition results in larger pupil size than the normal speech condition. If were going to analzye this we might choose a mass univariate approach. Below we fit the time course data using Dale Barr’s <code>clusterperm</code> package with no corrections (with corrections nothing is significant) and we see that there is a significant difference that emerges starting at 800 ms and ends at around 1900 ms. Using MTPA would we observe something different?</p>
+<p>Now, let’s get on with the blog. Anyone who does eye-tracking knows there are a wide-variety of options when deciding on the appropriate method to use. It is almost impossible to cover every method. When reviewing papers, I feel bad because I inevitable bring up methods the authors did not include. This blog post adds to the already complicated landscape of time course analysis. Here we will look at multi-time-point analysis (MTPA).</p>
+<p>I mostly do these blogs to help me better understand a method, but I also do them in hopes that it will help others. About a two years ago I came across a really great paper by <span class="citation">(<a href="#ref-yu_multi-time-point_2020" role="doc-biblioref">Yu et al. 2020</a>)</span> wherein they describe MTPA and show how to use it to analyze fNIRs data. I really liked the method and began thinking about all the ways it could be applied (EEG, pupillometry, etc.) In the paper, they showed that it is a more powerful tool than the often used mass univariate approach. I got busy, and did not think about this again until recently. Here I show how to apply this method to pupillometry data.</p>
+<p>Here we are going to use a simple example from data I collected as a postdoc at the University of Iowa. In this experiment, individuals (<em>N</em>=31) heard normal or 6-channel vocoded speech tokens and had to click on the correct picture. The vocoded condition should be harder, and in the figure below, you can see the vocoded compared to the normal speech condition yields larger pupil size throughout the trial. Commonly, we might test significance by using a mass univariate approach (t-tests at each time point or mixed models). Below we fit the time course data using Dale Barr’s <code>clusterperm</code> package with no corrections (with corrections nothing is significant) and we see that there is a significant difference that emerges starting at 800 ms and ends at around 1900 ms. Using MTPA would we observe something different?</p>
 <pre class="r"><code>library(pacman)
 devtools::install_github(&quot;dalejbarr/exchangr&quot;)
 devtools::install_github(&quot;dalejbarr/clusterperm&quot;)
@@ -156,12 +159,12 @@ knitr::kable(vo_mu_p)</code></pre>
 </div>
 <div id="before-we-begin-a-summary" class="section level1">
 <h1>Before We Begin: A Summary</h1>
-<p>Before jumping into the analysis, I want to explain the method a little bit. The multi-time point analysis uses a Random Forest classifier in conjunction with cross validation to determine if there is a statistical difference in the pupil signal between conditions. This differs slightly from the approach outlined in <span class="citation">[@Mathot]</span>. In their approach, linear mixed models are used in conjunction with cross validation to pick samples with the highest Z value. In contrast, MTPA uses all time points. What MTPA does is calculate the area under the curve (AUC) along with 90% confidence intervals based on number of cross validations and averages them. Significance is determined by whether the CIs cross .5. If it does not, there is a difference between condition at that time point. Below I will outline specifics steps to performing MTPA along with the code needed to implement it.</p>
+<p>Before jumping into the MTPA analysis, I want to explain the method a little bit. The multi-time- point analysis uses a random forest classifier in conjunction with cross validation to determine if there is a statistical difference in the pupil signal between conditions. This differs slightly from the approach outlined in <span class="citation">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt and A Vilotijević n.d.</a>)</span>. In their approach, linear mixed models are used in conjunction with cross validation to pick samples with the highest Z value. In contrast, MTPA uses all time points. What MTPA does is calculate the area under the curve (AUC) along with confidence intervals based on number of cross validations and averages them. Significance is determined by whether the CIs cross the .5 threshold. If it does not, there is a difference between condition at that time point. Below I will outline specific steps needed to perform MTPA along with the R code.</p>
 </div>
 <div id="running-mpta" class="section level1">
 <h1>Running MPTA</h1>
 <ol style="list-style-type: decimal">
-<li>We need to read in our sample data (described above) and <code>pivot_wide</code> so time is wide (in columns) and subjects and conditions are long.</li>
+<li>We need to read in our sample data (described above) and <code>pivot_wide</code> so time is wide (in columns) and subjects and conditions are in long format.</li>
 </ol>
 <pre class="r"><code>### Read Data
 # Read the Data preprocessed by gazer 
@@ -181,7 +184,7 @@ vocode_wide&lt;- vocode %&gt;%
   datawizard::data_reorder(c(&quot;expt&quot;, &quot;Subject&quot;, &quot;Condition&quot;)) %&gt;%
   ungroup()</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>In MTPA, we must first partition the data into bandwidths(here two), or the number of points to consider at a time in the analysis—for example with a bandwidth of 2, a model would be built from two time points (e.g., 1 and 2 and then 2 and 3 and so and so forth until the last time point has been fit). As a note, <span class="citation">[@yu_multi-time-point_2020]</span> recommend 2 and stated other widths did not result in different conclusions.</li>
+<li>In MTPA, we must first partition the data into bandwidths(here two), or the number of points to consider at a time in the analysis—-for example with a bandwidth of 2, a model would be built from two time points (e.g., 1 and 2 and then 2 and 3 and so and so forth until the last time point has been fit). See the below matrix as an example. As a note, <span class="citation">(<a href="#ref-yu_multi-time-point_2020" role="doc-biblioref">Yu et al. 2020</a>)</span> recommend 2 and stated other widths did not result in different conclusions.</li>
 </ol>
 <pre class="r"><code># Define time point starts at -100 and ends at 2500
 tp &lt;- seq(-100,2500,by=100)
@@ -268,7 +271,7 @@ geom_hline(yintercept=.5, linetype=&quot;dashed&quot;,
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
-<p>I have shown how to apply MTPA to pupillometric data. This method appears to be more powerful than a mass univariate approach, showing the whole time course as significant. It would be interesting to see how this compares to the method propose by <span class="citation">@mathot</span>.</p>
+<p>I have shown how to apply MTPA to pupillometric data. This method appears to be more powerful than a mass univariate approach, showing the whole time course as significant. It would be interesting to see how this compares to the method propose by <span class="citation">(<a href="#ref-mathot" role="doc-biblioref"><strong>mathot?</strong></a>)</span>.</p>
 <div id="potential-limitations" class="section level2">
 <h2>Potential Limitations</h2>
 <p>While this method looks promising, there does appear to be some limitations. First, it look looks like you can’t fit multilevel models.If you can, I suspect it is 1. computationally expensive and 2. not be trivial. If anyone has an answer to this I would love to hear it. Second, it appears that you would have to conduct this test for each effect of interest rather then including everything in the model. I will have to do some more investigating, but overall I am quite interested in learning more about ML applications to time course data like pupillometry.</p>
@@ -312,15 +315,23 @@ geom_hline(yintercept=.5, linetype=&quot;dashed&quot;,
 ## [37] xfun_0.29         ps_1.6.0          Rmisc_1.5         testthat_3.1.1   
 ## [41] rvest_1.0.2       lifecycle_1.0.1   irlba_2.3.5       zoo_1.8-9        
 ## [45] scales_1.1.1      vroom_1.5.7       hms_1.1.1         parallel_4.1.1   
-## [49] curl_4.3.2        memoise_2.0.1     sass_0.4.0.9000   stringi_1.7.6    
-## [53] highr_0.9         desc_1.4.0        pkgbuild_1.3.1    rlang_0.4.12     
-## [57] pkgconfig_2.0.3   evaluate_0.14     lattice_0.20-45   labeling_0.4.2   
-## [61] bit_4.0.4         processx_3.5.2    tidyselect_1.1.1  plyr_1.8.6       
-## [65] magrittr_2.0.1    bookdown_0.24     R6_2.5.1          generics_0.1.2   
-## [69] DBI_1.1.2         pillar_1.6.4      haven_2.4.3       withr_2.4.3      
-## [73] datawizard_0.2.2  modelr_0.1.8      utf8_1.2.2        tmvnsim_1.0-2    
-## [77] tzdb_0.2.0        rmarkdown_2.11    grid_4.1.1        readxl_1.3.1     
-## [81] data.table_1.14.2 callr_3.7.0       reprex_2.0.1      digest_0.6.29    
-## [85] munsell_0.5.0     bslib_0.3.1       sessioninfo_1.2.2</code></pre>
+## [49] yaml_2.2.1        curl_4.3.2        memoise_2.0.1     sass_0.4.0.9000  
+## [53] stringi_1.7.6     highr_0.9         desc_1.4.0        pkgbuild_1.3.1   
+## [57] rlang_0.4.12      pkgconfig_2.0.3   evaluate_0.14     lattice_0.20-45  
+## [61] labeling_0.4.2    bit_4.0.4         processx_3.5.2    tidyselect_1.1.1 
+## [65] plyr_1.8.6        magrittr_2.0.1    bookdown_0.24     R6_2.5.1         
+## [69] generics_0.1.2    DBI_1.1.2         pillar_1.6.4      haven_2.4.3      
+## [73] withr_2.4.3       datawizard_0.2.2  modelr_0.1.8      utf8_1.2.2       
+## [77] tmvnsim_1.0-2     tzdb_0.2.0        rmarkdown_2.11    grid_4.1.1       
+## [81] readxl_1.3.1      data.table_1.14.2 callr_3.7.0       reprex_2.0.1     
+## [85] digest_0.6.29     munsell_0.5.0     bslib_0.3.1       sessioninfo_1.2.2</code></pre>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Mathot" class="csl-entry">
+Mathôt, ‪S, and 2022‬ A Vilotijević. n.d. <span>“‪Methods in Cognitive Pupillometry: Design, Preprocessing, and Statistical Analysis‬.”</span> Accessed March 9, 2022. <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC</a>.
+</div>
+<div id="ref-yu_multi-time-point_2020" class="csl-entry">
+Yu, Chi-Lin, Hsin-Chin Chen, Zih-Yun Yang, and Tai-Li Chou. 2020. <span>“Multi-Time-Point Analysis: A Time Course Analysis with Functional Near-Infrared Spectroscopy.”</span> <em>Behavior Research Methods</em> 52 (4): 1700–1713. <a href="https://doi.org/10.3758/s13428-019-01344-9">https://doi.org/10.3758/s13428-019-01344-9</a>.
+</div>
+</div>
 </div>
 </div>
