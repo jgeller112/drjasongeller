@@ -55,7 +55,7 @@ To demonstrate MTPA I am going to use a simple example from data I collected as 
 
 library(pacman)
 
-devtools::install_github("dalejbarr/clusterperm")
+#devtools::install_github("dalejbarr/clusterperm")
 
 
 
@@ -279,7 +279,9 @@ While this method looks promising, there does appear to be some limitations. Fir
 
 # References
 ```{r create_r-references}
+
 r_refs(file = "mtpa.bib")
+
 ```
 
 
