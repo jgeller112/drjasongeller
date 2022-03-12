@@ -33,7 +33,6 @@ projects: []
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Just a few weeks ago <span class="citation"><a href="#ref-Mathot" role="doc-biblioref">Mathôt and Vilotijević</a> (<a href="#ref-Mathot" role="doc-biblioref">2022</a>)</span> released a great primer on pupillometry highlighting the method, providing guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see their great figure below). This paper will for sure be something I revisit and will be the paper I send to folks interested in pupillometry. In their paper, they discuss fitting linear mixed models (LME) together with cross validation to test time points. While I think there are a lot of benefits of this approach (described in their paper), this method does not tell researchers what they really want to know: where an effect lies in the time course. In the the cross-validation + LME approach, it only takes the time points with highest <em>z</em> scores and submits those points to a final LME model. Ultimately, you can say a time point is significant at X, Y, and Z times, but cant really make any claims about the start and end of events. This got me thinking about a paper I read a few years ago by <span class="citation"><a href="#ref-yu_multi-time-point_2020" role="doc-biblioref">Yu et al.</a> (<a href="#ref-yu_multi-time-point_2020" role="doc-biblioref">2020</a>)</span> which looked at a method called multi-time-point analysis which they applied to fNIRS data. I really like the method (and paper) and began thinking about all the ways it could be applied (e.g., EEG, pupillometry) In the paper, they showed that it is a more powerful tool than the often used mass univariate approach. Here I show how to apply this method to pupillometry data.</p>
-<pre><code>## Loading required package: tinylabels</code></pre>
 <p><img src="pupil_guide.PNG" width="370" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multi-time-point-analysis-mtpa" class="section level1">
@@ -278,11 +277,6 @@ geom_hline(yintercept=.5, linetype=&quot;dashed&quot;,
 <div id="potential-limitations" class="section level2">
 <h2>Potential Limitations</h2>
 <p>While this method looks promising, there does appear to be some limitations. First, it look looks like you can’t fit multilevel models. If you can, I suspect it is 1. computationally expensive and 2. not trivial. If anyone has an answer to this I would love to hear it. Second, it appears that you would have to conduct this test for each effect of interest rather then including everything in the model. This is something that <span class="citation"><a href="#ref-Mathot" role="doc-biblioref">Mathôt and Vilotijević</a> (<a href="#ref-Mathot" role="doc-biblioref">2022</a>)</span> also brings up in their paper. I will have to do some more investigating, but overall I am quite interested in learning more about ML applications to time course data like pupillometry.</p>
-</div>
-</div>
-<div id="references" class="section level1">
-<h1>References</h1>
-<pre class="r"><code>r_refs(file = &quot;mtpa.bib&quot;)</code></pre>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>## R version 4.1.1 (2021-08-10)
 ## Platform: x86_64-apple-darwin17.0 (64-bit)
@@ -333,6 +327,10 @@ geom_hline(yintercept=.5, linetype=&quot;dashed&quot;,
 ## [77] tmvnsim_1.0-2     tzdb_0.2.0        rmarkdown_2.13    grid_4.1.1       
 ## [81] readxl_1.3.1      data.table_1.14.2 callr_3.7.0       reprex_2.0.1     
 ## [85] digest_0.6.29     munsell_0.5.0     bslib_0.3.1       sessioninfo_1.2.2</code></pre>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Mathot" class="csl-entry">
 Mathôt, Sebastiaan, and Ana Vilotijević. 2022. <span>“‪Methods in Cognitive Pupillometry: Design, Preprocessing, and Statistical Analysis‬.”</span> March 1, 2022. <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC</a>.
