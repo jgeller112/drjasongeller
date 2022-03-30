@@ -1,7 +1,7 @@
 ---
 title: CV
 description: |
-  You can find my CV (https://drive.google.com/file/d/1glHAFF4iz21j0THNqSUpBJt95onlsdnu/view?usp=sharing)
+  You can find my CV here: (https://drive.google.com/file/d/1glHAFF4iz21j0THNqSUpBJt95onlsdnu/view?usp=sharing)
   
 author: "Jason Geller"
 show_post_thumbnail: false
