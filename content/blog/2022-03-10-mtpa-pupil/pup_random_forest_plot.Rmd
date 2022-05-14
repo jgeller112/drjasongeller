@@ -11,7 +11,7 @@ bibliography: mtpa.bib
 Just a few weeks ago [@Mathot] released a great paper on pupillometry giving the reader a basic introduction to the method, along with guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see the great figure below taken from their paper). This paper will for sure be something I revisit as well as give to folks interested in pupillometry. 
 
 
-```{r, echo=FALSE, warning=FALSE, Message=FALSE, fig.align='center', fig.width=4, fig.height=8}
+```{r, echo=FALSE, warning=FALSE, Message=FALSE, fig.align='center', fig.width=8, fig.height=12}
 
 
 library(knitr)
@@ -133,7 +133,7 @@ vocode_wide<- vocode %>%
 
 
 
-2. In MTPA, we must first partition the data into bandwidths(here two), or the number of points to consider at a time in the analysis—for example with  a bandwidth of 2, a model would be built from two time points (e.g., 1 and 2 and then 2 and 3  and so and so forth until the last time point has been fit). As a note, [@yu_multi-time-point_2020] recommend 2 and stated other widths did not result in different conclusions. 
+2. In MTPA, we must first partition the data into bandwidths(here two), or the number of points to consider at a time in the analysis—for example with  a bandwidth of 2, a model would be built from two time points (e.g., 1 and 2 and then 2 and 3  and so on and so forth until the last time point has been fit). As a note, [@yu_multi-time-point_2020] recommend 2 and stated other widths did not result in different conclusions. 
 
 
 ```{r width}
@@ -244,7 +244,7 @@ I have shown how to apply MTPA to pupillometric data. This method appears to be 
 
 ## Potential Limitations
 
-While this method looks promising, there does appear to be some limitations. First, it look looks like you can't fit multilevel models.If you can, I suspect it is 1. computationally expensive and 2. not be trivial. If anyone has an answer to this I would love to hear it. Second, it appears that you would have to conduct this test for each effect of interest rather then including everything in the model. I will have to do some more investigating, but overall I am quite interested in learning more about ML applications to time course data like pupillometry. 
+While this method looks promising, there does appear to be some limitations. First, it look looks like you can't fit multilevel models.If you can, I suspect it is 1) computationally expensive and 2) not be trivial. If anyone has an answer to this I would love to hear it. Second, it appears that you would have to conduct this test for each effect of interest rather then including everything in the model. I will have to do some more investigating, but overall I am quite interested in learning more about ML applications to time course data like pupillometry. 
 
 ```{r}
 
