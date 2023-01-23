@@ -1,0 +1,74 @@
+---
+title: "Protocol for a Remote Webcam-based Eye-Tracking
+Experiment for Examining Visual Attention to Tobacco
+Marketing Materials"
+date: '2023-01-15'
+slug: 
+alias:
+  - /publication/counseling/
+categories:
+  - Research
+tags:
+author: "Julia Chen-Sankey
+ PhD; Maryam Elhabashy
+ BA; Stefanie Gratale
+ PhD; Jason Geller
+ PhD; Melissa Mercincavage
+PhD; Andrew A Strasser
+ PhD; Cristine D Delnevo
+ PhD; Michelle Jeong
+ PhD; Olivia A Wackowski
+ PhD"
+doi: 'https://doi.org/10.2196/preprints.43512'
+publishDate:
+publication_types:
+  - '1'
+publication: 'JMIR Research Protocols'
+publication_short: 'JMIR'
+summary:
+subtitle: 
+featured: no
+url_pdf: ~
+url_code: ~
+url_dataset: ~
+url_poster: ~
+url_project: ~
+url_slides: ~
+url_source: 
+url_video: ~
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+slides: ''
+links:
+  - icon: file-pdf
+    icon_pack: fas
+    name: PDF
+    url: https://www.researchgate.net/profile/Julia-Chen-Sankey/publication/364355617_Protocol_for_a_Remote_Webcam-based_Eye-Tracking_Experiment_for_Examining_Visual_Attention_to_Tobacco_Marketing_Materials/links/634eea606e0d367d91a88433/Protocol-for-a-Remote-Webcam-based-Eye-Tracking-Experiment-for-Examining-Visual-Attention-to-Tobacco-Marketing-Materials.pdf
+
+
+---
+
+## Abstract
+
+
+Background: Eye-tracking provides an objective way to measure attention, which can advance researchers’ and policymakers’ understanding of tobacco marketing influences. The development of remote webcam-based eye-tracking technology, integrated with online crowdsourcing studies, may be a cost-effective and time-efficient alternative to laboratory-based eye-tracking methods. However, research is needed to evaluate the utility of remote eye-tracking methods.
+
+Objective: To detail the process of designing a remote webcam-based eye-tracking experiment and provide data on associations between participant characteristics and the outcomes of completing the experiment.
+Methods: N= 2,023 young adult (aged 18–34 years) cigarette smokers in the US were recruited to complete an online survey that included a 90-second remote eye-tracking experiment that examined attention to e-cigarette marketing materials. Primary outcome measures assessed the completion of the remote eye-tracking experiment, specifically:(1) experiment initiated vs. not initiated;(2) experiment completed vs. not completed; and (3) usable vs. non-usable eye-tracking data generated. Multivariable logistic regressions examined the associations between outcome measures and participants’ socio-demographic backgrounds, tobacco use history, and electronic devices (mobile vs. desktop) used during the experiment.
+
+Results: Study recruitment began April 14, 2022 and ended May 3, 2022. Among all survey participants, 93.3% (n=1,887)
+initiated the experiment, 38.4% (n=777) completed the experiment, and 18.8% (n=381) generated usable data. Among those who
+completed the experiment, 49.0% generated usable data. Results from the full regression models show that non-Hispanic Black
+participants (AOR=0.64, 95% CI=0.45, 0.91) were less likely to complete the eye-tracking experiment than non-Hispanic White
+participants. Additionally, female (vs. male) participants (AOR=1.46, 95% CI=1.01, 2.11), those currently (vs. not) using ecigarettes (AOR=2.08, 95% CI=1.13, 3.82), and those who used mobile (vs. desktop) devices (AOR=5.10, 95% CI=3.05, 8.52)
+were more likely to generate usable eye-tracking data.
+
+Conclusions: Young adult participants were willing to try remote eye-tracking technology, and nearly half of those who
+completed the experiment generated usable eye-tracking data. Thus, we believe that the use of remote eye-tracking tools,
+integrated with crowdsourcing recruitment, can be a useful approach for the tobacco regulatory science research community to
+collect quality, large-scale eye-tracking data in a timely fashion and thereby address research questions in the ever-evolving
+tobacco marketing landscape. It would be useful to investigate techniques for how to enhance completion rates and data
+usability. 

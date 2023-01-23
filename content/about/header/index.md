@@ -9,7 +9,7 @@ headline: |
 <!-- this is a subheadline -->
 Thanks for stopping by!
 
-I am currently a Research Scientist at Rutgers University Center for Cognitive Science (RuCCS). My research program investigates the cognitive and neurological underpinnings of language processing. I am primarily interested in the mechanisms underlying visual word recognition and speech perception. On the weekends, I spend time with my other love: human memory. In this area, I am interested in semantics, metacognition/metamemory, and desirable difficulties. 
+I am currently a lecturer and consultant in the Psychology Department at Princeton University. My research program investigates the cognitive and neurological underpinnings of language processing. I am primarily interested in the mechanisms underlying visual word recognition and speech perception. On the weekends, I spend time with my other love: human memory. In this area, I am interested in semantics, metacognition/metamemory, and desirable difficulties. 
 
 My philosophy is that cognition is best understood by looking at both behavior and the brain. To get a better understanding of cognition I use a multi-method approach that involves using standard behavioral measurements (e.g., reaction times), eye-tracking, neuroimaging, and physiological and nuero-physiological indices (e.g., pupillometry,EEG/sEEG). 
 

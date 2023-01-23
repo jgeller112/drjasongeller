@@ -32,7 +32,7 @@ projects: []
 Just a few weeks ago @Mathot released a great primer on pupillometry highlighting the method, providing guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see their great figure below). This paper will for sure be something I revisit and will be the paper I send to folks interested in pupillometry. In their paper, they discuss fitting linear mixed models (LME) together with cross validation to test time points. While I think there are a lot of benefits of this approach (described in their paper), this method does not tell researchers what they really want to know: where an effect lies in the time course. In the the cross-validation + LME approach, it only takes the time points with highest *z* scores and submits those points to a final LME model. Ultimately, you can say a time point is significant at X, Y, and Z times, but cant really make any claims about the start and end of events. This got me thinking about a paper I read a few years ago by @yu_multi-time-point_2020 which looked at a method called multi-time-point analysis which they applied to fNIRS data. I really like the method (and paper) and began thinking about all the ways it could be applied (e.g., EEG, pupillometry) In the paper, they showed that it is a more powerful tool than the often used mass univariate approach. Here I show how to apply this method to pupillometry data.
 
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.width=14, fig.height=12}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
 
 
 library(knitr)
@@ -157,7 +157,7 @@ vocode_wide<- vocode %>%
 2. In MTPA, we must first partition the data into bandwidths(here two), or the number of points to consider at a time in the analysis—-for example with a bandwidth of 2, a model would be built from two time points (e.g., 1 and 2 and then 2 and 3 and so on and so forth until the last time point has been fit). In the matrix below, we see that category membership (Related (R) vs. Unrelated  (U), or in our case normal and vocoded speech) is predicted from the signal at two time points. This is repeated until the last time point. In our example, this is the 27th time point, or 2500 ms. As a note, @yu_multi-time-point_2020 recommend 2 and stated other widths did not result in different conclusions. 
 
 
-```{r, echo=FALSE, warning=FALSE, Message=FALSE, fig.align='center', fig.width=16, fig.height=8}
+```{r, echo=FALSE, warning=FALSE, Message=FALSE, fig.align='center'}
 
 
 library(knitr)
