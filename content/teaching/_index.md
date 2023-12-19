@@ -1,6 +1,6 @@
 ---
 title: Teaching
-description: "This page includes openly available teaching materials I have created. So far I have done this for a research methods course class in Fall 2021."
+description: "This page includes openly available teaching materials I have created."
 author: "Jason Geller"
 show_post_thumbnail: true
 show_author_byline: true
