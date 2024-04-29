@@ -1,7 +1,7 @@
 ---
 title: "PSY505: Advances in Statistical Methods and Research Practices in Psychology"
 subtitle:
-excerpt: "Graduate-level coure course taught in [Fall 2022](https://psy505.netlify.app/), [Spring 2023](https://psy505-spring2023.netlify.app/schedule), [Fall 2023](https://psy505-fall2023.netlify.app/), [Spring 2024](). This seminar introduces graduate students to methods and research practivces by having guest speakers from all over the world give talks. We have had Daniel Lakens, Deb Mayo, Bob Calin-Jageman, Paul Brukner, Chelsea Parlett-Pelleriti, Erin Buchanon, Patrick Curran, Greg Hancock, Amanda Montoya, and many others" 
+excerpt: "Graduate-level coure course taught in [Fall 2022](https://psy505.netlify.app/), [Spring 2023](https://psy505-spring2023.netlify.app/schedule), [Fall 2023](https://psy505-fall2023.netlify.app/), [Spring 2024](https://psy505-s24.netlify.app/). This seminar introduces graduate students to methods and research practivces by having guest speakers from all over the world give talks. We have had Daniel Lakens, Deb Mayo, Bob Calin-Jageman, Paul Brukner, Chelsea Parlett-Pelleriti, Erin Buchanon, Patrick Curran, Greg Hancock, Amanda Montoya, and many others" 
 
 author: "Dr. Jason Geller"
 slug: class-psy-statistics-505
