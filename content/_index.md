@@ -1,7 +1,7 @@
 ---
 title: "Jason Geller"
 subtitle: "Lecturer at Princeton University"
-description: "I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read reads and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less."
+description: "I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less. "
 sharing_image: ""
 images:
   - img/eyeball.jpeg
