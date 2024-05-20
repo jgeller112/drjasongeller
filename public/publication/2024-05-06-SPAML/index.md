@@ -1,6 +1,6 @@
 +++
 title = "Measuring the Semantic Priming Effect Across Many Languages"
-date = 2024-05-06
+date = '2024-05-06'
 draft = false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
