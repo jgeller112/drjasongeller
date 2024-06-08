@@ -1,0 +1,30 @@
+---
+title: "Accuracy in parameter estimation and simulation approaches for sample size planning with multiple stimuli"
+date: '2023-12-29'
+author:
+  - name: Erin M. Buchanan 
+  - name: Mahmoud Medhat Elsherif
+  - name: Jason Geller
+  - name: Chris Aberson
+  - name: Necdet Gurkan
+  - name:  Ettore Ambrosini
+  - name: Tom Heyman
+  - name: Maria Montefinese
+  - name: Krystian Barzykowski
+categories: 
+  - accuracy in parameter estimation,
+  - power
+  - sampling
+  - simulation
+  - hypothesis testing
+pub-info:
+  reference: "Buchanan, Erin Michelle & Elsherif, Mahmoud Medhat & Geller, Jason & Aberson, Chris & Gurkan, Necdet & Ambrosini, Ettore & Heyman, Tom & Montefinese, Maria & vanpaemel, wolf & Barzykowski, Krystian,.(2023). Accuracy in parameter estimation and simulation approaches for sample size planning with multiple stimuli. OSF Preprints e3afx, Center for Open Science."
+  links:
+    - name: Preprint
+      url: https://ideas.repec.org/p/osf/osfxxx/e3afx.html
+      icon: fa-solid fa-scroll
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.31219/osf.io/e3afx
+      icon: ai ai-zotero
+doi: 10.31219/osf.io/e3afx
+---

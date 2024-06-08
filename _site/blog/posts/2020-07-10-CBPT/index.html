@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Jason Geller">
+<meta name="dcterms.date" content="2020-07-10">
+<meta name="description" content="I demonstrate how to analyze pupil data using a cluster based permutation test">
+<title>Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test | Jason Geller</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../..//files/favicon-512.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><style type="text/css">
+hr.dinkus {
+    width: 50px;
+    margin: 2em auto 2em;
+    border-top: 5px dotted #454545;
+}
+
+div.column-margin+hr.dinkus {
+    margin: 1em auto 2em;
+}
+</style>
+<meta name="twitter:title" content="Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test | Jason Geller">
+<meta name="twitter:description" content="I demonstrate how to analyze pupil data using a cluster based permutation test">
+<meta name="twitter:image" content="https://www.drjasongeller.com/files/profiles/twitter-card-large.png">
+<meta name="twitter:creator" content="@jgeller_phd">
+<meta name="twitter:site" content="@jgeller_phd">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Jason Geller, Ph.D.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../cv/index.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../Research/index.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../Talks/index.html"> 
+<span class="menu-text">Talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../Teaching/index.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">r</div>
+    <div class="quarto-category">pupillometry</div>
+    <div class="quarto-category">statistics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    I demonstrate how to analyze pupil data using a cluster based permutation test
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 10, 2020</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header><p>An article by <span class="citation" data-cites="Reilly2019">Reilly et al. (<a href="#ref-Reilly2019" role="doc-biblioref">2019</a>)</span> raised some important questions/issues for the field of pupillometry. One issue that has been bothering me as of late (hence the post) pertains to objectively defining a time window to look at. Although some commonalities exist across the literature, there is no uniform standard for isolating a peak range or delineating the width of this window. In this blog post I present a method we can use to address this issue. To do so, I will be using the example data set from the gazeR package (<span class="citation" data-cites="Geller2">Geller et al. (<a href="#ref-Geller2" role="doc-biblioref">n.d.</a>)</span>). This data comes from a lexical decison experiment where participants judged the lexicality of cursive and type-print stimuli.</p>
+<section id="common-approaches" class="level2"><h2 class="anchored" data-anchor-id="common-approaches">Common Approaches</h2>
+<p>In the pupillometry literature, I have seen several different analytic approaches to the above issue. Some will preform seperate statistical tests at each time point (via <em>t</em> tests, LMMs, ANOVAs, regressions, what have you), or they just ignore time altogether and aggregate the data and perfrom analyses on the mean and max. I do not like these approaches for a few reasons:</p>
+<ul>
+<li><p>There is a trade-off between power and temporal resolution (smaller time bins) and introducesbias in selection of time bins/windows. There is also the issues of multiple comparisons and autocorrelation</p></li>
+<li><p>Does not take into account individual differences</p></li>
+</ul>
+<p>I wanted to highlight a method I believe is a good alternative: cluster-based permutation tests (henceforth CPT)</p>
+</section><section id="cpt" class="level2"><h2 class="anchored" data-anchor-id="cpt">CPT</h2>
+<p>Let’s first look at a graph of the data.</p>
+<div class="cell">
+<div class="cell-output cell-output-error">
+<pre><code>Error in `select()`:
+! Can't select columns that don't exist.
+✖ Column `X1` doesn't exist.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From this, we might be tempted to declare a significant difference arisisng ~1500-2500 ms. However, we cannot rely on the graphical analysis and we need a statistical test to be able to affirm that this observation is caused by diffierntial effort between the two scripts.</p>
+<p>Permuation cluster analysis is a technique that is becoming increasingly popular, especially in the cognitvie neuropsychology domain to analyze MEG-EEG <span class="citation" data-cites="Maris2007">(<a href="#ref-Maris2007" role="doc-biblioref">Maris &amp; Oostenveld, 2007</a>)</span>. While there exists a number of cluster analysis functions in MNE-Python <span class="citation" data-cites="Gramfort2014">(<a href="#ref-Gramfort2014" role="doc-biblioref">Gramfort et al., 2014</a>)</span> and Matlab’s FieldTrip <span class="citation" data-cites="Oostenveld2011">(<a href="#ref-Oostenveld2011" role="doc-biblioref">Oostenveld et al., 2011</a>)</span>, what I want to show you is how you can do this analysis in R. The implementation of CPT has not been widely used in pupillometry research. I will hopefully show you that it can be a very useful tool to have in your aresenal.</p>
+<p>Before I show you how to apply this method, I want to briefly go over the CPT method. The CPT is a data-driven method which increases power and controls for Type I errors across multiple comparisons (exatcly what we need when looking at pupil changes across the time course!). The clustering method involves conducting dependent-sample t-tests for every data point (condition by time). In the first step, adjacent data points that cross the mass-univariate significance threshold (<em>p</em> &lt; .05) are combined to create a cluster. The sum of the <em>t</em>-statistic (or <em>F</em>) are calculated and form the basis for the cluster level statistic. In the second step, a surrogate null-distribution is created by first randomly assigning one of the two conditions within subjects (this is done n times) and retaining the cluster statistic for each randomization. In the third and final step, the cluster level statistic of the real comparison is compared against the null distribution, with clusters falling in the highest or lowest 2.5% considered to be significant.</p>
+<p>While writing this blog post, I saw that Dale Barr presented on CPT in the context of eye-tracking. I figured I would take this opportunity to test out the packages he created.</p>
+<div class="cell" data-messages="false">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"dalejbarr/exchangr"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"dalejbarr/clusterperm"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">exchangr</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">clusterperm</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The ‘clusterperm’ package has a pretty nifty <code>aov_by_bin</code> function. If we applied a multlipe comparison correction (e.g., holm) to this data.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cur2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/clusterperm/man/aov_by_bin.html">aov_by_bin</a></span><span class="op">(</span><span class="va">agg_subject</span>, <span class="va">timebins</span>,   <span class="co"># clusterperm package</span></span>
+<span>  <span class="va">aggbaseline</span> <span class="op">~</span> <span class="va">script</span> <span class="op">+</span> <span class="fu">Error</span><span class="op">(</span><span class="va">subject</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cur2</span><span class="op">$</span><span class="va">p_adjuct</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">cur2</span><span class="op">$</span><span class="va">p</span>, method<span class="op">=</span><span class="st">"holm"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cur2_p</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">cur2</span>, <span class="va">cur2</span><span class="op">$</span><span class="va">p_adjuct</span> <span class="op">&lt;=</span> <span class="fl">.05</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">cur2_p</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: right;">timebins</th>
+<th style="text-align: left;">effect</th>
+<th style="text-align: right;">stat</th>
+<th style="text-align: right;">p</th>
+<th style="text-align: right;">p_adjuct</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2000</td>
+<td style="text-align: left;">script</td>
+<td style="text-align: right;">12.97351</td>
+<td style="text-align: right;">0.0008456</td>
+<td style="text-align: right;">0.0202952</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2100</td>
+<td style="text-align: left;">script</td>
+<td style="text-align: right;">17.08613</td>
+<td style="text-align: right;">0.0001720</td>
+<td style="text-align: right;">0.0044723</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2200</td>
+<td style="text-align: left;">script</td>
+<td style="text-align: right;">14.51092</td>
+<td style="text-align: right;">0.0004587</td>
+<td style="text-align: right;">0.0114670</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2300</td>
+<td style="text-align: left;">script</td>
+<td style="text-align: right;">12.96859</td>
+<td style="text-align: right;">0.0008473</td>
+<td style="text-align: right;">0.0202952</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>How does it compare to CPT?</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/clusterperm/man/detect_clusters_by_effect.html">detect_clusters_by_effect</a></span><span class="op">(</span><span class="va">cur2</span>, <span class="va">effect</span>, <span class="va">timebins</span>, <span class="va">stat</span>, <span class="va">p</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">orig</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">effect</th>
+<th style="text-align: right;">b0</th>
+<th style="text-align: right;">b1</th>
+<th style="text-align: right;">sign</th>
+<th style="text-align: right;">cms</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">script</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10.121215</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">script</td>
+<td style="text-align: right;">900</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">8.756152</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">script</td>
+<td style="text-align: right;">1900</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">82.198279</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>It looks like the multiple comparison correction is less sensitive.</p>
+<p>Wait! we do not have <em>p</em>-values!!! Where are the damn <em>p</em>-values!? What is life? How am I suppose to make an informed decison? What is cool about Dale’s R package is that it has a permutation function that allows you to build the null model and obtain those coveted <em>p</em>-values.</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_prec</span> <span class="op">&lt;-</span> <span class="fu">nest</span><span class="op">(</span><span class="va">agg_subject</span>, <span class="op">-</span><span class="va">subject</span>, <span class="op">-</span><span class="va">script</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">nhds_prec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/clusterperm/man/cluster_nhds.html">cluster_nhds</a></span><span class="op">(</span></span>
+<span>  <span class="fl">100</span>, <span class="va">dat_prec</span>, <span class="va">timebins</span>,</span>
+<span>  <span class="va">aggbaseline</span> <span class="op">~</span> <span class="va">script</span> <span class="op">+</span> <span class="fu">Error</span><span class="op">(</span><span class="va">subject</span><span class="op">)</span>,</span>
+<span>  <span class="va">shuffle_each</span>, <span class="va">script</span>, <span class="va">subject</span><span class="op">)</span> <span class="co"># only use 100 permutations. Should use 1000-2000. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `tidyr::nest()`:
+! In expression named `d`:
+Caused by error:
+! Can't select columns that don't exist.
+✖ Column `timebins` doesn't exist.</code></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## get p-values</span></span>
+<span><span class="va">results_prec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/clusterperm/man/pvalues.html">pvalues</a></span><span class="op">(</span><span class="va">orig</span>, <span class="va">nhds_prec</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in eval(expr, envir, enclos): object 'nhds_prec' not found</code></pre>
+</div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">results_prec</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in eval(expr, envir, enclos): object 'results_prec' not found</code></pre>
+</div>
+</div>
+<p>Whew! I feel much better now!</p>
+<p>From this graph we can see that there is one signifcant cluster: from 1900-2500 ms. If you were using this as a more explortatory approach (which I think we should), we know have a time period to look at where we can perform more common tests (e.g., max or mean during that time period). We could alternatively make the inference that a difference between cursive and print-type arises somewhere around 1900-2500 ms.</p>
+<div class="cell">
+<div class="cell-output cell-output-error">
+<pre><code>Error in `select()`:
+! Can't select columns that don't exist.
+✖ Column `X1` doesn't exist.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="thoughts" class="level2"><h2 class="anchored" data-anchor-id="thoughts">Thoughts</h2>
+<p>There are some misunderstandings users should be made aware of when it comes to CPT <span class="citation" data-cites="Sassenhagen2019">(see <a href="#ref-Sassenhagen2019" role="doc-biblioref">Sassenhagen &amp; Draschkow, 2019</a>)</span> for a nice discussion). If we want to ask more specific questions (i.e., at what exact time points effects arise), CPT with a cluster mass correction is not the method to use. We can only be certain that a difference exists; we cannot make claims about whether individual time points show an effect with a given error rate. I think this is more of an issue for M/EEG than pupillometry though. The pupillary signal is very slow.</p>
+<p>Overall, I think CPT can be a very useful tool in determing an appropiate time range to look at, and can even lead to more powerful inferences. Further, the use of CPT obviates the need for multiple comparisons and autocorrelation corrections. However, it does have issues. For instance, it cannot take into account subject and item variability. In addition, it is not able to tell you where within the cluster there is a difference only that there is a difference. And finally, when power is low, clusters may include many false postive time points <span class="citation" data-cites="Fields2019">(<a href="#ref-Fields2019" role="doc-biblioref">Fields &amp; Kuperberg, 2019</a>)</span>.</p>
+<p>In my next blog, I will discuss applying generalized additive mixed modeling to your pupillometry data. I think it might be the perfect soultion!</p>
+</section><section id="cited" class="level2">
+
+
+
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Cited</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-Fields2019" class="csl-entry" role="listitem">
+Fields, E. C., &amp; Kuperberg, G. R. (2019). <span class="nocase">Having your cake and eating it too: Flexibility and power with mass univariate statistics for ERP data</span>. <em>Psychophysiology</em>. <a href="https://doi.org/10.1111/psyp.13468">https://doi.org/10.1111/psyp.13468</a>
+</div>
+<div id="ref-Geller2" class="csl-entry" role="listitem">
+Geller, J., Winn, M., Mahr, T., &amp; Mirman, D. (n.d.). <em><span class="nocase">GazeR: A Package for Processing Gaze Position and Pupil Size Data</span></em>. <a href="https://doi.org/10.31234/OSF.IO/GVCXB">https://doi.org/10.31234/OSF.IO/GVCXB</a>
+</div>
+<div id="ref-Gramfort2014" class="csl-entry" role="listitem">
+Gramfort, A., Luessi, M., Larson, E., Engemann, D. A., Strohmeier, D., Brodbeck, C., Parkkonen, L., &amp; Hämäläinen, M. S. (2014). <span class="nocase">MNE software for processing MEG and EEG data</span>. <em>NeuroImage</em>, <em>86</em>, 446–460. <a href="https://doi.org/10.1016/j.neuroimage.2013.10.027">https://doi.org/10.1016/j.neuroimage.2013.10.027</a>
+</div>
+<div id="ref-Maris2007" class="csl-entry" role="listitem">
+Maris, E., &amp; Oostenveld, R. (2007). <span class="nocase">Nonparametric statistical testing of EEG- and MEG-data</span>. <em>Journal of Neuroscience Methods</em>, <em>164</em>(1), 177–190. <a href="https://doi.org/10.1016/j.jneumeth.2007.03.024">https://doi.org/10.1016/j.jneumeth.2007.03.024</a>
+</div>
+<div id="ref-Oostenveld2011" class="csl-entry" role="listitem">
+Oostenveld, R., Fries, P., Maris, E., &amp; Schoffelen, J.-M. (2011). <span class="nocase">FieldTrip: Open source software for advanced analysis of MEG, EEG, and invasive electrophysiological data.</span> <em>Computational Intelligence and Neuroscience</em>, <em>2011</em>, 156869. <a href="https://doi.org/10.1155/2011/156869">https://doi.org/10.1155/2011/156869</a>
+</div>
+<div id="ref-Reilly2019" class="csl-entry" role="listitem">
+Reilly, J., Kelly, A., Kim, S. H., Jett, S., &amp; Zuckerman, B. (2019). <span class="nocase">The human task-evoked pupillary response function is linear: Implications for baseline response scaling in pupillometry</span>. <em>Behavior Research Methods</em>, <em>51</em>(2), 865–878. <a href="https://doi.org/10.3758/s13428-018-1134-4">https://doi.org/10.3758/s13428-018-1134-4</a>
+</div>
+<div id="ref-Sassenhagen2019" class="csl-entry" role="listitem">
+Sassenhagen, J., &amp; Draschkow, D. (2019). <span class="nocase">Cluster‐based permutation tests of MEG/EEG data do not establish significance of effect latency or location</span>. <em>Psychophysiology</em>, <em>56</em>(6), e13335. <a href="https://doi.org/10.1111/psyp.13335">https://doi.org/10.1111/psyp.13335</a>
+</div>
+</div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{2020,
+  author = {},
+  title = {Mass {Univariate} {Analysis} for {Pupillometric} {Data:}
+    {Cluster} {Permutation} {Test}},
+  date = {2020-07-10},
+  url = {https://www.drjasongeller.com/blog/posts/2020-07-10-CBPT},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2020" class="csl-entry quarto-appendix-citeas" role="listitem">
+<em>Mass Univariate Analysis for Pupillometric Data: Cluster Permutation
+Test</em>. (2020, July 10). <a href="https://www.drjasongeller.com/blog/posts/2020-07-10-CBPT">https://www.drjasongeller.com/blog/posts/2020-07-10-CBPT</a>
+</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/www\.drjasongeller\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Andrew Heiss</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
+</div>   
+    <div class="nav-footer-center">
+<p><span class="faux-block"><i class="fa-brands fa-orcid" aria-label="orcid"></i> <strong>ORCID</strong> <a href="https://orcid.org/0000-0002-7459-4505">0000-0002-7459-4505</a></span> <span class="faux-block"><i class="fa-solid fa-key" aria-label="key"></i> <a href="pgp_ath.asc.txt">PGP public key</a>   <i class="fa-solid fa-fingerprint" aria-label="fingerprint"></i> Fingerprint:<br><span class="fingerprint">4AA2 FA83 A8B2 05A4 E30F<br> 610D 1382 6216 9178 36AB</span></span></p>
+</div>
+    <div class="nav-footer-right">
+<p><span class="faux-block">Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a></span> <span class="faux-block"><a href="https://github.com/jgeller112/drjasongeller">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></span></p>
+</div>
+  </div>
+</footer>
+
+
+</body></html>

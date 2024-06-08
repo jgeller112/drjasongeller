@@ -1,0 +1,12 @@
+- title: Research Methods in Cognitive Science
+  description: "The aim for this course is to provide students with the necessary foundation to think critically about research in cognitive science. The course reviews the scientific method and considers the strengths and weaknesses ofa range of approaches, such as laboratory experimentation, neuroscience methods, and online data collection.Students will be introduced to statistical reasoning in science, including a basic overview of common statistical techniques. We will also discuss principles for the ethical conduct of research both in the laboratory and online.This course will include traditional lectures, in-class activities, and special presentations by cognitive scientists at Rutgers and other universities in the field. Students will also get hands-on experience programming and collecting their own data, which will culminate in a paper and presentation. This course counts for 3 credits."
+  university: Rutgers University
+  number: 01:185:320:01
+  url: https://cogscimethods.netlify.app/
+  logo: logos/cogsci.jpg
+  semester:
+  - name: Fall 2021
+    url: https://cogscimethods.netlify.app/
+
+
+

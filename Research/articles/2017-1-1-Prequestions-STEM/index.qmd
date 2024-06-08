@@ -1,0 +1,27 @@
+---
+title: "Prequestions do not enhance the benefits of retrieval in a STEM classroom"
+date: 2017-1-1
+author:
+  - name: Jason Geller
+    affiliation: Iowa State University
+  - name: Shana K Carpenter
+  - name: Monica H. Lamm
+  - name: Shuhebur Rahman
+  - name: Patrick I Armstrong
+  - name: Clark R Coffman 
+categories: 
+  - Prequestions
+  - Retreival practice
+  - Classroom
+  - Engineering education
+pub-info:
+  reference: "Geller, J., Carpenter, S. K., Lamm, M. H., Rahman, S., Armstrong, P. I., & Coffman, C. R. (2017). Prequestions do not enhance the benefits of retrieval in a STEM classroom. Cognitive research: principles and implications, 2(1), 42. https://doi.org/10.1186/s41235-017-0078-z"
+  links:
+    - name: Final version
+      url: https://link.springer.com/article/10.1186/s41235-017-0078-z
+      icon: fa-solid fa-scroll
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.1186/s41235-017-0078-z
+      icon: ai ai-zotero
+doi: https://doi.org/10.1186/s41235-017-0078-z
+---

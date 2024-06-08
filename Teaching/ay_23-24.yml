@@ -1,0 +1,33 @@
+
+- title: Fundamentals of Statistics in Psychological Science
+  description: "This graduate-level course covers foundations of statistics in psychological research. It is required of all first-year students in the psychology Ph.D. program. The purpose of this course is to introduce students to statistics with an emphasis on modeling. We cover many of the most widely applied data analysis models in psychology. We focus on data visualization, effect size estimation and interpretation, and using statistical analysis to inform scientific research questions. We develop practical skills related to data management, reproducibility, and statistical programming through the use of R, R Markdown/Quarto, and Github."
+  university: Princeton University
+  number: PSY503
+  url: https://psy503-f2023.netlify.app/
+  logo: logos/psy503.png
+  semester:
+  - name: Fall 2023
+    url: https://psy503-f2023.netlify.app/
+
+- title: Advances in Statistical Methods and Research Practices in Psychology
+  description: "Psychological methods keep evolving: psychology researchers constantly adopt new statistical methods, computational tools, and research practices. This course introduces the latest advances in research methods in psychological science through a series of lectures, tutorials, and seminars. Lectures are generally given by a guest speaker who introduces methodological and statistical issues relevant to psychology research. Students engage in a group discussion with the speaker before the lecture. Tutorials provide students with the necessary skills to build reproducible and transparent research programs. For instance, students learn how to use R, RMarkdown and Git/GitHub, or how to preregister their studies. Finally, students take part in seminars, in which they discuss timely topics in psychological methods (e.g., reproducibility, transparency, pre-registration)."
+  university: Princeton University
+  number: PSY505
+  url: https://psy505.netlify.app/
+  logo: logos/psy505.jpeg
+  semester:
+  - name: Fall 2023
+    url: https://psy505-fall2023.netlify.app/
+
+  - name: Spring 2024
+    url: https://psy505-s24.netlify.app/
+
+- title: Advanced Statistical Medthods
+  description: "As a discipline, statistics has given profound tools to the sciences. Statistics is our way of detecting patterns in the noisy universe. Traditionally, psychologists were limited to research questions that could be answered with classical statistical analyses, but without particularly intending to do so, psychologists have found themselves at the cutting age of statistical discovery in the 20th and 21st centuries. This is because we needed to adapt our tools to meet the demands of the complex nature of the phenomena we study. This course will give you the quantitative tools to ask and answer research questions that were impossible to test as recently as a decade ago. Specifically, we will cover the following topics as stand-alone modules"
+  university: Princeton University
+  number: PSY504
+  url: https://psy504-s24-advstats.netlify.app/
+  logo: logos/psy504.png
+  semester:
+  - name: Spring 2024
+    url: https://psy504-s24-advstats.netlify.app/

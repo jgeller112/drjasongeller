@@ -1,0 +1,20 @@
+---
+title: "Testing expectancy, but not judgements of learning, moderate the disfluency effect"
+date: '2018-05-01'
+author:
+  - name: Jason Geller
+    affiliation: University of Alabama-Birmingham
+  - name: Mary L Still
+pub-info:
+  reference: "Geller, J., & Still, M. L. (2018).Testing expectancy, but not JOLs, moderate the disfluency effect. Proceedings of the 38th Annual Meeting of the
+Cogniࢼve Science Society. (pp. 1175-1179). Madison, WI: Cognitive
+Science Society."
+  links:
+    - name: Final version
+      url: https://osf.io/preprints/4mwkp
+      icon: fa-solid fa-scroll
+---
+
+## Abstract
+
+Do students learn better with material that is perceptually harder-to-process? Previous research has been equivocal concerning this question. To clarify these discrepancies, the present study examined two potential boundary conditions to determine when disfluent text is, and is not, beneficial to learning. The two boundary conditions examined were: type of judgement of learning (JOLs) and testing expectancy. Boundary conditions were examined in separate Group (incidental aggregate JOLs vs. intentional aggregate JOLs vs. item-by-item JOLs) by Disfluency (Masked vs. Nonmasked) mixed ANOVAs. Results revealed that type of JOL did not moderate the disfluency effect, but testing expectancy did. These results bring forth questions pertaining to the utility of disfluency on learning.

@@ -1,0 +1,44 @@
+[
+  {
+    "listing": "/blog/index.html",
+    "items": [
+      "/blog/posts/2022-03-10-mtpa-pupil/index.html",
+      "/blog/posts/2021-04-21-gazePoint_gazer_2/index.html",
+      "/blog/posts/2020-07-10-CBPT/index.html"
+    ]
+  },
+  {
+    "listing": "/Research/index.html",
+    "items": [
+      "/Research/articles/2024-05-06-SPAML/index.html",
+      "/Research/articles/2024-Power-items/index.html",
+      "/Research/articles/2023-07-20-speechperception-opensci/index.html",
+      "/Research/articles/Eyetracking_smoking/index.html",
+      "/Research/articles/2022-03-28-counseling-stigma/index.html",
+      "/Research/articles/2021-11-02-ITCP/index.html",
+      "/Research/articles/2021-04-07-sEEG/index.html",
+      "/Research/articles/2021-03-31-testing-SF/index.html",
+      "/Research/articles/2020-07-10-pupil-age/index.html",
+      "/Research/articles/2020-05-28-SF-undesirable/index.html",
+      "/Research/articles/2020-01-28-gazer/index.html",
+      "/Research/articles/2019-01-24-pupil-semantics/index.html",
+      "/Research/articles/2019-10-02-pic-flu/index.html",
+      "/Research/articles/2019-01-16-whitematter-disconnection/index.html",
+      "/Research/articles/2018-11-02-disflu-handwriting/index.html",
+      "/Research/articles/2018-07-31-testexpt-masking/index.html",
+      "/Research/articles/2018-04-29-instrut-flu/index.html",
+      "/Research/articles/2017-11-09-study-beliefs/index.html",
+      "/Research/articles/2017-1-1-Prequestions-STEM/index.html",
+      "/Research/articles/2016-05-20-inhib-pupil-neighbor/index.html",
+      "/Research/articles/2013-10-23-replication/index.html"
+    ]
+  },
+  {
+    "listing": "/Talks/index.html",
+    "items": []
+  },
+  {
+    "listing": "/Teaching/index.html",
+    "items": []
+  }
+]

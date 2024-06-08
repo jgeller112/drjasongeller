@@ -1,0 +1,15 @@
+- title: "What Did You Say? A Web-Based Validation of a Speech-In-Noise Task"
+  date: 2021-06-29
+  description: "BeOnline is the conference to learn all about online behavioral research. It’s the ideal place to discover the challenges and benefits of online research and to learn from pioneers."
+  location: Online (Zoom)
+  links:
+  - name: Slides
+    url: https://jgeller112.github.io/BeOnline_Slides/#1
+    icon: fa-solid fa-chalkboard-user
+  - name: GitHub repository for talk
+    url: https://github.com/jgeller112/BeOnline2021
+    icon: fa-brands fa-github
+  - name: Video
+    url: https://beonlineconference.com/what-did-you-say-a-web-based-validation-of-a-speech-in-noise-task/
+    icon: fa-video
+

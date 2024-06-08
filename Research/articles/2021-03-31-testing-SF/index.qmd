@@ -1,0 +1,34 @@
+---
+title: "Is this going to be on the test? Test expectancy moderates the disfluency effect with Sans Forgetica"
+date: 2021-03-31
+author:
+  - name: Jason Geller
+    affiliation: Rutgers University (RuCCS)
+  - name: Daniel Peterson
+    affiliation: Skidmore University
+categories: 
+  - Learning and Memory
+  - Disfluency
+  - Sans Forgetica
+pub-info:
+  reference: "Geller, J., & Peterson, D. (2021). Is this going to be on the test? Test expectancy moderates the disfluency effect with sans forgetica. Journal of Experimental Psychology: Learning, Memory, and Cognition, 47(12), 1924–1938. https://doi.org/10.1037/xlm0001042"
+  links:
+    - name: Final version
+      url: https://psycnet.apa.org/record/2021-94730-001
+      icon: fa-solid fa-scroll
+    - name: Preprint
+      url: https://osf.io/preprints/psyarxiv/rcxvf
+      icon: ai ai-osf
+    - name: OSF
+      url: https://osf.io/cqp6s/
+    - name: Preregistrations
+      url: https://osf.io/cqp6s/registrations
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.1037/xlm0001042
+      icon: ai ai-zotero
+doi: https://doi.org/10.1037/xlm0001042
+---
+
+## Abstract
+
+Presenting information in a perceptually disfluent format sometimes enhances memory. Recent work examining 1 type of perceptual disfluency manipulation, Sans Forgetica typeface, has yielded discrepant findings; some studies find support for the idea that the disfluent typeface improves memory whereas others do not. The current study examined a boundary condition that determines when disfluency is and is not beneficial to learning to explore this discrepancy. Specifically, we investigated whether knowledge about an upcoming test (high test expectancy) versus not (low test expectancy) helps clarify when mnemonic benefits arise for perceptually disfluent stimuli. In Experiment 1 (preregistered, N = 231), we found that Sans Forgetica is a memory-improving desirable difficulty, but only when there was no expectation of a final test. In Experiment 2 (preregistered, N = 232), we conceptually replicated the Sans Forgetica effect using a cued-recall test. In Experiment 3 (preregistered, N = 232), we ruled out a time-on-task explanation while replicating the results of Experiment 2. Though these data provide some evidence of San Forgetica’s mnemonic benefits, caution should be taken in interpreting these results. Not only were the effect sizes moderate, but low test expectancy may not be realistically achievable in actual educational contexts. Though more research is warranted, we echo our prior arguments that students wanting to remember more and forget less should stick to other, more empirically supported desirable difficulties.

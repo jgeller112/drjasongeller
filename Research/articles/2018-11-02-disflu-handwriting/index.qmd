@@ -1,0 +1,36 @@
+---
+title: "Would disfluency by any other name still be disfluent? Examining the disfluency effect with cursive handwriting"
+date: 2018-11-02
+author:
+  - name: Jason Geller
+    affiliation: Iowa State University
+  - name: Mary L Still
+    affiliation: Iowa State University
+  - name: Veronica J.  Dark
+    affiliation: Iowa State University
+  - name: Shana K. Carpenter
+    affiliation: Iowa State University
+categories: 
+  - Learning and Memory
+  - Disfluency
+  - Metacognition
+  - Cursive
+  - Word Recognition
+pub-info:
+  reference: "Geller, J., Still, M. L., Dark, V. J., & Carpenter, S. K. (2018). Would disfluency by any other name still be disfluent? Examining the disfluency effect with cursive handwriting. Memory & cognition, 46(7), 1109–1126. https://doi.org/10.3758/s13421-018-0824-6"
+  links:
+    - name: Final version
+      url: https://doi.org/10.3758/s13421-018-0824-6
+      icon: fa-solid fa-scroll
+    - name: Data
+      url: https://osf.io/bstfd/
+      icon: ai ai-osf
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.3758/s13421-018-0824-6
+      icon: ai ai-zotero
+doi: https://doi.org/10.3758/s13421-018-0824-6
+---
+
+## Abstract
+
+When exposed to words presented under perceptually disfluent conditions (e.g., words written in Haettenschweiler font), participants have difficulty initially recognizing the words. Those same words, though, may be better remembered later than words presented in standard type font. This counterintuitive finding is referred to as the disfluency effect. Evidence for this disfluency effect, however, has been mixed, suggesting possible moderating factors. Using a recognition memory task, level of disfluency was examined as a moderating factor across three experiments using a novel cursive manipulation that varied on degree of legibility (easy-to-read cursive vs. hard-to-read cursive). In addition, list type and retention interval between study and test were manipulated. Across all three experiments, cursive words engendered better memory than type-print words. This memory effect persisted across varied list designs (blocked vs. mixed) and a longer (24-hour) retention interval. A small-scale meta-analysis across the three experiments suggested that the cursive disfluency effect is moderated by level of disfluency: easy-to-read cursive words tended to be better remembered than hard-to-read cursive words. Taken together, these results challenge extant accounts of the disfluency effect. The theoretical and practical implications of these findings are discussed.

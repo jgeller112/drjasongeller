@@ -1,0 +1,34 @@
+---
+title: "The replication recipe: What makes for a convincing replication?"
+date: 2013-10-23
+author:
+  - name: Mark Brandt
+  - name: Hans IJzerman
+  - name: Ap Diksterhui
+  - name: Frank J, Farach
+  - name: Jason Geller
+  - name: Roger Giner-Sorolla
+  - name: James A. Grange
+  - name: Marco Perugin
+  - name: Jeffrey R. Spies
+  - name: Anna van 't Veer
+publication: "JESP"
+categories: 
+  - Replication
+  - Open Science
+  - Psychology
+pub-info:
+  reference: "Brandt, M. J., IJzerman, H., Dijksterhuis, A., Farach, F. J., Geller, J., Giner-Sorolla, R., Grange, J. A., Perugini, M., Spies, J. R., & van't Veer, A. (2014). The replication recipe: What makes for a convincing replication? Journal of Experimental Social Psychology, 50, 217–224. https://doi.org/10.1016/j.jesp.2013.10.005"
+  links:
+    - name: Final version
+      url: https://doi.org/10.1016/j.jesp.2013.10.005
+      icon: fa-solid fa-scroll
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.1016/j.jesp.2013.10.005
+      icon: ai ai-zotero
+doi: 10.1016/j.jesp.2013.10.005
+---
+
+## Abstract
+
+Psychological scientists have recently started to reconsider the importance of close replications in building a cumulative knowledge base; however, there is no consensus about what constitutes a convincing close replication study. To facilitate convincing close replication attempts we have developed a Replication Recipe, outlining standard criteria for a convincing close replication. Our Replication Recipe can be used by researchers, teachers, and students to conduct meaningful replication studies and integrate replications into their scholarly habits.

@@ -1,0 +1,42 @@
+---
+title: "GazeR: A package for processing gaze postion and pupil size data"
+date: 2020-01-24
+author:
+  - name: Jason Geller
+    affiliation: University of Alabama-Birmingham 
+  - name:  Matt B. Winn
+    affiliation: University of Minnesota 
+  - name: Tristian Mahr
+    affiliation: University of Wisconsin
+  - name: Daniel Mirman
+    affiliation: University of Alabama-Birmingham 
+categories: 
+  - Pupil
+  - R
+  - Tutorial
+  - Eye-tracking
+  - Preprocessing
+pub-info:
+  reference: "Geller, J., Winn, M. B., Mahr, T., & Mirman, D. (2020). GazeR: A package for processing gaze position and pupil size data. Behavior research methods, 52(5), 2232–2255. https://doi.org/10.3758/s13428-020-01374-8"
+  links:
+    - name: Final version
+      url: https://journalofcognition.org/articles/10.5334/joc.56
+      icon: fa-solid fa-scroll
+    - name: Preprint
+      url: https://osf.io/preprints/psyarxiv/gvcxb
+      icon: fa-solid fa-scroll
+    - name: gazeR
+      url: https://github.com/dmirman/gazer
+      icon: fa-solid fa-scroll
+    - name: CodeOcean
+      url: https://codeocean.com/capsule/0149895/tree
+      icon: ai ai-osf
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.3758/s13428-020-01374-8
+      icon: ai ai-zotero
+doi: https://doi.org/10.3758/s13428-020-01374-8
+---
+
+## Abstract
+
+Eye-tracking is widely used throughout the scientific community, from vision science and psycholinguistics to marketing and human-computer interaction. Surprisingly, there is little consistency and transparency in preprocessing steps, making replicability and reproducibility difficult. To increase replicability, reproducibility, and transparency, a package in R (a free and widely used statistical programming environment) called gazeR was created to read and preprocess two types of data: gaze position and pupil size. For gaze position data, gazeR has functions for reading in raw eye-tracking data, formatting it for analysis, converting from gaze coordinates to areas of interest, and binning and aggregating data. For data from pupillometry studies, the gazeR package has functions for reading in and merging multiple raw pupil data files, removing observations with too much missing data, eliminating artifacts, blink identification and interpolation, subtractive baseline correction, and binning and aggregating data. The package is open-source and freely available for download and installation: https://github.com/dmirman/gazer. We provide step-by-step analyses of data from two tasks exemplifying the package’s capabilities.

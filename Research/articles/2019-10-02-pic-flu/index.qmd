@@ -1,0 +1,40 @@
+---
+title: "A pupilometric examination of cognitive control in taxonomic and thematic semantic memory"
+date: 2019-01-24
+author:
+  - name: Jason Geller
+    affiliation: University of Alabama-Birmingham 
+  - name: Jon-federick Landrigan
+    affiliation: Drexel University
+  - name: Daniel Mirman
+    affiliation: University of Alabama-Birmingham
+
+categories: 
+  - Pupil
+  - Semantics
+  - Word Recognition
+  - Taxonomic
+  - Thematic
+pub-info:
+  reference: "Geller, J., Landrigan, J. F., & Mirman, D. (2019). A Pupillometric examination of cognitive control in taxonomic and thematic semantic memory. Journal of cognition, 2(1), 6. https://doi.org/10.5334/joc.56"
+  links:
+    - name: Final version
+      url: https://journalofcognition.org/articles/10.5334/joc.56
+      icon: fa-solid fa-scroll
+    - name: OSF Preregistration
+      url: https://osf.io/grwtq
+    - name: OSF
+      url: https://osf.io/f6axd/
+      icon: ai ai-osf
+    - name: CodeOcean
+      url: https://codeocean.com/capsule/7342254/tree
+      icon: ai ai-osf
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.5334/joc.56
+      icon: ai ai-zotero
+doi: https://doi.org/10.5334/joc.56
+---
+
+## Abstract
+
+Semantic cognition includes taxonomic and thematic relationships, as well as control systems to retrieve and manipulate semantic knowledge to suit specific tasks or contexts. A recent report (Thompson et al., 2017) suggested that retrieving thematic relationships (i.e., relations based on participation in the same event or scenarios) requires more effort or cognitive control, especially when the relevant relations are weak, than retrieving identity relations that are based on sensory-motor features. It is not clear whether the same contrast applies to the broader set of taxonomic relations, which are also based on shared sensory-motor features. In this study we tested cognitive control requirements of retrieving taxonomic and thematic knowledge using a physiological measure of cognitive effort: pupil dilation. Participants completed a semantic relatedness judgement task that manipulated semantic type (thematic vs. taxonomic) and relatedness strength (high vs. low) of word pairs. Cognitive control in the similarity task was examined using task-evoked pupillary responses (TEPRs), as well as standard behavioral measures (reaction times and accuracy). Compared with high-strength relations, low-strength semantic relations elicited larger TERPs, slower reaction times, and lower accuracy, consistent with higher control demands. Compared to thematic relations, taxonomic relations also elicited larger TERPs and slower reaction times, suggesting that retrieving taxonomic relations required more cognitive effort. Critically, our pupillometric data indicated that controlled processing was particularly important for low-strength taxonomic pairs rather than low-strength thematic pairs. These findings indicate that semantic control demands are primarily determined by relatedness strength, not whether the relationship is taxonomic or thematic.

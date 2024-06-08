@@ -1,0 +1,31 @@
+---
+title: "Is a picture really worth a thousand words? Evaluating contributions of fluency and analytic processing in metacognitive judgements for pictures in foreign language vocabulary learning"
+date: 2019-10-02
+author:
+  - name: Shana K. Carpenter
+    affiliation: Iowa State University
+  - name: Jason Geller
+    affiliation: The University of Iowa
+categories: 
+  - Overconfidence
+  - Metacognition
+  - Second language
+  - Fluency
+pub-info:
+  reference: "Carpenter, S. K., & Geller, J. (2020). Is a picture really worth a thousand words? Evaluating contributions of fluency and analytic processing in metacognitive judgements for pictures in foreign language vocabulary learning. Quarterly journal of experimental psychology (2006), 73(2), 211–224. https://doi.org/10.1177/1747021819879416"
+  links:
+    - name: Final version
+      url: https://pubmed.ncbi.nlm.nih.gov/31519138
+      icon: fa-solid fa-scroll
+    - name: OSF
+      url: https://osf.io/st4dn/
+      icon: ai ai-osf
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.1177/1747021819879416
+      icon: ai ai-zotero
+doi: 10.1177/1747021819879416
+---
+
+## Abstract
+
+Previous research shows that participants are overconfident in their ability to learn foreign language vocabulary from pictures compared with English translations. The current study explored whether this tendency is due to processing fluency or beliefs about learning. Using self-paced study of Swahili words paired with either picture cues or English translation cues, picture cues garnered higher confidence judgements but not faster study times, and this was true whether judgements of learning were made after a delay (Experiment 1) or immediately (Experiment 2). In Experiment 3, when participants learned Swahili words with only one type of cue (pictures or English translations) and then estimated which one would be more effective for learning, the majority of participants believed pictures would be more effective regardless of whether they had experienced those cues during learning. Experiment 4 showed the same results when participants had experienced neither type of cue during a learning phase. These results suggest that metacognitive judgements in foreign language vocabulary learning are driven more by students' beliefs about learning than by processing fluency as reflected in self-paced study times.

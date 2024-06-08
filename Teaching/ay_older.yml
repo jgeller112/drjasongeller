@@ -1,0 +1,29 @@
+- title: Brain and Behavior
+  university: Iowa State University
+  role: Instructor
+  logo: logos/isu.png
+  semester:
+  - name: Summer 2014
+  - name: Summer 2015
+  - name: Summer 2016
+
+- title: Academic Skills Learning
+  university: Iowa State University
+  role: Instructor
+  logo: logos/isu.png
+  semester:
+  - name: Fall 2015
+
+- title: Psychology of Language
+  university: Iowa State University
+  role: Instructor
+  logo: logos/isu.png
+  semester:
+  - name: Spring 2016
+
+- title: Introduction to Statistics
+  university: University of Alabama-Birmingham
+  role: Instructor
+  logo: logos/uab.jpeg
+  semester:
+  - name: Fall 2018

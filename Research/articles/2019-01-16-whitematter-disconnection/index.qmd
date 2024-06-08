@@ -1,0 +1,41 @@
+---
+title: "Estimating effects of graded white matter damage and binary tract disconnection on post-stroke language impairment"
+date: 2019-01-16
+author:
+  - name: Jason Geller
+    affiliation: University of Alabama-Birmingham
+  - name: Melissa Thye
+    affiliation: University of Alabama-Birmingham
+  - name: Daniel Mirman
+    affiliation: University of Alabama-Birmingham
+categories: 
+  - Aphasia
+  - Disconnection
+  - Lesion load
+  - Lesion-symptom mapping
+  - Replication
+  - White matter
+pub-info:
+  reference: "Geller, J., Thye, M., & Mirman, D. (2019). Estimating effects of graded white matter damage and binary tract disconnection on post-stroke language impairment. NeuroImage, 189, 248–257. https://doi.org/10.1016/j.neuroimage.2019.01.020"
+  links:
+    - name: Final version
+      url: https://pubmed.ncbi.nlm.nih.gov/30654172/
+      icon: fa-solid fa-scroll
+    - name: Preprint
+      url: https://osf.io/preprints/psyarxiv/cq2hf
+      icon: fa-solid fa-scroll
+    - name: OSF
+      url: https://osf.io/3r7qn/
+      icon: fa-solid fa-scroll
+    - name: Preprint
+      url: https://osf.io/preprints/psyarxiv/cq2hf
+      icon: fa-solid fa-scroll
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.1016/j.neuroimage.2019.01.020
+      icon: ai ai-zotero
+doi: 10.1016/j.neuroimage.2019.01.020
+---
+
+## Abstract
+
+Despite the critical importance of close replications in strengthening and advancing scientific knowledge, there are inherent challenges to conducting replications of lesion-based studies. In the present study, we conducted a close conceptual replication of a study (i.e., Hope et al., 2016) that found that fluency and naming scores in post-stoke aphasia were more strongly associated with a binary measure of structural white matter integrity (tract disconnection) than a graded measure (lesion load). Using a different sample of stroke patients (N = 128) and four language deficit measures (aphasia severity, picture naming, and composite scores for speech production and semantic cognition), we examined tract disconnection and lesion load in three white matter tracts that have been implicated in language processing: arcuate fasciculus, uncinate fasciculus, and inferior fronto-occipital fasciculus. We did not find any consistent evidence that binary tract disconnection was more strongly associated with language impairment over and above lesion load, though individual deficit measures differed with respect to whether lesion load or tract disconnection was the stronger predictor. Given the mixed findings, we suggest caution when using such indirect estimates of structural white matter integrity, and direct individual measurements (for example, using diffusion weighted imaging) should be preferred when they are available. We end by highlighting the complex nature of replication in lesion-based studies and offer some potential solutions.

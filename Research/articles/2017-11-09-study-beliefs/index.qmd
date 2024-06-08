@@ -1,0 +1,39 @@
+---
+title: "Study strategies and beliefs about learning as a function of academic achievement and achievement goals"
+date: 2017-11-09
+author:
+  - name: Jason Geller
+    affiliation: Iowa State University
+  - name: Alexander R. Toftenss
+    affiliation: Iowa State University
+  - name: Patrick I. Armstrong
+    affiliation: Iowa State University
+  - name: Shana K. Carpenter
+    affiliation: Iowa State University
+  - name: Carly L. Man
+    affiliation: Iowa State University
+  - name: Clark R. Coffman
+    affiliation: Iowa State University
+  - name: Monica H. Lamm
+    affiliation: Iowa State University
+publication: "M&C"
+categories: 
+  - Education
+  - Learning and Memory
+  - Study Habits
+  - Motivation
+pub-info:
+  reference: "Geller, J., Toftness, A. R., Armstrong, P. I., Carpenter, S. K., Manz, C. L., Coffman, C. R., & Lamm, M. H. (2018). Study strategies and beliefs about learning as a function of academic achievement and achievement goals. Memory (Hove, England), 26(5), 683–690. https://doi.org/10.1080/09658211.2017.1397175"
+  links:
+    - name: Final version
+      url: https://doi.org/10.1080/09658211.2017.1397175
+      icon: fa-solid fa-scroll
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=0.1037/xlm0001042
+      icon: ai ai-zotero
+doi:  https://doi.org/10.1037/xlm0001042
+---
+
+## Abstract
+
+Prior research by Hartwig and Dunlosky [(2012). Study strategies of college students: Are self-testing and scheduling related to achievement? Psychonomic Bulletin & Review, 19(1), 126–134] has demonstrated that beliefs about learning and study strategies endorsed by students are related to academic achievement: higher performing students tend to choose more effective study strategies and are more aware of the benefits of self-testing. We examined whether students’ achievement goals, independent of academic achievement, predicted beliefs about learning and endorsement of study strategies. We administered Hartwig and Dunlosky’s survey, along with the Achievement Goals Questionnaire [Elliot, A. J., & McGregor, H. A. (2001). A 2 × 2 achievement goal framework. Journal of Personality & Social Psychology, 80, 501–519] to a large undergraduate biology course. Similar to results by Hartwig and Dunlosky, we found that high-performing students (relative to low-performing students) were more likely to endorse self-testing, less likely to cram, and more likely to plan a study schedule ahead of time. Independent of achievement, however, achievement goals were stronger predictors of certain study behaviours. In particular, avoidance goals (e.g., fear of failure) coincided with increased use of cramming and the tendency to be driven by impending deadlines. Results suggest that individual differences in student achievement, as well as the underlying reasons for achievement, are important predictors of students’ approaches to studying.

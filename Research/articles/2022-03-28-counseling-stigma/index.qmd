@@ -1,0 +1,33 @@
+---
+title: "The Effects of Group Counseling and Self-Affirmation on Stigma and Group Relationship Development: A Replication and Extension"
+date: 2022-10-01
+author:
+  - name: Andrew Seidman 
+    affiliation: University of Pittsburgh
+  - name: Nathaniel G. Wade
+    affiliation: Iowa State University 
+  - name: Jason Geller
+    affiliation: Rutgers University
+categories: 
+  - Group counseling
+  - Stigma 
+  - Self-affirmation
+  - Intervention
+  - Personal values
+pub-info:
+  reference: "Seidman, A. J., Wade, N. G., & Geller, J. (2022). The effects of group counseling and self-affirmation on stigma and group relationship development: A replication and extension. Journal of counseling psychology, 69(5), 701–710. https://doi.org/10.1037/cou0000614"
+  links:
+    - name: Final version
+      url: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10037926/pdf/nihms-1835037.pdf
+      icon: fa-solid fa-scroll
+    - name: OSF
+      url: https://osf.io/zkyb8/
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.1037/cou0000614
+      icon: ai ai-zotero
+doi: https://doi.org/10.1037/cou0000614
+---
+
+## Abstract
+
+The stigma of seeking counseling and negative attitudes about counseling are primary barriers to its use. In the only known study examining the utility of attending a group counseling session to ameliorate stigma (no control group), participation was associated with reductions in self-stigma (Wade et al., 2011). Self-affirmation interventions have shown promising results in reducing stigma and promoting positive expectations about counseling, but no research has examined its effects on a counseling session. In the present, two-part study, 172 college students who had previously completed an online screening survey, including measures of stigma, participated in a single session of group counseling at a mental health clinic. Upon arrival, participants completed a self-affirmation intervention before viewing psychoeducation (n = 66; 12 groups) or only viewed psychoeducation (n = 72; 14 groups); both groups then completed a session of group counseling. After, participants completed these same measures along with measures of group relationships. The remaining participants (n = 34; 7 groups) viewed psychoeducation and completed the same stigma measures before being informed of randomization to the waitlist-control condition. Our results replicate and extend findings from Wade et al. (2011): completing a single session of group counseling reduced self-stigma and promoted positive attitudes toward counseling. Further, completing self-affirmation reduced post-session perceptions of public stigma. Self-affirmation had no impact on group relationships. Overall, findings suggest the utility of offering a “try-out” session of group counseling as a stigma-reduction intervention; preceding with a brief self-affirmation intervention provides further benefits by reducing perceptions of public stigma.

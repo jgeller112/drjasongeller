@@ -1,0 +1,81 @@
+project:
+  type: website
+  output-dir: _site
+
+  resources:
+    - "files/"
+    - "projects/"
+    - "slides/*.html"
+    - "slides/*.pdf"
+    - "slides/img/"
+    - "slides/libs/"
+    - "slides/css/"
+    - "slides/*_files/"
+
+# Metadata stuff
+pagetitle: "{{< meta title >}} | Jason Geller"
+author-meta: "Jason Geller"
+
+website:
+  title: "Jason Geller, Ph.D."
+  description: "Jason Geller is currently Director of Human Neuroscience Lab at Boston College. I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less."
+  favicon: "/files/favicon-512.png"
+  site-url: "https://www.drjasongeller.com"
+  repo-url: "https://github.com/jgeller112/drjasongellerwebsite"
+
+  twitter-card:
+    image: "/files/profiles/twitter-card-large.png"
+    card-style: summary_large_image
+    creator: "@jgeller_phd"
+    site: "@jgeller_phd"
+
+  navbar:
+    pinned: true
+
+    left:
+      - href: index.qmd
+        text: "About"
+      - text: "CV"
+        href: "cv/index.qmd"
+      - text: "Blog"
+        file: blog/index.qmd
+      - text: "Publications"
+        file: Research/index.qmd
+      - text: "Talks"
+        file: Talks/index.qmd
+      - text: "Teaching"
+        file: Teaching/index.qmd
+
+
+  page-footer:
+    left: |
+      <span class="faux-block">{{< fa brands creative-commons >}} {{< var years >}} Jason Geller</span>
+      <span class="faux-block">All content licensed under<br>[{{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}} Creative Commons CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)</span>
+    center: |
+      <span class="faux-block">{{< fa brands orcid >}} <strong>ORCID</strong> [{{< var orcid >}}](https://orcid.org/{{< var orcid >}})</span>
+    right: |
+      <span class="faux-block">Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/)</span>
+      <span class="faux-block">[View the source at {{< fa brands github >}} GitHub]({{< var github-url >}})</span>
+
+
+freeze: true
+
+csl: files/bib/apa7.csl
+
+format:
+  html:
+    theme:
+      - html/ath.scss
+    grid:
+      body-width: 900px
+    toc: false
+    code-link: true
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
+    highlight-style: monokai
+
+
+editor: visual
+

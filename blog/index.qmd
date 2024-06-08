@@ -1,0 +1,21 @@
+---
+title: "Blog"
+author: ""
+description: "This is my blog where I practice sharing my curiosity about R, Methods, and Statistics. It includes notes and tutorials for my future self and hopefully also for you."
+listing:
+  - id: posts
+    contents: "index.qmd"
+    sort: "date desc"
+    categories: true
+page-layout: full
+toc-title: Year
+toc-location: right
+date-format: "MMMM D, YYYY"
+code-tools: false
+comments: false
+engine: knitr
+freeze: false
+---
+
+
+
