@@ -1,0 +1,43 @@
+---
+title: "A little about me"
+pagetitle: "Jason Geller"
+main-photo: /files/proflies/jasongeller_030723_0007.jpeg
+main-photo-square: /files/proflies/jasongeller_030723_0007.jpeg
+title-block-banner: "#CF4446"
+format:
+  html:
+    quarto-template-params:
+      banner-header-class: "home"
+---
+
+::: grid
+::: {.g-col-12 .g-col-sm-4}
+<br>
+
+<br>
+
+```{=html}
+<div class="grid" style="--bs-columns: 5; row-gap: 0;">
+  <div class="g-col-1 g-col-sm-0"></div>
+  <div class="g-col-3 g-col-sm-5">
+    <picture>
+      <source media="(max-width: 576px)" srcset="{{< meta main-photo-square >}}">
+      <source media="(min-width: 576px)" srcset="{{< meta main-photo >}}">
+      <img class="img-fluid" src="{{< meta main-photo >}}" alt="{{< meta author-meta >}}">
+    </picture>
+  </div>
+  <div class="g-col-1 g-col-sm-0"></div>
+</div>
+```
+:::
+
+::: {.g-col-12 .g-col-sm-8}
+Thanks for stopping by!
+
+I am currently Director of the Human Neuroscience Lab at Boston College. My research program investigates the cognitive and neurological underpinnings of language processing. I am primarily interested in the mechanisms underlying visual word recognition and speech perception. On the weekends, I spend time with my other love: human memory. In this area, I am interested in semantics, metacognition/metamemory, and desirable difficulties.
+
+My philosophy is that cognition is best understood by looking at both behavior and the brain. To get a better understanding of cognition I use a multi-method approach that involves using standard behavioral measurements (e.g., reaction times), eye-tracking, neuroimaging, and physiological and nuero-physiological indices (e.g., pupillometry,EEG/sEEG).
+
+Most importantly, my research is conducted according to the principles of open science. In my research, I promote open science practices by making all my work accessible and reproducible.
+:::
+:::
