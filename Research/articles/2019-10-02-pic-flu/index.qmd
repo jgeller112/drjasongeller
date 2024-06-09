@@ -23,12 +23,13 @@ pub-info:
       icon: fa-solid fa-scroll
     - name: OSF Preregistration
       url: https://osf.io/grwtq
+      icon: fa-solid fa-file
     - name: OSF
       url: https://osf.io/f6axd/
-      icon: ai ai-osf
+      icon: fa-solid fa-table
     - name: CodeOcean
       url: https://codeocean.com/capsule/7342254/tree
-      icon: ai ai-osf
+      icon: fa-solid fa-table
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.5334/joc.56
       icon: ai ai-zotero

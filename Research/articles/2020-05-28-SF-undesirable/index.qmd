@@ -20,14 +20,16 @@ pub-info:
       icon: fa-solid fa-scroll
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/ku5bz
-      icon: ai ai-osf
+      icon: fa-solid fa-file-pdf
     - name: Preregistration 1
       url: https://osf.io/pk3zc
+      icon: fa-solid fa-scroll
     - name: Preregistration 2
       url: https://osf.io/32nmg
+      icon: fa-solid fa-scroll
     - name: OSF
       url: https://osf.io/d2vy8/
-      icon: fa-solid fa-scroll
+      icon: fa-solid fa-table
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.1080/09658211.2020.1797096
       icon: ai ai-zotero

@@ -8,6 +8,10 @@
     ]
   },
   {
+    "listing": "/Talks/index.html",
+    "items": []
+  },
+  {
     "listing": "/Research/index.html",
     "items": [
       "/Research/articles/2024-05-06-SPAML/index.html",
@@ -32,10 +36,6 @@
       "/Research/articles/2016-05-20-inhib-pupil-neighbor/index.html",
       "/Research/articles/2013-10-23-replication/index.html"
     ]
-  },
-  {
-    "listing": "/Talks/index.html",
-    "items": []
   },
   {
     "listing": "/Teaching/index.html",

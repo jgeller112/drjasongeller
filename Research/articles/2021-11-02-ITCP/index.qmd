@@ -31,9 +31,10 @@ pub-info:
       icon: fa-solid fa-scroll
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/wxd93
-      icon: fa-solid fa-scroll
+      icon: fa-solid fa-file-pdf
     - name: OSF
       url: https://osf.io/hycdu/
+      icon: fa-solid fa-table
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.1121/10.0006246
       icon: ai ai-zotero

@@ -24,13 +24,13 @@ pub-info:
       icon: fa-solid fa-scroll
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/gvcxb
-      icon: fa-solid fa-scroll
+      icon: fa-solid fa-file
     - name: gazeR
       url: https://github.com/dmirman/gazer
-      icon: fa-solid fa-scroll
+      icon: fa-solid fa-table
     - name: CodeOcean
       url: https://codeocean.com/capsule/0149895/tree
-      icon: ai ai-osf
+      icon: fa-solid fa-table
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.3758/s13428-020-01374-8
       icon: ai ai-zotero

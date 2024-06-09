@@ -12,7 +12,7 @@ Science Society."
   links:
     - name: Final version
       url: https://osf.io/preprints/4mwkp
-      icon: fa-solid fa-scroll
+      icon: fa-solid fa-file
 ---
 
 ## Abstract

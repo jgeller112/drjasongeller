@@ -24,7 +24,7 @@ pub-info:
       icon: fa-solid fa-scroll
     - name: Data
       url: https://osf.io/bstfd/
-      icon: ai ai-osf
+      icon: fa-solid fa-table
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.3758/s13421-018-0824-6
       icon: ai ai-zotero
