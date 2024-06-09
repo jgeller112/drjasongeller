@@ -21,6 +21,7 @@ pub-info:
       icon: fa-solid fa-file-pdf
     - name: OSF
       url: https://osf.io/cqp6s/
+      icon:  fa-solid fa-table
     - name: Preregistrations
       url: https://osf.io/cqp6s/registrations
       icon: fa-solid fa-scroll

@@ -23,7 +23,7 @@ pub-info:
       icon: fa-solid fa-scroll
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/cq2hf
-      icon: fa-solid fa-file
+      icon: fa-solid fa-file-pdf
     - name: OSF
       url: https://osf.io/3r7qn/
       icon: fa-solid fa-table

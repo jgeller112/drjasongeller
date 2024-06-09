@@ -22,7 +22,7 @@ pub-info:
   links:
     - name: Preprint
       url: https://ideas.repec.org/p/osf/osfxxx/e3afx.html
-      icon: fa-solid fa-scroll
+      icon: fa-solid fa-file-pdf
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.31219/osf.io/e3afx
       icon: ai ai-zotero
