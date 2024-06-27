@@ -16,7 +16,7 @@ categories:
   - Eye-tracking
   - Inhibition
 pub-info:
-  reference: "Geller, J., Still, M. L., & Morris, A. L. (2016). Eyes wide open: Pupil size as a proxy for inhibition in the masked-priming paradigm.*Memory & cognition*, 44(4), 554–564. https://doi.org/10.3758/s13421-015-0577-4"
+  reference: "<strong> Geller, J</strong>., Still, M. L., & Morris, A. L. (2016). Eyes wide open: Pupil size as a proxy for inhibition in the masked-priming paradigm.*Memory & cognition*, 44(4), 554–564. https://doi.org/10.3758/s13421-015-0577-4"
   links:
     - name: Final version
       url: https://doi.org/10.3758/s13421-015-0577-

@@ -17,7 +17,7 @@ categories:
   - Cursive
   - Word Recognition
 pub-info:
-  reference: "Geller, J., Still, M. L., Dark, V. J., & Carpenter, S. K. (2018). Would disfluency by any other name still be disfluent? Examining the disfluency effect with cursive handwriting. Memory & cognition, 46(7), 1109–1126. https://doi.org/10.3758/s13421-018-0824-6"
+  reference: "<strong>Geller, J</strong>., Still, M. L., Dark, V. J., & Carpenter, S. K. (2018). Would disfluency by any other name still be disfluent? Examining the disfluency effect with cursive handwriting. Memory & cognition, 46(7), 1109–1126. https://doi.org/10.3758/s13421-018-0824-6"
   links:
     - name: Final version
       url: https://doi.org/10.3758/s13421-018-0824-6

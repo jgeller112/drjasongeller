@@ -13,7 +13,7 @@ categories:
   - Disfluency
   - Fonts
 pub-info:
-  reference: "Geller, J., Davis, S. D., & Peterson, D. J. (2020). Sans Forgetica is not desirable for learning. Memory, 28(8), 957–967. https://doi.org/10.1080/09658211.2020.1797096"
+  reference: "<strong>Geller, J</strong>., Davis, S. D., & Peterson, D. J. (2020). Sans Forgetica is not desirable for learning. Memory, 28(8), 957–967. https://doi.org/10.1080/09658211.2020.1797096"
   links:
     - name: Final version
       url: https://www.tandfonline.com/doi/full/10.1080/09658211.2020.1797096

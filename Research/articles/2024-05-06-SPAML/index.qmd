@@ -6,7 +6,7 @@ author:
   - name: Jason Geller
   - name: Et al
 pub-info:
-  reference: "Buchanan, E. M., Cuccolo, K., Coles, N. A., et al.Measuring the semantic priming effect across many languages. 
+  reference: "Buchanan, E. M., Cuccolo, K., Coles, N. A...<strong>Geller, J</strong>. Measuring the semantic priming effect across many languages. 
 Center for Open Science.https://doi.org/10.31219/osf.io/q4fjy"
   links:
     - name: Preprint

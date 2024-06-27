@@ -6,7 +6,7 @@ author:
     affiliation: University of Alabama-Birmingham
   - name: Mary L Still
 pub-info:
-  reference: "Geller, J., & Still, M. L. (2018).Testing expectancy, but not JOLs, moderate the disfluency effect. Proceedings of the 38th Annual Meeting of the
+  reference: "<strong>Geller, J</strong>., & Still, M. L. (2018).Testing expectancy, but not JOLs, moderate the disfluency effect. Proceedings of the 38th Annual Meeting of the
 Cogniࢼve Science Society. (pp. 1175-1179). Madison, WI: Cognitive
 Science Society."
   links:

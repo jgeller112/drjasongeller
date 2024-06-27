@@ -21,7 +21,7 @@ categories:
   - young adults
   - mobile phone
 pub-info:
-  reference: "Chen-Sankey, J., Elhabashy, M., Gratale, S., Geller, J., Mercincavage, M., Strasser, A. A., Delnevo, C. D., Jeong, M., & Wackowski, O. A. (2023). Examining Visual Attention to Tobacco Marketing Materials Among Young Adult Smokers: Protocol for a Remote Webcam-Based Eye-Tracking Experiment. JMIR research protocols, 12, e43512. https://doi.org/10.2196/43512"
+  reference: "Chen-Sankey, J., Elhabashy, M., Gratale, S., <strong>Geller, J.</strong>, Mercincavage, M., Strasser, A. A., Delnevo, C. D., Jeong, M., & Wackowski, O. A. (2023). Examining Visual Attention to Tobacco Marketing Materials Among Young Adult Smokers: Protocol for a Remote Webcam-Based Eye-Tracking Experiment. JMIR research protocols, 12, e43512. https://doi.org/10.2196/43512"
   links:
     - name: Final version
       url: https://www.researchprotocols.org/2023/1/e43512/PDF
