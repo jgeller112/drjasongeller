@@ -11,13 +11,13 @@ Center for Open Science.https://doi.org/10.31219/osf.io/q4fjy"
   links:
     - name: Preprint
       url: https://reff.f.bg.ac.rs/bitstream/handle/123456789/6432/SPAML_RR_NHB_V4.pdf?sequence=1&isAllowed=y
-      icon: fa-solid fa-file-pdf
+      icon: ai ai-psyarxiv
     - name: OSF
       url: https://osf.io/wrpj4/?view_only=
-      icon: fa-solid fa-table
+      icon: ai ai-osf-square
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.31219/osf.io/q4fjy
-      icon: ai ai-zotero
+      icon: ai ai-zotero-square
 doi: https://doi.org/10.31219/osf.io/q4fjy
 ---
 

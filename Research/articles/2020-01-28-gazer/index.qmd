@@ -17,23 +17,23 @@ categories:
   - Eye-tracking
   - Preprocessing
 pub-info:
-  reference: "<strong>Geller, J</strong>., Winn, M. B., Mahr, T., & Mirman, D. (2020). GazeR: A package for processing gaze position and pupil size data. Behavior research methods, 52(5), 2232–2255. https://doi.org/10.3758/s13428-020-01374-8"
+  reference: "<strong>Geller, J</strong>., Winn, M. B., Mahr, T., & Mirman, D. (2020). GazeR: A package for processing gaze position and pupil size data. <em>Behavior research methods<em>, 52(5), 2232–2255. https://doi.org/10.3758/s13428-020-01374-8"
   links:
     - name: Final version
-      url: https://journalofcognition.org/articles/10.5334/joc.56
+      url: https://link.springer.com/article/10.3758/s13428-020-01374-8
       icon: fa-solid fa-scroll
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/gvcxb
-      icon: fa-solid fa-file
+      icon: ai ai-psyarxiv
     - name: gazeR
       url: https://github.com/dmirman/gazer
-      icon: fa-solid fa-table
+      icon: fa-brands fa-github-square
     - name: CodeOcean
       url: https://codeocean.com/capsule/0149895/tree
       icon: fa-solid fa-table
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.3758/s13428-020-01374-8
-      icon: ai ai-zotero
+      icon: ai ai-zotero-square
 doi: https://doi.org/10.3758/s13428-020-01374-8
 ---
 

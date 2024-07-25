@@ -24,10 +24,10 @@ pub-info:
       icon: fa-solid fa-scroll
     - name: Data
       url: https://osf.io/bstfd/
-      icon: fa-solid fa-table
+      icon: ai ai-osf-square
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.3758/s13421-018-0824-6
-      icon: ai ai-zotero
+      icon: ai ai-zotero-square
 doi: https://doi.org/10.3758/s13421-018-0824-6
 ---
 

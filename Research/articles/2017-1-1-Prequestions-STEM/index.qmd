@@ -15,13 +15,13 @@ categories:
   - Classroom
   - Engineering education
 pub-info:
-  reference: "<strong> Geller, J</strong>., Carpenter, S. K., Lamm, M. H., Rahman, S., Armstrong, P. I., & Coffman, C. R. (2017). Prequestions do not enhance the benefits of retrieval in a STEM classroom. Cognitive research: principles and implications, 2(1), 42. https://doi.org/10.1186/s41235-017-0078-z"
+  reference: "<strong> Geller, J</strong>., Carpenter, S. K., Lamm, M. H., Rahman, S., Armstrong, P. I., & Coffman, C. R. (2017). Prequestions do not enhance the benefits of retrieval in a STEM classroom. <em>Cognitive research: principles and implications<em>, 2(1), 42. https://doi.org/10.1186/s41235-017-0078-z"
   links:
     - name: Final version
       url: https://link.springer.com/article/10.1186/s41235-017-0078-z
       icon: fa-solid fa-scroll
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.1186/s41235-017-0078-z
-      icon: ai ai-zotero
+      icon: ai ai-zotero-square
 doi: https://doi.org/10.1186/s41235-017-0078-z
 ---

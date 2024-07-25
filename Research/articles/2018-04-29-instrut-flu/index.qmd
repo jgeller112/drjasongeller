@@ -20,14 +20,14 @@ categories:
   - Disfluency
   - Metacognition
 pub-info:
-  reference: "Toftness, A. R., Carpenter, S. K., <strong>Geller, J</strong>., Lauber, S., Johnson, M., & Armstrong, P. I. (2018). Instructor fluency leads to higher confidence in learning, but not better learning. Metacognition and Learning, 13(1), 1–14. https://doi.org/10.1007/s11409-017-9175-0"
+  reference: "Toftness, A. R., Carpenter, S. K., <strong>Geller, J</strong>., Lauber, S., Johnson, M., & Armstrong, P. I. (2018). Instructor fluency leads to higher confidence in learning, but not better learning. <em>Metacognition and Learning<em>, 13(1), 1–14. https://doi.org/10.1007/s11409-017-9175-0"
   links:
     - name: Final version
       url: https://doi.org/10.1007/s11409-017-9175-0
       icon: fa-solid fa-scroll
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.1007/s11409-017-9175-0
-      icon: ai ai-zotero
+      icon: ai ai-zotero-square
 doi: https://doi.org/10.1007/s11409-017-9175-0
 ---
 

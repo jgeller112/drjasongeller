@@ -16,20 +16,20 @@ categories:
   - Replication
   - White matter
 pub-info:
-  reference: "<strong>Geller, J</strong>., Thye, M., & Mirman, D. (2019). Estimating effects of graded white matter damage and binary tract disconnection on post-stroke language impairment. NeuroImage, 189, 248–257. https://doi.org/10.1016/j.neuroimage.2019.01.020"
+  reference: "<strong>Geller, J</strong>., Thye, M., & Mirman, D. (2019). Estimating effects of graded white matter damage and binary tract disconnection on post-stroke language impairment. <em>Neuroimage<em>, 189, 248–257. https://doi.org/10.1016/j.neuroimage.2019.01.020"
   links:
     - name: Final version
       url: https://pubmed.ncbi.nlm.nih.gov/30654172/
       icon: fa-solid fa-scroll
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/cq2hf
-      icon: fa-solid fa-file-pdf
+      icon: ai ai-psyarxiv-square
     - name: OSF
       url: https://osf.io/3r7qn/
-      icon: fa-solid fa-table
+      icon: ai ai-osf-square
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.1016/j.neuroimage.2019.01.020
-      icon: ai ai-zotero
+      icon: ai ai-zotero-square
 doi: 10.1016/j.neuroimage.2019.01.020
 ---
 

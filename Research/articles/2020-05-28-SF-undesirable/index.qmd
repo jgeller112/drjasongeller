@@ -13,26 +13,26 @@ categories:
   - Disfluency
   - Fonts
 pub-info:
-  reference: "<strong>Geller, J</strong>., Davis, S. D., & Peterson, D. J. (2020). Sans Forgetica is not desirable for learning. Memory, 28(8), 957–967. https://doi.org/10.1080/09658211.2020.1797096"
+  reference: "<strong>Geller, J</strong>., Davis, S. D., & Peterson, D. J. (2020). Sans Forgetica is not desirable for learning. <em>Memory<em>, 28(8), 957–967. https://doi.org/10.1080/09658211.2020.1797096"
   links:
     - name: Final version
       url: https://www.tandfonline.com/doi/full/10.1080/09658211.2020.1797096
       icon: fa-solid fa-scroll
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/ku5bz
-      icon: fa-solid fa-file-pdf
+      icon: ai ai-psyarxiv
     - name: Preregistration 1
       url: https://osf.io/pk3zc
-      icon: fa-solid fa-scroll
+      icon: fa-solid fa-file
     - name: Preregistration 2
       url: https://osf.io/32nmg
-      icon: fa-solid fa-scroll
+      icon: fa-solid fa-file
     - name: OSF
       url: https://osf.io/d2vy8/
-      icon: fa-solid fa-table
+      icon: ai ai-osf-square
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.1080/09658211.2020.1797096
-      icon: ai ai-zotero
+      icon: ai ai-zotero-square
 doi: https://doi.org/10.1080/09658211.2020.1797096
 ---
 

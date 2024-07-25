@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.54">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Jason Geller">
 <meta name="dcterms.date" content="2021-04-21">
 <meta name="description" content="I demonstrate how to analyze pupil data from a GazePoint tracker with my eye-tracking R package gazeR.">
-<title>Analzying GazePoint Pupil Data With GazeR | Jason Geller</title>
+<title>Analzying GazePoint Pupil Data With GazeR | Jason Geller – Jason Geller, Ph.D.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -127,7 +127,7 @@ div.column-margin+hr.dinkus {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -158,7 +158,7 @@ div.column-margin+hr.dinkus {
   </li>  
 </ul>
 </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -200,8 +200,8 @@ div.column-margin+hr.dinkus {
 </header><p>In this vignette I am going to show you how to read in a GazePoint data file along with some behavioral data and use <code>gazeR</code> to preprocess the data.</p>
 <p>Special thanks to Matthew K Robinson (Twitter:<span class="citation" data-cites="matthewkrobinson">@matthewkrobinson</span>) for letting me use some data from an auditory oddball task he conducted on himself (we do what we have to do as researchers :D): see Tweet below.</p>
 <p></p>
-<div id="tweet-83881"></div>
-<script>tweet={"url":"https:\/\/twitter.com\/matthewkrobison\/status\/1384208857790959617","author_name":"Matthew K. Robison","author_url":"https:\/\/twitter.com\/matthewkrobison","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Ei&#39;m just a guy, running himself through auditory oddball tasks on his new eye-tracker, asking it to love him back. \u003Ca href=\"https:\/\/t.co\/wPb97MZuNF\"\u003Epic.twitter.com\/wPb97MZuNF\u003C\/a\u003E\u003C\/p\u003E&mdash; Matthew K. Robison (@matthewkrobison) \u003Ca href=\"https:\/\/twitter.com\/matthewkrobison\/status\/1384208857790959617?ref_src=twsrc%5Etfw\"\u003EApril 19, 2021\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-83881").innerHTML = tweet["html"];</script><p>To get started, we need to load in some important packages and read in the GP data files.</p>
+<div id="tweet-20858"></div>
+<script>tweet={"url":"https:\/\/twitter.com\/matthewkrobison\/status\/1384208857790959617","author_name":"Matthew K. Robison","author_url":"https:\/\/twitter.com\/matthewkrobison","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Ei&#39;m just a guy, running himself through auditory oddball tasks on his new eye-tracker, asking it to love him back. \u003Ca href=\"https:\/\/t.co\/wPb97MZuNF\"\u003Epic.twitter.com\/wPb97MZuNF\u003C\/a\u003E\u003C\/p\u003E&mdash; Matthew K. Robison (@matthewkrobison) \u003Ca href=\"https:\/\/twitter.com\/matthewkrobison\/status\/1384208857790959617?ref_src=twsrc%5Etfw\"\u003EApril 19, 2021\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-20858").innerHTML = tweet["html"];</script><p>To get started, we need to load in some important packages and read in the GP data files.</p>
 <section id="load-packages" class="level2"><h2 class="anchored" data-anchor-id="load-packages">Load Packages</h2>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -387,7 +387,7 @@ div.column-margin+hr.dinkus {
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
 <th style="text-align: right;">subject</th>
 <th style="text-align: right;">time</th>
@@ -472,9 +472,6 @@ div.column-margin+hr.dinkus {
 </div>
 </section><section id="extending-blinks" class="level3"><h3 class="anchored" data-anchor-id="extending-blinks">Extending Blinks</h3>
 <p>I am extending blinks 100 ms forward and backward in time.</p>
-<div class="cell">
-
-</div>
 </section><section id="interpolate-blinks" class="level3"><h3 class="anchored" data-anchor-id="interpolate-blinks">Interpolate Blinks</h3>
 <p>Here let’s linearly interpolate the blinks and then smooth the data using a 5-point moving average.</p>
 <div class="cell">
@@ -597,11 +594,11 @@ div.column-margin+hr.dinkus {
   author = {},
   title = {Analzying {GazePoint} {Pupil} {Data} {With} {GazeR}},
   date = {2021-04-21},
-  url = {https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2},
+  url = {https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2021" class="csl-entry quarto-appendix-citeas" role="listitem">
-<em>Analzying GazePoint Pupil Data With GazeR</em>. (2021, April 21). <a href="https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2">https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2</a>
+<em>Analzying GazePoint Pupil Data With GazeR</em>. (2021, April 21). <a href="https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2/">https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2/</a>
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -637,18 +634,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -680,7 +666,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/www\.drjasongeller\.com");
@@ -688,7 +696,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

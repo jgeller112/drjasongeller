@@ -18,13 +18,13 @@ categories:
   - simulation
   - hypothesis testing
 pub-info:
-  reference: "Buchanan, Erin Michelle & Elsherif, Mahmoud Medhat & <strong>Geller, J</strong> & Aberson, Chris & Gurkan, Necdet & Ambrosini, Ettore & Heyman, Tom & Montefinese, Maria & vanpaemel, wolf & Barzykowski, Krystian,.(2023). Accuracy in parameter estimation and simulation approaches for sample size planning with multiple stimuli. OSF Preprints e3afx, Center for Open Science."
+  reference: "Buchanan, E. M., Elsherif, M. M., <strong>Geller, J</strong>., Aberson, C., Gurkan, N., Ambrosini, E., Heyman, T., Montefinese, M., vanpaemel, W., & Barzykowski, K. (2023). Accuracy in parameter estimation and simulation approaches for sample size planning with multiple stimuli. OSF Preprints, e3afx. Center for Open Science."
   links:
     - name: Preprint
       url: https://ideas.repec.org/p/osf/osfxxx/e3afx.html
-      icon: fa-solid fa-file-pdf
+      icon: ai ai-psyarxiv-square
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.31219/osf.io/e3afx
-      icon: ai ai-zotero
+      icon: ai ai-zotero-square
 doi: 10.31219/osf.io/e3afx
 ---

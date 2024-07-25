@@ -16,17 +16,17 @@ categories:
   - Taxonomic
   - Thematic
 pub-info:
-  reference: "Thye, M., <strong>Geller, J</strong>., Szaflarski, J. P., & Mirman, D. (2021). Intracranial EEG evidence of functional specialization for taxonomic and thematic relations. Cortex; a journal devoted to the study of the nervous system and behavior, 140, 40–50. https://doi.org/10.1016/j.cortex.2021.03.018"
+  reference: "Thye, M., <strong>Geller, J</strong>., Szaflarski, J. P., & Mirman, D. (2021). Intracranial EEG evidence of functional specialization for taxonomic and thematic relations. <em>Cortex<em>, 140, 40–50. https://doi.org/10.1016/j.cortex.2021.03.018"
   links:
     - name: Final version
       url: https://pubmed.ncbi.nlm.nih.gov/33933929
       icon: fa-solid fa-scroll
     - name: OSF
       url: https://osf.io/xtfah/
-      icon: fa-solid fa-table
+      icon: ai ai-osf-square
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.1016/j.cortex.2021.03.01
-      icon: ai ai-zotero
+      icon: ai ai-zotero-square
 doi:  https://doi.org/10.1016/j.cortex.2021.03.01
 ---
 

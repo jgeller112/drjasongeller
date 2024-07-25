@@ -23,14 +23,14 @@ categories:
   - Study Habits
   - Motivation
 pub-info:
-  reference: "<strong> Geller, J</strong>., Toftness, A. R., Armstrong, P. I., Carpenter, S. K., Manz, C. L., Coffman, C. R., & Lamm, M. H. (2018). Study strategies and beliefs about learning as a function of academic achievement and achievement goals. Memory (Hove, England), 26(5), 683–690. https://doi.org/10.1080/09658211.2017.1397175"
+  reference: "<strong> Geller, J</strong>., Toftness, A. R., Armstrong, P. I., Carpenter, S. K., Manz, C. L., Coffman, C. R., & Lamm, M. H. (2018). Study strategies and beliefs about learning as a function of academic achievement and achievement goals.<em> Memory<em>, 26(5), 683–690. https://doi.org/10.1080/09658211.2017.1397175"
   links:
     - name: Final version
       url: https://doi.org/10.1080/09658211.2017.1397175
       icon: fa-solid fa-scroll
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=0.1037/xlm0001042
-      icon: ai ai-zotero
+      icon: ai ai-zotero-sqaure
 doi:  https://doi.org/10.1037/xlm0001042
 ---
 
