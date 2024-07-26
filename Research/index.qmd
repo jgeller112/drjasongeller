@@ -6,7 +6,7 @@ listing:
     sort: "date desc"
     categories: false
     date-format: "iso"
-    page-size: 8
+    page-size: 12
     type: default
 page-layout: full
 include-back-link: false

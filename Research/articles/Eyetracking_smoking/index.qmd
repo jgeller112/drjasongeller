@@ -28,7 +28,7 @@ pub-info:
       icon: fa-solid fa-scroll
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.2196/43512
-      icon: ai ai-zotero-square
+      icon: iconify  ai-zotero-square
 doi: https://doi.org/10.2196/43512
 ---
 
