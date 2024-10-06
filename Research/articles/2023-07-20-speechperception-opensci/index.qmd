@@ -14,7 +14,7 @@ categories:
   - acoustic analysis
  
 pub-info:
-  reference: "Coretta, S., Casillas, J. V., Roessig, S., <strong>Geller, J</strong>., et al. (2023). Multidimensional signals and analytic flexibility: Estimating degrees of freedom in human-speech analyses. <em>Advances in Methods and Practices in Psychological Science <em>, 6(3). https://doi.org/10.1177/25152459231162567"
+  reference: "Coretta, S., Casillas, J. V., Roessig, S., <strong>Geller, J</strong>., et al. (2023). Multidimensional signals and analytic flexibility: Estimating degrees of freedom in human-speech analyses. <em>Advances in Methods and Practices in Psychological Science </em>, 6(3). https://doi.org/10.1177/25152459231162567"
   links:
     - name: Final version
       url: https://journals.sagepub.com/doi/pdf/10.1177/25152459231162567

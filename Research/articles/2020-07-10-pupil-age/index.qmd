@@ -14,7 +14,7 @@ categories:
   - Age
   - Fatigue 
 pub-info:
-  reference: "McGarrigle, R., Knight, S., Rakusen, L., <strong>Geller, J</strong>., & Mattys, S. (2021). Older adults show a more sustained pattern of effortful listening than young adults.<em> Psychology and aging<em>, 36(4), 504–519. https://doi.org/10.1037/pag0000587"
+  reference: "McGarrigle, R., Knight, S., Rakusen, L., <strong>Geller, J</strong>., & Mattys, S. (2021). Older adults show a more sustained pattern of effortful listening than young adults.<em> Psychology and aging</em>, 36(4), 504–519. https://doi.org/10.1037/pag0000587"
   links:
     - name: Final version
       url: https://pubmed.ncbi.nlm.nih.gov/34014746/

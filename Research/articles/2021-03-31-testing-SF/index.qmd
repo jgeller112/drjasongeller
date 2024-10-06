@@ -11,7 +11,7 @@ categories:
   - Disfluency
   - Sans Forgetica
 pub-info:
-  reference: "<strong>Geller, J</strong>., & Peterson, D. (2021). Is this going to be on the test? Test expectancy moderates the disfluency effect with sans forgetica. <em>Journal of Experimental Psychology: Learning, Memory, and Cognition <em>, 47(12), 1924–1938. https://doi.org/10.1037/xlm0001042"
+  reference: "<strong>Geller, J</strong>., & Peterson, D. (2021). Is this going to be on the test? Test expectancy moderates the disfluency effect with sans forgetica. <em>Journal of Experimental Psychology: Learning, Memory, and Cognition </em>, 47(12), 1924–1938. https://doi.org/10.1037/xlm0001042"
   links:
     - name: Final version
       url: https://psycnet.apa.org/record/2021-94730-001

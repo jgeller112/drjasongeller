@@ -12,7 +12,7 @@ categories:
   - Second language
   - Fluency
 pub-info:
-  reference: "Carpenter, S. K., & <strong>Geller, J</strong>. (2020). Is a picture really worth a thousand words? Evaluating contributions of fluency and analytic processing in metacognitive judgements for pictures in foreign language vocabulary learning. <em>Quarterly journal of experimental psychology<em>, 73(2), 211–224. https://doi.org/10.1177/1747021819879416"
+  reference: "Carpenter, S. K., & <strong>Geller, J</strong>. (2020). Is a picture really worth a thousand words? Evaluating contributions of fluency and analytic processing in metacognitive judgements for pictures in foreign language vocabulary learning. <em>Quarterly journal of experimental psychology</em>, 73(2), 211–224. https://doi.org/10.1177/1747021819879416"
   links:
     - name: Final version
       url: https://pubmed.ncbi.nlm.nih.gov/31519138

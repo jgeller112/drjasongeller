@@ -16,7 +16,7 @@ categories:
   - Taxonomic
   - Thematic
 pub-info:
-  reference: "<strong>Geller, J</strong>., Landrigan, J. F., & Mirman, D. (2019). A Pupillometric examination of cognitive control in taxonomic and thematic semantic memory. <em>Journal of cognition<em>, 2(1), 6. https://doi.org/10.5334/joc.56"
+  reference: "<strong>Geller, J</strong>., Landrigan, J. F., & Mirman, D. (2019). A Pupillometric examination of cognitive control in taxonomic and thematic semantic memory. <em>Journal of Cognition</em>, 2(1), 6. https://doi.org/10.5334/joc.56"
   links:
     - name: Final version
       url: https://journalofcognition.org/articles/10.5334/joc.56

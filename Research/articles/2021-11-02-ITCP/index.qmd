@@ -24,7 +24,7 @@ categories:
   - Open-set
   - Validation
 pub-info:
-  reference: "<strong>Geller, J</strong>., Holmes, A., Schwalje, A., Berger, J. I., Gander, P. E., Choi, I., & McMurray, B. (2021). Validation of the Iowa test of consonant perception.<em> The Journal of the Acoustical Society of America<em>, 150(3), 2131. https://doi.org/10.1121/10.0006246"
+  reference: "<strong>Geller, J</strong>., Holmes, A., Schwalje, A., Berger, J. I., Gander, P. E., Choi, I., & McMurray, B. (2021). Validation of the Iowa test of consonant perception.<em> The Journal of the Acoustical Society of America</em>, 150(3), 2131. https://doi.org/10.1121/10.0006246"
   links:
     - name: Final version
       url: https://pubmed.ncbi.nlm.nih.gov/34598595/

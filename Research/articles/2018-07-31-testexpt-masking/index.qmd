@@ -7,7 +7,7 @@ author:
   - name: Mary L Still
 pub-info:
   reference: "<strong>Geller, J</strong>., & Still, M. L. (2018).Testing expectancy, but not JOLs, moderate the disfluency effect. <em>Proceedings of the 38th Annual Meeting of the
-Cognitive Science Society<em>. (pp. 1175-1179). Madison, WI: Cognitive
+Cognitive Science Society</em>. (pp. 1175-1179). Madison, WI: Cognitive
 Science Society."
   links:
     - name: Final version

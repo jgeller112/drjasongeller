@@ -18,7 +18,7 @@ categories:
   - Open Science
   - Psychology
 pub-info:
-  reference: "Brandt, M. J., IJzerman, H., Dijksterhuis, A., Farach, F. J.,<strong> Geller, J</strong>., Giner-Sorolla, R., Grange, J. A., Perugini, M., Spies, J. R., & van't Veer, A. (2014). The replication recipe: What makes for a convincing replication? <em>Journal of Experimental Social Psychology<em>, 50, 217–224. https://doi.org/10.1016/j.jesp.2013.10.005"
+  reference: "Brandt, M. J., IJzerman, H., Dijksterhuis, A., Farach, F. J.,<strong> Geller, J</strong>., Giner-Sorolla, R., Grange, J. A., Perugini, M., Spies, J. R., & van't Veer, A. (2014). The replication recipe: What makes for a convincing replication? <em>Journal of Experimental Social Psychology</em>, 50, 217–224. https://doi.org/10.1016/j.jesp.2013.10.005"
   links:
     - name: Final version
       url: https://doi.org/10.1016/j.jesp.2013.10.005
