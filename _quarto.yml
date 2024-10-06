@@ -45,7 +45,8 @@ website:
         file: Talks/index.qmd
       - text: "Teaching"
         file: Teaching/index.qmd
-
+      - text: "{{< ai google-scholar >}}"
+        href: https://scholar.google.com/citations?user=yO68sggAAAAJ&hl=en
 
   page-footer:
     left: |
