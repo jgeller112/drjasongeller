@@ -45,8 +45,11 @@ website:
         file: Talks/index.qmd
       - text: "Teaching"
         file: Teaching/index.qmd
+      - text: Software
       - text: "{{< ai google-scholar >}}"
         href: https://scholar.google.com/citations?user=yO68sggAAAAJ&hl=en
+      - icon: github
+        href: https://github.com/jgeller112
 
   page-footer:
     left: |

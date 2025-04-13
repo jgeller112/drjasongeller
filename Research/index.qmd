@@ -1,19 +1,27 @@
 ---
 title: "Publications"
 listing:
-  - contents: "index.qmd"
-    template: ../html/Research/listing.ejs
+  - id: articles
+    contents: "articles/*/index.qmd"
     sort: "date desc"
+    template: ../html/research/listing.ejs
     categories: false
-    date-format: "iso"
-    page-size: 8
-    type: default
+  - id: preprints
+    contents: "preprints/*/index.qmd"
+    sort: "date desc"
+    template: ../html/research/listing.ejs
+    categories: false
 page-layout: full
 include-back-link: false
 toc-location: right
 ---
 
 This is home for my research publications, each is linked with PDFs, preprints, and corresponding repositories with data and code, if applicable. Please reach out if there is something you want that you cannot obtain.
+
+## Preprints
+
+:::{#preprints}
+:::
 
 ## Journal articles
 

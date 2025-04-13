@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.drjasongeller.com/cv/index.html</loc>
-    <lastmod>2024-10-06T15:31:47.733Z</lastmod>
+    <lastmod>2025-04-13T19:24:48.513Z</lastmod>
   </url>
   <url>
     <loc>https://www.drjasongeller.com/Untitled.html</loc>
@@ -21,8 +21,12 @@
     <lastmod>2024-06-09T17:46:54.093Z</lastmod>
   </url>
   <url>
+    <loc>https://www.drjasongeller.com/Research/preprints/2025-02-17-L2-Webcam/index.html</loc>
+    <lastmod>2025-04-13T19:41:05.208Z</lastmod>
+  </url>
+  <url>
     <loc>https://www.drjasongeller.com/Research/index.html</loc>
-    <lastmod>2024-10-06T15:31:47.780Z</lastmod>
+    <lastmod>2025-04-13T19:53:12.505Z</lastmod>
   </url>
   <url>
     <loc>https://www.drjasongeller.com/Research/articles/2024-05-06-SPAML/index.html</loc>
@@ -53,32 +57,28 @@
     <lastmod>2024-10-06T15:15:21.749Z</lastmod>
   </url>
   <url>
-    <loc>https://www.drjasongeller.com/Research/articles/2017-1-1-Prequestions-STEM/index.html</loc>
-    <lastmod>2024-10-06T15:21:11.987Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.drjasongeller.com/Research/articles/2023-07-20-speechperception-opensci/index.html</loc>
-    <lastmod>2024-10-06T15:30:08.992Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.drjasongeller.com/Research/articles/2021-11-02-ITCP/index.html</loc>
-    <lastmod>2024-10-06T15:27:15.280Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.drjasongeller.com/Research/articles/2022-03-28-counseling-stigma/index.html</loc>
-    <lastmod>2024-10-06T15:29:19.289Z</lastmod>
+    <loc>https://www.drjasongeller.com/Research/articles/2018-07-31-testexpt-masking/index.html</loc>
+    <lastmod>2024-10-06T15:21:49.332Z</lastmod>
   </url>
   <url>
     <loc>https://www.drjasongeller.com/Research/articles/2018-11-02-disflu-handwriting/index.html</loc>
     <lastmod>2024-10-06T15:22:01.864Z</lastmod>
   </url>
   <url>
-    <loc>https://www.drjasongeller.com/Research/articles/2018-07-31-testexpt-masking/index.html</loc>
-    <lastmod>2024-10-06T15:21:49.332Z</lastmod>
+    <loc>https://www.drjasongeller.com/Research/articles/2022-03-28-counseling-stigma/index.html</loc>
+    <lastmod>2024-10-06T15:29:19.289Z</lastmod>
   </url>
   <url>
-    <loc>https://www.drjasongeller.com/Research/articles/2024-Power-items/index.html</loc>
-    <lastmod>2024-07-25T18:37:15.887Z</lastmod>
+    <loc>https://www.drjasongeller.com/Research/articles/2021-11-02-ITCP/index.html</loc>
+    <lastmod>2024-10-06T15:27:15.280Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.drjasongeller.com/Research/articles/2023-07-20-speechperception-opensci/index.html</loc>
+    <lastmod>2024-10-06T15:30:08.992Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.drjasongeller.com/Research/articles/2017-1-1-Prequestions-STEM/index.html</loc>
+    <lastmod>2024-10-06T15:21:11.987Z</lastmod>
   </url>
   <url>
     <loc>https://www.drjasongeller.com/Research/articles/2018-04-29-instrut-flu/index.html</loc>
@@ -90,7 +90,7 @@
   </url>
   <url>
     <loc>https://www.drjasongeller.com/Research/articles/Eyetracking_smoking/index.html</loc>
-    <lastmod>2024-10-06T15:30:54.817Z</lastmod>
+    <lastmod>2025-04-13T19:57:49.294Z</lastmod>
   </url>
   <url>
     <loc>https://www.drjasongeller.com/Research/articles/2020-01-28-gazer/index.html</loc>
@@ -107,6 +107,10 @@
   <url>
     <loc>https://www.drjasongeller.com/Research/articles/2021-04-07-sEEG/index.html</loc>
     <lastmod>2024-10-06T15:27:02.214Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.drjasongeller.com/Research/preprints/2024-Power-items/index.html</loc>
+    <lastmod>2024-07-25T18:37:15.887Z</lastmod>
   </url>
   <url>
     <loc>https://www.drjasongeller.com/Talks/index.html</loc>

@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing-1 .list');
+    const listingTargetEl = window.document.querySelector('#listing-articles .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -84,13 +84,40 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-project','listing-pagetitle','listing-author-meta','listing-website','listing-freeze','listing-csl','listing-format','listing-editor','listing-_quarto-vars','listing-language','listing-date-format','listing-title-block-banner','listing-toc','listing-toc-title','listing-toc-location','listing-execute','listing-include-back-link','listing-title','listing-date','listing-author','listing-publication','listing-categories','listing-pub-info','listing-doi','listing-path','listing-outputHref','listing-date-modified','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
-      page: 8,
-    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      
       searchColumns: ["listing-project","listing-pagetitle","listing-author-meta","listing-website","listing-freeze","listing-csl","listing-format","listing-editor","listing-_quarto-vars","listing-language","listing-date-format","listing-title-block-banner","listing-toc","listing-toc-title","listing-toc-location","listing-execute","listing-include-back-link","listing-title","listing-date","listing-author","listing-publication","listing-categories","listing-pub-info","listing-doi","listing-path","listing-outputHref","listing-date-modified","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing-1'] = new List('listing-listing-1', options);
+    window['quarto-listings']['listing-articles'] = new List('listing-articles', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-preprints .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-project','listing-pagetitle','listing-author-meta','listing-website','listing-freeze','listing-csl','listing-format','listing-editor','listing-_quarto-vars','listing-language','listing-date-format','listing-title-block-banner','listing-toc','listing-toc-title','listing-toc-location','listing-execute','listing-include-back-link','listing-title','listing-date','listing-author','listing-categories','listing-pub-info','listing-doi','listing-path','listing-outputHref','listing-date-modified','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      
+      searchColumns: ["listing-project","listing-pagetitle","listing-author-meta","listing-website","listing-freeze","listing-csl","listing-format","listing-editor","listing-_quarto-vars","listing-language","listing-date-format","listing-title-block-banner","listing-toc","listing-toc-title","listing-toc-location","listing-execute","listing-include-back-link","listing-title","listing-date","listing-author","listing-categories","listing-pub-info","listing-doi","listing-path","listing-outputHref","listing-date-modified","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-preprints'] = new List('listing-preprints', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -141,7 +168,7 @@ window.Quarto = {
 </script>
 
 <meta name="twitter:title" content="Publications | Jason Geller">
-<meta name="twitter:description" content="Jason Geller is currently Director of Human Neuroscience Lab at Boston College. I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less.">
+<meta name="twitter:description" content="Jason Geller is currently Director of the Human Neuroscience Lab at Boston College. I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less.">
 <meta name="twitter:image" content="https://www.drjasongeller.com/files/profiles/twitter-card-large.png">
 <meta name="twitter:creator" content="@jgeller_phd">
 <meta name="twitter:site" content="@jgeller_phd">
@@ -190,8 +217,18 @@ window.Quarto = {
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">Software</span>
+    </span>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="https://scholar.google.com/citations?user=yO68sggAAAAJ&amp;hl=en"> 
 <span class="menu-text"><i class="ai  ai-google-scholar"></i></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jgeller112"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -231,7 +268,8 @@ window.Quarto = {
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#journal-articles" id="toc-journal-articles" class="nav-link active" data-scroll-target="#journal-articles">Journal articles</a></li>
+  <li><a href="#preprints" id="toc-preprints" class="nav-link active" data-scroll-target="#preprints">Preprints</a></li>
+  <li><a href="#journal-articles" id="toc-journal-articles" class="nav-link" data-scroll-target="#journal-articles">Journal articles</a></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
@@ -243,20 +281,158 @@ window.Quarto = {
 
 
 <p>This is home for my research publications, each is linked with PDFs, preprints, and corresponding repositories with data and code, if applicable. Please reach out if there is something you want that you cannot obtain.</p>
-<section id="journal-articles" class="level2">
-<h2 class="anchored" data-anchor-id="journal-articles">Journal articles</h2>
-<div id="articles">
+<section id="preprints" class="level2">
+<h2 class="anchored" data-anchor-id="preprints">Preprints</h2>
+<div id="listing-preprints" class="quarto-listing quarto-listing-container-custom">
+<div class="research project-list">
+<ul class="list">
+    
+        <li class="project" data-index="0" data-categories="L2 processing,Webcame eye-tracking,R,Spoken word recognition,VWP" data-listing-date-sort="1739768400000" data-listing-file-modified-sort="1744573265208" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="214">
+            <div class="project-content listing-pub-info">
+                <p><strong>Geller, J.</strong>, Prystauka, Y., Colby, S. E., &amp; Drouin, J. R. (2025). Language Without Borders: A Step-by-Step Guide to Analyzing Webcam Eye-Tracking Data for L2 Research. https://doi.org/10.31234/osf.io/7jqea_v5</p>
+            </div>
 
+            
+            <div class="project-categories">
+                
+                    <div class="project-category"><a href="#category=L2 processing">
+                            L2 processing
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=Webcame eye-tracking">
+                            Webcame eye-tracking
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=R">
+                            R
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=Spoken word recognition">
+                            Spoken word recognition
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=VWP">
+                            VWP
+                        </a></div>
+                    
+            </div>
+            
+
+            
+            
+            
+            <div class="project-details-listing">
+                <ul class="project-links">
+                    <li class="project-link details">
+                        <a href="../Research/preprints/2025-02-17-L2-Webcam/index.html" class="listing-name">
+                            <i class="fa-solid fa-circle-info"></i> Full details »
+                        </a>
+                    </li>
+                    
+                        
+                    <li class="project-link">
+                        
+                        <a href="https://osf.io/preprints/psyarxiv/7jqea_v5">
+                        
+                            <i class="ai ai-psyarxiv-square"></i> Preprint
+                        </a>
+                    </li>
+                        
+                    <li class="project-link">
+                        
+                        <a href="https://osf.io/be4jd/">
+                        
+                            <i class="ai ai-osf-square"></i> OSF
+                        </a>
+                    </li>
+                        
+                    <li class="project-link">
+                        
+                        <a href="https://github.com/jgeller112/L2_VWP_Webcam">
+                        
+                            <i class="fa-brands fa-github-square"></i> Github
+                        </a>
+                    </li>
+                        
+                    
+                </ul>
+            </div>
+        </li>
+        
+        <li class="project" data-index="1" data-categories="accuracy in parameter estimation,,power,sampling,simulation,hypothesis testing" data-listing-date-sort="1703826000000" data-listing-file-modified-sort="1721932635887" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+            <div class="project-content listing-pub-info">
+                <p>Buchanan, E. M., Elsherif, M. M., <strong>Geller, J</strong>., Aberson, C., Gurkan, N., Ambrosini, E., Heyman, T., Montefinese, M., vanpaemel, W., &amp; Barzykowski, K. (2023). Accuracy in parameter estimation and simulation approaches for sample size planning with multiple stimuli. OSF Preprints, e3afx. Center for Open Science.</p>
+            </div>
+
+            
+            <div class="project-categories">
+                
+                    <div class="project-category"><a href="#category=accuracy in parameter estimation,">
+                            accuracy in parameter estimation,
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=power">
+                            power
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=sampling">
+                            sampling
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=simulation">
+                            simulation
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=hypothesis testing">
+                            hypothesis testing
+                        </a></div>
+                    
+            </div>
+            
+
+            
+            
+            
+            <div class="project-details-listing">
+                <ul class="project-links">
+                    <li class="project-link details">
+                        <a href="../Research/preprints/2024-Power-items/index.html" class="listing-name">
+                            <i class="fa-solid fa-circle-info"></i> Full details »
+                        </a>
+                    </li>
+                    
+                        
+                    <li class="project-link">
+                        
+                        <a href="https://ideas.repec.org/p/osf/osfxxx/e3afx.html">
+                        
+                            <i class="ai ai-psyarxiv-square"></i> Preprint
+                        </a>
+                    </li>
+                        
+                    <li class="project-link">
+                        
+                        <a href="https://www.zotero.org/save?type=doi&amp;q=10.31219/osf.io/e3afx">
+                        
+                            <i class="ai ai-zotero-square"></i> Add to Zotero
+                        </a>
+                    </li>
+                        
+                    
+                </ul>
+            </div>
+        </li>
+        
+</ul>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
 </div>
 </section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
-
-
-
-</section>
-
-<div class="quarto-listing quarto-listing-container-custom" id="listing-listing-1">
+<section id="journal-articles" class="level2">
+<h2 class="anchored" data-anchor-id="journal-articles">Journal articles</h2>
+<div id="listing-articles" class="quarto-listing quarto-listing-container-custom">
 <div class="research project-list">
 <ul class="list">
     
@@ -308,71 +484,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="1" data-categories="accuracy in parameter estimation,,power,sampling,simulation,hypothesis testing" data-listing-date-sort="1703826000000" data-listing-file-modified-sort="1721932635887" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-            <div class="project-content listing-pub-info">
-                <p>Buchanan, E. M., Elsherif, M. M., <strong>Geller, J</strong>., Aberson, C., Gurkan, N., Ambrosini, E., Heyman, T., Montefinese, M., vanpaemel, W., &amp; Barzykowski, K. (2023). Accuracy in parameter estimation and simulation approaches for sample size planning with multiple stimuli. OSF Preprints, e3afx. Center for Open Science.</p>
-            </div>
-
-            
-            <div class="project-categories">
-                
-                    <div class="project-category"><a href="#category=accuracy in parameter estimation,">
-                            accuracy in parameter estimation,
-                        </a></div>
-                    
-                    <div class="project-category"><a href="#category=power">
-                            power
-                        </a></div>
-                    
-                    <div class="project-category"><a href="#category=sampling">
-                            sampling
-                        </a></div>
-                    
-                    <div class="project-category"><a href="#category=simulation">
-                            simulation
-                        </a></div>
-                    
-                    <div class="project-category"><a href="#category=hypothesis testing">
-                            hypothesis testing
-                        </a></div>
-                    
-            </div>
-            
-
-            
-            
-            
-            <div class="project-details-listing">
-                <ul class="project-links">
-                    <li class="project-link details">
-                        <a href="../Research/articles/2024-Power-items/index.html" class="listing-name">
-                            <i class="fa-solid fa-circle-info"></i> Full details »
-                        </a>
-                    </li>
-                    
-                        
-                    <li class="project-link">
-                        
-                        <a href="https://ideas.repec.org/p/osf/osfxxx/e3afx.html">
-                        
-                            <i class="ai ai-psyarxiv-square"></i> Preprint
-                        </a>
-                    </li>
-                        
-                    <li class="project-link">
-                        
-                        <a href="https://www.zotero.org/save?type=doi&amp;q=10.31219/osf.io/e3afx">
-                        
-                            <i class="ai ai-zotero-square"></i> Add to Zotero
-                        </a>
-                    </li>
-                        
-                    
-                </ul>
-            </div>
-        </li>
-        
-        <li class="project" data-index="2" data-categories="crowdsourcing science,data analysis,scientific transparency,speech,acoustic analysis" data-listing-date-sort="1689825600000" data-listing-file-modified-sort="1728228608992" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="214">
+        <li class="project" data-index="1" data-categories="crowdsourcing science,data analysis,scientific transparency,speech,acoustic analysis" data-listing-date-sort="1689825600000" data-listing-file-modified-sort="1728228608992" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="214">
             <div class="project-content listing-pub-info">
                 <p>Coretta, S., Casillas, J. V., Roessig, S., <strong>Geller, J</strong>., et al. (2023). Multidimensional signals and analytic flexibility: Estimating degrees of freedom in human-speech analyses. <em>Advances in Methods and Practices in Psychological Science </em>, 6(3). https://doi.org/10.1177/25152459231162567</p>
             </div>
@@ -444,7 +556,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="3" data-categories="eye tracking,remote eye tracking,e-cigarette marketing,young adults,mobile phone" data-listing-date-sort="1673758800000" data-listing-file-modified-sort="1728228654817" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="343">
+        <li class="project" data-index="2" data-categories="eye tracking,remote eye tracking,e-cigarette marketing,young adults,mobile phone" data-listing-date-sort="1673758800000" data-listing-file-modified-sort="1744574269294" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="362">
             <div class="project-content listing-pub-info">
                 <p>Chen-Sankey, J., Elhabashy, M., Gratale, S., <strong>Geller, J.</strong>, Mercincavage, M., Strasser, A. A., Delnevo, C. D., Jeong, M., &amp; Wackowski, O. A. (2023). Examining Visual Attention to Tobacco Marketing Materials Among Young Adult Smokers: Protocol for a Remote Webcam-Based Eye-Tracking Experiment. <em>JMIR research Protocols</em>, 12, e43512. https://doi.org/10.2196/43512</p>
             </div>
@@ -508,7 +620,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="4" data-categories="Group counseling,Stigma,Self-affirmation,Intervention,Personal values" data-listing-date-sort="1664596800000" data-listing-file-modified-sort="1728228559289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="250">
+        <li class="project" data-index="3" data-categories="Group counseling,Stigma,Self-affirmation,Intervention,Personal values" data-listing-date-sort="1664596800000" data-listing-file-modified-sort="1728228559289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="250">
             <div class="project-content listing-pub-info">
                 <p>Seidman, A. J., Wade, N. G., &amp; <strong>Geller, J</strong>. (2022). The effects of group counseling and self-affirmation on stigma and group relationship development: A replication and extension. <em>Journal of Counseling Psychology</em>, 69(5), 701–710. https://doi.org/10.1037/cou0000614</p>
             </div>
@@ -580,7 +692,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="5" data-categories="Auditory percepton,Speech-in-noise,closed-set,Open-set,Validation" data-listing-date-sort="1633579200000" data-listing-file-modified-sort="1728228435280" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="218">
+        <li class="project" data-index="4" data-categories="Auditory percepton,Speech-in-noise,closed-set,Open-set,Validation" data-listing-date-sort="1633579200000" data-listing-file-modified-sort="1728228435280" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="218">
             <div class="project-content listing-pub-info">
                 <p><strong>Geller, J</strong>., Holmes, A., Schwalje, A., Berger, J. I., Gander, P. E., Choi, I., &amp; McMurray, B. (2021). Validation of the Iowa test of consonant perception.<em> The Journal of the Acoustical Society of America</em>, 150(3), 2131. https://doi.org/10.1121/10.0006246</p>
             </div>
@@ -660,7 +772,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="6" data-categories="Intracranial EEG,Semantic cognition,Taxonomic,Thematic" data-listing-date-sort="1617768000000" data-listing-file-modified-sort="1728228422214" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="158">
+        <li class="project" data-index="5" data-categories="Intracranial EEG,Semantic cognition,Taxonomic,Thematic" data-listing-date-sort="1617768000000" data-listing-file-modified-sort="1728228422214" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="158">
             <div class="project-content listing-pub-info">
                 <p>Thye, M., <strong>Geller, J</strong>., Szaflarski, J. P., &amp; Mirman, D. (2021). Intracranial EEG evidence of functional specialization for taxonomic and thematic relations. <em>Cortex</em>, 140, 40–50. https://doi.org/10.1016/j.cortex.2021.03.018</p>
             </div>
@@ -728,7 +840,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="7" data-categories="Learning and Memory,Disfluency,Sans Forgetica" data-listing-date-sort="1617163200000" data-listing-file-modified-sort="1728228407883" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="225">
+        <li class="project" data-index="6" data-categories="Learning and Memory,Disfluency,Sans Forgetica" data-listing-date-sort="1617163200000" data-listing-file-modified-sort="1728228407883" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="225">
             <div class="project-content listing-pub-info">
                 <p><strong>Geller, J</strong>., &amp; Peterson, D. (2021). Is this going to be on the test? Test expectancy moderates the disfluency effect with sans forgetica. <em>Journal of Experimental Psychology: Learning, Memory, and Cognition </em>, 47(12), 1924–1938. https://doi.org/10.1037/xlm0001042</p>
             </div>
@@ -808,7 +920,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="8" data-categories="Pupil,Effort,Speech,Age,Fatigue" data-listing-date-sort="1594353600000" data-listing-file-modified-sort="1728228387841" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="248">
+        <li class="project" data-index="7" data-categories="Pupil,Effort,Speech,Age,Fatigue" data-listing-date-sort="1594353600000" data-listing-file-modified-sort="1728228387841" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="248">
             <div class="project-content listing-pub-info">
                 <p>McGarrigle, R., Knight, S., Rakusen, L., <strong>Geller, J</strong>., &amp; Mattys, S. (2021). Older adults show a more sustained pattern of effortful listening than young adults.<em> Psychology and aging</em>, 36(4), 504–519. https://doi.org/10.1037/pag0000587</p>
             </div>
@@ -880,7 +992,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="9" data-categories="Learning and Memory,Disfluency,Fonts" data-listing-date-sort="1590638400000" data-listing-file-modified-sort="1728228376432" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="199">
+        <li class="project" data-index="8" data-categories="Learning and Memory,Disfluency,Fonts" data-listing-date-sort="1590638400000" data-listing-file-modified-sort="1728228376432" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="199">
             <div class="project-content listing-pub-info">
                 <p><strong>Geller, J</strong>., Davis, S. D., &amp; Peterson, D. J. (2020). Sans Forgetica is not desirable for learning. <em>Memory</em>, 28(8), 957–967. https://doi.org/10.1080/09658211.2020.1797096</p>
             </div>
@@ -968,7 +1080,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="10" data-categories="Pupil,R,Tutorial,Eye-tracking,Preprocessing" data-listing-date-sort="1579842000000" data-listing-file-modified-sort="1728228361073" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="164">
+        <li class="project" data-index="9" data-categories="Pupil,R,Tutorial,Eye-tracking,Preprocessing" data-listing-date-sort="1579842000000" data-listing-file-modified-sort="1728228361073" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="164">
             <div class="project-content listing-pub-info">
                 <p><strong>Geller, J</strong>., Winn, M. B., Mahr, T., &amp; Mirman, D. (2020). GazeR: A package for processing gaze position and pupil size data. <em>Behavior Research Methods</em>, 52(5), 2232–2255. https://doi.org/10.3758/s13428-020-01374-8</p>
             </div>
@@ -1056,7 +1168,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="11" data-categories="Overconfidence,Metacognition,Second language,Fluency" data-listing-date-sort="1569988800000" data-listing-file-modified-sort="1728228142865" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="178">
+        <li class="project" data-index="10" data-categories="Overconfidence,Metacognition,Second language,Fluency" data-listing-date-sort="1569988800000" data-listing-file-modified-sort="1728228142865" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="178">
             <div class="project-content listing-pub-info">
                 <p>Carpenter, S. K., &amp; <strong>Geller, J</strong>. (2020). Is a picture really worth a thousand words? Evaluating contributions of fluency and analytic processing in metacognitive judgements for pictures in foreign language vocabulary learning. <em>Quarterly journal of experimental psychology</em>, 73(2), 211–224. https://doi.org/10.1177/1747021819879416</p>
             </div>
@@ -1124,7 +1236,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="12" data-categories="Pupil,Semantics,Word Recognition,Taxonomic,Thematic" data-listing-date-sort="1548306000000" data-listing-file-modified-sort="1728228166562" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="248">
+        <li class="project" data-index="11" data-categories="Pupil,Semantics,Word Recognition,Taxonomic,Thematic" data-listing-date-sort="1548306000000" data-listing-file-modified-sort="1728228166562" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="248">
             <div class="project-content listing-pub-info">
                 <p><strong>Geller, J</strong>., Landrigan, J. F., &amp; Mirman, D. (2019). A Pupillometric examination of cognitive control in taxonomic and thematic semantic memory. <em>Journal of Cognition</em>, 2(1), 6. https://doi.org/10.5334/joc.56</p>
             </div>
@@ -1212,7 +1324,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="13" data-categories="Aphasia,Disconnection,Lesion load,Lesion-symptom mapping,Replication,White matter" data-listing-date-sort="1547614800000" data-listing-file-modified-sort="1728228130761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="219">
+        <li class="project" data-index="12" data-categories="Aphasia,Disconnection,Lesion load,Lesion-symptom mapping,Replication,White matter" data-listing-date-sort="1547614800000" data-listing-file-modified-sort="1728228130761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="219">
             <div class="project-content listing-pub-info">
                 <p><strong>Geller, J</strong>., Thye, M., &amp; Mirman, D. (2019). Estimating effects of graded white matter damage and binary tract disconnection on post-stroke language impairment. <em>Neuroimage</em>, 189, 248–257. https://doi.org/10.1016/j.neuroimage.2019.01.020</p>
             </div>
@@ -1296,7 +1408,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="14" data-categories="Learning and Memory,Disfluency,Metacognition,Cursive,Word Recognition" data-listing-date-sort="1541131200000" data-listing-file-modified-sort="1728228121864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="188">
+        <li class="project" data-index="13" data-categories="Learning and Memory,Disfluency,Metacognition,Cursive,Word Recognition" data-listing-date-sort="1541131200000" data-listing-file-modified-sort="1728228121864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="188">
             <div class="project-content listing-pub-info">
                 <p><strong>Geller, J</strong>., Still, M. L., Dark, V. J., &amp; Carpenter, S. K. (2018). Would disfluency by any other name still be disfluent? Examining the disfluency effect with cursive handwriting. <em>Memory &amp; Cognition</em>, 46(7), 1109–1126. https://doi.org/10.3758/s13421-018-0824-6</p>
             </div>
@@ -1368,7 +1480,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="15" data-listing-date-sort="1525147200000" data-listing-file-modified-sort="1728228109332" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="110">
+        <li class="project" data-index="14" data-listing-date-sort="1525147200000" data-listing-file-modified-sort="1728228109332" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="110">
             <div class="project-content listing-pub-info">
                 <p><strong>Geller, J</strong>., &amp; Still, M. L. (2018).Testing expectancy, but not JOLs, moderate the disfluency effect. <em>Proceedings of the 38th Annual Meeting of the Cognitive Science Society</em>. (pp. 1175-1179). Madison, WI: Cognitive Science Society.</p>
             </div>
@@ -1400,7 +1512,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="16" data-categories="Learning and Memory,Fluencuy,Disfluency,Metacognition" data-listing-date-sort="1524974400000" data-listing-file-modified-sort="1728228096609" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="221">
+        <li class="project" data-index="15" data-categories="Learning and Memory,Fluencuy,Disfluency,Metacognition" data-listing-date-sort="1524974400000" data-listing-file-modified-sort="1728228096609" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="221">
             <div class="project-content listing-pub-info">
                 <p>Toftness, A. R., Carpenter, S. K., <strong>Geller, J</strong>., Lauber, S., Johnson, M., &amp; Armstrong, P. I. (2018). Instructor fluency leads to higher confidence in learning, but not better learning. <em>Metacognition and Learning</em>, 13(1), 1–14. https://doi.org/10.1007/s11409-017-9175-0</p>
             </div>
@@ -1460,7 +1572,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="17" data-categories="Education,Learning and Memory,Study Habits,Motivation" data-listing-date-sort="1510203600000" data-listing-file-modified-sort="1728228082461" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="218">
+        <li class="project" data-index="16" data-categories="Education,Learning and Memory,Study Habits,Motivation" data-listing-date-sort="1510203600000" data-listing-file-modified-sort="1728228082461" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="218">
             <div class="project-content listing-pub-info">
                 <p><strong> Geller, J</strong>., Toftness, A. R., Armstrong, P. I., Carpenter, S. K., Manz, C. L., Coffman, C. R., &amp; Lamm, M. H. (2018). Study strategies and beliefs about learning as a function of academic achievement and achievement goals.<em> Memory</em>, 26(5), 683–690. https://doi.org/10.1080/09658211.2017.1397175</p>
             </div>
@@ -1520,7 +1632,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="18" data-categories="Prequestions,Retreival practice,Classroom,Engineering education" data-listing-date-sort="1483246800000" data-listing-file-modified-sort="1728228071987" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+        <li class="project" data-index="17" data-categories="Prequestions,Retreival practice,Classroom,Engineering education" data-listing-date-sort="1483246800000" data-listing-file-modified-sort="1728228071987" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
             <div class="project-content listing-pub-info">
                 <p><strong> Geller, J</strong>., Carpenter, S. K., Lamm, M. H., Rahman, S., Armstrong, P. I., &amp; Coffman, C. R. (2017). Prequestions do not enhance the benefits of retrieval in a STEM classroom. <em>Cognitive research: principles and implications</em>, 2(1), 42. https://doi.org/10.1186/s41235-017-0078-z</p>
             </div>
@@ -1580,7 +1692,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="19" data-categories="Pupillometry,Word Recognition,Language,Eye-tracking,Inhibition" data-listing-date-sort="1463716800000" data-listing-file-modified-sort="1728227800511" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="210">
+        <li class="project" data-index="18" data-categories="Pupillometry,Word Recognition,Language,Eye-tracking,Inhibition" data-listing-date-sort="1463716800000" data-listing-file-modified-sort="1728227800511" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="210">
             <div class="project-content listing-pub-info">
                 <p><strong> Geller, J</strong>., Still, M. L., &amp; Morris, A. L. (2016). Eyes wide open: Pupil size as a proxy for inhibition in the masked-priming paradigm.<em>Memory &amp; Cognition</em>, 44(4), 554–564. https://doi.org/10.3758/s13421-015-0577-4</p>
             </div>
@@ -1644,7 +1756,7 @@ window.Quarto = {
             </div>
         </li>
         
-        <li class="project" data-index="20" data-categories="Replication,Open Science,Psychology" data-listing-date-sort="1382500800000" data-listing-file-modified-sort="1728227721749" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="74">
+        <li class="project" data-index="19" data-categories="Replication,Open Science,Psychology" data-listing-date-sort="1382500800000" data-listing-file-modified-sort="1728227721749" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="74">
             <div class="project-content listing-pub-info">
                 <p>Brandt, M. J., IJzerman, H., Dijksterhuis, A., Farach, F. J.,<strong> Geller, J</strong>., Giner-Sorolla, R., Grange, J. A., Perugini, M., Spies, J. R., &amp; van't Veer, A. (2014). The replication recipe: What makes for a convincing replication? <em>Journal of Experimental Social Psychology</em>, 50, 217–224. https://doi.org/10.1016/j.jesp.2013.10.005</p>
             </div>
@@ -1705,10 +1817,16 @@ window.Quarto = {
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-<nav id="listing-1-pagination" class="listing-pagination" aria-label="Page Navigation">
-  <ul class="pagination"></ul>
-</nav>
-</div></main> <!-- /main -->
+</div>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

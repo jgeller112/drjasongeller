@@ -35,39 +35,21 @@ doi: https://doi.org/10.2196/43512
 ## Abstract
 
 ### Background
-Eye tracking provides an objective way to measure attention, which can advance researchers’ and policy makers’
-understanding of tobacco marketing influences. The development of remote webcam-based eye-tracking technology, integrated
-with web-based crowdsourcing studies, may be a cost-effective and time-efficient alternative to laboratory-based eye-tracking
-methods. However, research is needed to evaluate the utility of remote eye-tracking methods.
+
+Eye tracking provides an objective way to measure attention, which can advance researchers’ and policy makers’ understanding of tobacco marketing influences. The development of remote webcam-based eye-tracking technology, integrated with web-based crowdsourcing studies, may be a cost-effective and time-efficient alternative to laboratory-based eye-tracking methods. However, research is needed to evaluate the utility of remote eye-tracking methods.
 
 ### Objective
 
-This study aimed to detail the process of designing a remote webcam-based eye-tracking experiment and provide
-data on associations between participant characteristics and the outcomes of experiment completion.
+This study aimed to detail the process of designing a remote webcam-based eye-tracking experiment and provide data on associations between participant characteristics and the outcomes of experiment completion.
 
 ### Methods
 
-A total of 2023 young adult (aged 18-34 years) cigarette smokers in the United States were recruited to complete a
-web-based survey that included a 90-second remote eye-tracking experiment that examined attention to e-cigarette marketing
-materials. Primary outcome measures assessed the completion of the remote eye-tracking experiment—specifically, experiment
-initiated versus not initiated, experiment completed versus not completed, and usable versus nonusable eye-tracking data generated.
-Multivariable logistic regressions examined the associations between outcome measures and participants’ sociodemographic
-backgrounds, tobacco use history, and electronic devices (mobile vs desktop) used during the experiment.
+A total of 2023 young adult (aged 18-34 years) cigarette smokers in the United States were recruited to complete a web-based survey that included a 90-second remote eye-tracking experiment that examined attention to e-cigarette marketing materials. Primary outcome measures assessed the completion of the remote eye-tracking experiment—specifically, experiment initiated versus not initiated, experiment completed versus not completed, and usable versus nonusable eye-tracking data generated. Multivariable logistic regressions examined the associations between outcome measures and participants’ sociodemographic backgrounds, tobacco use history, and electronic devices (mobile vs desktop) used during the experiment.
 
 ### Results
 
-Study recruitment began on April 14, 2022, and ended on May 3, 2022. Of the 2023 survey participants, 1887 (93.28%)
-initiated the experiment, and 777 (38.41%) completed the experiment. Of the 777 participants who completed the experiment,
-381 (49%) generated usable data. Results from the full regression models show that non-Hispanic Black participants (adjusted
-odds ratio [AOR] 0.64, 95% CI 0.45-0.91) were less likely to complete the eye-tracking experiment than non-Hispanic White
-participants. In addition, female (vs male) participants (AOR 1.46, 95% CI 1.01-2.11), those currently using (vs not using)
-e-cigarettes (AOR 2.08, 95% CI 1.13-3.82), and those who used mobile (vs desktop) devices (AOR 5.10, 95% CI 3.05-8.52) were
-more likely to generate usable eye-tracking data.
+Study recruitment began on April 14, 2022, and ended on May 3, 2022. Of the 2023 survey participants, 1887 (93.28%) initiated the experiment, and 777 (38.41%) completed the experiment. Of the 777 participants who completed the experiment, 381 (49%) generated usable data. Results from the full regression models show that non-Hispanic Black participants (adjusted odds ratio \[AOR\] 0.64, 95% CI 0.45-0.91) were less likely to complete the eye-tracking experiment than non-Hispanic White participants. In addition, female (vs male) participants (AOR 1.46, 95% CI 1.01-2.11), those currently using (vs not using) e-cigarettes (AOR 2.08, 95% CI 1.13-3.82), and those who used mobile (vs desktop) devices (AOR 5.10, 95% CI 3.05-8.52) were more likely to generate usable eye-tracking data.
 
 ### Conclusions
 
-Young adult participants were willing to try remote eye-tracking technology, and nearly half of those who
-completed the experiment generated usable eye-tracking data (381/777, 49%). Thus, we believe that the use of remote eye-tracking
-tools, integrated with crowdsourcing recruitment, can be a useful approach for the tobacco regulatory science research community
-to collect high-quality, large-scale eye-tracking data in a timely fashion and thereby address research questions related to the
-ever-evolving
+Young adult participants were willing to try remote eye-tracking technology, and nearly half of those who completed the experiment generated usable eye-tracking data (381/777, 49%). Thus, we believe that the use of remote eye-tracking tools, integrated with crowdsourcing recruitment, can be a useful approach for the tobacco regulatory science research community to collect high-quality, large-scale eye-tracking data in a timely fashion and thereby address research questions related to the ever-evolving
