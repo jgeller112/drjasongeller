@@ -1,6 +1,10 @@
 ---
 title: "Talks"
 listing:
+  - id: workshop_2025
+    contents: workshop_2025.yml
+    template: ../html/talks/listing.ejs
+    sort: "date desc"
   - id: talks_2021
     contents: talks_2021.yml
     sort: "date desc"
@@ -25,11 +29,11 @@ This page contains the source code, links, and slides for various workshops, tal
 Except where noted, all content is © Jason Geller and licensed under [Creative Commons](https://creativecommons.org/licenses/by-sa/4.0/).
 :::
 
-## 2024
+## 2025
 
 ### Workshop
 
-::: {#workshop_2024}
+::: {#workshop_2025}
 :::
 
 
