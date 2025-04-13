@@ -76,6 +76,34 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-workshop_2025 .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-date','listing-description','listing-location','listing-links',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      
+      searchColumns: ["listing-title","listing-date","listing-description","listing-location","listing-links"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-workshop_2025'] = new List('listing-workshop_2025', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
     const listingTargetEl = window.document.querySelector('#listing-talks_2021 .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
@@ -217,9 +245,8 @@ window.Quarto = {
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <span class="nav-link">
-<span class="menu-text">Software</span>
-    </span>
+    <a class="nav-link" href="../Software/index.html"> 
+<span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://scholar.google.com/citations?user=yO68sggAAAAJ&amp;hl=en"> 
@@ -262,7 +289,7 @@ window.Quarto = {
     <h2 id="toc-title">Year</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">2024</a>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">2025</a>
   <ul class="collapse">
   <li><a href="#workshop" id="toc-workshop" class="nav-link" data-scroll-target="#workshop">Workshop</a></li>
   </ul></li>
@@ -294,11 +321,49 @@ Copyright
 </div>
 </div>
 <section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">2024</h2>
+<h2 class="anchored" data-anchor-id="section">2025</h2>
 <section id="workshop" class="level3">
 <h3 class="anchored" data-anchor-id="workshop">Workshop</h3>
-<div id="workshop_2024">
+<div id="listing-workshop_2025" class="quarto-listing quarto-listing-container-custom">
 
+<div class="talks">
+    
+    <div class="talk-entry">
+        <div class="metadata">          
+            <p class="date">April 3, 2025</p>
+        </div>
+        <div class="body">
+            <p class="title">Reproducible Manuscripts in R with Quarto Workshop</p>
+            <p class="description">Open Science practices—centered on transparency, reproducibility, and accessibility—are becoming increasingly essential in psychology. In this 2-hour workshop, you’ll learn how to set up a fully reproducible workflow to generate a publication-ready manuscript that seamlessly integrates data, R or Python code, text, and references. Special emphasis will be placed on formatting APA-style manuscripts. Additionally, I’ll introduce Nix/Rix as a solution for managing package and system dependencies to ensure long-term reproducibility. | Boston College</p>
+
+            
+            <ul class="talk-links">
+                
+                <li class="talk-link">
+                    
+                    <a href="https://jgeller112.github.io/BC_2025_Repo_Manuscripts/">
+                    
+                        <i class="fa-solid fa-globe"></i> Website
+                    </a>
+                </li>
+                
+                <li class="talk-link">
+                    
+                    <a href="https://youtu.be/r0JAerAbnSI">
+                    
+                        <i class="fa-brands fa-youtube"></i> Video
+                    </a>
+                </li>
+                
+            
+            </ul>
+        </div>
+    </div>
+    
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
 </div>
 </section>
 </section>
@@ -339,7 +404,7 @@ Copyright
                     
                     <a href="https://beonlineconference.com/what-did-you-say-a-web-based-validation-of-a-speech-in-noise-task/">
                     
-                        <i class="fa-video"></i> Video
+                        <i class="fa-brands fa-youtube"></i> Video
                     </a>
                 </li>
                 
@@ -384,7 +449,7 @@ No matching items
                     
                     <a href="https://www.youtube.com/watch?v=GV_4FV66uQI&amp;t=492s">
                     
-                        <i class="fa-video"></i> Video
+                        <i class="fa-brands fa-youtube"></i> Video
                     </a>
                 </li>
                 

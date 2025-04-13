@@ -46,6 +46,7 @@ website:
       - text: "Teaching"
         file: Teaching/index.qmd
       - text: Software
+        file: Software/index.qmd
       - text: "{{< ai google-scholar >}}"
         href: https://scholar.google.com/citations?user=yO68sggAAAAJ&hl=en
       - icon: github

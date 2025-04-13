@@ -1,5 +1,9 @@
 [
   {
+    "listing": "/Talks/index.html",
+    "items": []
+  },
+  {
     "listing": "/Research/index.html",
     "items": [
       "/Research/articles/2024-05-06-SPAML/index.html",
@@ -25,10 +29,6 @@
       "/Research/preprints/2025-02-17-L2-Webcam/index.html",
       "/Research/preprints/2024-Power-items/index.html"
     ]
-  },
-  {
-    "listing": "/Talks/index.html",
-    "items": []
   },
   {
     "listing": "/blog/index.html",

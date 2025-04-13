@@ -159,9 +159,8 @@ div.column-margin+hr.dinkus {
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <span class="nav-link">
-<span class="menu-text">Software</span>
-    </span>
+    <a class="nav-link" href="../../../Software/index.html"> 
+<span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://scholar.google.com/citations?user=yO68sggAAAAJ&amp;hl=en"> 
@@ -216,84 +215,25 @@ div.column-margin+hr.dinkus {
 </header><p>In this vignette I am going to show you how to read in a GazePoint data file along with some behavioral data and use <code>gazeR</code> to preprocess the data.</p>
 <p>Special thanks to Matthew K Robinson (Twitter:<span class="citation" data-cites="matthewkrobinson">@matthewkrobinson</span>) for letting me use some data from an auditory oddball task he conducted on himself (we do what we have to do as researchers :D): see Tweet below.</p>
 <p></p>
-<div id="tweet-55321"></div>
-<script>tweet=<!DOCTYPE html>
-<html lang="en" class="dog">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X / ?</title>
-    <meta name="version" content="1">
-    <link href="https://abs.twimg.com/favicons/twitter.3.ico" rel="shortcut icon" type="image/x-icon">
-    <link rel="stylesheet" href="https://abs.twimg.com/errors/fullscreen_errors-047ca1475a6efac7c9c89a9ff92b7a20.css">
-  </head>
-  <body dir="auto">
-    <div class="top">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1519 200">
-        <defs/>
-        <path d="M708 103l9-5 13 1 2-2 5 1h8l1-1 42-5h7l7 3v1l12-2a9368 9368 0 0129-6l2-5 12 1 6-2 3 1 2 1v-2l13-2v1l4 2 7-1h1l17-3 1 2 4-1 18-7 3-1 4-1h9l13-1 1-4 3-2 13 1v2l22-2 10-3h6l10 5 16-5 15-3 2-1 8-4 6-2 12-1 7-2 8 5 7 1 22-9h7l5-1v-1l25-3 1 2 5 2v1h11l2 1 8-4h3l-1 1h11l10-6 6 3 9-1 4-1 1 1 1-2 6-1 1-1 10-2h2l7-5v1h4l3-1c11 0 23 2 34-3 2-2 7 0 10 0l12 1 4 1 9 2 12-1 11-3 11 1h4l10-6 17 1 2 1c9 2 19-3 22-11l1-1 9 1 15-5c3-1 9 4 9-5 5 0 5 3 5 7l2 3 4-1 4-2 9-4 3-3h3l8-4 6-3 26 2 7-4h18l7 1c10 3 13-6 17-12l8 4 3-1 14-3 15-2a38 38 0 01-5-1l-8-4 7-8 8-4-10-136-922 71 16 205z"/>
-        <path d="M-36 193l9-5 13 1 2-2 5 1h8l1-1 42-5h7l7 3v1l12-2a9328 9328 0 0129-6l2-5 12 1 6-2 3 1 2 1v-2l13-2v1l4 2 7-1h1l17-3 1 2 4-1 18-7 3-1 4-1h9l13-1 1-4 3-2 13 1v2l22-2 10-3h6l10 5 16-5 15-3 2-1 8-4 6-2 12-1 7-2 8 5 7 1 22-9h7l5-1v-1l25-3 1 2 5 2v1h11l2 1 8-4h3l-1 1h9a6 6 0 002 0l10-6 6 3 9-1 4-1a6 6 0 001 1l1-2 6-1 1-1 10-2h2l7-5v1h4l3-1c11 0 23 2 34-3 2-2 7 0 10 0l12 1 4 1 9 2 12-1 11-3 11 1h4l10-6 17 1 2 1c9 2 19-3 22-11l1-1 9 1 15-5c3-1 9 4 9-5 5 0 5 3 5 7l2 3 4-1 4-2 9-4 3-3h3l8-4 6-3 26 2 7-4h18l7 1c10 3 13-6 17-12l8 4 3-1 14-3 15-2a37 37 0 01-5-1l-8-4 7-8 8-4-10-136-922 71 16 205z"/>
-      </svg>
-    </div>
-    <div class="container">
-      <div class="content">
-        <a href="https://twitter.com" title="X logo">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="x-logo"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
-        </a>
-        <h1 id="header">Nothing to see here</h1>
-        <p id="description">Looks like this page doesn’t exist. Here’s a picture of a poodle sitting in a chair for your trouble.</p>
-
-          <a id="button_search" href="/" class="button">Looking for this?</a>
-
-      </div>
-      <img id="image" src="https://abs.twimg.com/errors/ErrorState_NotFound.png" alt="A primped poodle with a bow in its hair sitting in a chair like a human.">
-      <div class="footer">
-        <ul>
-          <li><a href="https://twitter.com/" id="footer_home">Home</a></li>
-          <li><a href="https://status.twitterstat.us/" id="footer_status">Status</a></li>
-          <li><a href="https://twitter.com/tos" id="footer_tos">Terms of Service</a></li>
-          <li><a href="https://twitter.com/privacy" id="footer_privacy">Privacy Policy</a></li>
-          <li><a href="https://support.twitter.com/articles/20170514" id="footer_cookie">Cookie Policy</a></li>
-          <li><a href="https://legal.twitter.com/imprint" id="footer_imprint">Imprint</a></li>
-          <li><a href="https://business.twitter.com/en/help/troubleshooting/how-twitter-ads-work.html" id="footer_ads">Ads info</a></li>
-          <li dir="ltr">&copy; X Corp. <span id="copyright-year">&emsp;&emsp;&emsp;&emsp;</span></li>
-        </ul>
-      </div>
-    </div>
-  </body>
-  <script src="https://abs.twimg.com/errors/404-8651f633fd193e0b546010676a4fac06.js"></script><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{2021,
-  author = {},
-  title = {Analzying {GazePoint} {Pupil} {Data} {With} {GazeR}},
-  date = {2021-04-21},
-  url = {https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2/},
-  langid = {en}
-}
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2021" class="csl-entry quarto-appendix-citeas" role="listitem">
-<em>Analzying GazePoint Pupil Data With GazeR</em>. (2021, April 21). <a href="https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2/">https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2/</a>
-</div></div></section></div></main>
-</div>
-
-
-<p>
-;document.getElementById("tweet-55321").innerHTML = tweet["html"];</p>
-<p>To get started, we need to load in some important packages and read in the GP data files.</p>
-<section id="load-packages" class="level2"><h2 data-anchor-id="load-packages">Load Packages</h2>
+<div id="tweet-12560"></div>
+<script>tweet={"url":"https:\/\/twitter.com\/matthewkrobison\/status\/1384208857790959617","author_name":"Matthew K. Robison","author_url":"https:\/\/twitter.com\/matthewkrobison","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Ei&#39;m just a guy, running himself through auditory oddball tasks on his new eye-tracker, asking it to love him back. \u003Ca href=\"https:\/\/t.co\/wPb97MZuNF\"\u003Epic.twitter.com\/wPb97MZuNF\u003C\/a\u003E\u003C\/p\u003E&mdash; Matthew K. Robison (@matthewkrobison) \u003Ca href=\"https:\/\/twitter.com\/matthewkrobison\/status\/1384208857790959617?ref_src=twsrc%5Etfw\"\u003EApril 19, 2021\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-12560").innerHTML = tweet["html"];</script><p>To get started, we need to load in some important packages and read in the GP data files.</p>
+<section id="load-packages" class="level2"><h2 class="anchored" data-anchor-id="load-packages">Load Packages</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"dmirman/gazer"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gazer)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"tmalsburg/saccades/saccades"</span>, <span class="at">dependencies=</span><span class="cn">TRUE</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(saccades)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"dmirman/gazer"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/dmirman/gazer">gazer</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"tmalsburg/saccades/saccades"</span>, dependencies<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tmalsburg/saccades">saccades</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="read-data" class="level2"><h2 data-anchor-id="read-data">Read Data</h2>
+</section><section id="read-data" class="level2"><h2 class="anchored" data-anchor-id="read-data">Read Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">'oddball_eye_13.tsv'</span>) <span class="co"># eye data </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bs<span class="ot">&lt;-</span><span class="fu">fread</span>(<span class="st">'oddball_13.tsv'</span>) <span class="co"># behave data</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">'oddball_eye_13.tsv'</span><span class="op">)</span> <span class="co"># eye data </span></span>
+<span><span class="va">bs</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">'oddball_13.tsv'</span><span class="op">)</span> <span class="co"># behave data</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pd</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     CNT     TIME    TIME_TICK    FPOGX     FPOGY    FPOGS   FPOGD FPOGID FPOGV
    &lt;int&gt;    &lt;num&gt;        &lt;i64&gt;    &lt;num&gt;     &lt;num&gt;    &lt;num&gt;   &lt;num&gt;  &lt;int&gt; &lt;int&gt;
@@ -344,7 +284,7 @@ div.column-margin+hr.dinkus {
 5: 0.088     1     0     0     0     0   482    -1    -1     0           START
 6: 0.088     1     0     0     0     0   454    -1    -1     0           START</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">bs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   subject trial   tone    rt response
      &lt;int&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt;   &lt;char&gt;
@@ -358,66 +298,66 @@ div.column-margin+hr.dinkus {
 </div>
 <p>What we are going to do is run the GazePoint file through the <code>merge_gazepoint</code> function. The function below takes a list of files called file_list and merges all the files together, appends a subject column, creates a trial column using the USER column (GazePoint only allows messages through this channel), creates a time variable (in milliseconds). In the <code>merge_gazepoint</code> function the <code>trail_msg</code> argument requires users to denote a message used in the USER column that references the start of the trial–in our case the <code>START</code> message denotes the start of a new trial. This is a solution by Matt Robinson, but there are other ways one could extract the trial number. What I have done in the past is append a message with the trial iteration (e.g., START_1) in Python and use the <code>separate</code> function to get the trial number.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A "monocular mean" averages both eyes together. If data is available in just</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># one eye, use the available value as the mean, unless we need_both is TRUE.</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param x1 pupil left</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param x2 pupil right</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return vector with monocular mean values</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>compute_monocular_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, x2) {</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  xm <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(<span class="fu">cbind</span>(x1, x2), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># NaN =&gt; NA</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(<span class="fu">is.nan</span>(xm), <span class="cn">NA</span>, xm)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># function for processing GazePoint data</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>merge_gazepoint <span class="ot">&lt;-</span> <span class="cf">function</span> (file_list, <span class="at">trial_msg =</span> <span class="st">"START"</span>){</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">#file list is path to .xls files</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#vroom is faster</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(data.table)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  file_ids<span class="ot">=</span><span class="fu">str_replace_all</span>(<span class="fu">basename</span>(file_list),<span class="st">"([:alpha:]|[:punct:])"</span>,<span class="st">""</span>) <span class="co"># remove everything but numeric values</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>                   </span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">map2</span>(file_list, file_ids, <span class="sc">~</span><span class="fu">fread</span>(.x) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">id =</span> .y))  <span class="sc">%&gt;%</span> </span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_rows</span>()</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">=</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">pupil=</span><span class="fu">compute_monocular_mean</span>(RPMM, LPMM)) <span class="sc">%&gt;%</span> <span class="co"># average both eyes</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>             dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>           dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">pupil =</span> <span class="fu">ifelse</span>(RPMMV <span class="sc">==</span> <span class="dv">0</span><span class="sc">|</span>LPMMV <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, pupil),  <span class="co">#missing data labeled as blinks</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>         <span class="at">new_trial =</span> <span class="fu">ifelse</span>(USER <span class="sc">==</span> trial_msg <span class="sc">&amp;</span> <span class="fu">lag</span>(USER) <span class="sc">!=</span> trial_msg, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># Label new trials</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>         <span class="at">trial =</span> <span class="fu">cumsum</span>(new_trial), <span class="co"># Create a trial variable</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>         <span class="at">time =</span> <span class="fu">floor</span>(TIME<span class="sc">*</span><span class="dv">1000</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(trial) <span class="sc">%&gt;%</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">time=</span>time <span class="sc">-</span> <span class="fu">min</span>(time)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(id, time,trial,pupil,BPOGX, BPOGY, USER) <span class="sc">%&gt;%</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">"message"</span> <span class="ot">=</span> <span class="st">"USER"</span>, <span class="st">"subject"</span><span class="ot">=</span> <span class="st">"id"</span>, <span class="st">"x"</span> <span class="ot">=</span> <span class="st">"BPOGX"</span>, <span class="st">"y"</span> <span class="ot">=</span> <span class="st">"BPOGY"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(trial <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(d)</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># A "monocular mean" averages both eyes together. If data is available in just</span></span>
+<span><span class="co"># one eye, use the available value as the mean, unless we need_both is TRUE.</span></span>
+<span><span class="co">#' @param x1 pupil left</span></span>
+<span><span class="co">#' @param x2 pupil right</span></span>
+<span><span class="co">#' @return vector with monocular mean values</span></span>
+<span><span class="va">compute_monocular_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">xm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="co"># NaN =&gt; NA</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html">is.nan</a></span><span class="op">(</span><span class="va">xm</span><span class="op">)</span>, <span class="cn">NA</span>, <span class="va">xm</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># function for processing GazePoint data</span></span>
+<span><span class="va">merge_gazepoint</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">file_list</span>, <span class="va">trial_msg</span> <span class="op">=</span> <span class="st">"START"</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co">#file list is path to .xls files</span></span>
+<span>  <span class="co">#vroom is faster</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">file_ids</span><span class="op">=</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html">basename</a></span><span class="op">(</span><span class="va">file_list</span><span class="op">)</span>,<span class="st">"([:alpha:]|[:punct:])"</span>,<span class="st">""</span><span class="op">)</span> <span class="co"># remove everything but numeric values</span></span>
+<span>                   </span>
+<span>  <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">file_list</span>, <span class="va">file_ids</span>, <span class="op">~</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">.y</span><span class="op">)</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span>  </span>
+<span>  <span class="va">d</span> <span class="op">=</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pupil<span class="op">=</span><span class="fu">compute_monocular_mean</span><span class="op">(</span><span class="va">RPMM</span>, <span class="va">LPMM</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># average both eyes</span></span>
+<span>             <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>           <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pupil <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">RPMMV</span> <span class="op">==</span> <span class="fl">0</span><span class="op">|</span><span class="va">LPMMV</span> <span class="op">==</span> <span class="fl">0</span>, <span class="fl">0</span>, <span class="va">pupil</span><span class="op">)</span>,  <span class="co">#missing data labeled as blinks</span></span>
+<span>         new_trial <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">USER</span> <span class="op">==</span> <span class="va">trial_msg</span> <span class="op">&amp;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">USER</span><span class="op">)</span> <span class="op">!=</span> <span class="va">trial_msg</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, <span class="co"># Label new trials</span></span>
+<span>         trial <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">new_trial</span><span class="op">)</span>, <span class="co"># Create a trial variable</span></span>
+<span>         time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="va">TIME</span><span class="op">*</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">trial</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>time<span class="op">=</span><span class="va">time</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">time</span>,<span class="va">trial</span>,<span class="va">pupil</span>,<span class="va">BPOGX</span>, <span class="va">BPOGY</span>, <span class="va">USER</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="st">"message"</span> <span class="op">=</span> <span class="st">"USER"</span>, <span class="st">"subject"</span><span class="op">=</span> <span class="st">"id"</span>, <span class="st">"x"</span> <span class="op">=</span> <span class="st">"BPOGX"</span>, <span class="st">"y"</span> <span class="op">=</span> <span class="st">"BPOGY"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">trial</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="merge-files" class="level2"><h2 data-anchor-id="merge-files">Merge Files</h2>
+</section><section id="merge-files" class="level2"><h2 class="anchored" data-anchor-id="merge-files">Merge Files</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">here</span>()) <span class="co"># setwd</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>gp_file<span class="ot">&lt;-</span><span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(), <span class="at">pattern =</span> <span class="st">"eye_13.tsv"</span>) <span class="co"># get files </span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">here</span>())</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">merge_gazepoint</span>(gp_file, <span class="at">trial_msg =</span> <span class="st">"START"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>subject<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(d<span class="sc">$</span>subject)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>pdb <span class="ot">&lt;-</span> <span class="fu">full_join</span>(bs, d)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>pdb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(pdb)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># setwd</span></span>
+<span></span>
+<span><span class="va">gp_file</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span>, pattern <span class="op">=</span> <span class="st">"eye_13.tsv"</span><span class="op">)</span> <span class="co"># get files </span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>      </span>
+<span><span class="va">d</span><span class="op">=</span><span class="fu">merge_gazepoint</span><span class="op">(</span><span class="va">gp_file</span>, trial_msg <span class="op">=</span> <span class="st">"START"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">d</span><span class="op">$</span><span class="va">subject</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">subject</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pdb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">bs</span>, <span class="va">d</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pdb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">pdb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pdb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 73,724 × 10
    subject trial tone     rt response  time pupil     x     y message
@@ -435,32 +375,32 @@ div.column-margin+hr.dinkus {
 # ℹ 73,714 more rows</code></pre>
 </div>
 </div>
-</section><section id="blinks" class="level2"><h2 data-anchor-id="blinks">Blinks</h2>
-<section id="finding-blinks" class="level3"><h3 data-anchor-id="finding-blinks">Finding Blinks</h3>
+</section><section id="blinks" class="level2"><h2 class="anchored" data-anchor-id="blinks">Blinks</h2>
+<section id="finding-blinks" class="level3"><h3 class="anchored" data-anchor-id="finding-blinks">Finding Blinks</h3>
 <p>The GazePoint data does not indicate where blinks occurred. What we are going to do is use the <code>blink_detect</code> function in gazer. This relies on the <code>saccades</code> package (<a href="https://github.com/tmalsburg/saccades)" class="uri">https://github.com/tmalsburg/saccades)</a> which uses a velocity based measure based on X,Y coordinates to find blinks. Once we find the blinks we can change the pupil size at that time point as NA and interpolate over it.</p>
 <p>As a note, the GazePoint does not seem to sample consistently. In this case, it samples every 16 or 17 ms. This is a problem for some other blink detection measures (e.g., the noise based pupil function). One soultion would be to downsample the data at the onset so there is consistancy from sample to sample.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>blinks_merge<span class="ot">&lt;-</span> <span class="fu">blink_detect</span>(pdb)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> blinks <span class="ot">&lt;-</span> blinks_merge <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">group_by</span>(<span class="at">grp =</span> <span class="fu">cumsum</span>(<span class="sc">!</span><span class="fu">is.na</span>(startend))) <span class="sc">%&gt;%</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Label =</span> <span class="fu">replace</span>(startend, <span class="fu">first</span>(startend) <span class="sc">==</span> <span class="st">'start'</span>, <span class="st">'start'</span>)) <span class="sc">%&gt;%</span> <span class="co">#extends the start message forward until end message</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># label blinks as 1</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">select</span>(subject, trial, time, x, y, pupil, message, tone,  Label, <span class="sc">-</span>grp)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a> blinks_data <span class="ot">&lt;-</span> blinks  <span class="sc">%&gt;%</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">blink=</span><span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(Label), <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">pupil=</span><span class="fu">ifelse</span>(blink<span class="sc">==</span><span class="dv">1</span> <span class="sc">|</span> pupil<span class="sc">==</span><span class="dv">0</span>, <span class="cn">NA</span>, pupil))<span class="sc">%&gt;%</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">ungroup</span>()<span class="sc">%&gt;%</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">select</span>(subject, time, trial, pupil, x, y, trial, message, tone, blink, <span class="sc">-</span>Label)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">blinks_merge</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gazer/man/blink_detect.html">blink_detect</a></span><span class="op">(</span><span class="va">pdb</span><span class="op">)</span></span>
+<span></span>
+<span> <span class="va">blinks</span> <span class="op">&lt;-</span> <span class="va">blinks_merge</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>grp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">startend</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/replace.html">replace</a></span><span class="op">(</span><span class="va">startend</span>, <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/last.html">first</a></span><span class="op">(</span><span class="va">startend</span><span class="op">)</span> <span class="op">==</span> <span class="st">'start'</span>, <span class="st">'start'</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co">#extends the start message forward until end message</span></span>
+<span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>        <span class="co"># label blinks as 1</span></span>
+<span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span>, <span class="va">time</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">pupil</span>, <span class="va">message</span>, <span class="va">tone</span>,  <span class="va">Label</span>, <span class="op">-</span><span class="va">grp</span><span class="op">)</span></span>
+<span> </span>
+<span> </span>
+<span> <span class="va">blinks_data</span> <span class="op">&lt;-</span> <span class="va">blinks</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>blink<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Label</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, pupil<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">blink</span><span class="op">==</span><span class="fl">1</span> <span class="op">|</span> <span class="va">pupil</span><span class="op">==</span><span class="fl">0</span>, <span class="cn">NA</span>, <span class="va">pupil</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">time</span>, <span class="va">trial</span>, <span class="va">pupil</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">trial</span>, <span class="va">message</span>, <span class="va">tone</span>, <span class="va">blink</span>, <span class="op">-</span><span class="va">Label</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here is a look at the trials containing blinks:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>blinks_data <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(blink<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()<span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">blinks_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">blink</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
@@ -545,24 +485,24 @@ div.column-margin+hr.dinkus {
 </table>
 </div>
 </div>
-</section><section id="extending-blinks" class="level3"><h3 data-anchor-id="extending-blinks">Extending Blinks</h3>
+</section><section id="extending-blinks" class="level3"><h3 class="anchored" data-anchor-id="extending-blinks">Extending Blinks</h3>
 <p>I am extending blinks 100 ms forward and backward in time.</p>
-</section><section id="interpolate-blinks" class="level3"><h3 data-anchor-id="interpolate-blinks">Interpolate Blinks</h3>
+</section><section id="interpolate-blinks" class="level3"><h3 class="anchored" data-anchor-id="interpolate-blinks">Interpolate Blinks</h3>
 <p>Here let’s linearly interpolate the blinks and then smooth the data using a 5-point moving average.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Smooth and Interpolate</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>smooth_interp <span class="ot">&lt;-</span> <span class="fu">smooth_interpolate_pupil</span>(pup_extend, <span class="at">pupil=</span><span class="st">"pupil"</span>, <span class="at">extendpupil=</span><span class="st">"extendpupil"</span>, <span class="at">extendblinks=</span><span class="cn">TRUE</span>, <span class="at">step.first=</span><span class="st">"smooth"</span>, <span class="at">maxgap=</span><span class="cn">Inf</span>, <span class="at">type=</span><span class="st">"linear"</span>, <span class="at">hz=</span><span class="dv">60</span>, <span class="at">n=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Smooth and Interpolate</span></span>
+<span><span class="va">smooth_interp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gazer/man/smooth_interpolate_pupil.html">smooth_interpolate_pupil</a></span><span class="op">(</span><span class="va">pup_extend</span>, pupil<span class="op">=</span><span class="st">"pupil"</span>, extendpupil<span class="op">=</span><span class="st">"extendpupil"</span>, extendblinks<span class="op">=</span><span class="cn">TRUE</span>, step.first<span class="op">=</span><span class="st">"smooth"</span>, maxgap<span class="op">=</span><span class="cn">Inf</span>, type<span class="op">=</span><span class="st">"linear"</span>, hz<span class="op">=</span><span class="fl">60</span>, n<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="plot-interpolated-trial" class="level2"><h2 data-anchor-id="plot-interpolated-trial">Plot Interpolated Trial</h2>
+</section></section><section id="plot-interpolated-trial" class="level2"><h2 class="anchored" data-anchor-id="plot-interpolated-trial">Plot Interpolated Trial</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>interp_graph <span class="ot">&lt;-</span> smooth_interp  <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(trial<span class="sc">==</span><span class="st">"400"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>bold <span class="ot">&lt;-</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">14</span>) <span class="co">#axis bold</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Graph interpolation</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>pup_g<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(interp_graph, <span class="fu">aes</span>(<span class="at">x=</span> time, <span class="at">y=</span> pupil)) <span class="sc">+</span> <span class="fu">geom_point</span>()<span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">colour=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>pup_interp), <span class="at">colour=</span><span class="st">"darkgreen"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Time (ms)"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Pupil Size (mm)"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face=</span><span class="st">"bold"</span>), <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>, <span class="at">face=</span><span class="st">"bold"</span>), <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face=</span><span class="st">"bold"</span>), <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>, <span class="at">face=</span><span class="st">"bold"</span>))</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pup_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">interp_graph</span> <span class="op">&lt;-</span> <span class="va">smooth_interp</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">trial</span><span class="op">==</span><span class="st">"400"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">bold</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, color <span class="op">=</span> <span class="st">"black"</span>, size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span> <span class="co">#axis bold</span></span>
+<span><span class="co">#Graph interpolation</span></span>
+<span><span class="va">pup_g</span><span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">interp_graph</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">time</span>, y<span class="op">=</span> <span class="va">pupil</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>colour<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">time</span>, y<span class="op">=</span><span class="va">pup_interp</span><span class="op">)</span>, colour<span class="op">=</span><span class="st">"darkgreen"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Time (ms)"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Pupil Size (mm)"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.title.y<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span>, face<span class="op">=</span><span class="st">"bold"</span><span class="op">)</span>, axis.title.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">16</span>, face<span class="op">=</span><span class="st">"bold"</span><span class="op">)</span>, axis.text.x<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span>, face<span class="op">=</span><span class="st">"bold"</span><span class="op">)</span>, axis.text.y<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">12</span>, face<span class="op">=</span><span class="st">"bold"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pup_g</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
@@ -570,13 +510,13 @@ div.column-margin+hr.dinkus {
 </div>
 </div>
 </div>
-</section><section id="baseline-correction" class="level2"><h2 data-anchor-id="baseline-correction">Baseline Correction</h2>
+</section><section id="baseline-correction" class="level2"><h2 class="anchored" data-anchor-id="baseline-correction">Baseline Correction</h2>
 <p>Here we will do a subtractive baseline correction taking 250 ms before the onset of the tone as baseline.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#use messages to baseline correct</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>baseline_pupil<span class="ot">&lt;-</span><span class="fu">baseline_correction_pupil</span>(smooth_interp, <span class="at">pupil_colname=</span><span class="st">"pup_interp"</span>, <span class="at">baseline_window=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">250</span>), <span class="at">baseline_method =</span> <span class="st">"sub"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(baseline_pupil)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#use messages to baseline correct</span></span>
+<span><span class="va">baseline_pupil</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/baseline_correction_pupil.html">baseline_correction_pupil</a></span><span class="op">(</span><span class="va">smooth_interp</span>, pupil_colname<span class="op">=</span><span class="st">"pup_interp"</span>, baseline_window<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">250</span><span class="op">)</span>, baseline_method <span class="op">=</span> <span class="st">"sub"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">baseline_pupil</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 13
   subject trial baseline  time pupil     x     y message tone  blink extendpupil
@@ -590,44 +530,44 @@ div.column-margin+hr.dinkus {
 # ℹ 2 more variables: pup_interp &lt;dbl&gt;, baselinecorrectedp &lt;dbl&gt;</code></pre>
 </div>
 </div>
-</section><section id="missing-data" class="level2"><h2 data-anchor-id="missing-data">Missing Data</h2>
+</section><section id="missing-data" class="level2"><h2 class="anchored" data-anchor-id="missing-data">Missing Data</h2>
 <p>Let’s see how much missing data there is and remove trials with greater than 20% missing data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pup_missing<span class="ot">&lt;-</span><span class="fu">count_missing_pupil</span>(baseline_pupil, <span class="at">missingthresh =</span> .<span class="dv">5</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># remove outliers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pup_missing</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/count_missing_pupil.html">count_missing_pupil</a></span><span class="op">(</span><span class="va">baseline_pupil</span>, missingthresh <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span>
+<span><span class="co"># remove outliers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>I remove about 15 percent of trials.</p>
-</section><section id="unlikely-pupil-sizes" class="level2"><h2 data-anchor-id="unlikely-pupil-sizes">Unlikely Pupil Sizes</h2>
+</section><section id="unlikely-pupil-sizes" class="level2"><h2 class="anchored" data-anchor-id="unlikely-pupil-sizes">Unlikely Pupil Sizes</h2>
 <p>Now let’s keep pupil diameter sizes between 2 mm and 9 mm</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pup_outliers<span class="ot">&lt;-</span>pup_missing <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span> (pup_interp  <span class="sc">&gt;=</span> <span class="dv">2</span>, pup_interp <span class="sc">&lt;=</span> <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pup_outliers</span><span class="op">&lt;-</span><span class="va">pup_missing</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span><span class="va">pup_interp</span>  <span class="op">&gt;=</span> <span class="fl">2</span>, <span class="va">pup_interp</span> <span class="op">&lt;=</span> <span class="fl">9</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="mad" class="level2"><h2 data-anchor-id="mad">MAD</h2>
+</section><section id="mad" class="level2"><h2 class="anchored" data-anchor-id="mad">MAD</h2>
 <p>Get rid of artifacts we might have missed during some earlier steps.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#MAD removal</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>max_removal<span class="ot">&lt;-</span>pup_missing  <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(subject, trial) <span class="sc">%&gt;%</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">speed=</span><span class="fu">speed_pupil</span>(pup_interp,time)) <span class="sc">%&gt;%</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">MAD=</span><span class="fu">calc_mad</span>(speed)) <span class="sc">%&gt;%</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(speed <span class="sc">&lt;</span> MAD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="co">#MAD removal</span></span>
+<span><span class="va">max_removal</span><span class="op">&lt;-</span><span class="va">pup_missing</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>speed<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/speed_pupil.html">speed_pupil</a></span><span class="op">(</span><span class="va">pup_interp</span>,<span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>MAD<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/calc_mad.html">calc_mad</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">speed</span> <span class="op">&lt;</span> <span class="va">MAD</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="onset" class="level2"><h2 data-anchor-id="onset">Onset</h2>
+</section><section id="onset" class="level2"><h2 class="anchored" data-anchor-id="onset">Onset</h2>
 <p>Let’s only look fron the start of the trial until 1500 ms</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>baseline_pupil_onset<span class="ot">&lt;-</span>max_removal <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(subject, trial) <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(time <span class="sc">&lt;=</span> <span class="dv">1500</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(subject, trial, time,baselinecorrectedp, tone, time,message,baselinecorrectedp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">baseline_pupil_onset</span><span class="op">&lt;-</span><span class="va">max_removal</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">&lt;=</span> <span class="fl">1500</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span>, <span class="va">time</span>,<span class="va">baselinecorrectedp</span>, <span class="va">tone</span>, <span class="va">time</span>,<span class="va">message</span>,<span class="va">baselinecorrectedp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="downsample" class="level2"><h2 data-anchor-id="downsample">Downsample</h2>
+</section><section id="downsample" class="level2"><h2 class="anchored" data-anchor-id="downsample">Downsample</h2>
 <p>Downsample the time-course to 50 ms.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#downsample</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>timebins1<span class="ot">&lt;-</span> <span class="fu">downsample_gaze</span>(baseline_pupil_onset, <span class="at">bin.length=</span><span class="dv">50</span>, <span class="at">timevar =</span> <span class="st">"time"</span>, <span class="at">aggvars =</span> <span class="fu">c</span>(<span class="st">"subject"</span>, <span class="st">"tone"</span>, <span class="st">"timebins"</span>), <span class="at">type=</span><span class="st">"pupil"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>timebins1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#downsample</span></span>
+<span><span class="va">timebins1</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gazer/man/downsample_gaze.html">downsample_gaze</a></span><span class="op">(</span><span class="va">baseline_pupil_onset</span>, bin.length<span class="op">=</span><span class="fl">50</span>, timevar <span class="op">=</span> <span class="st">"time"</span>, aggvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"subject"</span>, <span class="st">"tone"</span>, <span class="st">"timebins"</span><span class="op">)</span>, type<span class="op">=</span><span class="st">"pupil"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">timebins1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 62 × 4
    subject tone  timebins aggbaseline
@@ -645,16 +585,16 @@ div.column-margin+hr.dinkus {
 # ℹ 52 more rows</code></pre>
 </div>
 </div>
-</section><section id="visualize-time-course" class="level2"><h2 data-anchor-id="visualize-time-course">Visualize Time-course</h2>
+</section><section id="visualize-time-course" class="level2"><h2 class="anchored" data-anchor-id="visualize-time-course">Visualize Time-course</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cursive_plot <span class="ot">&lt;-</span><span class="fu">ggplot</span>(timebins1)<span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(timebins, aggbaseline, <span class="at">linetype=</span>tone, <span class="at">color=</span>tone) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> <span class="st">"mean"</span>, <span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span><span class="st">"Time (ms)"</span>,<span class="at">y =</span><span class="st">"Pupil Dilation (baseline - pupil))"</span>) <span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.0</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cursive_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cursive_plot</span> <span class="op">&lt;-</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">timebins1</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">timebins</span>, <span class="va">aggbaseline</span>, linetype<span class="op">=</span><span class="va">tone</span>, color<span class="op">=</span><span class="va">tone</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="st">"mean"</span>, geom <span class="op">=</span> <span class="st">"line"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span><span class="st">"Time (ms)"</span>,y <span class="op">=</span><span class="st">"Pupil Dilation (baseline - pupil))"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">0.0</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cursive_plot</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
@@ -665,7 +605,16 @@ div.column-margin+hr.dinkus {
 <p>This looks very similar to the one in the Tweet albeit a bit smoother as a result of the extra preprocessing done.</p>
 
 
-</section><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{2021,
+  author = {},
+  title = {Analzying {GazePoint} {Pupil} {Data} {With} {GazeR}},
+  date = {2021-04-21},
+  url = {https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2021" class="csl-entry quarto-appendix-citeas" role="listitem">
+<em>Analzying GazePoint Pupil Data With GazeR</em>. (2021, April 21). <a href="https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2/">https://www.drjasongeller.com/blog/posts/2021-04-21-gazePoint_gazer_2/</a>
+</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1084,7 +1033,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><!-- /content --><footer class="footer"><div class="nav-footer">
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Jason Geller</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
 </div>   
@@ -1096,6 +1047,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+
 
 <script src="https://platform.twitter.com/widgets.js"></script>
 </body></html>
