@@ -1,7 +1,7 @@
 ---
 title: Curriculum vitæ
 description: "Jason Geller's  CV"
-date: 2024-07-17
+date: 2025-04-13
 title-block-banner: "#771C6D"
 published-title: CV last updated
 engine: knitr
