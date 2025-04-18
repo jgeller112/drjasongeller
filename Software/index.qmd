@@ -23,12 +23,12 @@ This page highlights software packages I’ve developed to support open and repr
 
 ## webgazeR
 
-<img src="https://private-user-images.githubusercontent.com/18429968/413459761-ef82786d-a1a6-4246-a5b2-00eb1312edef.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDQ1NzczODIsIm5iZiI6MTc0NDU3NzA4MiwicGF0aCI6Ii8xODQyOTk2OC80MTM0NTk3NjEtZWY4Mjc4NmQtYTFhNi00MjQ2LWE1YjItMDBlYjEzMTJlZGVmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA0MTMlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNDEzVDIwNDQ0MlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWE1MGUzZTIyZjAwODk2M2MxMDMwNDU1M2MxZGYwNGI1NDBjM2JkNmFjZTc4Y2ZmOTUzODBhMjVmMzhlNzExZjEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.VLyAusgN7vIexHpG4A32HCZX5Jw2SqRs1Zs_eEeRCh8" alt="webgazeR logo" style="float: right; height: 120px; margin-left: 20px;">
+<img src="https://jgeller112.github.io/webgazeR/webgazeR_hex_sticker.png" alt="webgazeR logo" style="float: right; height: 120px; margin-left: 20px;">
 
-`webgazeR` is a browser-based eye-tracking toolkit for processing webcam gaze data collected online.
+`webgazeR` is a webcam eye-tracking toolkit for pre-processing webcam gaze data from WebGazer.JS
 
 - 🐙 **GitHub**: [jgeller112/webgazeR](https://github.com/jgeller112/webgazeR)
 - 💻 **Website**: [Package site](https://jgeller112.github.io/webgazeR/)
-- 📄 **Documentation**: [Read the preprint](https://osf.io/preprints/psyarxiv/7jqea_v5)
+- 📄 **Documentation**: [Read the Preprint](https://osf.io/preprints/psyarxiv/7jqea_v5)
 
 
