@@ -13,7 +13,7 @@ author:
     
 categories: 
   - L2 processing
-  - Webcame eye-tracking
+  - Webcam eye-tracking
   - R
   - Spoken word recognition
   - VWP 
