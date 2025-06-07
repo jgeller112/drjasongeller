@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.54">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Jason Geller">
 <meta name="dcterms.date" content="2022-03-10">
 <meta name="description" content="I walkthrough a technique called multi-time-point analysis highlighted in Yu, Chen, Yang, &amp; Chou (2020)">
+
 <title>Multi-Time-Point Analysis: A New Way To Analyze Pupil Data | Jason Geller – Jason Geller, Ph.D.</title>
 <style>
 code{white-space: pre-wrap;}
@@ -76,6 +79,7 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -95,7 +99,8 @@ div.csl-indent {
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -121,7 +126,8 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style type="text/css">
+}</script>
+<style type="text/css">
 hr.dinkus {
     width: 50px;
     margin: 2em auto 2em;
@@ -132,6 +138,8 @@ div.column-margin+hr.dinkus {
     margin: 1em auto 2em;
 }
 </style>
+
+
 <meta name="twitter:title" content="Multi-Time-Point Analysis: A New Way To Analyze Pupil Data | Jason Geller">
 <meta name="twitter:description" content="I walkthrough a technique called multi-time-point analysis highlighted in Yu, Chen, Yang, &amp; Chou (2020)">
 <meta name="twitter:image" content="https://www.drjasongeller.com/files/profiles/twitter-card-large.png">
@@ -139,10 +147,13 @@ div.column-margin+hr.dinkus {
 <meta name="twitter:site" content="@jgeller_phd">
 <meta name="twitter:card" content="summary_large_image">
 </head>
+
 <body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Jason Geller, Ph.D.</span>
@@ -154,7 +165,7 @@ div.column-margin+hr.dinkus {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../../about/index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -192,16 +203,22 @@ div.column-margin+hr.dinkus {
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Multi-Time-Point Analysis: A New Way To Analyze Pupil Data</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
@@ -234,58 +251,68 @@ div.column-margin+hr.dinkus {
   
 
 
-</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Just a few weeks ago <span class="citation" data-cites="Mathot">Mathôt &amp; Vilotijević (<a href="#ref-Mathot" role="doc-biblioref">2022</a>)</span> released a great primer on pupillometry highlighting the method, providing guidelines on how to preprocess the data, and even offered a few suggestions on how to analyze the data (see their great figure below). This paper will for sure be something I revisit and will be the paper I send to folks interested in pupillometry. In their paper, they discuss fitting linear mixed models (LME) together with cross validation to test time points. While I think there are a lot of benefits of this approach (described in their paper), this method does not tell researchers what they really want to know: where an effect lies in the time course. In the the cross-validation + LME approach, it only takes the time points with highest <em>z</em> scores and submits those points to a final LME model. Ultimately, you can say a time point is significant at X, Y, and Z times, but cant really make any claims about the start and end of events. This got me thinking about a paper I read a few years ago by <span class="citation" data-cites="yu_multi-time-point_2020">Yu et al. (<a href="#ref-yu_multi-time-point_2020" role="doc-biblioref">2020</a>)</span> which looked at a method called multi-time-point analysis which they applied to fNIRS data. I really like the method (and paper) and began thinking about all the ways it could be applied (e.g., EEG, pupillometry). In the paper, they showed that it is a more powerful tool than the often used mass univariate approach. Here I show how to apply this method to pupillometry data.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="pupil_guide.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="370"></p>
+<figure class="figure">
+<p><img src="pupil_guide.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="370"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="multi-time-point-analysis-mtpa" class="level2"><h2 class="anchored" data-anchor-id="multi-time-point-analysis-mtpa">Multi-Time Point Analysis (MTPA)</h2>
+</section>
+<section id="multi-time-point-analysis-mtpa" class="level2">
+<h2 class="anchored" data-anchor-id="multi-time-point-analysis-mtpa">Multi-Time Point Analysis (MTPA)</h2>
 <p>There are a wide-variety of options when deciding on an appropriate analysis strategy to use. It is almost impossible to cover every method. When reviewing papers, I feel bad because I inevitable bring up methods the authors did not include. This blog post adds to the already complicated landscape of time course analysis and add yet another tool to the pupillometry toolbox.</p>
 <p>I mostly do these blogs as an aid to help me better understand a method. I also hope it will help others.</p>
 <p>To demonstrate MTPA I am going to use a simple example from data I collected as a postdoc at the University of Iowa. In this experiment, individuals (<em>N</em>=31) heard normal and 6-channel vocoded speech tokens (single words) and had to click on the correct picture. The vocoded condition should be harder, and in the figure below, you can see that it is–larger pupil size throughout the trial. Commonly, we would test significance by using a mass univariate approach (e.g., <em>t</em>-tests at each time point). Below we fit the time course data using Dale Barr’s <code>clusterperm</code> package with no corrections (with corrections nothing is significant). We see that there is a significant difference between the conditions that emerges starting around 800 ms and ends around 1900 ms. Using MTPA would we observe something different?</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman">pacman</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">#devtools::install_github("dalejbarr/clusterperm")</span></span>
-<span></span>
-<span></span>
-<span></span>
-<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">ERP</span>, <span class="va">mnormt</span>, <span class="va">fdrtool</span>,</span>
-<span>               <span class="va">tidyverse</span>, <span class="va">gridExtra</span>, <span class="va">crayon</span>, </span>
-<span>               <span class="va">boot</span>, <span class="va">reshape2</span>, <span class="va">ggthemes</span>, </span>
-<span>               <span class="va">devtools</span>,<span class="va">randomForest</span>,<span class="va">leaps</span>, <span class="va">pROC</span>, <span class="va">tidyverse</span>, <span class="va">here</span>, <span class="va">gazer</span>, <span class="va">clusterperm</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#devtools::install_github("dalejbarr/clusterperm")</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ERP, mnormt, fdrtool,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               tidyverse, gridExtra, crayon, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>               boot, reshape2, ggthemes, </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>               devtools,randomForest,leaps, pROC, tidyverse, here, gazer, clusterperm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vo_mu</span> <span class="op">&lt;-</span> <span class="fu">aov_by_bin</span><span class="op">(</span><span class="va">timebins1</span>, <span class="va">timebins</span>,   <span class="co"># clusterperm package</span></span>
-<span>  <span class="va">aggbaseline</span> <span class="op">~</span> <span class="va">vocoded</span> <span class="op">+</span> <span class="fu">Error</span><span class="op">(</span><span class="va">subject</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">vo_mu</span><span class="op">$</span><span class="va">p_adjuct</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">vo_mu</span><span class="op">$</span><span class="va">p</span>, method<span class="op">=</span><span class="st">"none"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">vo_mu_p</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">vo_mu</span>, <span class="va">vo_mu</span><span class="op">$</span><span class="va">p_adjuct</span> <span class="op">&lt;=</span> <span class="fl">.05</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">vo_mu_p</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>vo_mu <span class="ot">&lt;-</span> <span class="fu">aov_by_bin</span>(timebins1, timebins,   <span class="co"># clusterperm package</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  aggbaseline <span class="sc">~</span> vocoded <span class="sc">+</span> <span class="fu">Error</span>(subject))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>vo_mu<span class="sc">$</span>p_adjuct<span class="ot">&lt;-</span><span class="fu">p.adjust</span>(vo_mu<span class="sc">$</span>p, <span class="at">method=</span><span class="st">"none"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>vo_mu_p<span class="ot">=</span><span class="fu">subset</span>(vo_mu, vo_mu<span class="sc">$</span>p_adjuct <span class="sc">&lt;=</span> .<span class="dv">05</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(vo_mu_p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: right;">timebins</th>
 <th style="text-align: left;">effect</th>
 <th style="text-align: right;">stat</th>
 <th style="text-align: right;">p</th>
 <th style="text-align: right;">p_adjuct</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">800</td>
@@ -375,30 +402,34 @@ div.column-margin+hr.dinkus {
 </table>
 </div>
 </div>
-</section><section id="before-we-begin-a-summary" class="level2"><h2 class="anchored" data-anchor-id="before-we-begin-a-summary">Before We Begin: A Summary</h2>
+</section>
+<section id="before-we-begin-a-summary" class="level2">
+<h2 class="anchored" data-anchor-id="before-we-begin-a-summary">Before We Begin: A Summary</h2>
 <p>Before jumping into the MTPA analysis, I want to explain the method a little bit. The MTPA uses a random forest classifier in conjunction with cross validation to determine if there is a statistical difference in the pupil signal between conditions. This differs slightly from the approach outlined in <span class="citation" data-cites="Mathot">(<a href="#ref-Mathot" role="doc-biblioref">Mathôt &amp; Vilotijević, 2022</a>)</span>. In their approach, linear mixed models are used in conjunction with cross validation to pick samples with the highest Z value. In contrast, MTPA uses all time points. What MTPA does is calculate the area under the curve (AUC) along with 90% confidence intervals and averages them. Significance is determined by whether the CIs cross the .5 threshold. If it does not, there is a difference between conditions at that time point. Below I will outline specific steps needed to perform MTPA along with the R code.</p>
-</section><section id="running-mpta-in-r" class="level2"><h2 class="anchored" data-anchor-id="running-mpta-in-r">Running MPTA in R</h2>
+</section>
+<section id="running-mpta-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="running-mpta-in-r">Running MPTA in R</h2>
 <ol type="1">
 <li>We need to read in our sample data (described above) and <code>pivot_wide</code> so time is in columns and subjects and conditions are long.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Read Data</span></span>
-<span><span class="co"># Read the Data preprocessed by gazer </span></span>
-<span><span class="va">vocode</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"mtpa_file.csv"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">vocode_wide</span><span class="op">&lt;-</span> <span class="va">vocode</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">vocoded</span>, <span class="op">-</span><span class="va">X</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">subject</span>, <span class="va">Condition</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="co">#add T1:27 for time bc weird things when cols are numeric turn condition into factor</span></span>
-<span> <span class="fu">mutate</span><span class="op">(</span>timebins<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"T"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">27</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>,by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">timebins</span><span class="op">)</span><span class="op">)</span>, Condition<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Condition</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">mutate</span><span class="op">(</span>expt<span class="op">=</span><span class="st">"pupil"</span>, Subject<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">subject</span><span class="op">)</span>, Condition<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">Condition</span><span class="op">==</span><span class="st">"NS"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, Condition<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Condition</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">subject</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">timebins</span>, values_from <span class="op">=</span> <span class="va">aggbaseline</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">Condition</span><span class="op">)</span><span class="op">%&gt;%</span></span>
-<span>  <span class="fu">datawizard</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/datawizard/reference/data_relocate.html">data_reorder</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"expt"</span>, <span class="st">"Subject"</span>, <span class="st">"Condition"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Read Data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the Data preprocessed by gazer </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>vocode<span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"mtpa_file.csv"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>vocode_wide<span class="ot">&lt;-</span> vocode <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>vocoded, <span class="sc">-</span>X) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subject, Condition) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#add T1:27 for time bc weird things when cols are numeric turn condition into factor</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(<span class="at">timebins=</span><span class="fu">rep</span>(<span class="fu">paste</span>(<span class="st">"T"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">27</span>, <span class="at">sep=</span><span class="st">""</span>),<span class="at">by=</span><span class="fu">length</span>(timebins)), <span class="at">Condition=</span><span class="fu">as.factor</span>(Condition)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">expt=</span><span class="st">"pupil"</span>, <span class="at">Subject=</span><span class="fu">as.factor</span>(subject), <span class="at">Condition=</span><span class="fu">ifelse</span>(Condition<span class="sc">==</span><span class="st">"NS"</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">Condition=</span><span class="fu">as.factor</span>(Condition)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>subject) <span class="sc">%&gt;%</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> timebins, <span class="at">values_from =</span> aggbaseline) <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Condition)<span class="sc">%&gt;%</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  datawizard<span class="sc">::</span><span class="fu">data_reorder</span>(<span class="fu">c</span>(<span class="st">"expt"</span>, <span class="st">"Subject"</span>, <span class="st">"Condition"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>In MTPA, we must first partition the data into bandwidths(here two), or the number of points to consider at a time in the analysis—-for example with a bandwidth of 2, a model would be built from two time points (e.g., 1 and 2 and then 2 and 3 and so on and so forth until the last time point has been fit). In the matrix below, we see that category membership (Related (R) vs.&nbsp;Unrelated (U), or in our case normal and vocoded speech) is predicted from the signal at two time points. This is repeated until the last time point. In our example, this is the 27th time point, or 2500 ms. As a note, <span class="citation" data-cites="yu_multi-time-point_2020">Yu et al. (<a href="#ref-yu_multi-time-point_2020" role="doc-biblioref">2020</a>)</span> recommend 2 and stated other widths did not result in different conclusions.</li>
@@ -406,113 +437,118 @@ div.column-margin+hr.dinkus {
 <div class="cell" data-layout-align="center" data-message="false">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="matrix.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="215"></p>
+<figure class="figure">
+<p><img src="matrix.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="215"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define time point starts at -100 and ends at 2500</span></span>
-<span><span class="va">tp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">100</span>,<span class="fl">2500</span>,by<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">### Start MTPA</span></span>
-<span><span class="co">### Set parameters for MTPA</span></span>
-<span><span class="co"># Consider 2 time points at each testing</span></span>
-<span><span class="va">binwidth</span> <span class="op">=</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define time point starts at -100 and ends at 2500</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tp <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">100</span>,<span class="dv">2500</span>,<span class="at">by=</span><span class="dv">100</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">### Start MTPA</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">### Set parameters for MTPA</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Consider 2 time points at each testing</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>binwidth <span class="ot">=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>After this, we set our number of cross validations (100 times here), confidence interval, and our upper (number of time points (here it is 27) - banwidth (2) + 1)) and lower bounds, and create a matrix to store important model results.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rcvnum</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
-<span><span class="co"># Confidence interval</span></span>
-<span><span class="va">ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>,<span class="fl">0.95</span><span class="op">)</span></span>
-<span><span class="co"># Set the upper and lower bound </span></span>
-<span><span class="co"># number of timepoint - bin + 1</span></span>
-<span><span class="va">upperbound</span> <span class="op">&lt;-</span> <span class="fl">27</span><span class="op">-</span><span class="va">binwidth</span><span class="op">+</span><span class="fl">1</span></span>
-<span><span class="va">lowerbound</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span><span class="co"># Store the results</span></span>
-<span><span class="va">rst_vocode</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="fl">6</span>,<span class="va">upperbound</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rcvnum <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Confidence interval</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.95</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the upper and lower bound </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># number of timepoint - bin + 1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>upperbound <span class="ot">&lt;-</span> <span class="dv">27</span><span class="sc">-</span>binwidth<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>lowerbound <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the results</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>rst_vocode <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="dv">6</span>,upperbound)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
 <li>For every time point X CV, we fit a random forest model using the training data we created and use the test set for prediction. It is suggested that you sample 60~70% (two-thirds) of the data to train the model, and use the rest 30~40% (one-third) as your testing set. AUC and other important metrics are calculated for each time point and averaged together and stored in a matrix before going to the next time point. In our example we make sure that an equal number of normal speech and vocoded speech conditions are in each training and test sample.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Start MTPA model fitting with RF</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">lowerbound</span><span class="op">:</span><span class="va">upperbound</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="co"># Record the AUC and CE</span></span>
-<span>  <span class="va">ceauc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="fl">4</span>,<span class="va">rcvnum</span><span class="op">)</span></span>
-<span>  <span class="co"># Start cross validation</span></span>
-<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">rcvnum</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="co"># Set seed for reproducible research</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span></span>
-<span>    <span class="co"># Training and Testing Data</span></span>
-<span>    <span class="va">idc_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>,<span class="fl">5</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">31</span><span class="op">:</span><span class="fl">62</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="va">idc_train</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="va">idc_test</span></span>
-<span>    <span class="co"># Fit an RF model</span></span>
-<span>    <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">randomForest</span><span class="op">(</span><span class="va">Condition</span><span class="op">~</span><span class="va">.</span>,data<span class="op">=</span><span class="va">vocode_wide</span><span class="op">[</span><span class="va">idc_train</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="fl">3</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="fl">3</span><span class="op">+</span><span class="va">binwidth</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>,importance <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
-<span>    <span class="va">yhat_test_prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit</span>,newdata <span class="op">=</span> <span class="va">vocode_wide</span><span class="op">[</span><span class="va">idc_test</span>,<span class="op">]</span>,type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span></span>
-<span>    <span class="va">yhat_test_class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit</span>,newdata <span class="op">=</span> <span class="va">vocode_wide</span><span class="op">[</span><span class="va">idc_test</span>,<span class="op">]</span>,type <span class="op">=</span> <span class="st">"class"</span><span class="op">)</span></span>
-<span>    <span class="co"># Record the results of RF fitting on Testing data</span></span>
-<span>    <span class="va">ce_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">yhat_test_class</span><span class="op">!=</span><span class="va">vocode_wide</span><span class="op">[</span><span class="va">idc_test</span>,<span class="op">]</span><span class="op">$</span><span class="va">Condition</span><span class="op">)</span></span>
-<span>    <span class="va">auc_test</span> <span class="op">&lt;-</span> <span class="fu">pROC</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pROC/man/auc.html">auc</a></span><span class="op">(</span><span class="va">vocode_wide</span><span class="op">[</span><span class="va">idc_test</span>,<span class="op">]</span><span class="op">$</span><span class="va">Condition</span>,<span class="va">yhat_test_prob</span><span class="op">)</span></span>
-<span>    <span class="va">ceauc</span><span class="op">[</span><span class="fl">2</span>,<span class="va">k</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">ce_test</span></span>
-<span>    <span class="va">ceauc</span><span class="op">[</span><span class="fl">4</span>,<span class="va">k</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">auc_test</span></span>
-<span>  <span class="op">}</span></span>
-<span>  <span class="co"># Store the results of CV</span></span>
-<span>  <span class="va">rst_vocode</span><span class="op">[</span><span class="fl">1</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ceauc</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="va">rst_vocode</span><span class="op">[</span><span class="fl">2</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ceauc</span><span class="op">[</span><span class="fl">4</span>,<span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="va">rst_vocode</span><span class="op">[</span><span class="fl">3</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ceauc</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span>,probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ci</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="va">ci</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span>  <span class="va">rst_vocode</span><span class="op">[</span><span class="fl">4</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ceauc</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span>,probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ci</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="va">ci</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
-<span>  <span class="va">rst_vocode</span><span class="op">[</span><span class="fl">5</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ceauc</span><span class="op">[</span><span class="fl">4</span>,<span class="op">]</span>,probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ci</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="va">ci</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span>  <span class="va">rst_vocode</span><span class="op">[</span><span class="fl">6</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ceauc</span><span class="op">[</span><span class="fl">4</span>,<span class="op">]</span>,probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ci</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="va">ci</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
-<span><span class="op">}</span></span>
-<span><span class="co"># Reorganize the results, average all the time points that used to estimate the results</span></span>
-<span><span class="va">vocodem</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="fl">6</span>,<span class="fl">27</span><span class="op">)</span></span>
-<span><span class="va">vocodem</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">rst_vocode</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
-<span><span class="va">vocodem</span><span class="op">[</span>,<span class="fl">27</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">rst_vocode</span><span class="op">[</span>,<span class="fl">26</span><span class="op">]</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">upperbound</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">tpi</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span>  <span class="va">vocodem</span><span class="op">[</span><span class="fl">1</span>,<span class="va">tpi</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rst_vocode</span><span class="op">[</span><span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">+</span><span class="va">binwidth</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="va">vocodem</span><span class="op">[</span><span class="fl">2</span>,<span class="va">tpi</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rst_vocode</span><span class="op">[</span><span class="fl">2</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">+</span><span class="va">binwidth</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="va">vocodem</span><span class="op">[</span><span class="fl">3</span>,<span class="va">tpi</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rst_vocode</span><span class="op">[</span><span class="fl">3</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">+</span><span class="va">binwidth</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="va">vocodem</span><span class="op">[</span><span class="fl">4</span>,<span class="va">tpi</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rst_vocode</span><span class="op">[</span><span class="fl">4</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">+</span><span class="va">binwidth</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="va">vocodem</span><span class="op">[</span><span class="fl">5</span>,<span class="va">tpi</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rst_vocode</span><span class="op">[</span><span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">+</span><span class="va">binwidth</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="va">vocodem</span><span class="op">[</span><span class="fl">6</span>,<span class="va">tpi</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rst_vocode</span><span class="op">[</span><span class="fl">6</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="va">lowerbound</span><span class="op">-</span><span class="fl">1</span><span class="op">+</span><span class="va">binwidth</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">vocodem</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">vocodem</span><span class="op">)</span> <span class="co"># turn into df </span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">vocodem</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Time"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">27</span><span class="op">)</span> <span class="co">#label time</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">vocodem</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CE"</span>,<span class="st">"AUC"</span>,<span class="st">"CE_l"</span>,<span class="st">"CE_u"</span>,<span class="st">"AUC_l"</span>,<span class="st">"AUC_u"</span><span class="op">)</span> <span class="co"># label metrics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Start MTPA model fitting with RF</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> lowerbound<span class="sc">:</span>upperbound){</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Record the AUC and CE</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  ceauc <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="dv">4</span>,rcvnum)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Start cross validation</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rcvnum){</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set seed for reproducible research</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set.seed</span>(k)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Training and Testing Data</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    idc_test <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>,<span class="dv">5</span>),<span class="fu">sample</span>(<span class="dv">31</span><span class="sc">:</span><span class="dv">62</span>,<span class="dv">5</span>))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    idc_train <span class="ot">&lt;-</span> <span class="sc">-</span>idc_test</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fit an RF model</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    fit <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Condition<span class="sc">~</span>.,<span class="at">data=</span>vocode_wide[idc_train,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,(i<span class="sc">+</span><span class="dv">3</span>)<span class="sc">:</span>(i<span class="sc">+</span><span class="dv">3</span><span class="sc">+</span>binwidth<span class="dv">-1</span>))],<span class="at">importance =</span> F)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    yhat_test_prob <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit,<span class="at">newdata =</span> vocode_wide[idc_test,],<span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    yhat_test_class <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit,<span class="at">newdata =</span> vocode_wide[idc_test,],<span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Record the results of RF fitting on Testing data</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    ce_test <span class="ot">&lt;-</span> <span class="fu">mean</span>(yhat_test_class<span class="sc">!=</span>vocode_wide[idc_test,]<span class="sc">$</span>Condition)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    auc_test <span class="ot">&lt;-</span> pROC<span class="sc">::</span><span class="fu">auc</span>(vocode_wide[idc_test,]<span class="sc">$</span>Condition,yhat_test_prob)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    ceauc[<span class="dv">2</span>,k] <span class="ot">&lt;-</span> ce_test</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    ceauc[<span class="dv">4</span>,k] <span class="ot">&lt;-</span> auc_test</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store the results of CV</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  rst_vocode[<span class="dv">1</span>,i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(ceauc[<span class="dv">2</span>,])</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  rst_vocode[<span class="dv">2</span>,i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(ceauc[<span class="dv">4</span>,])</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  rst_vocode[<span class="dv">3</span>,i] <span class="ot">&lt;-</span> <span class="fu">quantile</span>(ceauc[<span class="dv">2</span>,],<span class="at">probs =</span> <span class="fu">c</span>(ci[<span class="dv">1</span>],ci[<span class="dv">2</span>]))[<span class="dv">1</span>]</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  rst_vocode[<span class="dv">4</span>,i] <span class="ot">&lt;-</span> <span class="fu">quantile</span>(ceauc[<span class="dv">2</span>,],<span class="at">probs =</span> <span class="fu">c</span>(ci[<span class="dv">1</span>],ci[<span class="dv">2</span>]))[<span class="dv">2</span>]</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  rst_vocode[<span class="dv">5</span>,i] <span class="ot">&lt;-</span> <span class="fu">quantile</span>(ceauc[<span class="dv">4</span>,],<span class="at">probs =</span> <span class="fu">c</span>(ci[<span class="dv">1</span>],ci[<span class="dv">2</span>]))[<span class="dv">1</span>]</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  rst_vocode[<span class="dv">6</span>,i] <span class="ot">&lt;-</span> <span class="fu">quantile</span>(ceauc[<span class="dv">4</span>,],<span class="at">probs =</span> <span class="fu">c</span>(ci[<span class="dv">1</span>],ci[<span class="dv">2</span>]))[<span class="dv">2</span>]</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorganize the results, average all the time points that used to estimate the results</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>vocodem <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="dv">6</span>,<span class="dv">27</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>vocodem[,<span class="dv">1</span>] <span class="ot">&lt;-</span> rst_vocode[,<span class="dv">1</span>]</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>vocodem[,<span class="dv">27</span>] <span class="ot">&lt;-</span> rst_vocode[,<span class="dv">26</span>]</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(upperbound<span class="dv">-1</span>)){</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  tpi <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  vocodem[<span class="dv">1</span>,tpi] <span class="ot">&lt;-</span> <span class="fu">mean</span>(rst_vocode[<span class="dv">1</span>,<span class="fu">c</span>((i<span class="sc">+</span>lowerbound<span class="dv">-1</span>)<span class="sc">:</span>(i<span class="sc">+</span>lowerbound<span class="dv">-1</span><span class="sc">+</span>binwidth<span class="dv">-1</span>))])</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  vocodem[<span class="dv">2</span>,tpi] <span class="ot">&lt;-</span> <span class="fu">mean</span>(rst_vocode[<span class="dv">2</span>,<span class="fu">c</span>((i<span class="sc">+</span>lowerbound<span class="dv">-1</span>)<span class="sc">:</span>(i<span class="sc">+</span>lowerbound<span class="dv">-1</span><span class="sc">+</span>binwidth<span class="dv">-1</span>))])</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  vocodem[<span class="dv">3</span>,tpi] <span class="ot">&lt;-</span> <span class="fu">mean</span>(rst_vocode[<span class="dv">3</span>,<span class="fu">c</span>((i<span class="sc">+</span>lowerbound<span class="dv">-1</span>)<span class="sc">:</span>(i<span class="sc">+</span>lowerbound<span class="dv">-1</span><span class="sc">+</span>binwidth<span class="dv">-1</span>))])</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  vocodem[<span class="dv">4</span>,tpi] <span class="ot">&lt;-</span> <span class="fu">mean</span>(rst_vocode[<span class="dv">4</span>,<span class="fu">c</span>((i<span class="sc">+</span>lowerbound<span class="dv">-1</span>)<span class="sc">:</span>(i<span class="sc">+</span>lowerbound<span class="dv">-1</span><span class="sc">+</span>binwidth<span class="dv">-1</span>))])</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  vocodem[<span class="dv">5</span>,tpi] <span class="ot">&lt;-</span> <span class="fu">mean</span>(rst_vocode[<span class="dv">5</span>,<span class="fu">c</span>((i<span class="sc">+</span>lowerbound<span class="dv">-1</span>)<span class="sc">:</span>(i<span class="sc">+</span>lowerbound<span class="dv">-1</span><span class="sc">+</span>binwidth<span class="dv">-1</span>))])</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  vocodem[<span class="dv">6</span>,tpi] <span class="ot">&lt;-</span> <span class="fu">mean</span>(rst_vocode[<span class="dv">6</span>,<span class="fu">c</span>((i<span class="sc">+</span>lowerbound<span class="dv">-1</span>)<span class="sc">:</span>(i<span class="sc">+</span>lowerbound<span class="dv">-1</span><span class="sc">+</span>binwidth<span class="dv">-1</span>))])</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>vocodem <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(vocodem) <span class="co"># turn into df </span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(vocodem) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Time"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">27</span>) <span class="co">#label time</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(vocodem) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"CE"</span>,<span class="st">"AUC"</span>,<span class="st">"CE_l"</span>,<span class="st">"CE_u"</span>,<span class="st">"AUC_l"</span>,<span class="st">"AUC_u"</span>) <span class="co"># label metrics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
 <li>Finally we transpose the matrix, put time in ms, and plot the AUC at each time point. Where the CIs do not cross the 50% threshold (red dotted line), a significant difference can be said to exist at that time point between conditions.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">vocodem</span><span class="op">)</span><span class="op">)</span> <span class="co"># transpose</span></span>
-<span><span class="va">temp</span><span class="op">$</span><span class="va">Times</span> <span class="op">&lt;-</span> <span class="va">tp</span> <span class="co"># turn time into ms </span></span>
-<span></span>
-<span><span class="co"># plot</span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">temp</span>,<span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span><span class="va">Times</span>, y <span class="op">=</span> <span class="va">AUC</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu">geom_ribbon</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>ymax <span class="op">=</span> <span class="va">AUC_l</span>,ymin <span class="op">=</span> <span class="va">AUC_u</span><span class="op">)</span>,alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">coord_cartesian</span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.4</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span><span class="fu">geom_hline</span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">.5</span>, linetype<span class="op">=</span><span class="st">"dashed"</span>, </span>
-<span>                color <span class="op">=</span> <span class="st">"red"</span>, size<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Time(ms)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(vocodem)) <span class="co"># transpose</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>Times <span class="ot">&lt;-</span> tp <span class="co"># turn time into ms </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> temp,<span class="fu">aes</span>(<span class="at">x =</span>Times, <span class="at">y =</span> AUC))<span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>)<span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymax =</span> AUC_l,<span class="at">ymin =</span> AUC_u),<span class="at">alpha =</span> <span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(.<span class="dv">4</span>, <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_hline</span>(<span class="at">yintercept=</span>.<span class="dv">5</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>, </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Time(ms)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="conclusions" class="level2"><h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
 <p>I have shown how to apply MTPA to pupillometric data. This method appears to be more powerful than a mass univariate approach, showing the whole time course as significant. It would be interesting to see how this compares to the method proposed by <span class="citation" data-cites="Mathot">Mathôt &amp; Vilotijević (<a href="#ref-Mathot" role="doc-biblioref">2022</a>)</span>. I would encourage anyone who is interested in applying this method to also check out <span class="citation" data-cites="yu_multi-time-point_2020">Yu et al. (<a href="#ref-yu_multi-time-point_2020" role="doc-biblioref">2020</a>)</span>’s excellent paper which this blog is based off of.</p>
-<section id="potential-limitations" class="level3"><h3 class="anchored" data-anchor-id="potential-limitations">Potential Limitations</h3>
+<section id="potential-limitations" class="level3">
+<h3 class="anchored" data-anchor-id="potential-limitations">Potential Limitations</h3>
 <p>While this method looks promising, there does appear to be some limitations. First, it look looks like you can’t fit multilevel models. If you can, I suspect it is 1) computationally expensive and 2) not trivial. If anyone has an answer to this I would love to hear it. Second, it appears that you would have to conduct this test for each effect of interest rather then including everything in the model. This is something that <span class="citation" data-cites="Mathot">Mathôt &amp; Vilotijević (<a href="#ref-Mathot" role="doc-biblioref">2022</a>)</span> also brings up in their paper. I will have to do some more investigating, but overall I am quite interested in learning more about ML applications to time course data like pupillometry.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.4.0 (2024-04-24)
 Platform: aarch64-apple-darwin20
@@ -567,11 +603,16 @@ loaded via a namespace (and not attached):
 [81] bit64_4.0.5      </code></pre>
 </div>
 </div>
-</section></section><section id="references" class="level2">
+</section>
+</section>
+<section id="references" class="level2">
 
 
 
-</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-Mathot" class="csl-entry" role="listitem">
 Mathôt, Sebastiaan, &amp; Vilotijević, A. (2022, March 1). <em>‪Methods in cognitive pupillometry: Design, preprocessing, and statistical analysis‬</em>. <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=zVrwyHMAAAAJ&amp;sortby=pubdate&amp;citation_for_view=zVrwyHMAAAAJ:35r97b3x0nAC</a>
 </div>
@@ -589,7 +630,8 @@ Yu, C.-L., Chen, H.-C., Yang, Z.-Y., &amp; Chou, T.-L. (2020). Multi-time-point 
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2022" class="csl-entry quarto-appendix-citeas" role="listitem">
 <em>Multi-Time-Point Analysis: A New Way To Analyze Pupil Data</em>.
 (2022, March 10). <a href="https://www.drjasongeller.com/blog/posts/2022-03-10-mtpa-pupil/">https://www.drjasongeller.com/blog/posts/2022-03-10-mtpa-pupil/</a>
-</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1010,7 +1052,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Jason Geller</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
 </div>   
@@ -1022,6 +1065,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+
+
 
 
 </body></html>
