@@ -1,5 +1,5 @@
 ---
-title: "Perceptual Disfluency and Recognition Memory: A Response Time Distributional Analysis"
+title: "The Perceptual Disfluency Effect: A Drift Diffusion and Ex-Gaussian Analysis"
 date: 2025-06-17
 author:
   - name: Jason Geller
@@ -19,7 +19,7 @@ categories:
   - Distributional analyses
   - Word recognition
 pub-info:
-  reference: "<strong>Geller, J.</strong>, Gomez, P., Buchanon, E., & Makowski, D. (2025). Perceptual disfluency and recognition memory: A response time distributional analysis. <em> </em> https://osf.io/preprints/psyarxiv/7jqea_v7"
+  reference: "<strong>Geller, J.</strong>, Gomez, P., Buchanon, E., & Makowski, D. (2025).The Perceptual Disfluency Effect: A Drift Diffusion and Ex-Gaussian Analysis. <em> </em>https://osf.io/preprints/psyarxiv/sae23_v3"
   links:
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/sae23_v1
@@ -30,7 +30,7 @@ pub-info:
     - name: Github
       url: https://github.com/jgeller112/Disfluency_Ms
       icon: fa-brands fa-github-square
-doi: https://doi.org/10.31234/osf.io/7jqea_v7
+doi: https://doi.org/10.31234/osf.io/sae23_v3
 ---
 
 # Abstract
