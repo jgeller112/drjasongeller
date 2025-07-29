@@ -10,7 +10,7 @@ format:
       banner-header-class: "home"
 ---
 
-::: grid
+::::: grid
 ::: {.g-col-12 .g-col-sm-4}
 <br>
 
@@ -32,14 +32,12 @@ format:
 :::
 
 ::: {.g-col-12 .g-col-sm-8}
-<br>
-<br>
+<br> <br>
 
 Thanks for stopping by!
 
 I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less.
 
-Please send review requests and correspondence to jason.geller[at]bc.edu
-
+Please send review requests and correspondence to jason.geller\[at\]bc.edu
 :::
-:::
+:::::

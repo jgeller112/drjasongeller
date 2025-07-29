@@ -29,7 +29,10 @@ pub-info:
     - name: Github
       url: https://github.com/jgeller112/L2_VWP_Webcam
       icon: fa-brands fa-github-square
-doi: https://doi.org/10.31234/osf.io/7jqea_v7
+    - name: Add to Zotero
+      url: https://www.zotero.org/save?type=doi&q=10.1016/j.rmal.2025.100226
+      icon: ai ai-zotero-square
+doi: https://doi.org/10.1016/j.rmal.2025.100226
 ---
 
 # Abstract

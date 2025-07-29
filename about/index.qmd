@@ -10,7 +10,7 @@ format:
       banner-header-class: "home"
 ---
 
-::: grid
+::::: grid
 ::: {.g-col-12 .g-col-sm-4}
 <br>
 
@@ -34,10 +34,10 @@ format:
 ::: {.g-col-12 .g-col-sm-8}
 Thanks for stopping by!
 
-I am currently Director of the Human Neuroscience Lab at Boston College. My research program investigates the cognitive and neurological underpinnings of language processing. I am primarily interested in the mechanisms underlying visual word recognition and speech perception. On the weekends, I spend time with my other love: human memory. In this area, I am interested in semantics, metacognition/metamemory, and desirable difficulties.
+I am currently the Director of the Human Neuroscience Lab at Boston College. My research program investigates the cognitive and neurological underpinnings of language processing, with a particular focus on the mechanisms underlying visual word recognition and speech perception. On the weekends, I turn to my other passion: human memory. In this area, I am especially interested in semantics, metacognition and metamemory, and the role of desirable difficulties in learning. Additionally, I have written on methods and statistics in psychological science, with interests that include intensive longitudinal data analysis (time series), large-team science, non-normal data analysis, and multilevel modeling.
 
-My philosophy is that cognition is best understood by looking at both behavior and the brain. To get a better understanding of cognition I use a multi-method approach that involves using standard behavioral measurements (e.g., reaction times), eye-tracking, neuroimaging, and physiological and nuero-physiological indices (e.g., pupillometry,EEG/sEEG).
+My philosophy is that cognition is best understood by examining both behavior and the brain. To gain deeper insights into cognitive processes, I employ a multi-method approach that integrates standard behavioral measurements (e.g., reaction times), eye-tracking, neuroimaging, and physiological and neurophysiological indices (e.g., pupillometry, EEG/sEEG).
 
-Most importantly, my research is conducted according to the principles of open science. In my research, I promote open science practices by making all my work accessible and reproducible.
+Equally important, my research is grounded in the principles of open science. I am committed to transparency and reproducibility, ensuring that all my work is accessible and replicable.
 :::
-:::
+:::::

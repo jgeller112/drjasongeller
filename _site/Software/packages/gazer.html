@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jason Geller">
 
-<title>Estimating effects of graded white matter damage and binary tract disconnection on post-stroke language impairment | Jason Geller – Jason Geller, Ph.D.</title>
+<title>gazeR: A package for processing gaze position and pupil size data | Jason Geller – Jason Geller, Ph.D.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,26 +24,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../..//files/favicon-512.png" rel="icon" type="image/png">
-<script src="../../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//files/favicon-512.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,30 +71,24 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>
-
-      .quarto-title-block .quarto-title-banner {
-        background: #CF4446;
-      }
-</style>
 
 
-<meta name="twitter:title" content="Estimating effects of graded white matter damage and binary tract disconnection on post-stroke language impairment | Jason Geller">
-<meta name="twitter:description" content="Jason Geller is currently Director of the Human Neuroscience Lab at Boston College. I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less.">
-<meta name="twitter:image" content="https://www.drjasongeller.com/files/profiles/twitter-card-large.png">
+<meta name="twitter:title" content="gazeR: A package for processing gaze position and pupil size data | Jason Geller">
+<meta name="twitter:description" content="gazeR is an R package for processing and analyzing eye-tracking data (gaze and pupil size). This package contains pupil and gaze preprocessing functions">
+<meta name="twitter:image" content="https://www.drjasongeller.com/Software/packages/assets/gazer.jpeg">
 <meta name="twitter:creator" content="@jgeller_phd">
 <meta name="twitter:site" content="@jgeller_phd">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="floating nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Jason Geller, Ph.D.</span>
     </a>
   </div>
@@ -105,31 +99,31 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../about/index.html"> 
+    <a class="nav-link" href="../../about/index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../cv/index.html"> 
+    <a class="nav-link" href="../../cv/index.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../blog/index.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../Research/index.html"> 
+    <a class="nav-link" href="../../Research/index.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../Talks/index.html"> 
+    <a class="nav-link" href="../../Talks/index.html"> 
 <span class="menu-text">Talks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../Teaching/index.html"> 
+    <a class="nav-link" href="../../Teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../Software/index.html"> 
+    <a class="nav-link" href="../../Software/index.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
@@ -154,129 +148,67 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block research default toc-left page-columns page-full">
-    <div class="quarto-title-banner page-columns page-full">
-                <div class="back-nav"><a href="../../../research/">← Back to research</a></div>
-                <div class="quarto-title column-body">
-            <h1 class="title">Estimating effects of graded white matter damage and binary tract disconnection on post-stroke language impairment</h1>
-
-            
-            
-            
-                                    <div class="quarto-categories">
-                                <div class="quarto-category">Aphasia</div>
-                                <div class="quarto-category">Disconnection</div>
-                                <div class="quarto-category">Lesion load</div>
-                                <div class="quarto-category">Lesion-symptom mapping</div>
-                                <div class="quarto-category">Replication</div>
-                                <div class="quarto-category">White matter</div>
-                            </div>
-                                </div>
-    </div>
-    
-        <div class="project-details">
-        <div class="publication-content">
-            <p><strong>Geller, J</strong>., Thye, M., &amp; Mirman, D. (2019). Estimating effects of graded white matter damage and binary tract disconnection on post-stroke language impairment. <em>Neuroimage</em>, 189, 248–257. https://doi.org/10.1016/j.neuroimage.2019.01.020</p>
-        </div>
-                <ul class="project-links">
-                        <li class="project-link">
-                <a href="https://pubmed.ncbi.nlm.nih.gov/30654172/"><i class="fa-solid fa-scroll"></i> Final version</a>
-            </li>
-                        <li class="project-link">
-                <a href="https://osf.io/preprints/psyarxiv/cq2hf"><i class="ai ai-psyarxiv-square"></i> Preprint</a>
-            </li>
-                        <li class="project-link">
-                <a href="https://osf.io/3r7qn/"><i class="ai ai-osf-square"></i> OSF</a>
-            </li>
-                        <li class="project-link">
-                <a href="https://www.zotero.org/save?type=doi&amp;q=10.1016/j.neuroimage.2019.01.020"><i class="ai ai-zotero-square"></i> Add to Zotero</a>
-            </li>
-                    </ul>
-            </div>
-
-    
-    <div class="quarto-title-meta-author">
-      <div class="quarto-title-meta-heading">Authors</div>
-      <div class="quarto-title-meta-heading">Affiliation</div>
-      
-        <div class="quarto-title-meta-contents">
-        <p class="author">Jason Geller </p>
-      </div>
-      <div class="quarto-title-meta-contents">
-            <p class="affiliation">
-                University of Alabama-Birmingham
-              </p>
-          </div>
-        <div class="quarto-title-meta-contents">
-        <p class="author">Melissa Thye </p>
-      </div>
-      <div class="quarto-title-meta-contents">
-            <p class="affiliation">
-                University of Alabama-Birmingham
-              </p>
-          </div>
-        <div class="quarto-title-meta-contents">
-        <p class="author">Daniel Mirman </p>
-      </div>
-      <div class="quarto-title-meta-contents">
-            <p class="affiliation">
-                University of Alabama-Birmingham
-              </p>
-          </div>
-      </div>
-
-    <div class="quarto-title-meta">
-
-          
-        <div>
-        <div class="quarto-title-meta-heading">Published</div>
-        <div class="quarto-title-meta-contents">
-          <p class="date">January 2019</p>
-        </div>
-      </div>
-      
-        
-        <div>
-        <div class="quarto-title-meta-heading">Doi</div>
-        <div class="quarto-title-meta-contents">
-          <p class="doi">
-            <a href="https://doi.org/10.1016/j.neuroimage.2019.01.020">10.1016/j.neuroimage.2019.01.020</a>
-          </p>
-        </div>
-      </div>
-      </div>
-      
-
-    
-</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">gazeR: A package for processing gaze position and pupil size data</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Despite the critical importance of close replications in strengthening and advancing scientific knowledge, there are inherent challenges to conducting replications of lesion-based studies. In the present study, we conducted a close conceptual replication of a study (i.e., Hope et al., 2016) that found that fluency and naming scores in post-stoke aphasia were more strongly associated with a binary measure of structural white matter integrity (tract disconnection) than a graded measure (lesion load). Using a different sample of stroke patients (N = 128) and four language deficit measures (aphasia severity, picture naming, and composite scores for speech production and semantic cognition), we examined tract disconnection and lesion load in three white matter tracts that have been implicated in language processing: arcuate fasciculus, uncinate fasciculus, and inferior fronto-occipital fasciculus. We did not find any consistent evidence that binary tract disconnection was more strongly associated with language impairment over and above lesion load, though individual deficit measures differed with respect to whether lesion load or tract disconnection was the stronger predictor. Given the mixed findings, we suggest caution when using such indirect estimates of structural white matter integrity, and direct individual measurements (for example, using diffusion weighted imaging) should be preferred when they are available. We end by highlighting the complex nature of replication in lesion-based studies and offer some potential solutions.</p>
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jason Geller </p>
+             <p>Daniel Mirman </p>
+             <p>Tristan Mahr </p>
+             <p>Matt B. Winn </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    gazeR is an R package for processing and analyzing eye-tracking data (gaze and pupil size). This package contains pupil and gaze preprocessing functions
+  </div>
+</div>
 
 
-</section>
+</header>
 
-</main> <!-- /main -->
+
+<p>🐙 GitHub:<a href="https://github.com/dmirman/gazer">Github Repository</a></p>
+<p>📄 Documentation: <a href="https://link.springer.com/article/10.3758/s13428-020-01374-8">Read the paper</a></p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{geller,
+  author = {Geller, Jason and Mirman, Daniel and Mahr, Tristan and B.
+    Winn, Matt},
+  title = {gazeR: {A} Package for Processing Gaze Position and Pupil
+    Size Data},
+  url = {https://github.com/dmirman/gazer},
+  langid = {en},
+  abstract = {gazeR is an R package for processing and analyzing
+    eye-tracking data (gaze and pupil size). This package contains pupil
+    and gaze preprocessing functions}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-geller" class="csl-entry quarto-appendix-citeas" role="listitem">
+Geller, J., Mirman, D., Mahr, T., &amp; B. Winn, M. (n.d.). <em>gazeR: A
+package for processing gaze position and pupil size data</em>. <a href="https://github.com/dmirman/gazer">https://github.com/dmirman/gazer</a>
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

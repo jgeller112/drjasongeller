@@ -1,0 +1,16 @@
+---
+title: "gazeR: A package for processing gaze position and pupil size data"
+abstract: "gazeR is an R package for processing and analyzing eye-tracking data (gaze and pupil size). This package contains pupil and gaze preprocessing functions"
+author: 
+- name: Jason Geller
+- name: Daniel Mirman
+- name: Tristan Mahr
+- name: Matt B. Winn
+citation: 
+  url: https://github.com/dmirman/gazer
+image: assets/gazer.jpeg
+---
+
+🐙 GitHub:[Github Repository](https://github.com/dmirman/gazer)
+
+📄 Documentation: [Read the paper](https://link.springer.com/article/10.3758/s13428-020-01374-8)

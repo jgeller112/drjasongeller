@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -31,6 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="..//files/favicon-512.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -71,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <style>
 
       .quarto-title-block .quarto-title-banner {
@@ -78,6 +109,35 @@ ul.task-list li input[type="checkbox"] {
       }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta name="twitter:title" content="Software | Jason Geller">
 <meta name="twitter:description" content="Jason Geller is currently Director of the Human Neuroscience Lab at Boston College. I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less.">
@@ -141,6 +201,11 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/jgeller1phd.bsky.social"> <i class="bi bi-clouds" role="img">
+</i> 
+<span class="menu-text">bsky</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -151,13 +216,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
+    <div class="quarto-title column-body">
       <h1 class="title">Software</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
     
@@ -165,53 +230,75 @@ ul.task-list li input[type="checkbox"] {
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Projects</h2>
-   
-  <ul>
-  <li><a href="#gazer" id="toc-gazer" class="nav-link active" data-scroll-target="#gazer">gazeR</a></li>
-  <li><a href="#webgazer" id="toc-webgazer" class="nav-link" data-scroll-target="#webgazer">webgazeR</a></li>
-  </ul>
-</nav>
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<p>This page highlights software packages I’ve developed to support open and reproducible research, particularly in eye-tracking and gaze data analysis.</p>
+<p>This page highlights software packages I’ve developed to support open and reproducible research, particularly in eye-tracking.</p>
 <hr>
-<section id="gazer" class="level2">
-<h2 class="anchored" data-anchor-id="gazer">gazeR</h2>
-<p><img src="https://user-images.githubusercontent.com/18429968/46034046-472caa80-c0c5-11e8-89c3-ff3f463a1868.jpeg" alt="gazeR logo" style="float: right; height: 120px; margin-left: 20px;"></p>
-<p><code>gazeR</code> is an R package for processing and analyzing eye-tracking data. Contains pupil and gaze preprocessing functions.</p>
-<ul>
-<li>🐙 <strong>GitHub</strong>: <a href="https://github.com/dmirman/gazer">gazeR</a><br>
-</li>
-<li>📄 <strong>Documentation</strong>: <a href="https://link.springer.com/article/10.3758/s13428-020-01374-8">Read the Paper</a></li>
-</ul>
-<hr>
-</section>
-<section id="webgazer" class="level2">
-<h2 class="anchored" data-anchor-id="webgazer">webgazeR</h2>
-<p><img src="https://jgeller112.github.io/webgazeR/webgazeR_hex_sticker.png" alt="webgazeR logo" style="float: right; height: 120px; margin-left: 20px;"></p>
-<p><code>webgazeR</code> is a webcam eye-tracking toolkit for pre-processing webcam gaze data from WebGazer.JS</p>
-<ul>
-<li>🐙 <strong>GitHub</strong>: <a href="https://github.com/jgeller112/webgazeR">jgeller112/webgazeR</a></li>
-<li>💻 <strong>Website</strong>: <a href="https://jgeller112.github.io/webgazeR/">Package site</a></li>
-<li>📄 <strong>Documentation</strong>: <a href="https://osf.io/preprints/psyarxiv/7jqea_v5">Read the Preprint</a></li>
-</ul>
 
 
-</section>
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1753816122023" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
+<a href="../Software/packages/gazer.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../Software/packages/assets/gazer.jpeg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+gazeR: A package for processing gaze position and pupil size data
+</h5>
+<div class="card-text listing-description">
+gazeR is an R package for processing and analyzing eye-tracking data (gaze and pupil size). This package contains pupil and gaze preprocessing functions
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Jason Geller, Daniel Mirman, Tristan Mahr, Matt B. Winn
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1753816088636" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
+<a href="../Software/packages/webgazer.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../Software/packages/assets/webgazeR.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+webgazeR
+</h5>
+<div class="card-text listing-description">
+webgazeR is a webcam eye-tracking toolkit for pre-processing webcam gaze data
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Jason Geller
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -636,7 +723,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Jason Geller</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2025 Jason Geller</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
 </div>   
     <div class="nav-footer-center">
 <p><span class="faux-block"><i class="fa-brands fa-orcid" aria-label="orcid"></i> <strong>ORCID</strong> <a href="https://orcid.org/0000-0002-7459-4505">0000-0002-7459-4505</a></span></p>

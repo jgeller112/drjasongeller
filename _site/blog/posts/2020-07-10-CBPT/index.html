@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
-
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Jason Geller">
 <meta name="dcterms.date" content="2020-07-10">
 <meta name="description" content="I demonstrate how to analyze pupil data using a cluster based permutation test">
-
 <title>Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test | Jason Geller – Jason Geller, Ph.D.</title>
 <style>
 code{white-space: pre-wrap;}
@@ -79,7 +76,6 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -99,8 +95,7 @@ div.csl-indent {
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -126,8 +121,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<style type="text/css">
+}</script><style type="text/css">
 hr.dinkus {
     width: 50px;
     margin: 2em auto 2em;
@@ -138,8 +132,6 @@ div.column-margin+hr.dinkus {
     margin: 1em auto 2em;
 }
 </style>
-
-
 <meta name="twitter:title" content="Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test | Jason Geller">
 <meta name="twitter:description" content="I demonstrate how to analyze pupil data using a cluster based permutation test">
 <meta name="twitter:image" content="https://www.drjasongeller.com/files/profiles/twitter-card-large.png">
@@ -147,13 +139,10 @@ div.column-margin+hr.dinkus {
 <meta name="twitter:site" content="@jgeller_phd">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-
 <body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Jason Geller, Ph.D.</span>
@@ -165,7 +154,7 @@ div.column-margin+hr.dinkus {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../../about/index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -202,23 +191,22 @@ div.column-margin+hr.dinkus {
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/jgeller1phd.bsky.social"> <i class="bi bi-clouds" role="img">
+</i> 
+<span class="menu-text">bsky</span></a>
+  </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Mass Univariate Analysis for Pupillometric Data: Cluster Permutation Test</h1>
   <div class="quarto-categories">
     <div class="quarto-category">r</div>
@@ -249,21 +237,15 @@ div.column-margin+hr.dinkus {
   
 
 
-</header>
-
-
-<p>An article by <span class="citation" data-cites="Reilly2019">Reilly et al. (<a href="#ref-Reilly2019" role="doc-biblioref">2019</a>)</span> raised some important questions/issues for the field of pupillometry. One issue that has been bothering me as of late (hence the post) pertains to objectively defining a time window to look at. Although some commonalities exist across the literature, there is no uniform standard for isolating a peak range or delineating the width of this window. In this blog post I present a method we can use to address this issue. To do so, I will be using the example data set from the gazeR package (<span class="citation" data-cites="Geller2">Geller et al. (<a href="#ref-Geller2" role="doc-biblioref">n.d.</a>)</span>). This data comes from a lexical decison experiment where participants judged the lexicality of cursive and type-print stimuli.</p>
-<section id="common-approaches" class="level2">
-<h2 class="anchored" data-anchor-id="common-approaches">Common Approaches</h2>
+</header><p>An article by <span class="citation" data-cites="Reilly2019">Reilly et al. (<a href="#ref-Reilly2019" role="doc-biblioref">2019</a>)</span> raised some important questions/issues for the field of pupillometry. One issue that has been bothering me as of late (hence the post) pertains to objectively defining a time window to look at. Although some commonalities exist across the literature, there is no uniform standard for isolating a peak range or delineating the width of this window. In this blog post I present a method we can use to address this issue. To do so, I will be using the example data set from the gazeR package (<span class="citation" data-cites="Geller2">Geller et al. (<a href="#ref-Geller2" role="doc-biblioref">n.d.</a>)</span>). This data comes from a lexical decison experiment where participants judged the lexicality of cursive and type-print stimuli.</p>
+<section id="common-approaches" class="level2"><h2 class="anchored" data-anchor-id="common-approaches">Common Approaches</h2>
 <p>In the pupillometry literature, I have seen several different analytic approaches to the above issue. Some will preform seperate statistical tests at each time point (via <em>t</em> tests, LMMs, ANOVAs, regressions, what have you), or they just ignore time altogether and aggregate the data and perfrom analyses on the mean and max. I do not like these approaches for a few reasons:</p>
 <ul>
 <li><p>There is a trade-off between power and temporal resolution (smaller time bins) and introducesbias in selection of time bins/windows. There is also the issues of multiple comparisons and autocorrelation</p></li>
 <li><p>Does not take into account individual differences</p></li>
 </ul>
 <p>I wanted to highlight a method I believe is a good alternative: cluster-based permutation tests (henceforth CPT)</p>
-</section>
-<section id="cpt" class="level2">
-<h2 class="anchored" data-anchor-id="cpt">CPT</h2>
+</section><section id="cpt" class="level2"><h2 class="anchored" data-anchor-id="cpt">CPT</h2>
 <p>Let’s first look at a graph of the data.</p>
 <div class="cell">
 <div class="cell-output cell-output-error">
@@ -273,8 +255,7 @@ div.column-margin+hr.dinkus {
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -284,32 +265,30 @@ div.column-margin+hr.dinkus {
 <p>Before I show you how to apply this method, I want to briefly go over the CPT method. The CPT is a data-driven method which increases power and controls for Type I errors across multiple comparisons (exatcly what we need when looking at pupil changes across the time course!). The clustering method involves conducting dependent-sample t-tests for every data point (condition by time). In the first step, adjacent data points that cross the mass-univariate significance threshold (<em>p</em> &lt; .05) are combined to create a cluster. The sum of the <em>t</em>-statistic (or <em>F</em>) are calculated and form the basis for the cluster level statistic. In the second step, a surrogate null-distribution is created by first randomly assigning one of the two conditions within subjects (this is done n times) and retaining the cluster statistic for each randomization. In the third and final step, the cluster level statistic of the real comparison is compared against the null distribution, with clusters falling in the highest or lowest 2.5% considered to be significant.</p>
 <p>While writing this blog post, I saw that Dale Barr presented on CPT in the context of eye-tracking. I figured I would take this opportunity to test out the packages he created.</p>
 <div class="cell" data-messages="false">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"dalejbarr/exchangr"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"dalejbarr/clusterperm"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(exchangr)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterperm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"dalejbarr/exchangr"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"dalejbarr/clusterperm"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">exchangr</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">clusterperm</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The ‘clusterperm’ package has a pretty nifty <code>aov_by_bin</code> function. If we applied a multlipe comparison correction (e.g., holm) to this data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cur2 <span class="ot">&lt;-</span> <span class="fu">aov_by_bin</span>(agg_subject, timebins,   <span class="co"># clusterperm package</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  aggbaseline <span class="sc">~</span> script <span class="sc">+</span> <span class="fu">Error</span>(subject))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>cur2<span class="sc">$</span>p_adjuct<span class="ot">&lt;-</span><span class="fu">p.adjust</span>(cur2<span class="sc">$</span>p, <span class="at">method=</span><span class="st">"holm"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>cur2_p<span class="ot">=</span><span class="fu">subset</span>(cur2, cur2<span class="sc">$</span>p_adjuct <span class="sc">&lt;=</span> .<span class="dv">05</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(cur2_p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cur2</span> <span class="op">&lt;-</span> <span class="fu">aov_by_bin</span><span class="op">(</span><span class="va">agg_subject</span>, <span class="va">timebins</span>,   <span class="co"># clusterperm package</span></span>
+<span>  <span class="va">aggbaseline</span> <span class="op">~</span> <span class="va">script</span> <span class="op">+</span> <span class="fu">Error</span><span class="op">(</span><span class="va">subject</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cur2</span><span class="op">$</span><span class="va">p_adjuct</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">cur2</span><span class="op">$</span><span class="va">p</span>, method<span class="op">=</span><span class="st">"holm"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cur2_p</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">cur2</span>, <span class="va">cur2</span><span class="op">$</span><span class="va">p_adjuct</span> <span class="op">&lt;=</span> <span class="fl">.05</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">cur2_p</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: right;">timebins</th>
 <th style="text-align: left;">effect</th>
 <th style="text-align: right;">stat</th>
 <th style="text-align: right;">p</th>
 <th style="text-align: right;">p_adjuct</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">2000</td>
@@ -345,20 +324,18 @@ div.column-margin+hr.dinkus {
 </div>
 <p>How does it compare to CPT?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>orig <span class="ot">&lt;-</span> <span class="fu">detect_clusters_by_effect</span>(cur2, effect, timebins, stat, p)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(orig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orig</span> <span class="op">&lt;-</span> <span class="fu">detect_clusters_by_effect</span><span class="op">(</span><span class="va">cur2</span>, <span class="va">effect</span>, <span class="va">timebins</span>, <span class="va">stat</span>, <span class="va">p</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">orig</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">effect</th>
 <th style="text-align: right;">b0</th>
 <th style="text-align: right;">b1</th>
 <th style="text-align: right;">sign</th>
 <th style="text-align: right;">cms</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">script</td>
@@ -388,12 +365,12 @@ div.column-margin+hr.dinkus {
 <p>It looks like the multiple comparison correction is less sensitive.</p>
 <p>Wait! we do not have <em>p</em>-values!!! Where are the damn <em>p</em>-values!? What is life? How am I suppose to make an informed decison? What is cool about Dale’s R package is that it has a permutation function that allows you to build the null model and obtain those coveted <em>p</em>-values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dat_prec <span class="ot">&lt;-</span> <span class="fu">nest</span>(agg_subject, <span class="sc">-</span>subject, <span class="sc">-</span>script)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nhds_prec <span class="ot">&lt;-</span> <span class="fu">cluster_nhds</span>(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">100</span>, dat_prec, timebins,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  aggbaseline <span class="sc">~</span> script <span class="sc">+</span> <span class="fu">Error</span>(subject),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  shuffle_each, script, subject) <span class="co"># only use 100 permutations. Should use 1000-2000. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_prec</span> <span class="op">&lt;-</span> <span class="fu">nest</span><span class="op">(</span><span class="va">agg_subject</span>, <span class="op">-</span><span class="va">subject</span>, <span class="op">-</span><span class="va">script</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">nhds_prec</span> <span class="op">&lt;-</span> <span class="fu">cluster_nhds</span><span class="op">(</span></span>
+<span>  <span class="fl">100</span>, <span class="va">dat_prec</span>, <span class="va">timebins</span>,</span>
+<span>  <span class="va">aggbaseline</span> <span class="op">~</span> <span class="va">script</span> <span class="op">+</span> <span class="fu">Error</span><span class="op">(</span><span class="va">subject</span><span class="op">)</span>,</span>
+<span>  <span class="va">shuffle_each</span>, <span class="va">script</span>, <span class="va">subject</span><span class="op">)</span> <span class="co"># only use 100 permutations. Should use 1000-2000. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in `tidyr::nest()`:
 ! In expression named `d`:
@@ -401,12 +378,12 @@ Caused by error:
 ! Can't select columns that don't exist.
 ✖ Column `timebins` doesn't exist.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## get p-values</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>results_prec <span class="ot">&lt;-</span> <span class="fu">pvalues</span>(orig, nhds_prec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## get p-values</span></span>
+<span><span class="va">results_prec</span> <span class="op">&lt;-</span> <span class="fu">pvalues</span><span class="op">(</span><span class="va">orig</span>, <span class="va">nhds_prec</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in eval(expr, envir, enclos): object 'nhds_prec' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(results_prec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">results_prec</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in eval(expr, envir, enclos): object 'results_prec' not found</code></pre>
 </div>
@@ -421,27 +398,20 @@ Caused by error:
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="thoughts" class="level2">
-<h2 class="anchored" data-anchor-id="thoughts">Thoughts</h2>
+</section><section id="thoughts" class="level2"><h2 class="anchored" data-anchor-id="thoughts">Thoughts</h2>
 <p>There are some misunderstandings users should be made aware of when it comes to CPT <span class="citation" data-cites="Sassenhagen2019">(see <a href="#ref-Sassenhagen2019" role="doc-biblioref">Sassenhagen &amp; Draschkow, 2019</a>)</span> for a nice discussion). If we want to ask more specific questions (i.e., at what exact time points effects arise), CPT with a cluster mass correction is not the method to use. We can only be certain that a difference exists; we cannot make claims about whether individual time points show an effect with a given error rate. I think this is more of an issue for M/EEG than pupillometry though. The pupillary signal is very slow.</p>
 <p>Overall, I think CPT can be a very useful tool in determing an appropiate time range to look at, and can even lead to more powerful inferences. Further, the use of CPT obviates the need for multiple comparisons and autocorrelation corrections. However, it does have issues. For instance, it cannot take into account subject and item variability. In addition, it is not able to tell you where within the cluster there is a difference only that there is a difference. And finally, when power is low, clusters may include many false postive time points <span class="citation" data-cites="Fields2019">(<a href="#ref-Fields2019" role="doc-biblioref">Fields &amp; Kuperberg, 2019</a>)</span>.</p>
 <p>In my next blog, I will discuss applying generalized additive mixed modeling to your pupillometry data. I think it might be the perfect soultion!</p>
-</section>
-<section id="cited" class="level2">
+</section><section id="cited" class="level2">
 
 
 
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Cited</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Cited</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-Fields2019" class="csl-entry" role="listitem">
 Fields, E. C., &amp; Kuperberg, G. R. (2019). <span class="nocase">Having your cake and eating it too: Flexibility and power with mass univariate statistics for ERP data</span>. <em>Psychophysiology</em>. <a href="https://doi.org/10.1111/psyp.13468">https://doi.org/10.1111/psyp.13468</a>
 </div>
@@ -474,8 +444,7 @@ Sassenhagen, J., &amp; Draschkow, D. (2019). <span class="nocase">Cluster‐base
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2020" class="csl-entry quarto-appendix-citeas" role="listitem">
 <em>Mass Univariate Analysis for Pupillometric Data: Cluster Permutation
 Test</em>. (2020, July 10). <a href="https://www.drjasongeller.com/blog/posts/2020-07-10-CBPT/">https://www.drjasongeller.com/blog/posts/2020-07-10-CBPT/</a>
-</div></div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -896,10 +865,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
-<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Jason Geller</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2025 Jason Geller</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
 </div>   
     <div class="nav-footer-center">
 <p><span class="faux-block"><i class="fa-brands fa-orcid" aria-label="orcid"></i> <strong>ORCID</strong> <a href="https://orcid.org/0000-0002-7459-4505">0000-0002-7459-4505</a></span></p>
@@ -909,8 +877,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>

@@ -1,34 +1,13 @@
 ---
 title: "Software"
-page-layout: full
-toc: true
-toc-title: Projects
+listing: 
+  contents: packages
+  type: grid
+  categories: true
+max-description-length: 200
 title-block-banner: "#007ACC"
 ---
 
-This page highlights software packages I’ve developed to support open and reproducible research, particularly in eye-tracking and gaze data analysis.
+This page highlights software packages I’ve developed to support open and reproducible research, particularly in eye-tracking.
 
----
-
-## gazeR
-
-<img src="https://user-images.githubusercontent.com/18429968/46034046-472caa80-c0c5-11e8-89c3-ff3f463a1868.jpeg" alt="gazeR logo" style="float: right; height: 120px; margin-left: 20px;">
-
-`gazeR` is an R package for processing and analyzing eye-tracking data.  Contains pupil and gaze  preprocessing functions.
-
-- 🐙 **GitHub**: [gazeR](https://github.com/dmirman/gazer)  
-- 📄 **Documentation**: [Read the Paper](https://link.springer.com/article/10.3758/s13428-020-01374-8)
-
----
-
-## webgazeR
-
-<img src="https://jgeller112.github.io/webgazeR/webgazeR_hex_sticker.png" alt="webgazeR logo" style="float: right; height: 120px; margin-left: 20px;">
-
-`webgazeR` is a webcam eye-tracking toolkit for pre-processing webcam gaze data from WebGazer.JS
-
-- 🐙 **GitHub**: [jgeller112/webgazeR](https://github.com/jgeller112/webgazeR)
-- 💻 **Website**: [Package site](https://jgeller112.github.io/webgazeR/)
-- 📄 **Documentation**: [Read the Preprint](https://osf.io/preprints/psyarxiv/7jqea_v5)
-
-
+------------------------------------------------------------------------
