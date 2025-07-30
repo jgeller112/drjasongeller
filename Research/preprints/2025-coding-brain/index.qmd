@@ -16,7 +16,7 @@ categories:
   - ScratchJr
   - Semantic processing
 pub-info:
-  reference: "Nadler, E., <strong>Geller, J.</strong>, Bers, M.U.(2025). <em> The Coding Brain: P600 Effects Elicited by the Visual Programming Language ScratchJr </em> https://doi.org/10.31234/osf.io/zy8d5_v1"
+  reference: "Nadler, E., <strong>Geller, J.</strong>, Bers, M.U.(2025). The Coding Brain: P600 Effects Elicited by the Visual Programming Language ScratchJr. https://doi.org/10.31234/osf.io/zy8d5_v1"
   links:
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/zy8d5_v1
@@ -26,7 +26,7 @@ pub-info:
       icon:  ai ai-osf-square
     - name: Colab
       icon: ai ai-google
-      url: https://colab.research.google.com/drive/1t58F3qZ8OUo0p4tLWHqj3NXiZMs9096j?usp=sharing
+      url: https://colab.research.google.com/drive/17Td09p3aZcHQDa2AgZ_fSI38cLKFfn8j#scrollTo=b6Lq89RuDhma
 doi: https://doi.org/10.31234/osf.io/zy8d5_v1
 ---
 
