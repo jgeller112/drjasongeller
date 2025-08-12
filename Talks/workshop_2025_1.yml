@@ -1,0 +1,13 @@
+
+- title: "Writing Reproducible Manuscripts in R using Quarto"
+  date: "2025-08-08"
+  description: "Virtual talk given for OPAM community. Open Science practices are transforming how research is conducted, emphasizing transparency, reproducibility, and collaboration. In this hands-on workshop, you’ll learn how to build a fully reproducible workflow for writing and publishing a scientific manuscript that integrates text, data, and code."
+  location: OPAM 2025 Virtual
+  links:
+  - name: Companion site and materials
+    url: https://jgeller112.github.io/opam2025-repo-ms/
+    icon: fa-solid fa-globe
+
+  - name: Video
+    url: https://www.opamconference.com/online-workshops/writing-reproducible-manuscripts-in-r-using-quarto
+    icon: fa-brands fa-youtube

@@ -2,17 +2,20 @@
 title: "Talks"
 listing:
   - id: workshop_2025
-    contents: workshop_2025.yml
+    contents: [workshop_2025.yml, workshop_2025_1.yml]
     template: ../html/talks/listing.ejs
     sort: "date desc"
+
   - id: talks_2021
     contents: talks_2021.yml
-    sort: "date desc"
     template: ../html/talks/listing.ejs
+    sort: "date desc"
+
   - id: talks_2020
     contents: talks_2020.yml
-    sort: "date desc"
     template: ../html/talks/listing.ejs
+    sort: "date desc"
+
 title-block-banner: "#FB9E07"
 page-layout: full
 toc: true
@@ -36,7 +39,6 @@ Except where noted, all content is © Jason Geller and licensed under [Creative 
 ::: {#workshop_2025}
 :::
 
-
 ## 2021
 
 ::: {#talks_2021}
@@ -45,6 +47,5 @@ Except where noted, all content is © Jason Geller and licensed under [Creative 
 ## 2020
 
 ::: {#talks_2020}
-
 ## 
 :::
