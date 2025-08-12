@@ -1,0 +1,34 @@
+---
+title: "A Beta Way: A Tutorial For Using Beta Regression in Psychological Research"
+date: 2025-08-14
+author:
+  - name: Jason Geller
+    affiliation: Boston College
+  - name: Robert Kubinec
+    affiliation: University of South Carolina
+  - name: Chelsea Parlett 
+    affiliation: Canva
+  - name: Matti Vuorre 
+    affiliation: Tilburg University
+categories: 
+  - Beta regression
+  - Beta distribution
+  - R tutorial
+  - Psychology
+  - Learning and memory
+pub-info:
+  reference: "<strong>Geller, J.</strong>, Kubinec, R, Parlett, C., and Vuorre, M.(2025).A Beta Way: A Tutorial For Using Beta Regression in Psychological Research. https://doi.org/10.31234/osf.io/d6v5t_v1"
+  links:
+    - name: Preprint/HTML code
+      url: https://jgeller112.github.io/beta_regression_tutorial/
+      icon: ai ai-psyarxiv-square
+    - name: Github
+      url: https://github.com/jgeller112/beta_regression_tutorial/
+      icon: fa-brands fa-github-square
+
+doi: https://doi.org/10.31234/osf.io/d6v5t_v1
+---
+
+# Abstract
+
+Rates, percentages, and proportions are common outcomes in psychology and the social sciences. These outcomes are often analyzed using models that assume normality, but this practice overlooks important features of the data, such as their natural bounds at 0 and 1. As a result, estimates can become distorted. In contrast, treating such outcomes as Beta-distributed respects these limits and can yield more accurate estimates. Despite these advantages, the use of Beta models in applied research remains limited. Our goal is to provide researchers with practical guidance for adopting Beta regression models, illustrated with an example drawn from the psychological literature. We begin by introducing the Beta distribution and Beta regression, emphasizing key components and assumptions. Next, using data from a learning and memory study, we demonstrate how to fit a Beta regression model in R with the Bayesian package `brms` and how to interpret results on the response scale. We also discuss model extensions, including zero-inflated, zero- and one-inflated, and ordered Beta models. Basic familarity with regression modeling and R is assumed. To promote wider adoption of these methods, we provide detailed code and materials at [https://github.com/jgeller112/Beta_regression_tutorial.](https://github.com/jgeller112/Beta_regression_tutorial.")
