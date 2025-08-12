@@ -3,7 +3,9 @@ title: "Software"
 listing: 
   contents: packages
   type: grid
-  categories: true
+  categories: false
+  page-size: 100
+  image-height: "100"
 title-block-banner: "#007ACC"
 ---
 
