@@ -51,9 +51,9 @@ website:
         href: https://scholar.google.com/citations?user=yO68sggAAAAJ&hl=en
       - icon: github
         href: https://github.com/jgeller112
-      - href: https://bsky.app/profile/jgeller1phd.bsky.social
-        icon: clouds
-        text: bsky
+      - text: "{{< iconify fa6-brands bluesky size=1.1em title='Bluesky' >}}"
+        href: https://bsky.app/profile/jgeller1phd.bsky.social
+
   page-footer:
     left: |
       <span class="faux-block">{{< fa brands creative-commons >}} {{< var years >}} Jason Geller</span>

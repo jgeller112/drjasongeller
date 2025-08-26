@@ -438,7 +438,7 @@
     "href": "blog/posts/2021-04-21-gazePoint_gazer_2/index.html",
     "title": "Analzying GazePoint Pupil Data With GazeR",
     "section": "",
-    "text": "In this vignette I am going to show you how to read in a GazePoint data file along with some behavioral data and use gazeR to preprocess the data.\nSpecial thanks to Matthew K Robinson (Twitter:@matthewkrobinson) for letting me use some data from an auditory oddball task he conducted on himself (we do what we have to do as researchers :D): see Tweet below."
+    "text": "In this vignette I am going to show you how to read in a GazePoint data file along with some behavioral data and use gazeR to preprocess the data.\nSpecial thanks to Matthew K Robinson (Twitter:@matthewkrobinson) for letting me use some data from an auditory oddball task he conducted on himself (we do what we have to do as researchers :D): see Tweet below.\nTo get started, we need to load in some important packages and read in the GP data files."
   },
   {
     "objectID": "blog/posts/2021-04-21-gazePoint_gazer_2/index.html#load-packages",
