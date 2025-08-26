@@ -1,5 +1,5 @@
 ---
-title: "Language Without Borders: A Step-by-Step Guide to Analyzing1Webcam Eye-Tracking Data for L2 Research"
+title: "Language without borders: A step-by-step guide to analyzing webcam eye-tracking data for L2 research"
 date: 2025-06-17
 author:
   - name: Jason Geller
@@ -18,8 +18,11 @@ categories:
   - Spoken word recognition
   - VWP 
 pub-info:
-  reference: "<strong>Geller, J.</strong>, Prystauka, Y., Colby, S. E., & Drouin, J. R. (in press). Language without borders: A step-by-step guide to analyzing webcam eye-tracking data for L2 research. <em> Research Methods in Applied Lingustics. </em> https://osf.io/preprints/psyarxiv/7jqea_v7"
+  reference: "<strong>Geller, J.</strong>, Prystauka, Y., Colby, S. E., & Drouin, J. R. (in press). Language without borders: A step-by-step guide to analyzing webcam eye-tracking data for L2 research. <em> Research Methods in Applied Lingustics</em>.https://doi.org/10.1016/j.rmal.2025.100226."
   links:
+    - name: Paper
+      url: https://www.sciencedirect.com/science/article/pii/S2772766125000473?via%3Dihub
+      icon: fa-solid fa-scroll
     - name: Preprint
       url: https://jgeller112.github.io/L2_VWP_Webcam/
       icon: ai ai-psyarxiv-square
