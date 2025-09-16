@@ -1,5 +1,5 @@
 ---
-title: "The Perceptual disfluency effect: A drift diffusion and ex-Gaussian analysis"
+title: "A Response Time Distributional Analysis of the Perceptual Disfluency Effect"
 date: 2025-06-17
 author:
   - name: Jason Geller
@@ -19,7 +19,7 @@ categories:
   - Distributional analyses
   - Word recognition
 pub-info:
-  reference: "<strong>Geller, J.</strong>, Gomez, P., Buchanon, E., & Makowski, D. (2025).The perceptual disfluency effect: A drift diffusion and ex-Gaussian analysis. <em> </em>https://osf.io/preprints/psyarxiv/sae23_v3"
+  reference: "<strong>Geller, J.</strong>, Gomez, P., Buchanon, E., & Makowski, D. (2025).A response time distributional analysis of the perceptual disfluency effect. <em> </em>https://osf.io/preprints/psyarxiv/sae23_v3"
   links:
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/sae23_v1
