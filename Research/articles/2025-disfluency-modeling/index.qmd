@@ -19,7 +19,7 @@ categories:
   - Distributional analyses
   - Word recognition
 pub-info:
-  reference: "<strong>Geller, J.</strong>, Gomez, P., Buchanon, E., & Makowski, D. (2025).A response time distributional analysis of the perceptual disfluency effect.<em>Journal of Cognition</em>.https://osf.io/preprints/psyarxiv/sae23_v3"
+  reference: "<strong>Geller, J.</strong>, Gomez, P., Buchanon, E., & Makowski, D. (2025).A response time distributional analysis of the perceptual disfluency effect.<em>Journal of Cognition</em>.https://osf.io/preprints/psyarxiv/sae23_v4"
   links:
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/sae23_v1
@@ -30,7 +30,7 @@ pub-info:
     - name: Github
       url: https://github.com/jgeller112/Disfluency_Ms
       icon: fa-brands fa-github-square
-doi: https://doi.org/10.31234/osf.io/sae23_v3
+doi: https://doi.org/10.31234/osf.io/sae23_v4
 ---
 
 # Abstract
