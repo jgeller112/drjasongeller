@@ -1,5 +1,5 @@
 ---
-title: "A Response Time Distributional Analysis of the Perceptual Disfluency Effect"
+title: "A Distributional Response Time Analysis of the Perceptual Disfluency Effect"
 date: 2025-10-04
 author:
   - name: Jason Geller
@@ -19,10 +19,13 @@ categories:
   - Distributional analyses
   - Word recognition
 pub-info:
-  reference: "<strong>Geller, J.</strong>, Gomez, P., Buchanon, E., & Makowski, D. (2025).A response time distributional analysis of the perceptual disfluency effect.<em>Journal of Cognition</em>.https://osf.io/preprints/psyarxiv/sae23_v4"
+  reference: "<strong>Geller, J.</strong>, Gomez, P., Buchanon, E., & Makowski, D. (2025).A distributional response time analysis of the perceptual disfluency effect.<em> Journal of Cognition</em>, 8(1): 50, pp.1-26. DOI:https://journalofcognition.org/articles/10.5334/joc.469"
   links:
+    - name: Paper
+      icon: fa-solid fa-scroll
+      url: https://journalofcognition.org/articles/10.5334/joc.469
     - name: Preprint
-      url: https://osf.io/preprints/psyarxiv/sae23_v1
+      url: https://osf.io/preprints/psyarxiv/sae23_v4
       icon: ai ai-psyarxiv-square
     - name: OSF
       url: https://osf.io/6sy7k/
