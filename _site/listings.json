@@ -2,17 +2,15 @@
   {
     "listing": "/blog/index.html",
     "items": [
+      "/blog/posts/2025-10-31-pupillabs/index.html",
       "/blog/posts/2022-03-10-mtpa-pupil/index.html",
       "/blog/posts/2021-04-21-gazePoint_gazer_2/index.html",
       "/blog/posts/2020-07-10-CBPT/index.html"
     ]
   },
   {
-    "listing": "/Software/index.html",
-    "items": [
-      "/Software/packages/gazer.html",
-      "/Software/packages/webgazer.html"
-    ]
+    "listing": "/Talks/index.html",
+    "items": []
   },
   {
     "listing": "/Research/index.html",
@@ -45,8 +43,11 @@
     ]
   },
   {
-    "listing": "/Talks/index.html",
-    "items": []
+    "listing": "/Software/index.html",
+    "items": [
+      "/Software/packages/gazer.html",
+      "/Software/packages/webgazer.html"
+    ]
   },
   {
     "listing": "/Teaching/index.html",
