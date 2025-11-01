@@ -8,8 +8,10 @@ categories:
   - statistics
 
 format:
-    html:
-        theme: dracula
+  html: 
+    theme: dracula
+    css: halloween.css
+        
 execute: 
   echo: true
   message: false
@@ -18,55 +20,60 @@ execute:
 
 🎃 Happy Halloween, goils and boils! 👻
 
-I have a spooktacular blog post for you today—one that dives into the mysterious world of pupil data from Pupil Labs Neon glasses. We’re currently using the Neon in the classroom to study mind-wandering and attention. However, these mobile eye trackers aren’t just for field studies—they shine in the lab, too.
+I have a spooktacular blog post for you today—one that dives into the mysterious world of pupil data from Pupil Labs Neon glasses. We’re currently using the Neon in the classroom to study mind wandering and attention. However, these mobile eye trackers aren’t just for field studies—they shine in the lab too.
 
-To demonstrate this, I created a simple PsychoPy experiment that interfaces seamlessly with the Neon (you can find it here: <https://osf.io/txz59/overview> ) In the task, participants view a bright sun for 30 seconds followed by a dark patch for another 30 seconds. The pupil responds to basic visual features like brightness, constricting in light and dilating in the dark.
+To demonstrate this, I created a simple PsychoPy experiment that interfaces seamlessly with the Neon (you can find it here: https://osf.io/txz59/overview
+). In the task, participants view a bright sun for 30 seconds followed by a dark patch for another 30 seconds. The pupil responds to basic visual features like brightness—constricting in light and dilating in the dark.
 
 ![](images/Eye_dilate.gif){fig-align="center"}
 
-In this post, I’ll show how the Neon glasses can capture these pupillary dynamics and how you can use my R package {gazeR} to preprocess the pupil data collected from Pupil Labs devices.
+In this post, I’ll show how the Neon glasses can capture these pupillary dynamics and how you can use my R package {gazeR} to preprocess pupil data collected from Pupil Labs devices.
 
 ## gazeR Pupil labs Functions
 
-Once you collect data with Pupil Labs Neon, your recordings live in Pupil Cloud. Export the Time Series for each recording (CSV export). After the export finishes, you’ll have a folder per participant/recording containing multiple CSVs.
+Once you collect data with Pupil Labs Neon, your recordings live in Pupil Cloud. Export the Time Series for each recording (CSV export). After the export finishes, you’ll have a folder per participant/recording containing multiple CSV files.
 
 ![](images/timeseries.jpg){fig-align="center"}
 
-When this is finished downloading it will have a folder for each recording/participant with a series of files.
-
 From each participant folder, we use exactly three files:
 
--   `gaze.csv` — gaze samples (timestamps, x/y pixels, fixations, blinks)
+gaze.csv — gaze samples (timestamps, x/y pixels, fixations, blinks)
 
-    `3d_eye_states.csv` — pupil diameters (left/right, in mm)
+3d_eye_states.csv — pupil diameters (left/right, in mm)
 
-    `events.csv` — experiment events/messages (e.g., trial markers)
+events.csv — experiment events/messages (e.g., trial markers)
 
 ![](images/pl_files.jpg){fig-align="center"}
 
-I created two new functions to read in this data from Pupil Labs. The first function is `parse_pl()` and the second one is `process_all_subjects_PL()`. Both work in tandem to read in data from Pupil Labs.
+I created two new functions to read and process this data from Pupil Labs:
+`parse_pl()` and `process_all_subjects_PL()`. Both work in tandem to prepare Neon data for use with {gazeR}.
 
 ## What the functions do
 
-### `parse_pl(subject_dir, start_mode = c("any","exact"), start_messages = NULL, max_event_lag_ms = 20)`
+`parse_pl(subject_dir, start_mode = c("any","exact"), start_messages = NULL, max_event_lag_ms = 20)`
 
-Processes **one** participant:
+Processes one participant:
 
-1.  Reads the three CSVs and converts timestamps to milliseconds.
+1. Reads the three CSVs and converts timestamps to milliseconds.
 
-2.  Joins pupil data to gaze samples.
+2. Joins pupil data to gaze samples.
 
-3.  Aligns each non-recording event (`events.csv`) to the **nearest** gaze row (within `max_event_lag_ms`).
+3. Aligns each non-recording event (events.csv) to the nearest gaze row (within max_event_lag_ms).
 
-4.  Creates **trial** indices `start_mode = "any"`: any non-empty message (excluding `recording.begin/.end`) starts a new trial. `start_mode = "exact"`: only messages listed in `start_messages` start a new trial (robust to case/whitespace/hyphens vs underscores).
+4. Creates trial indices:
 
-5.  **Removes blank trials** (trials that have no valid start message).
+- start_mode = "any" → any non-empty message (excluding recording.begin/.end) starts a new trial.
 
-6.  Resets **time** to 0 at the first row of each trial
+- start_mode = "exact" → only messages listed in start_messages start a new trial (robust to case/whitespace/hyphen differences).
 
-7.  Returns a tidy tibble ready for `{gazeR}`: `subject, trial, time, x, y, pupil, blink, message`.
+5. Removes blank trials (those without a valid start message).
 
-### `process_all_subjects_PL(root_dir, output_dir = file.path(root_dir, "processed"), ...)`
+6. Resets time to 0 at the first row of each trial.
+
+7. Returns a tidy tibble ready for {gazeR}:
+`subject, trial, time, x, y, pupil, blink, message.`
+
+`process_all_subjects_PL(root_dir, output_dir = file.path(root_dir, "processed"), ...)`
 
 Batch-processes **all** immediate subfolders of `root_dir` using `parse_pl()`, writes one CSV per subject plus a combined files
 
@@ -76,7 +83,7 @@ Batch-processes **all** immediate subfolders of `root_dir` using `parse_pl()`, w
 
 Any additional arguments (`...`) are passed straight to `parse_pl()` (e.g., `start_mode`, `start_messages`, `max_event_lag_ms`).
 
-## Example Dataset
+# Example Dataset
 
 Let's read in the dataset created from the above functions.
 
@@ -93,7 +100,7 @@ library(knitr) # tables
 ```{r}
 sub_pl =read.csv("https://osf.io/zf2qu/download") # get processed file from osf
 
-head(sub_pl)
+kable(head(sub_pl))
 ```
 
 Let's take a look at the data we have.
@@ -134,7 +141,8 @@ This is what the pupil data looks like for the entire time course.
 
 ## Extending Blinks
 
-We see dips in the pupil signal–these are most likely from blinks. Pupil Labs has their own blink algorithm and we will use that. We first turn pupil sizes where there is a blink to `NA`. Then we use the `extend_blinks()` function to extending blinks 100 ms forward and backward in time.
+We see dips in the pupil signal—these are most likely caused by blinks. Pupil Labs includes a blink detection algorithm, which we’ll use here.
+We first set pupil size values corresponding to blinks to NA, then use extend_blinks()to extend blinks 100 ms forward and backward in time.
 
 ```{r pressure, echo=FALSE}
 
@@ -148,29 +156,29 @@ pup_extend<- sub_pl |>
 
 ## Interpolate blinks
 
-Here let's linearly interpolate the blinks and then smooth the data using a 5-point moving average.
+Next, we linearly interpolate over blinks and smooth the data using a 5-point moving average.
 
 ```{r}
 # Smooth and Interpolate
 smooth_interp <- smooth_interpolate_pupil(pup_extend, pupil="pupil", extendpupil="extendpupil", extendblinks=TRUE, step.first="smooth", maxgap=Inf, type="linear", hz=200, n=5)
 ```
 
-Let's see how much missing data there is and remove trials with greater than 50% missing data.
+Then, calculate missing data and remove trials with more than 50% missing data.
 
 ```{r}
  pup_missing<-count_missing_pupil(smooth_interp, missingthresh = .5)
 ```
 
-# Unlikely Pupil Sizes
+## Unlikely Pupil Sizes
 
-Now let's keep pupil diameter sizes between 2 mm and 9 mm
+Now, keep only plausible pupil diameters between 2 mm and 9 mm.
 
 ```{r}
 pup_outliers<-pup_missing |>
   dplyr::filter (pup_interp  >= 2, pup_interp <= 9)
 ```
 
-# MAD
+## MAD
 
 Get rid of artifacts we might have missed during some earlier steps.
 
@@ -184,7 +192,7 @@ max_removal<-pup_missing  |>
 
 ```
 
-# Onset
+## Onset
 
 Let's only look from the start of the trial until 1000 ms
 
@@ -195,9 +203,9 @@ pupil_onset<-max_removal |>
   select(subject, trial, time, pup_interp)
 ```
 
-# Downsample
+## Downsample
 
-Downsample the time-course to 50 ms.
+Downsample the time-course to 100 ms.
 
 ```{r}
 #downsample
@@ -206,7 +214,7 @@ timebins1<- downsample_gaze(pupil_onset, bin.length=100, pupil="pup_interp", tim
 kable(head(timebins1))
 ```
 
-# Visualize Time-course
+## Visualize Time-course
 
 ```{r}
 #| echo: false

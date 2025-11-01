@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><link rel="stylesheet" href="halloween.css">
 <meta name="twitter:title" content="Analzying Pupil Labs Neon Data With GazeR | Jason Geller">
 <meta name="twitter:description" content="I demonstrate how to analyze pupil data from Pupil Labs Neon mobile eye-tracker with my eye-tracking R package gazeR.">
 <meta name="twitter:image" content="https://www.drjasongeller.com/files/profiles/twitter-card-large.png">
@@ -213,45 +213,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p>🎃 Happy Halloween, goils and boils! 👻</p>
-<p>I have a spooktacular blog post for you today—one that dives into the mysterious world of pupil data from Pupil Labs Neon glasses. We’re currently using the Neon in the classroom to study mind-wandering and attention. However, these mobile eye trackers aren’t just for field studies—they shine in the lab, too.</p>
-<p>To demonstrate this, I created a simple PsychoPy experiment that interfaces seamlessly with the Neon (you can find it here: <a href="https://osf.io/txz59/overview" class="uri">https://osf.io/txz59/overview</a> ) In the task, participants view a bright sun for 30 seconds followed by a dark patch for another 30 seconds. The pupil responds to basic visual features like brightness, constricting in light and dilating in the dark.</p>
+<p>I have a spooktacular blog post for you today—one that dives into the mysterious world of pupil data from Pupil Labs Neon glasses. We’re currently using the Neon in the classroom to study mind wandering and attention. However, these mobile eye trackers aren’t just for field studies—they shine in the lab too.</p>
+<p>To demonstrate this, I created a simple PsychoPy experiment that interfaces seamlessly with the Neon (you can find it here: https://osf.io/txz59/overview ). In the task, participants view a bright sun for 30 seconds followed by a dark patch for another 30 seconds. The pupil responds to basic visual features like brightness—constricting in light and dilating in the dark.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/Eye_dilate.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<p>In this post, I’ll show how the Neon glasses can capture these pupillary dynamics and how you can use my R package {gazeR} to preprocess the pupil data collected from Pupil Labs devices.</p>
+<p>In this post, I’ll show how the Neon glasses can capture these pupillary dynamics and how you can use my R package {gazeR} to preprocess pupil data collected from Pupil Labs devices.</p>
 <section id="gazer-pupil-labs-functions" class="level2"><h2 class="anchored" data-anchor-id="gazer-pupil-labs-functions">gazeR Pupil labs Functions</h2>
-<p>Once you collect data with Pupil Labs Neon, your recordings live in Pupil Cloud. Export the Time Series for each recording (CSV export). After the export finishes, you’ll have a folder per participant/recording containing multiple CSVs.</p>
+<p>Once you collect data with Pupil Labs Neon, your recordings live in Pupil Cloud. Export the Time Series for each recording (CSV export). After the export finishes, you’ll have a folder per participant/recording containing multiple CSV files.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/timeseries.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<p>When this is finished downloading it will have a folder for each recording/participant with a series of files.</p>
 <p>From each participant folder, we use exactly three files:</p>
-<ul>
-<li>
-<p><code>gaze.csv</code> — gaze samples (timestamps, x/y pixels, fixations, blinks)</p>
-<p><code>3d_eye_states.csv</code> — pupil diameters (left/right, in mm)</p>
-<p><code>events.csv</code> — experiment events/messages (e.g., trial markers)</p>
-</li>
-</ul>
+<p>gaze.csv — gaze samples (timestamps, x/y pixels, fixations, blinks)</p>
+<p>3d_eye_states.csv — pupil diameters (left/right, in mm)</p>
+<p>events.csv — experiment events/messages (e.g., trial markers)</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/pl_files.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<p>I created two new functions to read in this data from Pupil Labs. The first function is <code><a href="https://rdrr.io/pkg/gazer/man/parse_pl.html">parse_pl()</a></code> and the second one is <code><a href="https://rdrr.io/pkg/gazer/man/process_all_subjects_PL.html">process_all_subjects_PL()</a></code>. Both work in tandem to read in data from Pupil Labs.</p>
+<p>I created two new functions to read and process this data from Pupil Labs: <code><a href="https://rdrr.io/pkg/gazer/man/parse_pl.html">parse_pl()</a></code> and <code><a href="https://rdrr.io/pkg/gazer/man/process_all_subjects_PL.html">process_all_subjects_PL()</a></code>. Both work in tandem to prepare Neon data for use with {gazeR}.</p>
 </section><section id="what-the-functions-do" class="level2"><h2 class="anchored" data-anchor-id="what-the-functions-do">What the functions do</h2>
-<section id="parse_plsubject_dir-start_mode-canyexact-start_messages-null-max_event_lag_ms-20" class="level3"><h3 class="anchored" data-anchor-id="parse_plsubject_dir-start_mode-canyexact-start_messages-null-max_event_lag_ms-20"><code>parse_pl(subject_dir, start_mode = c("any","exact"), start_messages = NULL, max_event_lag_ms = 20)</code></h3>
-<p>Processes <strong>one</strong> participant:</p>
+<p><code>parse_pl(subject_dir, start_mode = c("any","exact"), start_messages = NULL, max_event_lag_ms = 20)</code></p>
+<p>Processes one participant:</p>
 <ol type="1">
 <li><p>Reads the three CSVs and converts timestamps to milliseconds.</p></li>
 <li><p>Joins pupil data to gaze samples.</p></li>
-<li><p>Aligns each non-recording event (<code>events.csv</code>) to the <strong>nearest</strong> gaze row (within <code>max_event_lag_ms</code>).</p></li>
-<li><p>Creates <strong>trial</strong> indices <code>start_mode = "any"</code>: any non-empty message (excluding <code>recording.begin/.end</code>) starts a new trial. <code>start_mode = "exact"</code>: only messages listed in <code>start_messages</code> start a new trial (robust to case/whitespace/hyphens vs underscores).</p></li>
-<li><p><strong>Removes blank trials</strong> (trials that have no valid start message).</p></li>
-<li><p>Resets <strong>time</strong> to 0 at the first row of each trial</p></li>
-<li><p>Returns a tidy tibble ready for <code>{gazeR}</code>: <code>subject, trial, time, x, y, pupil, blink, message</code>.</p></li>
-</ol></section><section id="process_all_subjects_plroot_dir-output_dir-file.pathroot_dir-processed-..." class="level3"><h3 class="anchored" data-anchor-id="process_all_subjects_plroot_dir-output_dir-file.pathroot_dir-processed-..."><code>process_all_subjects_PL(root_dir, output_dir = file.path(root_dir, "processed"), ...)</code></h3>
+<li><p>Aligns each non-recording event (events.csv) to the nearest gaze row (within max_event_lag_ms).</p></li>
+<li><p>Creates trial indices:</p></li>
+</ol>
+<ul>
+<li><p>start_mode = “any” → any non-empty message (excluding recording.begin/.end) starts a new trial.</p></li>
+<li><p>start_mode = “exact” → only messages listed in start_messages start a new trial (robust to case/whitespace/hyphen differences).</p></li>
+</ul>
+<ol start="5" type="1">
+<li><p>Removes blank trials (those without a valid start message).</p></li>
+<li><p>Resets time to 0 at the first row of each trial.</p></li>
+<li><p>Returns a tidy tibble ready for {gazeR}: <code>subject, trial, time, x, y, pupil, blink, message.</code></p></li>
+</ol>
+<p><code>process_all_subjects_PL(root_dir, output_dir = file.path(root_dir, "processed"), ...)</code></p>
 <p>Batch-processes <strong>all</strong> immediate subfolders of <code>root_dir</code> using <code><a href="https://rdrr.io/pkg/gazer/man/parse_pl.html">parse_pl()</a></code>, writes one CSV per subject plus a combined files</p>
 <ul>
 <li>
@@ -260,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 </ul>
 <p>Any additional arguments (<code>...</code>) are passed straight to <code><a href="https://rdrr.io/pkg/gazer/man/parse_pl.html">parse_pl()</a></code> (e.g., <code>start_mode</code>, <code>start_messages</code>, <code>max_event_lag_ms</code>).</p>
-</section></section><section id="example-dataset" class="level2"><h2 class="anchored" data-anchor-id="example-dataset">Example Dataset</h2>
+</section><section id="example-dataset" class="level1"><h1>Example Dataset</h1>
 <p>Let’s read in the dataset created from the above functions.</p>
 <p>We will load in {gazeR} and needed libraries.</p>
 <div class="cell">
@@ -272,22 +274,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sub_pl</span> <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://osf.io/zf2qu/download"</span><span class="op">)</span> <span class="co"># get processed file from osf</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sub_pl</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                       subject trial      time       x       y   pupil blink
-1 2025-10-31_12-48-26-74964918     1  0.000000 813.938 606.636 4.24975 FALSE
-2 2025-10-31_12-48-26-74964918     1  5.005127 815.400 608.674 4.21485 FALSE
-3 2025-10-31_12-48-26-74964918     1  9.994873 815.163 607.715 4.23690 FALSE
-4 2025-10-31_12-48-26-74964918     1 14.994629 814.249 606.579 4.25715 FALSE
-5 2025-10-31_12-48-26-74964918     1 19.994629 812.541 607.620 4.22035 FALSE
-6 2025-10-31_12-48-26-74964918     1 24.994873 815.149 607.083 4.20380 FALSE
-              message
-1 trial-started-light
-2                    
-3                    
-4                    
-5                    
-6                    </code></pre>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sub_pl</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 21%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">subject</th>
+<th style="text-align: right;">trial</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+<th style="text-align: right;">pupil</th>
+<th style="text-align: left;">blink</th>
+<th style="text-align: left;">message</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2025-10-31_12-48-26-74964918</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">813.938</td>
+<td style="text-align: right;">606.636</td>
+<td style="text-align: right;">4.24975</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">trial-started-light</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-10-31_12-48-26-74964918</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5.005127</td>
+<td style="text-align: right;">815.400</td>
+<td style="text-align: right;">608.674</td>
+<td style="text-align: right;">4.21485</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-10-31_12-48-26-74964918</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9.994873</td>
+<td style="text-align: right;">815.163</td>
+<td style="text-align: right;">607.715</td>
+<td style="text-align: right;">4.23690</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-10-31_12-48-26-74964918</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">14.994629</td>
+<td style="text-align: right;">814.249</td>
+<td style="text-align: right;">606.579</td>
+<td style="text-align: right;">4.25715</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-10-31_12-48-26-74964918</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">19.994629</td>
+<td style="text-align: right;">812.541</td>
+<td style="text-align: right;">607.620</td>
+<td style="text-align: right;">4.22035</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-10-31_12-48-26-74964918</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">24.994873</td>
+<td style="text-align: right;">815.149</td>
+<td style="text-align: right;">607.083</td>
+<td style="text-align: right;">4.20380</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <p>Let’s take a look at the data we have.</p>
@@ -300,46 +372,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>This is what the pupil data looks like for the entire time course.</p>
-</section><section id="extending-blinks" class="level2"><h2 class="anchored" data-anchor-id="extending-blinks">Extending Blinks</h2>
-<p>We see dips in the pupil signal–these are most likely from blinks. Pupil Labs has their own blink algorithm and we will use that. We first turn pupil sizes where there is a blink to <code>NA</code>. Then we use the <code><a href="https://rdrr.io/pkg/gazer/man/extend_blinks.html">extend_blinks()</a></code> function to extending blinks 100 ms forward and backward in time.</p>
+<section id="extending-blinks" class="level2"><h2 class="anchored" data-anchor-id="extending-blinks">Extending Blinks</h2>
+<p>We see dips in the pupil signal—these are most likely caused by blinks. Pupil Labs includes a blink detection algorithm, which we’ll use here. We first set pupil size values corresponding to blinks to NA, then use extend_blinks()to extend blinks 100 ms forward and backward in time.</p>
 </section><section id="interpolate-blinks" class="level2"><h2 class="anchored" data-anchor-id="interpolate-blinks">Interpolate blinks</h2>
-<p>Here let’s linearly interpolate the blinks and then smooth the data using a 5-point moving average.</p>
+<p>Next, we linearly interpolate over blinks and smooth the data using a 5-point moving average.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Smooth and Interpolate</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Smooth and Interpolate</span></span>
 <span><span class="va">smooth_interp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gazer/man/smooth_interpolate_pupil.html">smooth_interpolate_pupil</a></span><span class="op">(</span><span class="va">pup_extend</span>, pupil<span class="op">=</span><span class="st">"pupil"</span>, extendpupil<span class="op">=</span><span class="st">"extendpupil"</span>, extendblinks<span class="op">=</span><span class="cn">TRUE</span>, step.first<span class="op">=</span><span class="st">"smooth"</span>, maxgap<span class="op">=</span><span class="cn">Inf</span>, type<span class="op">=</span><span class="st">"linear"</span>, hz<span class="op">=</span><span class="fl">200</span>, n<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Let’s see how much missing data there is and remove trials with greater than 50% missing data.</p>
+<p>Then, calculate missing data and remove trials with more than 50% missing data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">pup_missing</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/count_missing_pupil.html">count_missing_pupil</a></span><span class="op">(</span><span class="va">smooth_interp</span>, missingthresh <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">pup_missing</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/count_missing_pupil.html">count_missing_pupil</a></span><span class="op">(</span><span class="va">smooth_interp</span>, missingthresh <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="unlikely-pupil-sizes" class="level1"><h1>Unlikely Pupil Sizes</h1>
-<p>Now let’s keep pupil diameter sizes between 2 mm and 9 mm</p>
+</section><section id="unlikely-pupil-sizes" class="level2"><h2 class="anchored" data-anchor-id="unlikely-pupil-sizes">Unlikely Pupil Sizes</h2>
+<p>Now, keep only plausible pupil diameters between 2 mm and 9 mm.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pup_outliers</span><span class="op">&lt;-</span><span class="va">pup_missing</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pup_outliers</span><span class="op">&lt;-</span><span class="va">pup_missing</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span><span class="va">pup_interp</span>  <span class="op">&gt;=</span> <span class="fl">2</span>, <span class="va">pup_interp</span> <span class="op">&lt;=</span> <span class="fl">9</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="mad" class="level1"><h1>MAD</h1>
+</section><section id="mad" class="level2"><h2 class="anchored" data-anchor-id="mad">MAD</h2>
 <p>Get rid of artifacts we might have missed during some earlier steps.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="co">#MAD removal</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="co">#MAD removal</span></span>
 <span><span class="va">max_removal</span><span class="op">&lt;-</span><span class="va">pup_missing</span>  <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>speed<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/speed_pupil.html">speed_pupil</a></span><span class="op">(</span><span class="va">pup_interp</span>,<span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>MAD<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/calc_mad.html">calc_mad</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">speed</span> <span class="op">&lt;</span> <span class="va">MAD</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="onset" class="level1"><h1>Onset</h1>
+</section><section id="onset" class="level2"><h2 class="anchored" data-anchor-id="onset">Onset</h2>
 <p>Let’s only look from the start of the trial until 1000 ms</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pupil_onset</span><span class="op">&lt;-</span><span class="va">max_removal</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pupil_onset</span><span class="op">&lt;-</span><span class="va">max_removal</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">&lt;=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span>, <span class="va">time</span>, <span class="va">pup_interp</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="downsample" class="level1"><h1>Downsample</h1>
-<p>Downsample the time-course to 50 ms.</p>
+</section><section id="downsample" class="level2"><h2 class="anchored" data-anchor-id="downsample">Downsample</h2>
+<p>Downsample the time-course to 100 ms.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#downsample</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#downsample</span></span>
 <span><span class="va">timebins1</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gazer/man/downsample_gaze.html">downsample_gaze</a></span><span class="op">(</span><span class="va">pupil_onset</span>, bin.length<span class="op">=</span><span class="fl">100</span>, pupil<span class="op">=</span><span class="st">"pup_interp"</span>, timevar <span class="op">=</span> <span class="st">"time"</span>, aggvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"subject"</span>, <span class="st">"trial"</span>, <span class="st">"timebins"</span><span class="op">)</span>, type<span class="op">=</span><span class="st">"pupil"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">timebins1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -392,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-</section><section id="visualize-time-course" class="level1"><h1>Visualize Time-course</h1>
+</section><section id="visualize-time-course" class="level2"><h2 class="anchored" data-anchor-id="visualize-time-course">Visualize Time-course</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -411,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
