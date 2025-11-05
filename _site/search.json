@@ -25,21 +25,21 @@
     "href": "blog/posts/2025-10-31-pupillabs/index.html#gazer-pupil-labs-functions",
     "title": "Analzying Pupil Labs Neon Data With GazeR",
     "section": "gazeR Pupil labs Functions",
-    "text": "gazeR Pupil labs Functions\nOnce you collect data with Pupil Labs Neon, your recordings live in Pupil Cloud. Export the Time Series for each recording (CSV export). After the export finishes, you’ll have a folder per participant/recording containing multiple CSV files.\n\n\n\n\nFrom each participant folder, we use exactly three files:\ngaze.csv — gaze samples (timestamps, x/y pixels, fixations, blinks)\n3d_eye_states.csv — pupil diameters (left/right, in mm)\nevents.csv — experiment events/messages (e.g., trial markers)\n\n\n\n\nI created two new functions to read and process this data from Pupil Labs: parse_pl() and process_all_subjects_PL(). Both work in tandem to prepare Neon data for use with {gazeR}."
+    "text": "gazeR Pupil labs Functions\nOnce you collect data with Pupil Labs Neon, your recordings live in Pupil Cloud. Export the Time Series for each recording (CSV export). After the export finishes, you’ll have a folder per participant/recording containing multiple CSV files.\n\n\n\n\nFrom each participant folder, we use exactly three files:\ngaze.csv — gaze samples (timestamps, x/y pixels, fixations, blinks)\n3d_eye_states.csv — pupil diameters (left/right, in mm)\nevents.csv — experiment events/messages (e.g., trial markers)\n\n\n\n\nI created two new functions to read and process this data from Pupil Labs:\nparse_pl() and process_all_subjects_PL(). Both work in tandem to prepare Neon data for use with {gazeR}."
   },
   {
     "objectID": "blog/posts/2025-10-31-pupillabs/index.html#what-the-functions-do",
     "href": "blog/posts/2025-10-31-pupillabs/index.html#what-the-functions-do",
     "title": "Analzying Pupil Labs Neon Data With GazeR",
     "section": "What the functions do",
-    "text": "What the functions do\nparse_pl(subject_dir, start_mode = c(\"any\",\"exact\"), start_messages = NULL, max_event_lag_ms = 20)\nProcesses one participant:\n\nReads the three CSVs and converts timestamps to milliseconds.\nJoins pupil data to gaze samples.\nAligns each non-recording event (events.csv) to the nearest gaze row (within max_event_lag_ms).\nCreates trial indices:\n\n\nstart_mode = “any” → any non-empty message (excluding recording.begin/.end) starts a new trial.\nstart_mode = “exact” → only messages listed in start_messages start a new trial (robust to case/whitespace/hyphen differences).\n\n\nRemoves blank trials (those without a valid start message).\nResets time to 0 at the first row of each trial.\nReturns a tidy tibble ready for {gazeR}: subject, trial, time, x, y, pupil, blink, message.\n\nprocess_all_subjects_PL(root_dir, output_dir = file.path(root_dir, \"processed\"), ...)\nBatch-processes all immediate subfolders of root_dir using parse_pl(), writes one CSV per subject plus a combined files\n\n\nPer-subject files: {output_dir}/{SUBJECT}_processed.cs\nCombined file: {output_dir}/all_subjects_processed.csv\n\n\nAny additional arguments (...) are passed straight to parse_pl() (e.g., start_mode, start_messages, max_event_lag_ms)."
+    "text": "What the functions do\nparse_pl(subject_dir, aoi = FALSE, start_mode = c(\"any\",\"exact\"), start_messages = NULL, max_event_lag_ms = 20)\nProcesses one participant:\n\nReads the three CSVs and converts timestamps to milliseconds.\nJoins pupil data to gaze samples.\nAligns each non-recording event (events.csv) to the nearest gaze row (within max_event_lag_ms).\nIf aoi=TRUE, it can read in the surface or AOI files. Here we used the marker mapper to map gaze on the screen of the laptop I used to record the data.\nCreates trial indices:\n\n\nstart_mode = “any” → any non-empty message (excluding recording.begin/.end) starts a new trial.\nstart_mode = “exact” → only messages listed in start_messages start a new trial (robust to case/whitespace/hyphen differences).\n\n\nResets time to 0 at the first row of each trial.\nReturns a tidy tibble ready for {gazeR}: subject, trial, time, x, y, pupil, blink, message.\n\n\n\n\n\n\n\nNote\n\n\n\nIf you read in surface data, it will include whether gaze was found on the surface or not as well as x,y surface coordinates.\n\n\nprocess_all_subjects_PL(root_dir, output_dir = file.path(root_dir, \"processed\"), ...)\nBatch-processes all immediate subfolders of root_dir using parse_pl(), writes one CSV per subject plus a combined files\n\n\nPer-subject files: {output_dir}/{SUBJECT}_processed.cs\nCombined file: {output_dir}/all_subjects_processed.csv\n\n\nAny additional arguments (...) are passed straight to parse_pl() (e.g., start_mode, start_messages, max_event_lag_ms)."
   },
   {
     "objectID": "blog/posts/2025-10-31-pupillabs/index.html#extending-blinks",
     "href": "blog/posts/2025-10-31-pupillabs/index.html#extending-blinks",
     "title": "Analzying Pupil Labs Neon Data With GazeR",
     "section": "Extending Blinks",
-    "text": "Extending Blinks\nWe see dips in the pupil signal—these are most likely caused by blinks. Pupil Labs includes a blink detection algorithm, which we’ll use here. We first set pupil size values corresponding to blinks to NA, then use extend_blinks()to extend blinks 100 ms forward and backward in time."
+    "text": "Extending Blinks\nWe see dips in the pupil signal—these are most likely caused by blinks. Pupil Labs includes a blink detection algorithm, which we’ll use here. We first set pupil size values corresponding to blinks to NA, then use extend_blinks()to extend blinks 100 ms forward and backward in time.\n\n  #Extend Blinks\npup_extend&lt;- sub_pl |&gt;\n  mutate(pupil=ifelse(blink==TRUE, NA, pupil)) |&gt;\n  group_by(subject, trial) |&gt;\n  mutate(extendpupil=extend_blinks(pupil, fillback=100, fillforward=100, hz=200)) |&gt;\n  ungroup()"
   },
   {
     "objectID": "blog/posts/2025-10-31-pupillabs/index.html#interpolate-blinks",
@@ -656,5 +656,54 @@
     "title": "Teaching",
     "section": "2020–Earlier",
     "text": "2020–Earlier\n\n\n    \n    \n        \n            \n            \n            \n        \n        \n            \n                \n                Brain and Behavior \n                \n            \n            \n                 | \n                Iowa State University\n                \n                | Instructor\n                \n            \n            \n\n            \n                \n                 \n                 Summer 2014\n                \n                \n                 \n                 Summer 2015\n                \n                \n                 \n                 Summer 2016\n                \n                \n            \n        \n    \n    \n    \n        \n            \n            \n            \n        \n        \n            \n                \n                Academic Skills Learning \n                \n            \n            \n                 | \n                Iowa State University\n                \n                | Instructor\n                \n            \n            \n\n            \n                \n                 \n                 Fall 2015\n                \n                \n            \n        \n    \n    \n    \n        \n            \n            \n            \n        \n        \n            \n                \n                Psychology of Language \n                \n            \n            \n                 | \n                Iowa State University\n                \n                | Instructor\n                \n            \n            \n\n            \n                \n                 \n                 Spring 2016\n                \n                \n            \n        \n    \n    \n    \n        \n            \n            \n            \n        \n        \n            \n                \n                Introduction to Statistics \n                \n            \n            \n                 | \n                University of Alabama-Birmingham\n                \n                | Instructor\n                \n            \n            \n\n            \n                \n                 \n                 Fall 2018\n                \n                \n            \n        \n    \n    \n\nNo matching items"
+  },
+  {
+    "objectID": "blog/posts/2025-10-31-pupillabs/index.html#extending-blinks-1",
+    "href": "blog/posts/2025-10-31-pupillabs/index.html#extending-blinks-1",
+    "title": "Analzying Pupil Labs Neon Data With GazeR",
+    "section": "Extending Blinks",
+    "text": "Extending Blinks\nWe see dips in the pupil signal—these are most likely caused by blinks. Pupil Labs includes a blink detection algorithm, which we’ll use here. We first set pupil size values corresponding to blinks to NA, then use extend_blinks()to extend blinks 100 ms forward and backward in time.\n\n  #Extend Blinks\npup_extend&lt;- sub_pl |&gt;\n  mutate(pupil=ifelse(blink==TRUE, NA, pupil)) |&gt;\n  group_by(subject, trial) |&gt;\n  mutate(extendpupil=extend_blinks(pupil, fillback=100, fillforward=100, hz=200)) |&gt;\n  ungroup()"
+  },
+  {
+    "objectID": "blog/posts/2025-10-31-pupillabs/index.html#interpolate-blinks-1",
+    "href": "blog/posts/2025-10-31-pupillabs/index.html#interpolate-blinks-1",
+    "title": "Analzying Pupil Labs Neon Data With GazeR",
+    "section": "Interpolate blinks",
+    "text": "Interpolate blinks\nNext, we linearly interpolate over blinks and smooth the data using a 5-point moving average.\n\n# Smooth and Interpolate\nsmooth_interp &lt;- smooth_interpolate_pupil(pup_extend, pupil=\"pupil\", extendpupil=\"extendpupil\", extendblinks=TRUE, step.first=\"smooth\", maxgap=Inf, type=\"linear\", hz=200, n=5)\n\nThen, calculate missing data and remove trials with more than 50% missing data.\n\n pup_missing&lt;-count_missing_pupil(smooth_interp, missingthresh = .5)"
+  },
+  {
+    "objectID": "blog/posts/2025-10-31-pupillabs/index.html#unlikely-pupil-sizes-1",
+    "href": "blog/posts/2025-10-31-pupillabs/index.html#unlikely-pupil-sizes-1",
+    "title": "Analzying Pupil Labs Neon Data With GazeR",
+    "section": "Unlikely Pupil Sizes",
+    "text": "Unlikely Pupil Sizes\nNow, keep only plausible pupil diameters between 2 mm and 9 mm.\n\npup_outliers&lt;-pup_missing |&gt;\n  dplyr::filter (pup_interp  &gt;= 2, pup_interp &lt;= 9)"
+  },
+  {
+    "objectID": "blog/posts/2025-10-31-pupillabs/index.html#mad-1",
+    "href": "blog/posts/2025-10-31-pupillabs/index.html#mad-1",
+    "title": "Analzying Pupil Labs Neon Data With GazeR",
+    "section": "MAD",
+    "text": "MAD\nGet rid of artifacts we might have missed during some earlier steps.\n\n  #MAD removal\nmax_removal&lt;-pup_missing  |&gt;\n  dplyr::group_by(subject, trial) |&gt;\n  dplyr::mutate(speed=speed_pupil(pup_interp,time)) |&gt;\n  dplyr::mutate(MAD=calc_mad(speed)) |&gt;\n  dplyr::filter(speed &lt; MAD)"
+  },
+  {
+    "objectID": "blog/posts/2025-10-31-pupillabs/index.html#onset-1",
+    "href": "blog/posts/2025-10-31-pupillabs/index.html#onset-1",
+    "title": "Analzying Pupil Labs Neon Data With GazeR",
+    "section": "Onset",
+    "text": "Onset\nLet’s only look from the start of the trial until 1000 ms\n\npupil_onset&lt;-max_removal |&gt;\n  dplyr::group_by(subject, trial) |&gt;\n  dplyr::filter(time &lt;= 1000, gaze_detected_on_surface==TRUE) |&gt;\n  select(subject, trial, time, pup_interp)"
+  },
+  {
+    "objectID": "blog/posts/2025-10-31-pupillabs/index.html#downsample-1",
+    "href": "blog/posts/2025-10-31-pupillabs/index.html#downsample-1",
+    "title": "Analzying Pupil Labs Neon Data With GazeR",
+    "section": "Downsample",
+    "text": "Downsample\nDownsample the time-course to 100 ms.\n\n#downsample\ntimebins1&lt;- downsample_gaze(pupil_onset, bin.length=100, pupil=\"pup_interp\", timevar = \"time\", aggvars = c(\"subject\", \"trial\", \"timebins\"), type=\"pupil\")\n\nkable(head(timebins1))\n\n\n\nsubject\ntrial\ntimebins\naggbaseline\n\n\n\ntest1\n1\n0\n4.246710\n\n\ntest1\n1\n100\n4.260450\n\n\ntest1\n1\n200\n4.274502\n\n\ntest1\n1\n300\n4.313692\n\n\ntest1\n1\n400\n4.301169\n\n\ntest1\n1\n500\n4.196293"
+  },
+  {
+    "objectID": "blog/posts/2025-10-31-pupillabs/index.html#visualize-time-course-1",
+    "href": "blog/posts/2025-10-31-pupillabs/index.html#visualize-time-course-1",
+    "title": "Analzying Pupil Labs Neon Data With GazeR",
+    "section": "Visualize Time-course",
+    "text": "Visualize Time-course"
   }
 ]
