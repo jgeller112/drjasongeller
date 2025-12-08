@@ -17,7 +17,7 @@ categories:
   - psychology
   - learning and memory
 pub-info:
-  reference: "<strong>Geller, J.</strong>, Kubinec, R, Parlett, C., and Vuorre, M.(2025). A Beta way: A tutorial for using Beta regression in psychological research. https://doi.org/10.31234/osf.io/d6v5t_v3"
+  reference: "<strong>Geller, J.</strong>, Kubinec, R, Parlett, C., and Vuorre, M.(2025). A Beta way: A tutorial for using Beta regression in psychological research. https://doi.org/10.31234/osf.io/d6v5t_v4"
   links:
     - name: Preprint/HTML
       url: https://jgeller112.github.io/beta_regression_tutorial/
@@ -26,7 +26,7 @@ pub-info:
       url: https://github.com/jgeller112/beta_regression_tutorial/
       icon: fa-brands fa-github-square
 
-doi: https://doi.org/10.31234/osf.io/d6v5t_v3
+doi: https://doi.org/10.31234/osf.io/d6v5t_v4
 ---
 
 # Abstract
