@@ -1,0 +1,31 @@
+---
+title: "Why Risk it, When You Can {rix} it: A Tutorial for Computational Reproducibility Focused on Simulation Studies"
+date: 2026-01-30
+author:
+  - name: Felipe Fontana Vieira
+    affiliation: Ghent University
+  - name: Jason Geller
+    affiliation: Boston College
+  - name: Bruno Rodrigues
+    affiliation: Ministry of Research and Higher Education, Luxembourg
+    
+categories: 
+    - reproducibility, 
+    - Nix 
+    - Rix
+    - simulation studies, 
+    - R
+    - computational methods
+pub-info:
+  reference: "Vieira, F. F., <strong>Geller, J.</strong>., & Rodrigues, B. (2026, January 28). Why Risk it, When You Can {rix} it: A Tutorial for Computational Reproducibility Focused on Simulation Studies. Retrieved from osf.io/preprints/psyarxiv/a3e8v_v1"
+  links:
+    - name: Preprint
+      url: osf.io/preprints/psyarxiv/a3e8v_v1
+      icon: ai ai-psyarxiv-square
+   
+doi: https://doi.org/10.31234/osf.io/a3e8v_v1
+---
+
+# Abstract
+
+Computational reproducibility remains limited in psychological research, despite widespread norms for sharing data and analysis code. One reason is that reproducibility exists on a continuum, ranging from partial transparency—such as providing scripts or software version numbers—to fully executable research compendia that regenerate all results from raw code. In this article, we introduce Nix and the {rix} R package as a practical framework for achieving full computational reproducibility in simulation-based research. We provide a step-by-step tutorial demonstrating how {rix} can be used to define, build, and share isolated, project-specific software environments that precisely capture R versions, package dependencies, system libraries, and integrated development environments. We further illustrate this workflow by reproducing a complete manuscript using Quarto and the {apaquarto} extension, showing how analyses, figures, and text can be regenerated in a single, executable pipeline. Together, these tools lower the technical barrier to robust, end-to-end reproducibility and offer a scalable solution for simulation studies and methodological research in psychology and related fields.
