@@ -20,7 +20,7 @@ pub-info:
   reference: "Vieira, F. F., <strong>Geller, J.</strong>., & Rodrigues, B. (2026, January 28). Why Risk it, When You Can {rix} it: A Tutorial for Computational Reproducibility Focused on Simulation Studies. Retrieved from osf.io/preprints/psyarxiv/a3e8v_v1"
   links:
     - name: Preprint
-      url: osf.io/preprints/psyarxiv/a3e8v_v1
+      url: https://osf.io/preprints/psyarxiv/a3e8v_v1
       icon: ai ai-psyarxiv-square
    
 doi: https://doi.org/10.31234/osf.io/a3e8v_v1
