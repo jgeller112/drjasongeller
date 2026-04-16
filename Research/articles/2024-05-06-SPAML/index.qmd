@@ -1,6 +1,6 @@
 ---
 title: "Measuring the semantic priming effect across many languages"
-date: '2025-06-06'
+date: '2026-01-06'
 author:
   - name: Erin M. Buchanan
   - name: Jason Geller
@@ -8,7 +8,10 @@ author:
 pub-info:
   reference: "Buchanan, E. M., Cuccolo, K., Coles, N. A...<strong>Geller, J</strong>.(in press).  Measuring the semantic priming effect across many languages. 
 <em> Nature Human Behavior </em>.https://doi.org/10.31219/osf.io/q4fjy"
-  links:
+links:
+    - name: Paper
+      url: https://www.nature.com/articles/s41562-025-02254-x
+      icon: fa-solid fa-scroll
     - name: Preprint
       url: https://reff.f.bg.ac.rs/bitstream/handle/123456789/6432/SPAML_RR_NHB_V4.pdf?sequence=1&isAllowed=y
       icon: ai ai-psyarxiv
