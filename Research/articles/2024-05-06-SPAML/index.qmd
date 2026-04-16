@@ -6,8 +6,7 @@ author:
   - name: Jason Geller
   - name: Et al
 pub-info:
-  reference: "Buchanan, E. M., Cuccolo, K., Coles, N. A...<strong>Geller, J</strong>.(in press).  Measuring the semantic priming effect across many languages. 
-<em> Nature Human Behavior </em>.https://doi.org/10.31219/osf.io/q4fjy"
+  reference: "Buchanan, E. M., Cuccolo, K., Heyman, T., van Berkel, N., Coles, N. A., Iyer, A., Peters, K., van 't Veer, A. E., Montefinese, M., Maxwell, N. P., Taylor, J. E., Valentine, K. D., Arriaga, P., Barzykowski, K., Boucher, L., Collins, W. M., Vaidis, D. C., Aczel, B., Al-Hoorie, A. H., ...<strong>Geller, J.</strong>, ... Lewis, S. C. (2026). Measuring the semantic priming effect across many languages. <em>Nature Human Behaviour</em>, <em>10</em>(1), 182–201. https://doi.org/10.1038/s41562-025-02254-x"
 links:
     - name: Paper
       url: https://www.nature.com/articles/s41562-025-02254-x
@@ -19,9 +18,9 @@ links:
       url: https://osf.io/wrpj4/?view_only=
       icon: ai ai-osf-square
     - name: Add to Zotero
-      url: https://www.zotero.org/save?type=doi&q=10.31219/osf.io/q4fjy
+      url: https://www.zotero.org/save?type=doi&q=10.1038/s41562-025-02254-x
       icon: ai ai-zotero-square
-doi: https://doi.org/10.31219/osf.io/q4fjy
+doi: https://doi.org/10.1038/s41562-025-02254-x
 ---
 
 ## Abstract

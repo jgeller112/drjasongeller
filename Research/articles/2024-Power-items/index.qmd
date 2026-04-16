@@ -1,6 +1,6 @@
 ---
 title: "Accuracy in parameter estimation and simulation approaches for sample size planning with multiple stimuli"
-date: '2025-09-28'
+date: '2026-01-23'
 author:
   - name: Erin M. Buchanan 
   - name: Mahmoud Medhat Elsherif
@@ -18,7 +18,7 @@ categories:
   - simulation
   - hypothesis testing
 pub-info:
-  reference: "Buchanan, E. M., Elsherif, M. M., <strong>Geller, J</strong>., Aberson, C., Gurkan, N., Ambrosini, E., Heyman, T., Montefinese, M., vanpaemel, W., & Barzykowski, K. (in press). Accuracy in parameter estimation and simulation approaches for sample size planning with multiple stimuli. <em>Behavioral Research Methods</em>."
+  reference: "Buchanan, E. M., Elsherif, M. M., <strong>Geller, J</strong>., Aberson, C., Gurkan, N., Ambrosini, E., Heyman, T., Montefinese, M., vanpaemel, W., & Barzykowski, K. (2026). Accuracy in parameter estimation and simulation approaches for sample size planning with multiple stimuli. <em>Behavioral Research Methods</em>, 58, 48, https://doi.org/10.3758/s13428-025-02860-7doi:10.3758/s13428-025-02860-7"
   links:
     - name: Preprint
       url: https://ideas.repec.org/p/osf/osfxxx/e3afx.html
@@ -26,5 +26,5 @@ pub-info:
     - name: Add to Zotero
       url: https://www.zotero.org/save?type=doi&q=10.31219/osf.io/e3afx
       icon: ai ai-zotero-square
-doi: 10.31219/osf.io/e3afx
+doi: 10.3758/s13428-025-02860-7
 ---
