@@ -3,7 +3,7 @@ title: "Welcome!"
 pagetitle: "Jason Geller"
 main-photo: /files/proflies/eye.jpeg
 main-photo-square: /files/proflies/eye.jpeg
-title-block-banner: "#CF4446"
+title-block-banner: true
 format:
   html:
     quarto-template-params:

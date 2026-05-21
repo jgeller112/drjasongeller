@@ -1,2 +1,7 @@
 /.quarto/
 **/*.quarto_ipynb
+.Rproj.user
+cv/cv.pdf
+.DS_Store
+.Rhistory
+*.Rproj

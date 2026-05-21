@@ -10,6 +10,13 @@ cv:
   pdf: "cv.pdf"
 ---
 
+```{r download-cv, include=FALSE}
+download.file(
+  "https://github.com/jgeller112/JG_CV/raw/main/cv.pdf",
+  "cv.pdf", mode = "wb", quiet = TRUE
+)
+```
+
 ```{css, echo=FALSE}
 #title-block-header .description {
     display: none;

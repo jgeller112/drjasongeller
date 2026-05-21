@@ -20,7 +20,7 @@ This is home for my research publications, each is linked with PDFs, preprints, 
 
 ## Preprints
 
-:::{#preprints}
+::: {#preprints}
 :::
 
 ## Journal articles
