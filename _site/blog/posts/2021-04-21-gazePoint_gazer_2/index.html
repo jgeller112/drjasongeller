@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-4c7b890cc350be7067044af900615741.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-09d16ae7c0cb776114d845769981e6f3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-02f66bcc304eab26bc47166e491cd227.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
@@ -225,8 +225,8 @@ div.column-margin+hr.dinkus {
 </header><p>In this vignette I am going to show you how to read in a GazePoint data file along with some behavioral data and use <code>gazeR</code> to preprocess the data.</p>
 <p>Special thanks to Matthew K Robinson (Twitter:<span class="citation" data-cites="matthewkrobinson">@matthewkrobinson</span>) for letting me use some data from an auditory oddball task he conducted on himself (we do what we have to do as researchers :D): see Tweet below.</p>
 <p></p>
-<div id="tweet-82892"></div>
-<script>tweet={"url":"https:\/\/twitter.com\/matthewkrobison\/status\/1384208857790959617","author_name":"Matthew K. Robison","author_url":"https:\/\/twitter.com\/matthewkrobison","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Ei&#39;m just a guy, running himself through auditory oddball tasks on his new eye-tracker, asking it to love him back. \u003Ca href=\"https:\/\/t.co\/wPb97MZuNF\"\u003Epic.twitter.com\/wPb97MZuNF\u003C\/a\u003E\u003C\/p\u003E&mdash; Matthew K. Robison (@matthewkrobison) \u003Ca href=\"https:\/\/twitter.com\/matthewkrobison\/status\/1384208857790959617?ref_src=twsrc%5Etfw\"\u003EApril 19, 2021\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-82892").innerHTML = tweet["html"];</script><p>To get started, we need to load in some important packages and read in the GP data files.</p>
+<div id="tweet-98016"></div>
+<script>tweet={"url":"https:\/\/twitter.com\/matthewkrobison\/status\/1384208857790959617","author_name":"Matthew K. Robison","author_url":"https:\/\/twitter.com\/matthewkrobison","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Ei&#39;m just a guy, running himself through auditory oddball tasks on his new eye-tracker, asking it to love him back. \u003Ca href=\"https:\/\/t.co\/wPb97MZuNF\"\u003Epic.twitter.com\/wPb97MZuNF\u003C\/a\u003E\u003C\/p\u003E&mdash; Matthew K. Robison (@matthewkrobison) \u003Ca href=\"https:\/\/twitter.com\/matthewkrobison\/status\/1384208857790959617?ref_src=twsrc%5Etfw\"\u003EApril 19, 2021\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-98016").innerHTML = tweet["html"];</script><p>To get started, we need to load in some important packages and read in the GP data files.</p>
 <section id="load-packages" class="level2"><h2 class="anchored" data-anchor-id="load-packages">Load Packages</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -1027,7 +1027,7 @@ div.column-margin+hr.dinkus {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
-<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2025 Jason Geller</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2026 Jason Geller</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
 </div>   
     <div class="nav-footer-center">
 <p><span class="faux-block"><i class="fa-brands fa-orcid" aria-label="orcid"></i> <strong>ORCID</strong> <a href="https://orcid.org/0000-0002-7459-4505">0000-0002-7459-4505</a></span></p>
