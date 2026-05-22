@@ -231,13 +231,6 @@
     "text": "🐙 GitHub: jgeller112/webgazeR\n💻 Website: Package site\n📄 Documentation: Read the Paper\n\n\n\nCitationBibTeX citation:@online{geller,\n  author = {Geller, Jason},\n  title = {webgazeR},\n  url = {jgeller112.github.io/webgazeR/},\n  doi = {https://doi.org/10.5281/zenodo.15831767},\n  langid = {en},\n  abstract = {webgazeR is a webcam eye-tracking toolkit for\n    pre-processing webcam gaze data}\n}\nFor attribution, please cite this work as:\nGeller, J. (n.d.). webgazeR. https://doi.org/https://doi.org/10.5281/zenodo.15831767"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome!",
-    "section": "",
-    "text": "Thanks for stopping by!\nI am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less.\nPlease send review requests and correspondence to jason.geller[at]bc.edu"
-  },
-  {
     "objectID": "Talks/index.html",
     "href": "Talks/index.html",
     "title": "Talks",

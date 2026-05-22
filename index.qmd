@@ -1,43 +1,16 @@
 ---
 title: "Welcome!"
 pagetitle: "Jason Geller"
-main-photo: /files/proflies/eye.jpeg
-main-photo-square: /files/proflies/eye.jpeg
 title-block-banner: true
+description: |
+  Thanks for stopping by!
+
+  I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less.
+
+  Please send review requests and correspondence to jason.geller\[at\]bc.edu
 format:
   html:
     quarto-template-params:
       banner-header-class: "home"
 ---
 
-::::: grid
-::: {.g-col-12 .g-col-sm-4}
-<br>
-
-<br>
-
-```{=html}
-<div class="grid" style="--bs-columns: 5; row-gap: 0;">
-  <div class="g-col-1 g-col-sm-0"></div>
-  <div class="g-col-3 g-col-sm-5">
-    <picture>
-      <source media="(max-width: 576px)" srcset="{{< meta main-photo-square >}}">
-      <source media="(min-width: 576px)" srcset="{{< meta main-photo >}}">
-      <img class="img-fluid" src="{{< meta main-photo >}}" alt="{{< meta author-meta >}}">
-    </picture>
-  </div>
-  <div class="g-col-1 g-col-sm-0"></div>
-</div>
-```
-:::
-
-::: {.g-col-12 .g-col-sm-8}
-<br> <br>
-
-Thanks for stopping by!
-
-I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less.
-
-Please send review requests and correspondence to jason.geller\[at\]bc.edu
-:::
-:::::
