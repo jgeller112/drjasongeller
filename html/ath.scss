@@ -163,6 +163,22 @@ body {
     }
 }
 
+// Home page has an empty <main> below the full-viewport banner — collapse
+// the surrounding content container so there's no blank gap before the footer.
+body:has(#title-block-header.home) {
+    #quarto-content {
+        padding-top: 0;
+        margin-top: 0;
+        row-gap: 0;
+    }
+
+    #quarto-document-content {
+        padding: 0;
+        margin: 0;
+        min-height: 0;
+    }
+}
+
 // Shrink blocks of code
 pre.text, pre.sourceCode, .cell-output pre {
     font-size: 0.775em;
