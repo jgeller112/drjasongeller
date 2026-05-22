@@ -5,3 +5,4 @@ cv/cv.pdf
 .DS_Store
 .Rhistory
 *.Rproj
+*.bak

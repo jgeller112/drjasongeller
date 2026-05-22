@@ -630,10 +630,12 @@ pre.text, pre.sourceCode, .cell-output pre {
         }
 
         .logo {
-            flex: 0 0 140px;
+            flex: 0 0 150px;
 
             img {
-                width: 100%;
+                width: 150px;
+                height: 150px;
+                object-fit: contain;
             }
         }
 
@@ -737,6 +739,21 @@ pre.text, pre.sourceCode, .cell-output pre {
                 font-size: 0.85em;
             }
         }
+    }
+}
+
+// Software grid hex stickers — match the 150px box used by Teaching logos
+.quarto-grid-item .card-img-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    .thumbnail-image,
+    img.card-img {
+        width: 150px !important;
+        height: 150px !important;
+        object-fit: contain;
     }
 }
 
