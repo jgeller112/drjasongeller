@@ -175,9 +175,10 @@ body {
     }
 }
 
-// Home page has an empty <main> and empty meta block below the full-viewport
-// banner — collapse them so there's no blank gap before the footer.
-#title-block-header.home {
+// The actual homepage (index.qmd) tags its banner with .home-hero. It has an
+// empty <main> and empty meta block below the full-viewport iris banner —
+// collapse them so there's no blank gap before the footer.
+#title-block-header.home-hero {
     margin-block-end: 0;
     padding: 0;
 
@@ -186,7 +187,7 @@ body {
     }
 }
 
-body:has(#title-block-header.home) {
+body:has(#title-block-header.home-hero) {
     // iris on the body fills any leftover gap below the banner
     background-color: #000;
     background-image: url("/files/proflies/iris-banner.jpg");
