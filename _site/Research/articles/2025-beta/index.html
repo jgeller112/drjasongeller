@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jason Geller">
 
-<title>A Beta Way: A tutorial for using Beta regression in psychological research | Jason Geller – Jason Geller, Ph.D.</title>
+<title>A beta way: A tutorial on Bayesian beta regression for psychological research | Jason Geller – Jason Geller, Ph.D.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<meta name="twitter:title" content="A Beta Way: A tutorial for using Beta regression in psychological research | Jason Geller">
+<meta name="twitter:title" content="A beta way: A tutorial on Bayesian beta regression for psychological research | Jason Geller">
 <meta name="twitter:description" content="Jason Geller is currently Director of the Human Neuroscience Lab at Boston College. I am a researcher, educator, and lover of R (Python is pretty cool too) and stats. I study how we read words and understand speech (especially in noise). I am also interested in how we can get students to remember more and forget less.">
 <meta name="twitter:image" content="https://www.drjasongeller.com/files/profiles/twitter-card-large.png">
 <meta name="twitter:creator" content="@jgeller_phd">
@@ -162,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="quarto-title-banner page-columns page-full">
                 <div class="back-nav"><a href="../../../research/">← Back to research</a></div>
                 <div class="quarto-title column-body">
-            <h1 class="title">A Beta Way: A tutorial for using Beta regression in psychological research</h1>
+            <h1 class="title">A beta way: A tutorial on Bayesian beta regression for psychological research</h1>
 
             
             
@@ -179,14 +179,14 @@ ul.task-list li input[type="checkbox"] {
     
         <div class="project-details">
         <div class="publication-content">
-            <p><strong>Geller, J.</strong>, Kubinec, R, Parlett, C., and Vuorre, M.(2025). A Beta way: A tutorial for using Beta regression in psychological research. https://doi.org/10.31234/osf.io/d6v5t_v4</p>
+            <p><strong>Geller, J.</strong>, Kubinec, R., Parlett, C., &amp; Vuorre, M. (2026). A beta way: A tutorial on Bayesian beta regression for psychological research. <em>Behavioral Research Methods</em>. https://doi.org/10.31234/osf.io/d6v5t_v7</p>
         </div>
                 <ul class="project-links">
                         <li class="project-link">
                 <a href="https://jgeller112.github.io/beta_regression_tutorial/"><i class="ai ai-psyarxiv-square"></i> Preprint/HTML</a>
             </li>
                         <li class="project-link">
-                <a href="https://github.com/jgeller112/beta_regression_tutorial/"><i class="fa-brands fa-github-square"></i> Github</a>
+                <a href="https://github.com/jgeller112/beta_regression_tutorial/"><i class="fa-brands fa-github-square"></i> GitHub</a>
             </li>
                     </ul>
             </div>
@@ -209,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
       </div>
       <div class="quarto-title-meta-contents">
             <p class="affiliation">
-                University of South Carolina
+                Texas A&amp;M University
               </p>
           </div>
         <div class="quarto-title-meta-contents">
@@ -236,7 +236,7 @@ ul.task-list li input[type="checkbox"] {
         <div>
         <div class="quarto-title-meta-heading">Published</div>
         <div class="quarto-title-meta-contents">
-          <p class="date">August 2025</p>
+          <p class="date">June 2026</p>
         </div>
       </div>
       
@@ -245,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
         <div class="quarto-title-meta-heading">Doi</div>
         <div class="quarto-title-meta-contents">
           <p class="doi">
-            <a href="https://doi.org/https://doi.org/10.31234/osf.io/d6v5t_v4">https://doi.org/10.31234/osf.io/d6v5t_v4</a>
+            <a href="https://doi.org/https://doi.org/10.31234/osf.io/d6v5t_v7">https://doi.org/10.31234/osf.io/d6v5t_v7</a>
           </p>
         </div>
       </div>
@@ -276,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="abstract" class="level1">
 <h1>Abstract</h1>
-<p>Rates, percentages, and proportions are common outcomes in psychology and the social sciences. These outcomes are often analyzed using models that assume normality, but this practice overlooks important features of the data, such as their natural bounds at 0 and 1. As a result, estimates can become distorted. In contrast, treating such outcomes as Beta-distributed respects these limits and can yield more accurate estimates. Despite these advantages, the use of Beta models in applied research remains limited. Our goal is to provide researchers with practical guidance for adopting Beta regression models, illustrated with an example drawn from the psychological literature. We begin by introducing the Beta distribution and Beta regression, emphasizing key components and assumptions. Next, using data from a learning and memory study, we demonstrate how to fit a Beta regression model in R with the Bayesian package <code>brms</code> and how to interpret results on the response scale. We also discuss model extensions, including zero-inflated, zero- and one-inflated, and ordered Beta models. Basic familarity with regression modeling and R is assumed. To promote wider adoption of these methods, we provide detailed code and materials at <a href="https://github.com/jgeller112/Beta_regression_tutorial.%22">https://github.com/jgeller112/Beta_regression_tutorial.</a></p>
+<p>Rates, percentages, and proportions are common outcomes in psychology and the social sciences. These outcomes are often analyzed using models that assume normality, but this practice overlooks important features of the data, such as their natural bounds at 0 and 1. As a result, estimates can become distorted. In contrast, treating such outcomes as beta-distributed respects these limits and can yield more accurate estimates. Despite these advantages, the use of beta models in applied research remains limited. Our goal is to provide researchers with practical guidance for adopting beta regression models, illustrated with an example drawn from the psychological literature. We begin by introducing the beta distribution and beta regression, emphasizing key components and assumptions. Next, using data from a learning and memory study, we demonstrate how to fit a beta regression model in R with the Bayesian package <code>{brms}</code> and how to interpret results on the response scale using the packages <code>{marginaleffects}</code> and <code>{easystats}</code>. We also discuss model extensions, including zero-inflated, zero- and one-inflated, and ordered beta models. Basic familiarity with regression modeling and R is assumed. To promote wider adoption of these methods, we provide detailed code and materials at <a href="https://doi.org/10.5281/zenodo.15830595" class="uri">https://doi.org/10.5281/zenodo.15830595</a>. For researchers preferring a frequentist framework, we include an appendix demonstrating equivalent analyses using <code>{glmmTMB}</code>.</p>
 
 
 </section>
