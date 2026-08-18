@@ -2,7 +2,7 @@
 title: Curriculum vitæ
 description: "Jason Geller's  CV"
 date: "`r Sys.Date()`"
-title-block-banner: "#771C6D"
+title-block-banner: "#A52C60"
 published-title: CV last updated
 engine: knitr
 freeze: false

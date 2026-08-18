@@ -6,7 +6,7 @@ listing:
   categories: false
   page-size: 100
   image-height: "100"
-title-block-banner: "#007ACC"
+title-block-banner: "#2780e3"
 ---
 
 This page highlights software packages I’ve developed to support open and reproducible research, particularly in eye-tracking.
