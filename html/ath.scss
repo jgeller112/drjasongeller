@@ -197,24 +197,7 @@ body:has(#title-block-header.home-hero) {
     background-attachment: fixed;
 
     #quarto-content {
-        padding: 0;
-        margin: 0;
-        row-gap: 0;
-        grid-template-rows: 0 0;
-        min-height: 0;
-        height: 0;
-    }
-
-    #quarto-content > * {
-        display: none;
-    }
-
-    #quarto-document-content,
-    main.content {
-        padding: 0 !important;
-        margin: 0 !important;
-        min-height: 0 !important;
-        display: none;
+        display: none !important;
     }
 }
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>A beta way: A tutorial on Bayesian beta regression for psychological research | Jason Geller – Jason Geller, Ph.D.</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -33,15 +39,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../..//files/favicon-512.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-4c7b890cc350be7067044af900615741.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-c4e1171eb4281116019c604a711c5128.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-4b1bd4cb948197f3adcf5c95ec485e0c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-6ce1a35404218aa916321d20a1cb9879.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
@@ -97,8 +102,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Jason Geller, Ph.D.</span>
     </a>
@@ -276,21 +279,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="abstract" class="level1">
 <h1>Abstract</h1>
-<p>Rates, percentages, and proportions are common outcomes in psychology and the social sciences. These</p>
-<p>outcomes are often analyzed using models that assume normality, but this practice overlooks important</p>
-<p>features of the data, such as their natural bounds at 0 and 1. As a result, estimates can become distorted. In</p>
-<p>contrast, treating such outcomes as beta-distributed respects these limits and can yield more accurate</p>
-<p>estimates. Despite these advantages, the use of beta models in applied research remains limited. Our goal</p>
-<p>is to provide researchers with practical guidance for adopting beta regression models, illustrated with an</p>
-<p>example drawn from the psychological literature. We begin by introducing the beta distribution and beta</p>
-<p>regression, emphasizing key components and assumptions. Next, using data from a learning and memory</p>
-<p>study, we demonstrate how to fit a beta regression model in R with the Bayesian package {brms} and how</p>
-<p>to interpret results on the response scale using the packages {marginaleffects} and {easystats}. We also</p>
-<p>discuss model extensions, including zero-inflated, zero- and one-inflated, and ordered beta models. Basic</p>
-<p>familiarity with regression modeling and R is assumed. To promote wider adoption of these methods, we</p>
-<p>provide detailed code and materials at https://doi.org/10.5281/zenodo.15830595.For researchers</p>
-<p>preferring a frequentist framework, we include an appendix demonstrating equivalent analyses using</p>
-<p>{glmmTMB}.</p>
+<p>Rates, percentages, and proportions are common outcomes in psychology and the social sciences. These outcomes are often analyzed using models that assume normality, but this practice overlooks important features of the data, such as their natural bounds at 0 and 1. As a result, estimates can become distorted. In contrast, treating such outcomes as beta-distributed respects these limits and can yield more accurate estimates. Despite these advantages, the use of beta models in applied research remains limited. Our goal is to provide researchers with practical guidance for adopting beta regression models, illustrated with an example drawn from the psychological literature. We begin by introducing the beta distribution and beta regression, emphasizing key components and assumptions. Next, using data from a learning and memory study, we demonstrate how to fit a beta regression model in R with the Bayesian package <code>{brms}</code> and how to interpret results on the response scale using the packages <code>{marginaleffects}</code> and <code>{easystats}</code>. We also discuss model extensions, including zero-inflated, zero- and one-inflated, and ordered beta models. Basic familiarity with regression modeling and R is assumed. To promote wider adoption of these methods, we provide detailed code and materials at <a href="https://doi.org/10.5281/zenodo.15830595" class="uri">https://doi.org/10.5281/zenodo.15830595</a>. For researchers preferring a frequentist framework, we include an appendix demonstrating equivalent analyses using <code>{glmmTMB}</code>.</p>
 
 
 </section>

@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Jason Geller">
 <meta name="description" content="This is my blog where I practice sharing my curiosity about R, Methods, and Statistics. It includes notes and tutorials for my future self and hopefully also for you.">
+
 <title>Blog | Jason Geller – Jason Geller, Ph.D.</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -20,6 +29,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -32,20 +42,20 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-4c7b890cc350be7067044af900615741.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c4e1171eb4281116019c604a711c5128.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4b1bd4cb948197f3adcf5c95ec485e0c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6ce1a35404218aa916321d20a1cb9879.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script><script id="quarto-search-options" type="application/json">{
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -71,7 +81,8 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script>
+}</script>
+<script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     const listingTargetEl = window.document.querySelector('#listing-posts .list');
@@ -99,7 +110,12 @@ ul.task-list li input[type="checkbox"] {
       window['quarto-listing-loaded']();
     }
   })
-  </script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -125,6 +141,7 @@ window.Quarto = {
   typesetMath
 };
 </script>
+
 <meta name="twitter:title" content="Blog | Jason Geller">
 <meta name="twitter:description" content="This is my blog where I practice sharing my curiosity about R, Methods, and Statistics. It includes notes and tutorials for my future self and hopefully also for you.">
 <meta name="twitter:image" content="https://www.drjasongeller.com/files/profiles/twitter-card-large.png">
@@ -132,13 +149,14 @@ window.Quarto = {
 <meta name="twitter:site" content="@jgeller_phd">
 <meta name="twitter:card" content="summary_large_image">
 </head>
+
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Jason Geller, Ph.D.</span>
     </a>
@@ -149,7 +167,7 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../about/index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -191,17 +209,23 @@ window.Quarto = {
 <span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:bluesky" style="font-size: 1.1em;" aria-label="Icon bluesky from fa6-brands Iconify.design set." title="Bluesky"></iconify-icon></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="ZXllLXRyYWNraW5n">eye-tracking <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bG9uZ2l0dWRpbmFs">longitudinal <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TUw=">ML <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHVwaWw=">pupil <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHVwaWxsb21ldHJ5">pupillometry <span class="quarto-category-count">(3)</span></div><div class="category" data-category="cg==">r <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Blog</h1>
 </div>
 
@@ -225,12 +249,15 @@ window.Quarto = {
 
 
 
+
+
+
 <div class="quarto-listing quarto-listing-container-default" id="listing-posts">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="ciUyQ3B1cGlsbG9tZXRyeSUyQ3N0YXRpc3RpY3M=" data-listing-date-sort="1761883200000" data-listing-file-modified-sort="1787075320171" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1253">
+<div class="quarto-post image-right" data-index="0" data-categories="ciUyQ3B1cGlsbG9tZXRyeSUyQ3N0YXRpc3RpY3M=" data-listing-date-sort="1761883200000" data-listing-file-modified-sort="1787077728666" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1253">
 <div class="thumbnail"><a href="../blog/posts/2025-10-31-pupillabs/index.html" class="no-external">
 
-<p class="card-img-top"><img src="posts/2025-10-31-pupillabs/images/Eye_dilate.gif"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/2025-10-31-pupillabs/images/Eye_dilate.gif"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -258,10 +285,10 @@ October 31, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="UiUyQ2V5ZS10cmFja2luZyUyQ3B1cGlsJTJDbG9uZ2l0dWRpbmFsJTJDTUw=" data-listing-date-sort="1646888400000" data-listing-file-modified-sort="1760638848659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1785">
+<div class="quarto-post image-right" data-index="1" data-categories="UiUyQ2V5ZS10cmFja2luZyUyQ3B1cGlsJTJDbG9uZ2l0dWRpbmFsJTJDTUw=" data-listing-date-sort="1646888400000" data-listing-file-modified-sort="1787077728649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1785">
 <div class="thumbnail"><a href="../blog/posts/2022-03-10-mtpa-pupil/index.html" class="no-external">
 
-<p class="card-img-top"><img src="posts/2022-03-10-mtpa-pupil/pupil_guide.PNG"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/2022-03-10-mtpa-pupil/pupil_guide.PNG"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -293,10 +320,10 @@ March 10, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="ciUyQ3B1cGlsbG9tZXRyeSUyQ3N0YXRpc3RpY3M=" data-listing-date-sort="1618977600000" data-listing-file-modified-sort="1779375755379" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1161">
+<div class="quarto-post image-right" data-index="2" data-categories="ciUyQ3B1cGlsbG9tZXRyeSUyQ3N0YXRpc3RpY3M=" data-listing-date-sort="1618977600000" data-listing-file-modified-sort="1787077728618" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1161">
 <div class="thumbnail"><a href="../blog/posts/2021-04-21-gazePoint_gazer_2/index.html" class="no-external">
 
-<p class="card-img-top"><img src="posts/2021-04-21-gazePoint_gazer_2/index_files/figure-html/unnamed-chunk-8-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/2021-04-21-gazePoint_gazer_2/index_files/figure-html/unnamed-chunk-8-1.png"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -324,10 +351,10 @@ April 21, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="ciUyQ3B1cGlsbG9tZXRyeSUyQ3N0YXRpc3RpY3M=" data-listing-date-sort="1594353600000" data-listing-file-modified-sort="1760638848629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1235">
+<div class="quarto-post image-right" data-index="3" data-categories="ciUyQ3B1cGlsbG9tZXRyeSUyQ3N0YXRpc3RpY3M=" data-listing-date-sort="1594353600000" data-listing-file-modified-sort="1787077728617" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1235">
 <div class="thumbnail"><a href="../blog/posts/2020-07-10-CBPT/index.html" class="no-external">
 
-<p class="card-img-top"><img src="posts/2020-07-10-CBPT/index_files/figure-html/unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/2020-07-10-CBPT/index_files/figure-html/unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -357,7 +384,8 @@ July 10, 2020
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
-</div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -758,7 +786,8 @@ July 10, 2020
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2026 Jason Geller</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
 </div>   
@@ -770,6 +799,8 @@ July 10, 2020
 </div>
   </div>
 </footer>
+
+
 
 
 </body></html>

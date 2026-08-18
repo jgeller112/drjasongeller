@@ -4,10 +4,6 @@ pagetitle: "Jason Geller"
 main-photo: /files/proflies/jasongeller_030723_0007.jpeg
 main-photo-square: /files/proflies/jasongeller_030723_0007.jpeg
 title-block-banner: "#CF4446"
-format:
-  html:
-    quarto-template-params:
-      banner-header-class: "home"
 ---
 
 ::::: grid

@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Jason Geller">
 <meta name="dcterms.date" content="2025-10-31">
 <meta name="description" content="I demonstrate how to analyze pupil data from Pupil Labs Neon mobile eye-tracker with my eye-tracking R package gazeR.">
+
 <title>Analzying Pupil Labs Neon Data With GazeR | Jason Geller – Jason Geller, Ph.D.</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -57,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -66,20 +76,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../..//files/favicon-512.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-4c7b890cc350be7067044af900615741.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-c4e1171eb4281116019c604a711c5128.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-4b1bd4cb948197f3adcf5c95ec485e0c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-6ce1a35404218aa916321d20a1cb9879.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
-<script src="../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script><script id="quarto-search-options" type="application/json">{
+<script src="../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -106,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+
+
 <meta name="twitter:title" content="Analzying Pupil Labs Neon Data With GazeR | Jason Geller">
 <meta name="twitter:description" content="I demonstrate how to analyze pupil data from Pupil Labs Neon mobile eye-tracker with my eye-tracking R package gazeR.">
 <meta name="twitter:image" content="https://www.drjasongeller.com/files/profiles/twitter-card-large.png">
@@ -113,13 +125,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="twitter:site" content="@jgeller_phd">
 <meta name="twitter:card" content="summary_large_image">
 </head>
+
 <body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Jason Geller, Ph.D.</span>
     </a>
@@ -130,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../../about/index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -172,16 +185,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:bluesky" style="font-size: 1.1em;" aria-label="Icon bluesky from fa6-brands Iconify.design set." title="Bluesky"></iconify-icon></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Analzying Pupil Labs Neon Data With GazeR</h1>
   <div class="quarto-categories">
     <div class="quarto-category">r</div>
@@ -212,18 +231,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>🎃 Happy Halloween, goils and boils! 👻</p>
+</header>
+
+
+<p>🎃 Happy Halloween, goils and boils! 👻</p>
 <p>I have a spooktacular blog post for you today—one that dives into the mysterious world of pupil data from Pupil Labs Neon glasses. We’re currently using the Neon in the classroom to study mind wandering and attention. However, these mobile eye trackers aren’t just for field studies—they shine in the lab too.</p>
 <p>To demonstrate this, I created a simple PsychoPy experiment that interfaces seamlessly with the Neon (you can find it here: https://osf.io/txz59/overview ). In the task, participants view a bright sun for 30 seconds followed by a dark patch for another 30 seconds. The pupil responds to basic visual features like brightness—constricting in light and dilating in the dark.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/Eye_dilate.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure">
+<p><img src="images/Eye_dilate.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <p>In this post, I’ll show how the Neon glasses can capture these pupillary dynamics and how you can use my R package {gazeR} to preprocess pupil data collected from Pupil Labs devices.</p>
-<section id="gazer-pupil-labs-functions" class="level2"><h2 class="anchored" data-anchor-id="gazer-pupil-labs-functions">gazeR Pupil labs Functions</h2>
+<section id="gazer-pupil-labs-functions" class="level2">
+<h2 class="anchored" data-anchor-id="gazer-pupil-labs-functions">gazeR Pupil labs Functions</h2>
 <p>Once you collect data with Pupil Labs Neon, your recordings live in Pupil Cloud. Export the Time Series for each recording (CSV export). After the export finishes, you’ll have a folder per participant/recording containing multiple CSV files.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/timeseries.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure">
+<p><img src="images/timeseries.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <p>From each participant folder, we use exactly three files:</p>
@@ -231,12 +256,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>3d_eye_states.csv — pupil diameters (left/right, in mm)</p>
 <p>events.csv — experiment events/messages (e.g., trial markers)</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/pl_files.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure">
+<p><img src="images/pl_files.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <p>I created two new functions to read and process this data from Pupil Labs:</p>
-<p><code><a href="https://rdrr.io/pkg/gazer/man/parse_pl.html">parse_pl()</a></code> and <code><a href="https://rdrr.io/pkg/gazer/man/process_all_subjects_PL.html">process_all_subjects_PL()</a></code>. Both work in tandem to prepare Neon data for use with {gazeR}.</p>
-</section><section id="what-the-functions-do" class="level2"><h2 class="anchored" data-anchor-id="what-the-functions-do">What the functions do</h2>
+<p><code>parse_pl()</code> and <code>process_all_subjects_PL()</code>. Both work in tandem to prepare Neon data for use with {gazeR}.</p>
+</section>
+<section id="what-the-functions-do" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-functions-do">What the functions do</h2>
 <p><code>parse_pl(subject_dir, aoi = FALSE, start_mode = c("any","exact"), start_messages = NULL, max_event_lag_ms = 20)</code></p>
 <p>Processes one participant:</p>
 <ol type="1">
@@ -268,26 +296,26 @@ Note
 </div>
 </div>
 <p><code>process_all_subjects_PL(root_dir, output_dir = file.path(root_dir, "processed"), ...)</code></p>
-<p>Batch-processes <strong>all</strong> immediate subfolders of <code>root_dir</code> using <code><a href="https://rdrr.io/pkg/gazer/man/parse_pl.html">parse_pl()</a></code>, writes one CSV per subject plus a combined files</p>
+<p>Batch-processes <strong>all</strong> immediate subfolders of <code>root_dir</code> using <code>parse_pl()</code>, writes one CSV per subject plus a combined files</p>
 <ul>
-<li>
-<p>Per-subject files: <code>{output_dir}/{SUBJECT}_processed.cs</code></p>
-<p>Combined file: <code>{output_dir}/all_subjects_processed.csv</code></p>
-</li>
+<li><p>Per-subject files: <code>{output_dir}/{SUBJECT}_processed.cs</code></p>
+<p>Combined file: <code>{output_dir}/all_subjects_processed.csv</code></p></li>
 </ul>
-<p>Any additional arguments (<code>...</code>) are passed straight to <code><a href="https://rdrr.io/pkg/gazer/man/parse_pl.html">parse_pl()</a></code> (e.g., <code>start_mode</code>, <code>start_messages</code>, <code>max_event_lag_ms</code>).</p>
-</section><section id="example-dataset" class="level1"><h1>Example Dataset</h1>
+<p>Any additional arguments (<code>...</code>) are passed straight to <code>parse_pl()</code> (e.g., <code>start_mode</code>, <code>start_messages</code>, <code>max_event_lag_ms</code>).</p>
+</section>
+<section id="example-dataset" class="level1">
+<h1>Example Dataset</h1>
 <p>Let’s read in the dataset created from the above functions.</p>
 <p>We will load in {gazeR} and needed libraries.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"dmirman/gazer"</span><span class="op">)</span> <span class="co"># gazer package</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/dmirman/gazer">gazer</a></span><span class="op">)</span> <span class="co"># load in </span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># viz</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span> <span class="co"># tables</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"dmirman/gazer"</span>) <span class="co"># gazer package</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gazer) <span class="co"># load in </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># viz</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># tables</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sub_pl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://osf.io/zf2qu/download"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sub_pl</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sub_pl <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"https://osf.io/zf2qu/download"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(sub_pl))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -300,7 +328,8 @@ Note
 <col style="width: 6%">
 <col style="width: 21%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: left;">subject</th>
 <th style="text-align: right;">trial</th>
 <th style="text-align: right;">time</th>
@@ -309,7 +338,8 @@ Note
 <th style="text-align: right;">pupil</th>
 <th style="text-align: left;">blink</th>
 <th style="text-align: left;">message</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2025-10-31_12-48-26-74964918</td>
@@ -379,71 +409,85 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This is what the pupil data looks like for the entire time course.</p>
-<section id="extending-blinks" class="level2"><h2 class="anchored" data-anchor-id="extending-blinks">Extending Blinks</h2>
+<section id="extending-blinks" class="level2">
+<h2 class="anchored" data-anchor-id="extending-blinks">Extending Blinks</h2>
 <p>We see dips in the pupil signal—these are most likely caused by blinks. Pupil Labs includes a blink detection algorithm, which we’ll use here. We first set pupil size values corresponding to blinks to NA, then use extend_blinks()to extend blinks 100 ms forward and backward in time.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="co">#Extend Blinks</span></span>
-<span><span class="va">pup_extend</span><span class="op">&lt;-</span> <span class="va">sub_pl</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pupil<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">blink</span><span class="op">==</span><span class="cn">TRUE</span>, <span class="cn">NA</span>, <span class="va">pupil</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>extendpupil<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/extend_blinks.html">extend_blinks</a></span><span class="op">(</span><span class="va">pupil</span>, fillback<span class="op">=</span><span class="fl">100</span>, fillforward<span class="op">=</span><span class="fl">100</span>, hz<span class="op">=</span><span class="fl">200</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Extend Blinks</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pup_extend<span class="ot">&lt;-</span> sub_pl <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pupil=</span><span class="fu">ifelse</span>(blink<span class="sc">==</span><span class="cn">TRUE</span>, <span class="cn">NA</span>, pupil)) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subject, trial) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">extendpupil=</span><span class="fu">extend_blinks</span>(pupil, <span class="at">fillback=</span><span class="dv">100</span>, <span class="at">fillforward=</span><span class="dv">100</span>, <span class="at">hz=</span><span class="dv">200</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="interpolate-blinks" class="level2"><h2 class="anchored" data-anchor-id="interpolate-blinks">Interpolate blinks</h2>
+</section>
+<section id="interpolate-blinks" class="level2">
+<h2 class="anchored" data-anchor-id="interpolate-blinks">Interpolate blinks</h2>
 <p>Next, we linearly interpolate over blinks and smooth the data using a 5-point moving average.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Smooth and Interpolate</span></span>
-<span><span class="va">smooth_interp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gazer/man/smooth_interpolate_pupil.html">smooth_interpolate_pupil</a></span><span class="op">(</span><span class="va">pup_extend</span>, pupil<span class="op">=</span><span class="st">"pupil"</span>, extendpupil<span class="op">=</span><span class="st">"extendpupil"</span>, extendblinks<span class="op">=</span><span class="cn">TRUE</span>, step.first<span class="op">=</span><span class="st">"smooth"</span>, maxgap<span class="op">=</span><span class="cn">Inf</span>, type<span class="op">=</span><span class="st">"linear"</span>, hz<span class="op">=</span><span class="fl">200</span>, n<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Smooth and Interpolate</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>smooth_interp <span class="ot">&lt;-</span> <span class="fu">smooth_interpolate_pupil</span>(pup_extend, <span class="at">pupil=</span><span class="st">"pupil"</span>, <span class="at">extendpupil=</span><span class="st">"extendpupil"</span>, <span class="at">extendblinks=</span><span class="cn">TRUE</span>, <span class="at">step.first=</span><span class="st">"smooth"</span>, <span class="at">maxgap=</span><span class="cn">Inf</span>, <span class="at">type=</span><span class="st">"linear"</span>, <span class="at">hz=</span><span class="dv">200</span>, <span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then, calculate missing data and remove trials with more than 50% missing data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">pup_missing</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/count_missing_pupil.html">count_missing_pupil</a></span><span class="op">(</span><span class="va">smooth_interp</span>, missingthresh <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> pup_missing<span class="ot">&lt;-</span><span class="fu">count_missing_pupil</span>(smooth_interp, <span class="at">missingthresh =</span> .<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="unlikely-pupil-sizes" class="level2"><h2 class="anchored" data-anchor-id="unlikely-pupil-sizes">Unlikely Pupil Sizes</h2>
+</section>
+<section id="unlikely-pupil-sizes" class="level2">
+<h2 class="anchored" data-anchor-id="unlikely-pupil-sizes">Unlikely Pupil Sizes</h2>
 <p>Now, keep only plausible pupil diameters between 2 mm and 9 mm.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pup_outliers</span><span class="op">&lt;-</span><span class="va">pup_missing</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span><span class="va">pup_interp</span>  <span class="op">&gt;=</span> <span class="fl">2</span>, <span class="va">pup_interp</span> <span class="op">&lt;=</span> <span class="fl">9</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pup_outliers<span class="ot">&lt;-</span>pup_missing <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span> (pup_interp  <span class="sc">&gt;=</span> <span class="dv">2</span>, pup_interp <span class="sc">&lt;=</span> <span class="dv">9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="mad" class="level2"><h2 class="anchored" data-anchor-id="mad">MAD</h2>
+</section>
+<section id="mad" class="level2">
+<h2 class="anchored" data-anchor-id="mad">MAD</h2>
 <p>Get rid of artifacts we might have missed during some earlier steps.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="co">#MAD removal</span></span>
-<span><span class="va">max_removal</span><span class="op">&lt;-</span><span class="va">pup_missing</span>  <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>speed<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/speed_pupil.html">speed_pupil</a></span><span class="op">(</span><span class="va">pup_interp</span>,<span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>MAD<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/calc_mad.html">calc_mad</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">speed</span> <span class="op">&lt;</span> <span class="va">MAD</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#MAD removal</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>max_removal<span class="ot">&lt;-</span>pup_missing  <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(subject, trial) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">speed=</span><span class="fu">speed_pupil</span>(pup_interp,time)) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">MAD=</span><span class="fu">calc_mad</span>(speed)) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(speed <span class="sc">&lt;</span> MAD)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="onset" class="level2"><h2 class="anchored" data-anchor-id="onset">Onset</h2>
+</section>
+<section id="onset" class="level2">
+<h2 class="anchored" data-anchor-id="onset">Onset</h2>
 <p>Let’s only look from the start of the trial until 1000 ms</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pupil_onset</span><span class="op">&lt;-</span><span class="va">max_removal</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">&lt;=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span>, <span class="va">time</span>, <span class="va">pup_interp</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pupil_onset<span class="ot">&lt;-</span>max_removal <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(subject, trial) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(time <span class="sc">&lt;=</span> <span class="dv">1000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(subject, trial, time, pup_interp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="downsample" class="level2"><h2 class="anchored" data-anchor-id="downsample">Downsample</h2>
+</section>
+<section id="downsample" class="level2">
+<h2 class="anchored" data-anchor-id="downsample">Downsample</h2>
 <p>Downsample the time-course to 100 ms.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#downsample</span></span>
-<span><span class="va">timebins1</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gazer/man/downsample_gaze.html">downsample_gaze</a></span><span class="op">(</span><span class="va">pupil_onset</span>, bin.length<span class="op">=</span><span class="fl">100</span>, pupil<span class="op">=</span><span class="st">"pup_interp"</span>, timevar <span class="op">=</span> <span class="st">"time"</span>, aggvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"subject"</span>, <span class="st">"trial"</span>, <span class="st">"timebins"</span><span class="op">)</span>, type<span class="op">=</span><span class="st">"pupil"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">timebins1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#downsample</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>timebins1<span class="ot">&lt;-</span> <span class="fu">downsample_gaze</span>(pupil_onset, <span class="at">bin.length=</span><span class="dv">100</span>, <span class="at">pupil=</span><span class="st">"pup_interp"</span>, <span class="at">timevar =</span> <span class="st">"time"</span>, <span class="at">aggvars =</span> <span class="fu">c</span>(<span class="st">"subject"</span>, <span class="st">"trial"</span>, <span class="st">"timebins"</span>), <span class="at">type=</span><span class="st">"pupil"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(timebins1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: left;">subject</th>
 <th style="text-align: right;">trial</th>
 <th style="text-align: right;">timebins</th>
 <th style="text-align: right;">aggbaseline</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2025-10-31_12-48-26-74964918</td>
@@ -485,11 +529,14 @@ Note
 </table>
 </div>
 </div>
-</section><section id="visualize-time-course" class="level2"><h2 class="anchored" data-anchor-id="visualize-time-course">Visualize Time-course</h2>
+</section>
+<section id="visualize-time-course" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-time-course">Visualize Time-course</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -497,16 +544,20 @@ Note
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</section></section><section id="surface-looks" class="level1"><h1>Surface Looks</h1>
+</section>
+</section>
+<section id="surface-looks" class="level1">
+<h1>Surface Looks</h1>
 <p>What does the data look like if we constrain the analyses to only include looks to the laptop screen?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sub_pl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://osf.io/enf6u/download"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sub_pl</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sub_pl <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"https://osf.io/enf6u/download"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(sub_pl))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -521,7 +572,8 @@ Note
 <col style="width: 11%">
 <col style="width: 7%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: left;">subject</th>
 <th style="text-align: right;">trial</th>
 <th style="text-align: right;">time</th>
@@ -532,7 +584,8 @@ Note
 <th style="text-align: left;">blink</th>
 <th style="text-align: left;">message</th>
 <th style="text-align: right;">fixation_id</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">test1</td>
@@ -614,71 +667,85 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This is what the pupil data looks like for the entire time course.</p>
-<section id="extending-blinks-1" class="level2"><h2 class="anchored" data-anchor-id="extending-blinks-1">Extending Blinks</h2>
+<section id="extending-blinks-1" class="level2">
+<h2 class="anchored" data-anchor-id="extending-blinks-1">Extending Blinks</h2>
 <p>We see dips in the pupil signal—these are most likely caused by blinks. Pupil Labs includes a blink detection algorithm, which we’ll use here. We first set pupil size values corresponding to blinks to NA, then use extend_blinks()to extend blinks 100 ms forward and backward in time.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="co">#Extend Blinks</span></span>
-<span><span class="va">pup_extend</span><span class="op">&lt;-</span> <span class="va">sub_pl</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pupil<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">blink</span><span class="op">==</span><span class="cn">TRUE</span>, <span class="cn">NA</span>, <span class="va">pupil</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>extendpupil<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/extend_blinks.html">extend_blinks</a></span><span class="op">(</span><span class="va">pupil</span>, fillback<span class="op">=</span><span class="fl">100</span>, fillforward<span class="op">=</span><span class="fl">100</span>, hz<span class="op">=</span><span class="fl">200</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Extend Blinks</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pup_extend<span class="ot">&lt;-</span> sub_pl <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pupil=</span><span class="fu">ifelse</span>(blink<span class="sc">==</span><span class="cn">TRUE</span>, <span class="cn">NA</span>, pupil)) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subject, trial) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">extendpupil=</span><span class="fu">extend_blinks</span>(pupil, <span class="at">fillback=</span><span class="dv">100</span>, <span class="at">fillforward=</span><span class="dv">100</span>, <span class="at">hz=</span><span class="dv">200</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="interpolate-blinks-1" class="level2"><h2 class="anchored" data-anchor-id="interpolate-blinks-1">Interpolate blinks</h2>
+</section>
+<section id="interpolate-blinks-1" class="level2">
+<h2 class="anchored" data-anchor-id="interpolate-blinks-1">Interpolate blinks</h2>
 <p>Next, we linearly interpolate over blinks and smooth the data using a 5-point moving average.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Smooth and Interpolate</span></span>
-<span><span class="va">smooth_interp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gazer/man/smooth_interpolate_pupil.html">smooth_interpolate_pupil</a></span><span class="op">(</span><span class="va">pup_extend</span>, pupil<span class="op">=</span><span class="st">"pupil"</span>, extendpupil<span class="op">=</span><span class="st">"extendpupil"</span>, extendblinks<span class="op">=</span><span class="cn">TRUE</span>, step.first<span class="op">=</span><span class="st">"smooth"</span>, maxgap<span class="op">=</span><span class="cn">Inf</span>, type<span class="op">=</span><span class="st">"linear"</span>, hz<span class="op">=</span><span class="fl">200</span>, n<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Smooth and Interpolate</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>smooth_interp <span class="ot">&lt;-</span> <span class="fu">smooth_interpolate_pupil</span>(pup_extend, <span class="at">pupil=</span><span class="st">"pupil"</span>, <span class="at">extendpupil=</span><span class="st">"extendpupil"</span>, <span class="at">extendblinks=</span><span class="cn">TRUE</span>, <span class="at">step.first=</span><span class="st">"smooth"</span>, <span class="at">maxgap=</span><span class="cn">Inf</span>, <span class="at">type=</span><span class="st">"linear"</span>, <span class="at">hz=</span><span class="dv">200</span>, <span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then, calculate missing data and remove trials with more than 50% missing data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">pup_missing</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/count_missing_pupil.html">count_missing_pupil</a></span><span class="op">(</span><span class="va">smooth_interp</span>, missingthresh <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a> pup_missing<span class="ot">&lt;-</span><span class="fu">count_missing_pupil</span>(smooth_interp, <span class="at">missingthresh =</span> .<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="unlikely-pupil-sizes-1" class="level2"><h2 class="anchored" data-anchor-id="unlikely-pupil-sizes-1">Unlikely Pupil Sizes</h2>
+</section>
+<section id="unlikely-pupil-sizes-1" class="level2">
+<h2 class="anchored" data-anchor-id="unlikely-pupil-sizes-1">Unlikely Pupil Sizes</h2>
 <p>Now, keep only plausible pupil diameters between 2 mm and 9 mm.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pup_outliers</span><span class="op">&lt;-</span><span class="va">pup_missing</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span><span class="va">pup_interp</span>  <span class="op">&gt;=</span> <span class="fl">2</span>, <span class="va">pup_interp</span> <span class="op">&lt;=</span> <span class="fl">9</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pup_outliers<span class="ot">&lt;-</span>pup_missing <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span> (pup_interp  <span class="sc">&gt;=</span> <span class="dv">2</span>, pup_interp <span class="sc">&lt;=</span> <span class="dv">9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="mad-1" class="level2"><h2 class="anchored" data-anchor-id="mad-1">MAD</h2>
+</section>
+<section id="mad-1" class="level2">
+<h2 class="anchored" data-anchor-id="mad-1">MAD</h2>
 <p>Get rid of artifacts we might have missed during some earlier steps.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="co">#MAD removal</span></span>
-<span><span class="va">max_removal</span><span class="op">&lt;-</span><span class="va">pup_missing</span>  <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>speed<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/speed_pupil.html">speed_pupil</a></span><span class="op">(</span><span class="va">pup_interp</span>,<span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>MAD<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gazer/man/calc_mad.html">calc_mad</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">speed</span> <span class="op">&lt;</span> <span class="va">MAD</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#MAD removal</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>max_removal<span class="ot">&lt;-</span>pup_missing  <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(subject, trial) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">speed=</span><span class="fu">speed_pupil</span>(pup_interp,time)) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">MAD=</span><span class="fu">calc_mad</span>(speed)) <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(speed <span class="sc">&lt;</span> MAD)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="onset-1" class="level2"><h2 class="anchored" data-anchor-id="onset-1">Onset</h2>
+</section>
+<section id="onset-1" class="level2">
+<h2 class="anchored" data-anchor-id="onset-1">Onset</h2>
 <p>Let’s only look from the start of the trial until 1000 ms</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pupil_onset</span><span class="op">&lt;-</span><span class="va">max_removal</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">&lt;=</span> <span class="fl">1000</span>, <span class="va">gaze_detected_on_surface</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">trial</span>, <span class="va">time</span>, <span class="va">pup_interp</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pupil_onset<span class="ot">&lt;-</span>max_removal <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(subject, trial) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(time <span class="sc">&lt;=</span> <span class="dv">1000</span>, gaze_detected_on_surface<span class="sc">==</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(subject, trial, time, pup_interp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="downsample-1" class="level2"><h2 class="anchored" data-anchor-id="downsample-1">Downsample</h2>
+</section>
+<section id="downsample-1" class="level2">
+<h2 class="anchored" data-anchor-id="downsample-1">Downsample</h2>
 <p>Downsample the time-course to 100 ms.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#downsample</span></span>
-<span><span class="va">timebins1</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gazer/man/downsample_gaze.html">downsample_gaze</a></span><span class="op">(</span><span class="va">pupil_onset</span>, bin.length<span class="op">=</span><span class="fl">100</span>, pupil<span class="op">=</span><span class="st">"pup_interp"</span>, timevar <span class="op">=</span> <span class="st">"time"</span>, aggvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"subject"</span>, <span class="st">"trial"</span>, <span class="st">"timebins"</span><span class="op">)</span>, type<span class="op">=</span><span class="st">"pupil"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">timebins1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#downsample</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>timebins1<span class="ot">&lt;-</span> <span class="fu">downsample_gaze</span>(pupil_onset, <span class="at">bin.length=</span><span class="dv">100</span>, <span class="at">pupil=</span><span class="st">"pup_interp"</span>, <span class="at">timevar =</span> <span class="st">"time"</span>, <span class="at">aggvars =</span> <span class="fu">c</span>(<span class="st">"subject"</span>, <span class="st">"trial"</span>, <span class="st">"timebins"</span>), <span class="at">type=</span><span class="st">"pupil"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(timebins1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: left;">subject</th>
 <th style="text-align: right;">trial</th>
 <th style="text-align: right;">timebins</th>
 <th style="text-align: right;">aggbaseline</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">test1</td>
@@ -720,11 +787,14 @@ Note
 </table>
 </div>
 </div>
-</section><section id="visualize-time-course-1" class="level2"><h2 class="anchored" data-anchor-id="visualize-time-course-1">Visualize Time-course</h2>
+</section>
+<section id="visualize-time-course-1" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-time-course-1">Visualize Time-course</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -732,14 +802,19 @@ Note
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1140,7 +1215,8 @@ Note
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2026 Jason Geller</span> <span class="faux-block">All content licensed under<br><a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> Creative Commons CC BY 4.0</a></span></p>
 </div>   
@@ -1152,6 +1228,8 @@ Note
 </div>
   </div>
 </footer>
+
+
 
 
 </body></html>
