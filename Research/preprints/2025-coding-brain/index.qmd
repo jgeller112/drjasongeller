@@ -25,7 +25,7 @@ pub-info:
       url: https://osf.io/5ctzu/
       icon:  ai ai-osf-square
     - name: Colab
-      icon: ai ai-google
+      icon: fa-brands fa-google
       url: https://colab.research.google.com/drive/17Td09p3aZcHQDa2AgZ_fSI38cLKFfn8j#scrollTo=b6Lq89RuDhma
 doi: https://doi.org/10.31234/osf.io/zy8d5_v1
 ---
