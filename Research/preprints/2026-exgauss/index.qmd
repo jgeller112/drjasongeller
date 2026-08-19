@@ -22,7 +22,15 @@ pub-info:
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/kdcxa_v2
       icon: ai ai-psyarxiv-square
-   
+
+    - name: Commentary
+      url: https://jgeller112.github.io/exGauss_commentary/
+      icon: fa-solid fa-comment
+
+    - name: Github
+      url: https://github.com/jgeller112/exGauss_commentary
+      icon: fa-brands fa-github-square
+
 doi: https://doi.org/10.31234/osf.io/kdcxa
 ---
 
