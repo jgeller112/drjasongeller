@@ -20,6 +20,10 @@ toc-location: right
 
 This is home for my research publications, each is linked with PDFs, preprints, and corresponding repositories with data and code, if applicable. Please reach out if there is something you want that you cannot obtain.
 
+::: callout-note
+\^ mentored/supervised student
+:::
+
 ## Preprints
 
 ::: {#preprints}
@@ -30,4 +34,4 @@ This is home for my research publications, each is linked with PDFs, preprints, 
 ::: {#articles}
 :::
 
-## 
+##
