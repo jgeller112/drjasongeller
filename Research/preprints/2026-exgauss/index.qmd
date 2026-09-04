@@ -17,7 +17,7 @@ categories:
     - parameterization
     - R
 pub-info:
-  reference: "Geller, J., Angele, B., & Makowski, D. (2026). This Is Not the ex-Gaussian Model You Are Looking For: On the Default Parameterization of Bayesian ex-Gaussian Models in brms. Retrieved from osf.io/preprints/psyarxiv/kdcxa_v2"
+  reference: "<strong>Geller, J.</strong>, Angele, B., & Makowski, D. (2026). This Is Not the ex-Gaussian Model You Are Looking For: On the Default Parameterization of Bayesian ex-Gaussian Models in brms. Retrieved from osf.io/preprints/psyarxiv/kdcxa_v2"
   links:
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/kdcxa_v2
