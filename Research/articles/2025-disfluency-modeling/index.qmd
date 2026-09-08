@@ -1,5 +1,5 @@
 ---
-title: "A Distributional Response Time Analysis of the Perceptual Disfluency Effect"
+title: "A distributional response time analysis of the perceptual disfluency effect"
 date: 2025-10-04
 author:
   - name: Jason Geller

@@ -1,5 +1,5 @@
 ---
-title: "The Effects of Group Counseling and Self-Affirmation on Stigma and Group Relationship Development: A Replication and Extension"
+title: "The effects of group counseling and self-affirmation on stigma and group relationship development: A replication and extension"
 date: 2022-10-01
 author:
   - name: Andrew Seidman 

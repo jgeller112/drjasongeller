@@ -1,5 +1,5 @@
 ---
-title: "Dataset of Intracranial Electroencephalography During Language Processing"
+title: "Dataset of intracranial electroencephalography during language processing"
 date: 2026-09-08
 author:
   - name: Daniel Mirman

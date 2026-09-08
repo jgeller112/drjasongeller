@@ -1,5 +1,5 @@
 ---
-title: "This Is Not the ex-Gaussian Model You Are Looking For: On the Default Parameterization of Bayesian ex-Gaussian Models in brms"
+title: "This is not the ex-Gaussian model you are looking for: On the default parameterization of Bayesian ex-Gaussian models in brms"
 date: 2026-01-30
 author:
   - name: Jason Geller
@@ -17,7 +17,7 @@ categories:
     - parameterization
     - R
 pub-info:
-  reference: "<strong>Geller, J.</strong>, Angele, B., & Makowski, D. (2026). This Is Not the ex-Gaussian Model You Are Looking For: On the Default Parameterization of Bayesian ex-Gaussian Models in brms. Retrieved from osf.io/preprints/psyarxiv/kdcxa_v2"
+  reference: "<strong>Geller, J.</strong>, Angele, B., & Makowski, D. (2026). This is not the ex-Gaussian model you are looking for: On the default parameterization of Bayesian ex-Gaussian models in brms. Retrieved from osf.io/preprints/psyarxiv/kdcxa_v2"
   links:
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/kdcxa_v2

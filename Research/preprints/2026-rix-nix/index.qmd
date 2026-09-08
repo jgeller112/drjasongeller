@@ -1,5 +1,5 @@
 ---
-title: "Why Risk it, When You Can {rix} it: A Tutorial for Computational Reproducibility Focused on Simulation Studies"
+title: "Why risk it, when you can {rix} it: A tutorial for computational reproducibility focused on simulation studies"
 date: 2026-01-30
 author:
   - name: Felipe Fontana Vieira
@@ -17,7 +17,7 @@ categories:
     - R
     - computational methods
 pub-info:
-  reference: "^Vieira, F. F., <strong>Geller, J.</strong>., & Rodrigues, B. (2026, January 28). Why Risk it, When You Can {rix} it: A Tutorial for Computational Reproducibility Focused on Simulation Studies. Retrieved from osf.io/preprints/psyarxiv/a3e8v_v1"
+  reference: "^Vieira, F. F., <strong>Geller, J.</strong>., & Rodrigues, B. (2026, January 28). Why risk it, when you can {rix} it: A tutorial for computational reproducibility focused on simulation studies. Retrieved from osf.io/preprints/psyarxiv/a3e8v_v1"
   links:
     - name: Preprint
       url: https://osf.io/preprints/psyarxiv/a3e8v_v1

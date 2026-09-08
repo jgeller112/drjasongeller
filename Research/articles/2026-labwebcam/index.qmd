@@ -1,5 +1,5 @@
 ---
-title: "Improving Webcam Eye-Tracking: Impact of Hardware and Head Stabilization on Data Quality"
+title: "Improving webcam eye-tracking: Impact of hardware and head stabilization on data quality"
 date: 2026-05-17
 
 author:
@@ -19,8 +19,8 @@ categories:
 pub-info:
   reference: >
     <strong>Geller, J.</strong>, Veríssimo, J., & Drouin, J. R. (2026).
-    Improving Webcam Eye-Tracking: Impact of Hardware and Head Stabilization
-    on Data Quality [Stage 1 Registered Report accepted in principle].
+    Improving webcam eye-tracking: Impact of hardware and head stabilization
+    on data quality [Stage 1 registered report accepted in principle].
     <em>Behavioral Research Methods</em>.
 
   links:

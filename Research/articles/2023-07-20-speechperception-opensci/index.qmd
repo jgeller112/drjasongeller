@@ -1,5 +1,5 @@
 ---
-title: "Multidimensional Signals and Analytic Flexibility: Estimating Degrees of Freedom in Human-Speech Analyses"
+title: "Multidimensional signals and analytic flexibility: Estimating degrees of freedom in human-speech analyses"
 date: 2023-07-20
 author:
   - name: Stefano Coretta 
