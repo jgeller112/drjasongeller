@@ -1,0 +1,30 @@
+---
+title: "Dataset of Intracranial Electroencephalography During Language Processing"
+date: 2026-09-08
+author:
+  - name: Daniel Mirman
+    affiliation: University of Edinburgh
+  - name: Melissa Thye
+    affiliation: University of Edinburgh
+  - name: Jason Geller
+    affiliation: Boston College
+  - name: Jerzy Szaflarski
+    affiliation: University of Alabama at Birmingham
+
+categories:
+    - intracranial EEG
+    - stereo-EEG
+    - language
+    - semantic cognition
+    - picture naming
+    - sentence comprehension
+    - BIDS
+    - epilepsy
+pub-info:
+  reference: "Mirman, D., Thye, M., <strong>Geller, J.</strong>, & Szaflarski, J. (2026). Dataset of intracranial electroencephalography during language processing."
+  links: []
+---
+
+# Abstract
+
+Intracranial electroencephalography provides millisecond-scale recordings from human neural populations that are difficult to obtain with non-invasive methods, but open intracranial EEG datasets for language research remain scarce. We describe a deidentified dataset of stereo-EEG recordings from 16 participants with drug-resistant epilepsy who completed language and semantic processing tasks during inpatient phase II video-EEG monitoring. Electrode placement was determined solely by clinical requirements and no electrodes were implanted for research purposes. Recordings were acquired with multicontact depth electrodes using a Natus Xltek system sampled at 2 kHz. Trial timing was marked in the EEG stream using TTL pulses generated from E-Prime 2.0 experiments via a custom Arduino-based interface. The tasks comprise picture naming, semantic relatedness judgement, picture-based semantic association, and spoken sentence comprehension. The release includes raw intracranial EEG data, event annotations, behavioural data, electrode coordinates, and participant-level demographic and neuropsychological metadata organised according to the Brain Imaging Data Structure intracranial EEG specification. Across participants, the dataset contains 3,008 channels, with 102–263 channels per participant, and no participant had more than three bad channels. Electrode locations were localised from post-implant CT co-registered to pre-operative MRI and mapped to template space. This dataset supports re-use for studies of lexical retrieval, semantic cognition, spoken sentence comprehension, high-frequency cortical dynamics, method development, and benchmarking analyses of human language networks.
