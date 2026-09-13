@@ -21,7 +21,7 @@ pub-info:
     <strong>Geller, J.</strong>, Veríssimo, J., & Drouin, J. R. (2026).
     Improving webcam eye-tracking: Impact of hardware and head stabilization
     on data quality [Stage 1 registered report accepted in principle].
-    <em>Behavioral Research Methods</em>.
+    <em>Behavior Research Methods</em>.
 
   links:
     - name: Preprint
