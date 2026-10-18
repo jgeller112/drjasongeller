@@ -13,7 +13,9 @@ cv:
 ```{r download-cv, include=FALSE}
 download.file(
   "https://github.com/jgeller112/JG_CV/raw/main/cv.pdf",
-  "cv.pdf", mode = "wb", quiet = TRUE
+  "cv.pdf",
+  mode = "wb",
+  quiet = TRUE
 )
 ```
 
