@@ -13,4 +13,3 @@ format:
     quarto-template-params:
       banner-header-class: "home home-hero"
 ---
-
