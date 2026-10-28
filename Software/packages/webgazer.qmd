@@ -4,13 +4,13 @@ abstract: "webgazeR is a webcam eye-tracking toolkit for pre-processing webcam g
 author: 
 - name: Jason Geller
 citation: 
-  url: jgeller112.github.io/webgazeR/
-  doi: https://doi.org/10.5281/zenodo.15831767
+  url: https://jgeller112.github.io/webgazeR/
+  doi: 10.5281/zenodo.15831767
 image: assets/webgazeR.png
 ---
 
-🐙 GitHub: jgeller112/webgazeR
+🐙 GitHub: [Github Repository](https://github.com/jgeller112/webgazeR)
 
-💻 Website: [Package site](jgeller112.github.io/webgazeR/)
+💻 Website: [Package site](https://jgeller112.github.io/webgazeR/)
 
 📄 Documentation: [Read the Paper](https://www.sciencedirect.com/science/article/pii/S2772766125000473)

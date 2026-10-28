@@ -50,6 +50,7 @@
     "listing": "/Software/index.html",
     "items": [
       "/Software/packages/gazer.html",
+      "/Software/packages/shiny-gazer.html",
       "/Software/packages/webgazer.html"
     ]
   },

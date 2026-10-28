@@ -1,0 +1,15 @@
+---
+title: "shiny gazeR: Pupil pre-processing without writing code"
+abstract: "shiny gazeR is a point-and-click app for pupil pre-processing, built on gazeR. It runs in your browser, and your data never leave your computer."
+author: 
+- name: Jason Geller
+citation: 
+  url: https://jgeller112.github.io/shiny-gazeR/
+image: assets/shiny-gazer.svg
+---
+
+🌐 Try it: [Open the app in your browser](https://jgeller112.github.io/shiny-gazeR/)
+
+🐙 GitHub: [Github Repository](https://github.com/jgeller112/shiny-gazeR)
+
+📦 Install: `install.packages("shinygazer", repos = c("https://jgeller112.r-universe.dev", "https://cloud.r-project.org"))`
