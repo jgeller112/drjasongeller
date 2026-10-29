@@ -1,0 +1,35 @@
+---
+title: "I remember that question: Using eye tracking to see how prequestions shape reading"
+date: 2026-10-29
+author:
+  - name: Jason Geller
+    affiliation: Boston College
+
+categories: 
+    - prequestions
+    - pretesting
+    - eye tracking
+    - reading
+    - attention
+    - learning
+pub-info:
+  reference: "<strong>Geller, J.</strong> (2026). I remember that question: Using eye tracking to see how prequestions shape reading. Retrieved from osf.io/preprints/psyarxiv/sd2hq_v1"
+  links:
+    - name: Preprint
+      url: https://osf.io/preprints/psyarxiv/sd2hq_v1
+      icon: ai ai-psyarxiv-square
+
+    - name: Preregistration
+      url: https://osf.io/8env4
+      icon: ai ai-osf-square
+
+    - name: Github
+      url: https://github.com/jgeller112/Prequestions_EyeTracking
+      icon: fa-brands fa-github-square
+
+doi: https://doi.org/10.31234/osf.io/sd2hq_v1
+---
+
+# Abstract
+
+Answering questions before learning (prequestions) improves memory for the information they address, but how it does so is unclear. A common proposal is that prequestions direct attention to that information. We tested this account by recording eye movements while participants read a text about polio and tuberculosis after answering prequestions about one topic or none, so that every target sentence was read both with and without prequestions. Prequestions improved memory only for the prequestioned information, and eye movements showed the same specificity. Ex-Gaussian models, which separate typical reading time from occasional unusually long readings, showed that prequestions did not change typical reading of the answer sentences. Instead, these sentences received more unusually long readings, were looked back to more often, and were re-read for longer; other sentences were unaffected. Prequestions thus guide attention selectively rather than heightening it, consistent with additional processing when readers recognize an answer.
